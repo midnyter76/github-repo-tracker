@@ -644,22 +644,25 @@ ASVS V2/V3/V4/V6 are not applicable — this is a server-side cron with no user 
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Does `RepositorySearchResult` include `topics` without a separate `get_topics()` call?**
    - What we know: `repo.get_topics()` always works (extra API call); search result objects may or may not populate `.topics`
    - What's unclear: Search result object attributes vs full Repository object attributes
    - Recommendation: At implementation time, inspect `dir(result)` on first search result, or test with one topic query; if `.topics` is absent, omit from Phase 1 schema (Phase 2 does not require topics for velocity computation)
+   - **RESOLVED:** Topics omitted from the Phase 1 snapshot schema entirely (Plan 01-03 Task 2, citing Pitfall 6) — no extra `get_topics()` core call incurred. Phase 2 velocity computation does not require topics.
 
 2. **What are the actual total_count values for the 6 LLM-era topics without date windowing?**
    - What we know: Budget is 1,000 per sub-query; topics like `llm` and `agents` may be popular
    - What's unclear: Whether any topic exceeds 1,000 repos with `fork:false archived:false`
    - Recommendation: First run logs `total_count` for each topic query; if any exceeds 900, add `created:>2023-01-01` window and re-run
+   - **RESOLVED:** Resolved at runtime — Plan 01-02's cap-handling logs each `total_count`, warns at the 900 threshold (`TOTAL_COUNT_CAP_WARN`), and narrows the slice automatically. Exact per-topic counts are observed on first run; no hardcoded count is baked into the plan.
 
 3. **Breakthrough Universe: Rolling Accumulation vs Star-Banded Standing Query?**
    - What we know: D-04 says "breakthrough universe (re-fetched daily) stays ~200"; D-05 says sub-queries can be "star-banded where needed." Date-windowed discovery only catches repos within their creation window -- an established repo that starts spiking today is invisible unless it was previously discovered.
    - What's unclear: Whether the ~200-repo breakthrough universe is (A) the rolling accumulation of date-windowed discoveries that age and stay tracked, or (B) a separate star-banded standing query that refreshes the established-repo set each run regardless of creation date
    - Recommendation: Reading (B) aligns better with the "catch exploding repos early" core value and D-05's explicit mention of star-banding as a slicing mechanism. Include the star-banded discovery pass (Pattern 5a) with `BREAKTHROUGH_STAR_BANDS` as a configurable constant. If the user intends Reading (A), explicitly document the cold-start limitation: old-but-spiking repos are invisible until the project has run long enough to have previously discovered them through a creation-date window.
+   - **RESOLVED:** User selected Reading (B) — locked as **D-11** in `01-CONTEXT.md`. Implemented as `discover_established()` in Plan 01-02 (star-banded standing query, cap-handled via `split_star_band`), refreshing the established-repo set each run regardless of creation date.
 
 ---
 
