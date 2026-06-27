@@ -12,21 +12,22 @@ Catch exploding AI repos early — surface the right repositories, ranked by *ve
 
 ### Validated
 
-(None yet — ship to validate)
+_Validated in Phase 1: Collection Loop (code-complete + 96 tests green; live-run UAT pending in 01-HUMAN-UAT.md)_
+
+- [x] Query the GitHub API daily and filter for AI-related repositories
+- [x] Store a daily snapshot of star counts so velocity can be computed as a diff over time
+- [x] Run automatically every morning via GitHub Actions cron
+- [x] Persist the snapshot store across scheduled runs (e.g. commit back to repo)
 
 ### Active
 
-- [ ] Query the GitHub API daily and filter for AI-related repositories
 - [ ] **Brand New — Top 10 weekly**: repos created in last 7 days, ranked by star velocity
 - [ ] **Brand New — Top 5 monthly**: repos created in last 30 days, ranked by star velocity
 - [ ] **Breakthrough — Top 10 24h spike**: existing repos with a sudden star surge in the last 24h
 - [ ] **Breakthrough — Top 10 30-day velocity**: existing repos with sustained star growth over a rolling month
-- [ ] Store a daily snapshot of star counts so velocity can be computed as a diff over time
 - [ ] Per-repo report line: clickable link, creation date, current stars + star acceleration, primary description
 - [ ] Track which repos have already been reported; flag never-before-seen repos with a 🆕 marker, tag returning ones
 - [ ] Write each run's output as a dated markdown report file
-- [ ] Run automatically every morning via GitHub Actions cron
-- [ ] Persist the snapshot store across scheduled runs (e.g. commit back to repo)
 
 ### Out of Scope
 
@@ -80,4 +81,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-06-26 after initialization*
+*Last updated: 2026-06-27 — Phase 1 (Collection Loop) complete*
