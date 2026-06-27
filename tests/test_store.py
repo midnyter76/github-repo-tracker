@@ -171,3 +171,162 @@ class TestWriteSnapshot:
 
         assert isinstance(result, Path)
         assert result.exists()
+
+
+# ---------------------------------------------------------------------------
+# Task 2 — write_metadata, load_metadata, load_metadata_ids (DATA-03)
+# ---------------------------------------------------------------------------
+
+class TestWriteMetadata:
+    def test_creates_file_with_updated_at_and_repos(self, tmp_path: Path):
+        """write_metadata creates a file with updated_at and repos top-level keys."""
+        from src.store import write_metadata
+
+        run_at = _utc()
+        repo = _make_repo(id=111, stargazers_count=50)
+        md_path = tmp_path / "metadata.json"
+        write_metadata({"111": repo}, run_at, metadata_path=md_path)
+
+        assert md_path.exists()
+        data = json.loads(md_path.read_text())
+        assert "updated_at" in data
+        assert "repos" in data
+        assert data["updated_at"] == run_at.isoformat()
+
+    def test_repos_contains_required_fields(self, tmp_path: Path):
+        """Metadata repos entry has full_name, description, created_at, html_url."""
+        from src.store import write_metadata
+
+        run_at = _utc()
+        repo = _make_repo(
+            id=111,
+            stargazers_count=50,
+            full_name="owner/my-repo",
+            description="An LLM tool",
+            html_url="https://github.com/owner/my-repo",
+            created_at=datetime(2024, 11, 15, 10, 0, 0, tzinfo=timezone.utc),
+        )
+        md_path = tmp_path / "metadata.json"
+        write_metadata({"111": repo}, run_at, metadata_path=md_path)
+
+        data = json.loads(md_path.read_text())
+        entry = data["repos"]["111"]
+        assert entry["full_name"] == "owner/my-repo"
+        assert entry["description"] == "An LLM tool"
+        assert entry["html_url"] == "https://github.com/owner/my-repo"
+        assert "created_at" in entry
+
+    def test_none_description_stored_as_empty_string(self, tmp_path: Path):
+        """description=None is stored as '' not null (RESEARCH Pattern 7)."""
+        from src.store import write_metadata
+
+        run_at = _utc()
+        repo = _make_repo(id=111, stargazers_count=50, description=None)
+        md_path = tmp_path / "metadata.json"
+        write_metadata({"111": repo}, run_at, metadata_path=md_path)
+
+        data = json.loads(md_path.read_text())
+        assert data["repos"]["111"]["description"] == ""
+
+    def test_created_at_is_utc_isoformat(self, tmp_path: Path):
+        """created_at field is serialized via .isoformat() — UTC ISO 8601 (DATA-05)."""
+        from src.store import write_metadata
+
+        run_at = _utc()
+        created = datetime(2024, 11, 15, 10, 0, 0, tzinfo=timezone.utc)
+        repo = _make_repo(id=111, stargazers_count=50, created_at=created)
+        md_path = tmp_path / "metadata.json"
+        write_metadata({"111": repo}, run_at, metadata_path=md_path)
+
+        data = json.loads(md_path.read_text())
+        stored_created_at = data["repos"]["111"]["created_at"]
+        parsed = datetime.fromisoformat(stored_created_at)
+        assert parsed.tzinfo is not None, "created_at must be timezone-aware"
+        assert parsed == created
+
+    def test_full_overwrite_not_merge(self, tmp_path: Path):
+        """write_metadata OVERWRITES the file — second call with different ids replaces, not merges (DATA-03)."""
+        from src.store import write_metadata
+
+        run_at = _utc()
+        repo_111 = _make_repo(id=111, stargazers_count=50)
+        repo_222 = _make_repo(id=222, stargazers_count=99)
+        md_path = tmp_path / "metadata.json"
+
+        # First write: repo 111
+        write_metadata({"111": repo_111}, run_at, metadata_path=md_path)
+        # Second write: repo 222 only
+        write_metadata({"222": repo_222}, run_at, metadata_path=md_path)
+
+        data = json.loads(md_path.read_text())
+        assert "222" in data["repos"], "second write must be present"
+        assert "111" not in data["repos"], "first write must be replaced (full overwrite, not merge)"
+
+    def test_no_topics_field_in_metadata(self, tmp_path: Path):
+        """write_metadata must NOT include a 'topics' field (Pitfall 6 — avoid get_topics())."""
+        from src.store import write_metadata
+
+        run_at = _utc()
+        repo = _make_repo(id=111, stargazers_count=50)
+        md_path = tmp_path / "metadata.json"
+        write_metadata({"111": repo}, run_at, metadata_path=md_path)
+
+        data = json.loads(md_path.read_text())
+        assert "topics" not in data["repos"]["111"], "topics must be omitted (Pitfall 6)"
+
+    def test_returns_path_to_metadata_file(self, tmp_path: Path):
+        """write_metadata returns the Path of the written file."""
+        from src.store import write_metadata
+
+        run_at = _utc()
+        repo = _make_repo(id=111, stargazers_count=50)
+        md_path = tmp_path / "metadata.json"
+        result = write_metadata({"111": repo}, run_at, metadata_path=md_path)
+
+        assert isinstance(result, Path)
+        assert result.exists()
+
+
+class TestLoadMetadata:
+    def test_returns_empty_dict_when_file_absent(self, tmp_path: Path):
+        """load_metadata returns {} when the metadata file does not exist."""
+        from src.store import load_metadata
+
+        md_path = tmp_path / "nonexistent.json"
+        assert load_metadata(metadata_path=md_path) == {}
+
+    def test_returns_parsed_dict_when_file_present(self, tmp_path: Path):
+        """load_metadata returns the full parsed dict when the file exists."""
+        from src.store import load_metadata, write_metadata
+
+        run_at = _utc()
+        repo = _make_repo(id=111, stargazers_count=50)
+        md_path = tmp_path / "metadata.json"
+        write_metadata({"111": repo}, run_at, metadata_path=md_path)
+
+        result = load_metadata(metadata_path=md_path)
+        assert "repos" in result
+        assert "111" in result["repos"]
+
+
+class TestLoadMetadataIds:
+    def test_returns_empty_list_when_file_absent(self, tmp_path: Path):
+        """load_metadata_ids returns [] when the metadata file does not exist."""
+        from src.store import load_metadata_ids
+
+        md_path = tmp_path / "nonexistent.json"
+        assert load_metadata_ids(metadata_path=md_path) == []
+
+    def test_returns_list_of_str_keys(self, tmp_path: Path):
+        """load_metadata_ids returns list of str repo-id keys from metadata repos."""
+        from src.store import load_metadata_ids, write_metadata
+
+        run_at = _utc()
+        repo_111 = _make_repo(id=111, stargazers_count=50)
+        repo_222 = _make_repo(id=222, stargazers_count=99)
+        md_path = tmp_path / "metadata.json"
+        write_metadata({"111": repo_111, "222": repo_222}, run_at, metadata_path=md_path)
+
+        ids = load_metadata_ids(metadata_path=md_path)
+        assert isinstance(ids, list)
+        assert set(ids) == {"111", "222"}
