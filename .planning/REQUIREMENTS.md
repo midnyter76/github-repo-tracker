@@ -82,17 +82,43 @@ Explicitly excluded. Documented to prevent scope creep.
 
 ## Traceability
 
-Populated during roadmap creation. Each v1 requirement maps to exactly one phase.
+Each v1 requirement maps to exactly one phase.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (pending roadmap) | — | Pending |
+| DATA-01 | Phase 1 | Pending |
+| DATA-02 | Phase 1 | Pending |
+| DATA-03 | Phase 1 | Pending |
+| DATA-04 | Phase 1 | Pending |
+| DATA-05 | Phase 1 | Pending |
+| FILTER-01 | Phase 1 | Pending |
+| FILTER-02 | Phase 1 | Pending |
+| FILTER-03 | Phase 1 | Pending |
+| FILTER-04 | Phase 1 | Pending |
+| AUTO-01 | Phase 1 | Pending |
+| AUTO-02 | Phase 1 | Pending |
+| AUTO-03 | Phase 1 | Pending |
+| RANK-01 | Phase 2 | Pending |
+| RANK-02 | Phase 2 | Pending |
+| RANK-03 | Phase 2 | Pending |
+| RANK-04 | Phase 2 | Pending |
+| RANK-05 | Phase 2 | Pending |
+| RANK-06 | Phase 2 | Pending |
+| REPORT-01 | Phase 2 | Pending |
+| REPORT-02 | Phase 2 | Pending |
+| REPORT-03 | Phase 2 | Pending |
+| REPORT-04 | Phase 2 | Pending |
+| REPORT-05 | Phase 2 | Pending |
+| HARD-01 | Phase 3 | Pending |
+| HARD-02 | Phase 3 | Pending |
+| HARD-03 | Phase 3 | Pending |
+| HARD-04 | Phase 3 | Pending |
 
 **Coverage:**
-- v1 requirements: 25 total
-- Mapped to phases: 0 (pending roadmap)
-- Unmapped: 25 ⚠️
+- v1 requirements: 27 total (DATA×5, FILTER×4, RANK×6, REPORT×5, AUTO×3, HARD×4)
+- Mapped to phases: 27/27
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-06-26*
-*Last updated: 2026-06-26 after initial definition*
+*Last updated: 2026-06-26 after roadmap creation*
