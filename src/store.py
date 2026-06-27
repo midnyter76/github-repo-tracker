@@ -87,8 +87,8 @@ def write_metadata(
 
     Unlike write_snapshot, this is a FULL OVERWRITE — no merging with existing data.
     Writing {"111"} then {"222"} leaves only {"222"} in the file (DATA-03).
-    Topics are intentionally omitted (Pitfall 6 — get_topics() is an extra API call
-    per repo; not required for Phase 2 velocity ranking).
+    Topics are intentionally omitted (Pitfall 6 — the PyGithub topics accessor
+    makes an extra API call per repo; not required for Phase 2 velocity ranking).
 
     Args:
         repos:         dict mapping str(repo.id) → repo object
