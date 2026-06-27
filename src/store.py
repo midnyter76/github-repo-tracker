@@ -11,6 +11,7 @@ All stored timestamps are UTC ISO 8601 per D-07 / DATA-05.
 """
 
 import json
+import warnings
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -50,7 +51,14 @@ def write_snapshot(
     # Load existing snapshot to merge (handles same-day retry — DATA-04 / Pitfall 5)
     existing = {}
     if snap_path.exists():
-        existing = json.loads(snap_path.read_text()).get("repos", {})
+        try:
+            existing = json.loads(snap_path.read_text()).get("repos", {})
+        except json.JSONDecodeError:
+            warnings.warn(
+                f"Corrupt snapshot at {snap_path}; starting fresh for this date.",
+                stacklevel=2,
+            )
+            existing = {}
 
     # Upsert: existing entries survive; new entries overwrite by id (new value wins)
     stars = {**existing, **{rid: {"stars": r.stargazers_count} for rid, r in repos.items()}}
@@ -126,7 +134,14 @@ def load_metadata(metadata_path: Path = METADATA_PATH) -> dict:
     """
     if not metadata_path.exists():
         return {}
-    return json.loads(metadata_path.read_text())
+    try:
+        return json.loads(metadata_path.read_text())
+    except json.JSONDecodeError:
+        warnings.warn(
+            f"Corrupt metadata at {metadata_path}; treating as empty.",
+            stacklevel=2,
+        )
+        return {}
 
 
 def load_metadata_ids(metadata_path: Path = METADATA_PATH) -> list[str]:
