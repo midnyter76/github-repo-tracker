@@ -28,7 +28,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. The combo AI filter (topic-union query + keyword fallback, date-windowed, deduped by numeric repo.id) fetches candidate repos and each sub-query's total_count stays under 1,000
   4. Re-running the workflow on the same day does not corrupt or duplicate the existing snapshot (idempotent write)
   5. All timestamps stored in snapshot and metadata files are UTC ISO 8601 strings
-**Plans**: TBD
+**Plans**: 4 plans (3 waves)
+- [ ] 01-01-PLAN.md — Project scaffold + config constants (FILTER-04) [wave 1]
+- [ ] 01-02-PLAN.md — Search/discovery layer: combo filter, cap-slicing, D-11 star-band pass (DATA-01, FILTER-01/02/03) [wave 2]
+- [ ] 01-03-PLAN.md — Persistence layer: idempotent snapshots + metadata (DATA-02/03/04/05) [wave 2]
+- [ ] 01-04-PLAN.md — Main wiring + GitHub Actions workflow (DATA-01, AUTO-01/02/03) [wave 3]
 
 ### Phase 2: Velocity Ranking + Full Reporting
 **Goal**: Each run produces a complete dated markdown digest with all four velocity buckets; new-repo buckets are fully populated from day 1; spike/velocity buckets show transparent cold-start notes until sufficient history exists
@@ -60,6 +64,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Collection Loop | 0/TBD | Not started | - |
+| 1. Collection Loop | 0/4 | Planned | - |
 | 2. Velocity Ranking + Full Reporting | 0/TBD | Not started | - |
 | 3. Production Hardening | 0/TBD | Not started | - |
