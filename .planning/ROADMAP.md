@@ -29,7 +29,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. Re-running the workflow on the same day does not corrupt or duplicate the existing snapshot (idempotent write)
   5. All timestamps stored in snapshot and metadata files are UTC ISO 8601 strings
 **Plans**: 4 plans (3 waves)
-- [ ] 01-01-PLAN.md — Project scaffold + config constants (FILTER-04) [wave 1]
+- [x] 01-01-PLAN.md — Project scaffold + config constants (FILTER-04) [wave 1]
 - [ ] 01-02-PLAN.md — Search/discovery layer: combo filter, cap-slicing, D-11 star-band pass (DATA-01, FILTER-01/02/03) [wave 2]
 - [ ] 01-03-PLAN.md — Persistence layer: idempotent snapshots + metadata (DATA-02/03/04/05) [wave 2]
 - [ ] 01-04-PLAN.md — Main wiring + GitHub Actions workflow (DATA-01, AUTO-01/02/03) [wave 3]
