@@ -65,9 +65,9 @@ Phase 1 is a greenfield Python script running on a GitHub Actions cron that (a) 
 
 The single most important research finding is that **multiple `topic:` qualifiers in the GitHub REST Search API combine with AND logic — OR between qualifiers is not supported**. This means D-01's 6 LLM-era topics require 6 separate `search_repositories()` calls, with results merged client-side by numeric `repo.id`. Plain keyword OR (`llm OR gpt OR langchain`) within a single query IS supported (max 5 OR/AND/NOT operators per query), enabling the keyword-fallback half to run as 1-2 queries rather than one-per-keyword.
 
-The second important design concern is that Phase 1 has two distinct API paths per run: the **search path** (discovery of new repos, ~8 calls, search rate limit 30/min) and the **core re-fetch path** (refreshing star counts for already-tracked repos, ~200 `get_repo(id)` calls, core limit 1,000/hr). Both paths must be rate-paced; the `safe_search` wrapper handles the search path, and PyGithub's built-in `seconds_between_requests=0.5` handles the core path.
+The second important design concern is that Phase 1 has three API paths per run: the **date-windowed search path** (discovery of new repos by creation window, ~22 search page-calls, search rate limit 30/min); the **star-banded established-repo path** (optional Reading B per Open Question #3 — catches old-but-spiking repos, ~12 additional page-calls); and the **core re-fetch path** (refreshing star counts for tracked repos, ~200 `get_repo(id)` calls, core limit 1,000/hr). All paths must be rate-paced; `safe_search` handles the search paths, and PyGithub's built-in `seconds_between_requests=0.5` handles the core path.
 
-**Primary recommendation:** Build one `collector.py` with three functions — `discover_repos()` (search path), `refresh_tracked()` (core re-fetch path), and `write_snapshot()` (idempotent write). Keep `TOPICS` and `KEYWORDS` as module-level constants. Wire up the Actions workflow with a single cron trigger and the auto-commit action.
+**Primary recommendation:** Build one `collector.py` with four functions — `discover_repos()` (date-windowed topic + keyword search path), `discover_established()` (star-banded standing query — Reading B; see Open Question #3), `refresh_tracked()` (core re-fetch path), and `write_snapshot()` (idempotent write). Keep `TOPICS`, `KEYWORDS`, and `BREAKTHROUGH_STAR_BANDS` as module-level constants. Wire up the Actions workflow with a single cron trigger and the auto-commit action.
 
 ---
 
@@ -165,9 +165,14 @@ GitHub Actions cron (13:00 UTC)
   │  collector.py                                       │
   │                                                     │
   │  1. discover_repos()        <---> GitHub Search API │
-  │     - 6 topic queries                (30 req/min)  │
+  │     - 6 topic queries, date-windowed   (30 req/min)  │
   │     - 1-2 keyword queries                          │
   │     - merge by repo.id → candidate set             │
+  │                                                     │
+  │  1b. discover_established() [Reading B, Open Q#3]  │
+  │     - 6 topics x 2 star bands = 12 queries         │
+  │     - catches old-but-spiking repos                │
+  │     - merge into candidate set                      │
   │                                                     │
   │  2. refresh_tracked()       <---> GitHub Core API  │
   │     - load existing tracked IDs from metadata.json │
@@ -281,7 +286,7 @@ def discover_via_topics(g, since_date: str) -> dict:
         results = safe_search(g, query)
         # Check cap: log warning if total_count approaches 1,000
         if results.totalCount >= 900:
-            # Tighten date window or add star-band split — see Pattern 5
+            # Tighten date window or add star-band split — see Pattern 5a
             pass
         for repo in results:
             found[str(repo.id)] = repo
@@ -520,9 +525,11 @@ Key design decisions:
 |-------|-----------|-------|------------|---------------|
 | Discovery | search page-calls (topic, ~2 pages/query avg) | 6 queries x ~2 = ~12 | 30/min (search) | ~24s pacing |
 | Discovery | search page-calls (keyword, ~5 pages/query avg) | 2 queries x ~5 = ~10 | 30/min (search) | ~20s pacing |
-| Discovery | `get_rate_limit()` pre-checks | 8 (one per query, not per page) | core (negligible) | -- |
+| Discovery (Reading B) | search page-calls (star-band, ~1 page/query) | 12 queries x ~1 = ~12 | 30/min (search) | ~24s pacing |
+| Discovery | `get_rate_limit()` pre-checks | 8-20 (one per query, not per page) | core (negligible) | -- |
 | Re-fetch | `get_repo(id)` x tracked repos | ~200 calls | 1,000/hr (core) | ~100s with 0.5s spacing |
-| **Total search page-calls** | -- | **~22** | 30 req/min -> ~44s pacing | Well within budget |
+| **Total search page-calls (Reading A)** | -- | **~22** | 30 req/min -> ~44s pacing | Well within budget |
+| **Total search page-calls (Reading B)** | -- | **~34** | 30 req/min -> ~68s pacing | Well within budget |
 | **Total core calls** | -- | **~208** | 1,000/hr -> 20% used | Well within budget |
 
 **Pagination note:** `search_repositories` returns a `PaginatedList` -- each page of 100 results is a separate search API call counted against the 30 req/min limit. `safe_search` pre-checks the limit only before the first page; `GithubRetry` handles 403s on subsequent pages. Topic queries returning ~200 repos = ~2 pages each; keyword queries returning ~500 repos = ~5 pages each. If any topic's `totalCount >= 900`: add a `created:>DATE` split (2 call-sets instead of 1). Worst case with splits: ~35 search page-calls total -- well within budget.
