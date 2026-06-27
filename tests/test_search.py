@@ -443,11 +443,13 @@ class TestDiscoverEstablished:
             warnings.simplefilter("always")
             discover_established(MagicMock(), search=fake_search)
 
-        # First call over-cap → 2 sub-band calls issued instead of 1
-        # Total queries = (1 over-cap replaced by 2 subs) + (remaining 11 normal)
+        # First call is over-cap: 1 initial query + 2 sub-band re-queries = 3 for that slot
+        # Remaining 11 slots: 1 query each
+        # Total = 3 + 11 = total_bands_topics + 2
         total_bands_topics = len(BREAKTHROUGH_STAR_BANDS) * len(TOPICS)
-        assert len(recorded) == total_bands_topics + 1, (
-            f"Expected {total_bands_topics + 1} queries (1 split → 2 sub-bands), got {len(recorded)}"
+        assert len(recorded) == total_bands_topics + 2, (
+            f"Expected {total_bands_topics + 2} queries (initial over-cap + 2 sub-bands + 11 normal), "
+            f"got {len(recorded)}"
         )
 
     def test_over_cap_sub_bands_are_contiguous(self):
