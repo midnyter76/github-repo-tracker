@@ -28,39 +28,59 @@ from src.config import (
 # ---------------------------------------------------------------------------
 
 
-def build_topic_query(topic: str, since_date: str) -> str:
+def build_topic_query(
+    topic: str, since_date: str, until_date: str | None = None
+) -> str:
     """Build a topic-half search query.
 
     No star floor — fresh topiced repos must not be suppressed (D-03, FILTER-03).
 
     Args:
         topic: GitHub topic string (e.g. "llm").
-        since_date: ISO date string for the created:>DATE qualifier.
+        since_date: ISO date string for the created qualifier.
+        until_date: Optional ISO date string. When provided, the created qualifier
+            becomes a closed range ``created:SINCE..UNTIL`` instead of the open
+            ``created:>SINCE``.  Used when narrowing an over-cap window to issue
+            a complementary middle-band query (WR-02 / D-04).
 
     Returns:
         Query string for g.search_repositories().
     """
-    return f"topic:{topic} {QUALIFIER_EXCLUSIONS} created:>{since_date}"
+    if until_date:
+        date_qualifier = f"created:{since_date}..{until_date}"
+    else:
+        date_qualifier = f"created:>{since_date}"
+    return f"topic:{topic} {QUALIFIER_EXCLUSIONS} {date_qualifier}"
 
 
-def build_keyword_query(keywords: list, since_date: str) -> str:
+def build_keyword_query(
+    keywords: list, since_date: str, until_date: str | None = None
+) -> str:
     """Build a keyword-fallback search query.
 
     Star floor applied on the keyword half only (FILTER-03, D-02).
 
     Args:
         keywords: List of keyword terms joined with OR.
-        since_date: ISO date string for the created:>DATE qualifier.
+        since_date: ISO date string for the created qualifier.
+        until_date: Optional ISO date string.  When provided, the created qualifier
+            becomes a closed range ``created:SINCE..UNTIL`` instead of the open
+            ``created:>SINCE``.  Used when narrowing an over-cap window to issue
+            a complementary middle-band query (WR-02 / D-04).
 
     Returns:
         Query string for g.search_repositories().
     """
     terms = " OR ".join(keywords)
+    if until_date:
+        date_qualifier = f"created:{since_date}..{until_date}"
+    else:
+        date_qualifier = f"created:>{since_date}"
     return (
         f"{terms} {KEYWORD_IN_QUALIFIER}"
         f" stars:>={KEYWORD_STAR_FLOOR}"
         f" {QUALIFIER_EXCLUSIONS}"
-        f" created:>{since_date}"
+        f" {date_qualifier}"
     )
 
 
@@ -201,29 +221,99 @@ def discover_repos(g, windows=None, search=None) -> dict:
             query = build_topic_query(topic, since_date=since)
             results = search(g, query)
             if over_cap(results):
-                warnings.warn(
-                    f"topic query for '{topic}' totalCount={results.totalCount} "
-                    f">= {TOTAL_COUNT_CAP_WARN}; narrowing to {tightest_window}d window",
-                    stacklevel=2,
-                )
-                tight_since = since_date_for(tightest_window)
-                results = search(g, build_topic_query(topic, since_date=tight_since))
-            for repo in results:
-                found[str(repo.id)] = repo
+                if window == tightest_window:
+                    # WR-01: already at tightest window — re-issuing the same query
+                    # wastes a search credit and returns the same over-cap result.
+                    # Emit a targeted warning and keep the (possibly truncated) results.
+                    warnings.warn(
+                        f"topic query for '{topic}' totalCount={results.totalCount} "
+                        f">= {TOTAL_COUNT_CAP_WARN}; already at tightest window "
+                        f"({tightest_window}d), consider adding a star-floor or "
+                        "per-star-band slice",
+                        stacklevel=2,
+                    )
+                    for repo in results:
+                        found[str(repo.id)] = repo
+                else:
+                    # WR-02: issue a complementary date-range query that covers only
+                    # the portion of this window NOT already handled by the tightest
+                    # window pass (i.e. repos created tightest_window+1 … window days
+                    # ago).  This preserves the D-04 monthly cohort without discarding
+                    # the wider date range.
+                    tight_since = since_date_for(tightest_window)
+                    warnings.warn(
+                        f"topic query for '{topic}' totalCount={results.totalCount} "
+                        f">= {TOTAL_COUNT_CAP_WARN}; issuing complementary "
+                        f"{tightest_window + 1}–{window}d range query to preserve "
+                        "D-04 monthly cohort",
+                        stacklevel=2,
+                    )
+                    mid_results = search(
+                        g,
+                        build_topic_query(
+                            topic, since_date=since, until_date=tight_since
+                        ),
+                    )
+                    # WR-03: cap-check on the complementary middle-band query
+                    if over_cap(mid_results):
+                        warnings.warn(
+                            f"topic query for '{topic}' middle range "
+                            f"({tightest_window + 1}–{window}d) STILL over cap "
+                            f"(totalCount={mid_results.totalCount}); results will be "
+                            "truncated — consider per-star-band slicing",
+                            stacklevel=2,
+                        )
+                    for repo in mid_results:
+                        found[str(repo.id)] = repo
+            else:
+                for repo in results:
+                    found[str(repo.id)] = repo
 
         for kw_set in KEYWORD_SETS:
             query = build_keyword_query(kw_set, since_date=since)
             results = search(g, query)
             if over_cap(results):
-                warnings.warn(
-                    f"keyword query totalCount={results.totalCount} "
-                    f">= {TOTAL_COUNT_CAP_WARN}; narrowing to {tightest_window}d window",
-                    stacklevel=2,
-                )
-                tight_since = since_date_for(tightest_window)
-                results = search(g, build_keyword_query(kw_set, since_date=tight_since))
-            for repo in results:
-                found[str(repo.id)] = repo
+                if window == tightest_window:
+                    # WR-01: already at tightest window — no re-issue (same rationale
+                    # as the topic path above).
+                    warnings.warn(
+                        f"keyword query totalCount={results.totalCount} "
+                        f">= {TOTAL_COUNT_CAP_WARN}; already at tightest window "
+                        f"({tightest_window}d), consider adding a star-floor or "
+                        "per-star-band slice",
+                        stacklevel=2,
+                    )
+                    for repo in results:
+                        found[str(repo.id)] = repo
+                else:
+                    # WR-02 / WR-03: complementary date-range query for the middle band.
+                    tight_since = since_date_for(tightest_window)
+                    warnings.warn(
+                        f"keyword query totalCount={results.totalCount} "
+                        f">= {TOTAL_COUNT_CAP_WARN}; issuing complementary "
+                        f"{tightest_window + 1}–{window}d range query to preserve "
+                        "D-04 monthly cohort",
+                        stacklevel=2,
+                    )
+                    mid_results = search(
+                        g,
+                        build_keyword_query(
+                            kw_set, since_date=since, until_date=tight_since
+                        ),
+                    )
+                    if over_cap(mid_results):
+                        warnings.warn(
+                            f"keyword query middle range "
+                            f"({tightest_window + 1}–{window}d) STILL over cap "
+                            f"(totalCount={mid_results.totalCount}); results will be "
+                            "truncated — consider per-star-band slicing",
+                            stacklevel=2,
+                        )
+                    for repo in mid_results:
+                        found[str(repo.id)] = repo
+            else:
+                for repo in results:
+                    found[str(repo.id)] = repo
 
     return found
 
@@ -267,6 +357,17 @@ def discover_established(g, search=None) -> dict:
                 )
                 for sub_band in split_star_band(band):
                     sub_results = search(g, build_established_query(topic, sub_band))
+                    # WR-04: cap-check on sub-band result — a sub-band can still be
+                    # over cap for very active topics; warn so the operator knows to
+                    # split further.
+                    if over_cap(sub_results):
+                        warnings.warn(
+                            f"sub-band query topic='{topic}' band='{sub_band}' "
+                            f"totalCount={sub_results.totalCount} "
+                            f">= {TOTAL_COUNT_CAP_WARN}; results will be truncated "
+                            "— consider further splitting",
+                            stacklevel=2,
+                        )
                     for repo in sub_results:
                         found[str(repo.id)] = repo
             else:
@@ -305,6 +406,9 @@ def refresh_tracked(g, tracked_ids: list) -> dict:
         try:
             repo = g.get_repo(int(rid))
             refreshed[str(repo.id)] = repo
+        except ValueError:
+            warnings.warn(f"Repo id {rid!r} is not a valid integer; skipping")
+            continue
         except github.UnknownObjectException:
             warnings.warn(f"Repo id {rid} unavailable (deleted or private); skipping")
             continue
