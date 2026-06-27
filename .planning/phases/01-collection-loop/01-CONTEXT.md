@@ -34,6 +34,9 @@ Out of scope (later phases): velocity ranking + the four buckets (Phase 2), mark
 - **D-09:** Auth uses the **built-in `GITHUB_TOKEN`** (zero setup, 1k core req/hr — sufficient at this breadth) with `contents: write` permission. No PAT. Token injected from the Actions context, never committed or echoed (AUTO-02).
 - **D-10:** The **repo is also the datastore** — snapshots, metadata, and seen-store are committed back each run (AUTO-03) via `stefanzweifel/git-auto-commit-action`, with `[skip ci]` on the commit to avoid self-triggering the workflow.
 
+### Breakthrough Universe (resolves RESEARCH.md Open Q#3)
+- **D-11:** Universe uses a **star-banded standing query (Reading B)** — a `discover_established()` pass queries repos by star bands regardless of creation date, in addition to the date-windowed new-repo slices. This catches OLD repos that are suddenly spiking (sleeper breakouts), not just newly-created ones — matching the core value "catch exploding AI repos early." Accepts the extra search-call / rate budget. (Reading A, rolling-accumulation-only, was rejected: date-windowed queries can't see old-but-spiking repos.)
+
 ### Claude's Discretion
 - Exact keyword strings in the fallback list, precise date/star slice boundaries, snapshot vs metadata field split, and same-day idempotency mechanics (DATA-04) are left to research/planning — the vision-level dials above constrain them.
 
