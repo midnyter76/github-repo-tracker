@@ -32,7 +32,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] 01-01-PLAN.md — Project scaffold + config constants (FILTER-04) [wave 1]
 - [x] 01-02-PLAN.md — Search/discovery layer: combo filter, cap-slicing, D-11 star-band pass (DATA-01, FILTER-01/02/03) [wave 2]
 - [x] 01-03-PLAN.md — Persistence layer: idempotent snapshots + metadata (DATA-02/03/04/05) [wave 2]
-- [ ] 01-04-PLAN.md — Main wiring + GitHub Actions workflow (DATA-01, AUTO-01/02/03) [wave 3]
+- [x] 01-04-PLAN.md — Main wiring + GitHub Actions workflow (DATA-01, AUTO-01/02/03) [wave 3]
 
 ### Phase 2: Velocity Ranking + Full Reporting
 **Goal**: Each run produces a complete dated markdown digest with all four velocity buckets; new-repo buckets are fully populated from day 1; spike/velocity buckets show transparent cold-start notes until sufficient history exists
