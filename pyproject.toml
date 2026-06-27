@@ -1,0 +1,13 @@
+[project]
+name = "github-repo-tracker"
+version = "0.1.0"
+description = "Daily automation surfacing fast-rising AI repositories on GitHub by star velocity"
+requires-python = ">=3.12"
+dependencies = [
+    "PyGithub==2.9.1",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
