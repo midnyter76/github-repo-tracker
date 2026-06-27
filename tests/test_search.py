@@ -346,28 +346,73 @@ class TestDiscoverRepos:
         expected_min = len(TOPICS) * len(windows) + len(KEYWORD_SETS) * len(windows)
         assert len(fake_search.recorded) >= expected_min
 
-    def test_over_cap_triggers_narrow_and_warn(self):
-        """When totalCount >= 900, warns AND re-issues with tighter window (FILTER-02)."""
-        call_count = [0]
+    def test_over_cap_at_tightest_window_warns_and_does_not_reissue(self):
+        """WR-01: when window==tightest_window and over-cap, warn once but issue NO
+        extra query (re-issuing the same query wastes a search credit)."""
         recorded = []
 
         def fake_search(g, query, **kwargs):
             recorded.append(query)
-            call_count[0] += 1
-            # First call for the llm topic returns over-cap
-            if "topic:llm" in query and call_count[0] == 1:
-                result = _make_result(950, [1])
-                return result
-            return _make_result(50, [])
+            if "topic:llm" in query:
+                return _make_result(950, [1])
+            return _make_result(0, [])
 
         with warnings.catch_warnings(record=True) as caught:
             warnings.simplefilter("always")
             discover_repos(MagicMock(), windows=[7], search=fake_search)
 
-        assert any("950" in str(w.message) or "narrowing" in str(w.message).lower() for w in caught), \
-            "Should emit a warning when cap exceeded"
-        # Tighter query must have been re-issued (more queries than without cap)
-        assert len(recorded) > len(list({"topic:llm"}))
+        # Warning must be emitted and must not say "narrowing"
+        cap_warnings = [w for w in caught if "950" in str(w.message)]
+        assert cap_warnings, "Should emit a warning when cap exceeded"
+        assert all(
+            "tightest" in str(w.message).lower() for w in cap_warnings
+        ), "Warning should say 'already at tightest window', not imply a re-issue"
+
+        # No extra query beyond the normal count (6 topics + 2 kw sets for 1 window = 8)
+        from src.config import TOPICS, KEYWORD_SETS
+        expected_normal = len(TOPICS) + len(KEYWORD_SETS)
+        assert len(recorded) == expected_normal, (
+            f"Over-cap at tightest window must not trigger extra queries; "
+            f"expected {expected_normal}, got {len(recorded)}"
+        )
+
+    def test_monthly_cohort_preserved_when_30d_over_cap(self):
+        """WR-02: repos in the 8–30 day range (D-04 monthly cohort) must not be
+        dropped when the 30d query is over-cap.
+
+        Mechanism: a complementary created:DATE_30d..DATE_7d range query is issued
+        so the middle band has its own 1000-result budget.
+        """
+        from src.search import since_date_for
+        from datetime import datetime, timezone
+
+        now = datetime(2026, 6, 27, tzinfo=timezone.utc)
+        date_7d = since_date_for(7, now=now)
+        date_30d = since_date_for(30, now=now)
+
+        def fake_search(g, query, **kwargs):
+            # Wide 30d query — over-cap (would be truncated; repo_id=1 not in 7d)
+            if f"created:>{date_30d}" in query and "topic:" in query:
+                return _make_result(950, [])  # over-cap, don't rely on these repos
+            # Complementary middle-band query — contains monthly cohort repo (id=1)
+            if f"created:{date_30d}..{date_7d}" in query and "topic:" in query:
+                return _make_result(50, [1])
+            # Normal 7d window query — contains only recent repo (id=2)
+            if f"created:>{date_7d}" in query and "topic:" in query:
+                return _make_result(50, [2])
+            return _make_result(0, [])
+
+        with warnings.catch_warnings(record=True):
+            warnings.simplefilter("always")
+            result = discover_repos(
+                MagicMock(), windows=[7, 30], search=fake_search
+            )
+
+        assert "1" in result, (
+            "Monthly cohort repo (8–30d old) must be preserved via complementary "
+            "range query when 30d window is over-cap (WR-02 / D-04)"
+        )
+        assert "2" in result, "7d window repos must still be present"
 
     def test_keyed_by_string_id(self):
         """All result dict keys are str(repo.id) not int."""
@@ -532,21 +577,58 @@ class TestRefreshTracked:
         refresh_tracked(g, ["77"])
         repo.get_topics.assert_not_called()
 
+    def test_skips_malformed_metadata_key_with_warning(self):
+        """WR-06: a non-integer metadata key emits a warning and is skipped;
+        valid keys in the same list are still refreshed."""
+        repo_ok = _make_repo(111)
+        g = MagicMock()
+        g.get_repo.return_value = repo_ok
+
+        with warnings.catch_warnings(record=True) as caught:
+            warnings.simplefilter("always")
+            result = refresh_tracked(g, ["abc", "111"])
+
+        # Valid id is present; malformed id is absent
+        assert "111" in result
+        assert "abc" not in result
+
+        # A warning must name the bad key
+        assert any("abc" in str(w.message) for w in caught), (
+            "Should warn about the malformed metadata key 'abc'"
+        )
+
     def test_exception_handler_only_references_rid(self):
-        """Exception handler must not log client g or exception repr (T-01-04)."""
+        """WR-08 / T-01-04: exception handlers in refresh_tracked must not log the
+        caught exception object (which could contain auth/connection details) or the
+        GitHub client variable 'g'.
+
+        Two properties are verified statically against the function source:
+          1. If any except clause captures the exception as a variable (``as e``),
+             that variable must not appear inside any warnings.warn() call.
+          2. The GitHub client variable 'g' must not appear inside any
+             warnings.warn() call in the function body.
+        """
         import inspect
         import re
         import src.search as search_module
 
         source = inspect.getsource(search_module.refresh_tracked)
-        lines = source.splitlines()
-        for line in lines:
-            stripped = line.strip()
-            if stripped.startswith("#"):
-                continue
-            # The exception variable must not appear in any log/format (T-01-04)
-            # Acceptable: reference to rid; NOT acceptable: repr(e), str(e), g
-            if re.search(r"except.*Exception\s+as\s+(\w+)", stripped):
-                exc_var = re.search(r"except.*Exception\s+as\s+(\w+)", stripped).group(1)
-                # Check no line uses the exception variable after the except line
-                pass  # structure check only; covered by grep gate at commit time
+
+        # Property 1: captured exception variables must not be logged.
+        for exc_var in re.findall(r"\bexcept\b.*?\bas\s+(\w+)", source):
+            assert not re.search(
+                rf"warnings\.warn\([^\n]*\b{re.escape(exc_var)}\b",
+                source,
+            ), (
+                f"Exception variable {exc_var!r} must not appear in "
+                "warnings.warn() calls (T-01-04)"
+            )
+
+        # Property 2: the client 'g' must not appear in any warn message content.
+        for warn_content in re.findall(
+            r"warnings\.warn\(([^)]+)\)", source, re.DOTALL
+        ):
+            assert not re.search(r"\bg\b", warn_content), (
+                f"GitHub client 'g' must not appear in warn message (T-01-04): "
+                f"{warn_content!r}"
+            )

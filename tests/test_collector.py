@@ -341,8 +341,21 @@ class TestWorkflowYaml:
         assert "uv run python -m src.collector" in self._get_workflow_text()
 
     def test_auto_commit_action_version(self):
-        """git-auto-commit-action must be pinned to v5 (CLAUDE.md stack)."""
-        assert "stefanzweifel/git-auto-commit-action@v5" in self._get_workflow_text()
+        """git-auto-commit-action must be v5 (CLAUDE.md stack).
+
+        Accepts both the mutable tag form (@v5) and the SHA-pinned form
+        (SHA  # v5.x.y) so the check survives a WR-05-style SHA pin.
+        """
+        text = self._get_workflow_text()
+        is_v5_tag = "stefanzweifel/git-auto-commit-action@v5" in text
+        is_v5_sha_pinned = (
+            "stefanzweifel/git-auto-commit-action@" in text
+            and "# v5" in text
+        )
+        assert is_v5_tag or is_v5_sha_pinned, (
+            "git-auto-commit-action must reference v5 "
+            "(either @v5 tag or SHA-pinned with # v5.x comment)"
+        )
 
     def test_skip_ci_in_commit_message(self):
         """Commit message must include [skip ci] to prevent self-trigger (D-10)."""
