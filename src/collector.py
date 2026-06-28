@@ -14,7 +14,8 @@ from datetime import datetime, timezone
 
 import github
 
-from src import search, store
+from src import rank, report, search, seen, store
+from src.config import METADATA_PATH, REPORTS_DIR, SEEN_PATH, SNAPSHOTS_DIR
 
 
 def build_client():
@@ -46,6 +47,11 @@ def run(
     refresh=search.refresh_tracked,
     write_snap=store.write_snapshot,
     write_meta=store.write_metadata,
+    compute_buckets=rank.compute_buckets,
+    load_seen_fn=seen.load_seen,
+    classify_fn=seen.classify_and_update,
+    write_digest=report.write_digest,
+    save_seen_fn=seen.save_seen,
 ):
     """Orchestrate the full collection loop for one run.
 
@@ -60,14 +66,19 @@ def run(
     without monkeypatching module-level names.
 
     Args:
-        g:           Authenticated Github client.
-        now:         UTC datetime for snapshot filename and timestamps (D-07).
-        discover:    Callable matching search.discover_repos signature.
-        established: Callable matching search.discover_established signature.
-        load_ids:    Callable matching store.load_metadata_ids signature.
-        refresh:     Callable matching search.refresh_tracked signature.
-        write_snap:  Callable matching store.write_snapshot signature.
-        write_meta:  Callable matching store.write_metadata signature.
+        g:               Authenticated Github client.
+        now:             UTC datetime for snapshot filename and timestamps (D-07).
+        discover:        Callable matching search.discover_repos signature.
+        established:     Callable matching search.discover_established signature.
+        load_ids:        Callable matching store.load_metadata_ids signature.
+        refresh:         Callable matching search.refresh_tracked signature.
+        write_snap:      Callable matching store.write_snapshot signature.
+        write_meta:      Callable matching store.write_metadata signature.
+        compute_buckets: Callable matching rank.compute_buckets signature.
+        load_seen_fn:    Callable matching seen.load_seen signature.
+        classify_fn:     Callable matching seen.classify_and_update signature.
+        write_digest:    Callable matching report.write_digest signature.
+        save_seen_fn:    Callable matching seen.save_seen signature.
     """
     candidates: dict = {}
 
@@ -81,9 +92,17 @@ def run(
     tracked_ids = load_ids()
     candidates.update(refresh(g, tracked_ids))
 
-    # 4. Persist
+    # 4. Persist Phase 1 snapshot + metadata
     write_snap(candidates, now)
     write_meta(candidates, now)
+
+    # 5. Phase 2: rank → classify → report → save seen (D-10 ordering)
+    buckets = compute_buckets(SNAPSHOTS_DIR, METADATA_PATH, now)
+    reported_ids = [e["id"] for b in buckets.values() for e in b["entries"]]
+    current_seen = load_seen_fn(SEEN_PATH)
+    markers, updated_seen = classify_fn(current_seen, reported_ids, now.strftime("%Y-%m-%d"))
+    write_digest(buckets, markers, now, REPORTS_DIR)   # write report FIRST (D-10)
+    save_seen_fn(updated_seen, SEEN_PATH)              # then persist seen-store (D-10)
 
 
 def main():
