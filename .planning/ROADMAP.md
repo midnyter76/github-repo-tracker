@@ -44,7 +44,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Breakthrough 24h Spike and 30-Day Velocity sections display "building history (N of M days collected)" and are never silently empty or crash-inducing before sufficient snapshots exist
   4. Each repo entry in the digest shows a clickable link, creation date, current star count, velocity/acceleration, and description
   5. Never-before-seen repos are flagged with a marker; returning repos are tagged; same-day retries do not incorrectly re-flag returning repos as new
-**Plans**: TBD
+**Plans**: 4 plans (3 waves)
+- [ ] 02-01-PLAN.md — Config constants + rank.py velocity engine + compute_buckets (RANK-01/02/03/04/05/06) [wave 1]
+- [ ] 02-02-PLAN.md — Seen-store: load/save/classify new-vs-returning, id-keyed (REPORT-03/04/05) [wave 2]
+- [ ] 02-03-PLAN.md — Report rendering + description sanitization, four fixed sections (REPORT-01/02/04) [wave 2]
+- [ ] 02-04-PLAN.md — collector.run() wiring (D-10 order) + daily.yml reports/** commit (REPORT-01/04/05) [wave 3]
 
 ### Phase 3: Production Hardening
 **Goal**: The tracker runs reliably for months without manual intervention; scheduling risks, data noise, and unbounded repo growth are all mitigated by configurable safeguards calibrated on real data
@@ -65,5 +69,5 @@ Phases execute in numeric order: 1 → 2 → 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Collection Loop | 0/4 | Planned | - |
-| 2. Velocity Ranking + Full Reporting | 0/TBD | Not started | - |
+| 2. Velocity Ranking + Full Reporting | 0/4 | Planned | - |
 | 3. Production Hardening | 0/TBD | Not started | - |
