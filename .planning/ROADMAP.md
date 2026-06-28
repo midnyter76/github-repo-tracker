@@ -46,8 +46,8 @@ Decimal phases appear between their surrounding integers in numeric order.
   5. Never-before-seen repos are flagged with a marker; returning repos are tagged; same-day retries do not incorrectly re-flag returning repos as new
 **Plans**: 4 plans (3 waves)
 - [x] 02-01-PLAN.md — Config constants + rank.py velocity engine + compute_buckets (RANK-01/02/03/04/05/06) [wave 1]
-- [ ] 02-02-PLAN.md — Seen-store: load/save/classify new-vs-returning, id-keyed (REPORT-03/04/05) [wave 2]
-- [ ] 02-03-PLAN.md — Report rendering + description sanitization, four fixed sections (REPORT-01/02/04) [wave 2]
+- [x] 02-02-PLAN.md — Seen-store: load/save/classify new-vs-returning, id-keyed (REPORT-03/04/05) [wave 2]
+- [x] 02-03-PLAN.md — Report rendering + description sanitization, four fixed sections (REPORT-01/02/04) [wave 2]
 - [ ] 02-04-PLAN.md — collector.run() wiring (D-10 order) + daily.yml reports/** commit (REPORT-01/04/05) [wave 3]
 
 ### Phase 3: Production Hardening
