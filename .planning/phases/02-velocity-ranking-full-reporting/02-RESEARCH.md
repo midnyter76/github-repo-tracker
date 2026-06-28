@@ -491,7 +491,7 @@ file_pattern: "data/** reports/**"
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 ### Q1: Weekly bucket ⊆ Monthly bucket overlap (RANK-01 vs RANK-02)
 
@@ -501,6 +501,8 @@ file_pattern: "data/** reports/**"
 
 **Recommendation:** Default to face-value (overlap allowed, different caps). A 3-day rocket appearing in both Weekly (top 10) and Monthly (top 5) is useful signal, not a bug. Document the interpretation; planner confirms or overrides.
 
+**RESOLVED:** Overlap allowed (face-value). A repo created 3 days ago may appear in both Brand New Weekly and Brand New Monthly. Implemented in plan 02-01 `compute_buckets` action.
+
 ### Q2: Workflow `file_pattern` — is updating it in scope for Phase 2?
 
 **What we know:** `file_pattern: "data/**"` in Phase 1 workflow. `reports/YYYY-MM-DD.md` is not under `data/`. AUTO-03 requires the digest be committed.
@@ -509,6 +511,8 @@ file_pattern: "data/** reports/**"
 
 **Recommendation:** Yes — updating `file_pattern` in `daily.yml` is a required Phase 2 deliverable. Without it, REPORT-01 (digest file) is never committed, making the entire phase invisible in production. This is an integration task, not scope creep.
 
+**RESOLVED:** In scope. `daily.yml` `file_pattern` is extended to `data/** reports/**`. Implemented in plan 02-04 Task 2.
+
 ### Q3: Which repos are eligible for breakthrough buckets?
 
 **What we know:** Phase 1's `discover_established()` uses `BREAKTHROUGH_STAR_BANDS = ["100..1000", "1000..10000"]` to ensure established repos are in the snapshot universe. New repos (0–100 stars) are discovered via date-windowed queries.
@@ -516,6 +520,8 @@ file_pattern: "data/** reports/**"
 **What's unclear:** Should 24h spike and 30d velocity buckets be limited to repos *not* in the new-repo time windows (i.e., "established" only), or can a brand-new repo also spike into the breakthrough bucket?
 
 **Recommendation:** Allow any repo in the snapshot/metadata universe to qualify for any bucket — the buckets are metric-based, not universe-based. A 5-day-old repo that spikes 500 stars in 24h is genuinely a breakthrough. Mention in the plan as an explicit decision point.
+
+**RESOLVED:** Metric-based eligibility — any repo in `current ∩ metadata` qualifies for any bucket, not limited to "established" repos. Implemented in plan 02-01 `compute_buckets` action.
 
 ---
 
