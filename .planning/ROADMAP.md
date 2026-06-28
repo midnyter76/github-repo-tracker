@@ -48,7 +48,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] 02-01-PLAN.md — Config constants + rank.py velocity engine + compute_buckets (RANK-01/02/03/04/05/06) [wave 1]
 - [x] 02-02-PLAN.md — Seen-store: load/save/classify new-vs-returning, id-keyed (REPORT-03/04/05) [wave 2]
 - [x] 02-03-PLAN.md — Report rendering + description sanitization, four fixed sections (REPORT-01/02/04) [wave 2]
-- [ ] 02-04-PLAN.md — collector.run() wiring (D-10 order) + daily.yml reports/** commit (REPORT-01/04/05) [wave 3]
+- [x] 02-04-PLAN.md — collector.run() wiring (D-10 order) + daily.yml reports/** commit (REPORT-01/04/05) [wave 3]
 
 ### Phase 3: Production Hardening
 **Goal**: The tracker runs reliably for months without manual intervention; scheduling risks, data noise, and unbounded repo growth are all mitigated by configurable safeguards calibrated on real data
