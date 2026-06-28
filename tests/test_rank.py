@@ -619,3 +619,127 @@ class TestComputeBucketsSortingAndCap:
 
         buckets = compute_buckets(snaps_dir, meta_path, now)
         assert buckets["spike_24h"]["window_target"] == 2
+
+
+# ---------------------------------------------------------------------------
+# Task 3 additions — comprehensive edge-case coverage
+# ---------------------------------------------------------------------------
+
+class TestComputeBucketsOverlapAndNegative:
+    """Brand-new overlap and velocity_30d negative-delta exclusion."""
+
+    def test_repo_can_appear_in_both_weekly_and_monthly(self, tmp_path: Path):
+        """A 3-day-old repo may appear in BOTH brand_new_weekly AND brand_new_monthly (Q1)."""
+        from src.rank import compute_buckets
+
+        snaps_dir = tmp_path / "snapshots"
+        snaps_dir.mkdir()
+        meta_path = tmp_path / "metadata.json"
+        now = _utc(month=6, day=28)
+
+        # Created 3 days ago — qualifies for both 7d and 30d windows
+        created = "2026-06-25T12:00:00+00:00"
+        _write_snapshot(snaps_dir, "2026-06-28", now.isoformat(), {"7": {"stars": 300}})
+        meta_path.write_text(json.dumps({
+            "updated_at": now.isoformat(),
+            "repos": {"7": _meta_entry("owner/fast-repo", created_at=created)},
+        }))
+
+        buckets = compute_buckets(snaps_dir, meta_path, now)
+        weekly_ids = {e["id"] for e in buckets["brand_new_weekly"]["entries"]}
+        monthly_ids = {e["id"] for e in buckets["brand_new_monthly"]["entries"]}
+        assert "7" in weekly_ids, "3-day-old repo must appear in weekly"
+        assert "7" in monthly_ids, "3-day-old repo must also appear in monthly (overlap OK)"
+
+    def test_negative_delta_excluded_from_velocity_30d(self, tmp_path: Path):
+        """Repo that lost stars over 30d is excluded from velocity_30d entries (Pitfall 3)."""
+        from src.rank import compute_buckets
+
+        snaps_dir = tmp_path / "snapshots"
+        snaps_dir.mkdir()
+        meta_path = tmp_path / "metadata.json"
+        now = _utc(month=6, day=28, hour=12)
+
+        oldest_at = (now - timedelta(days=20)).isoformat()
+        _write_snapshot(snaps_dir, "2026-06-08", oldest_at, {"1": {"stars": 1000}})
+        _write_snapshot(snaps_dir, "2026-06-28", now.isoformat(), {"1": {"stars": 800}})  # lost 200 stars
+        meta_path.write_text(json.dumps({
+            "updated_at": now.isoformat(),
+            "repos": {"1": _meta_entry(created_at="2026-01-01T00:00:00+00:00")},
+        }))
+
+        buckets = compute_buckets(snaps_dir, meta_path, now)
+        assert buckets["velocity_30d"]["active"] is True
+        assert len(buckets["velocity_30d"]["entries"]) == 0, (
+            "Repo that lost stars must not appear in velocity_30d"
+        )
+
+    def test_brand_new_monthly_window_target_is_30(self, tmp_path: Path):
+        """brand_new_monthly has window_target == 30."""
+        from src.rank import compute_buckets
+
+        snaps_dir = tmp_path / "snapshots"
+        snaps_dir.mkdir()
+        meta_path = tmp_path / "metadata.json"
+        now = _utc()
+        _write_snapshot(snaps_dir, "2026-06-28", now.isoformat(), {"1": {"stars": 50}})
+        meta_path.write_text(json.dumps({
+            "updated_at": now.isoformat(),
+            "repos": {"1": _meta_entry(created_at=_iso(month=6, day=1))},
+        }))
+
+        buckets = compute_buckets(snaps_dir, meta_path, now)
+        assert buckets["brand_new_monthly"]["window_target"] == 30
+
+    def test_monthly_cap_is_5(self, tmp_path: Path):
+        """brand_new_monthly cap is 5 (BRAND_NEW_MONTHLY_TOP), not 10."""
+        from src.rank import compute_buckets
+        from src import config
+
+        snaps_dir = tmp_path / "snapshots"
+        snaps_dir.mkdir()
+        meta_path = tmp_path / "metadata.json"
+        now = _utc(month=6, day=28)
+
+        # 8 repos all created 10 days ago — qualify for monthly (30d) but not weekly (7d)
+        created = "2026-06-18T00:00:00+00:00"  # 10 days ago
+        repos_snap = {str(i): {"stars": i * 50} for i in range(1, 9)}
+        repos_meta = {
+            str(i): _meta_entry(full_name=f"owner/repo{i:02d}", created_at=created)
+            for i in range(1, 9)
+        }
+        _write_snapshot(snaps_dir, "2026-06-28", now.isoformat(), repos_snap)
+        meta_path.write_text(json.dumps({"updated_at": now.isoformat(), "repos": repos_meta}))
+
+        buckets = compute_buckets(snaps_dir, meta_path, now)
+        assert len(buckets["brand_new_monthly"]["entries"]) == config.BRAND_NEW_MONTHLY_TOP
+        assert config.BRAND_NEW_MONTHLY_TOP == 5
+
+    def test_load_snapshots_returns_list_with_correct_structure(self, tmp_path: Path):
+        """load_snapshots returns dicts with 'date', 'captured_at', 'repos' keys."""
+        from src.rank import load_snapshots
+
+        _write_snapshot(tmp_path, "2026-06-28", _iso(), {"1": {"stars": 100}})
+        snaps = load_snapshots(tmp_path)
+        assert len(snaps) == 1
+        snap = snaps[0]
+        assert "date" in snap
+        assert "captured_at" in snap
+        assert "repos" in snap
+
+    def test_velocity_30d_window_target_is_30(self, tmp_path: Path):
+        """velocity_30d inactive bucket has window_target == 30."""
+        from src.rank import compute_buckets
+
+        snaps_dir = tmp_path / "snapshots"
+        snaps_dir.mkdir()
+        meta_path = tmp_path / "metadata.json"
+        now = _utc()
+        _write_snapshot(snaps_dir, "2026-06-28", now.isoformat(), {"1": {"stars": 50}})
+        meta_path.write_text(json.dumps({
+            "updated_at": now.isoformat(),
+            "repos": {"1": _meta_entry(created_at=_iso(month=6, day=1))},
+        }))
+
+        buckets = compute_buckets(snaps_dir, meta_path, now)
+        assert buckets["velocity_30d"]["window_target"] == 30
