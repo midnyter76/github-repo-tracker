@@ -181,6 +181,8 @@ def spike_velocity(snap_latest: dict, snap_prev: dict, rid: str) -> float | None
 
 Selects the two most recent files by sorting `SNAPSHOTS_DIR.glob("*.json")` lexicographically — ISO date filenames sort correctly.
 
+**Stale-prior-snapshot guard (see also Pitfall 7):** Before computing the 24h spike, check the elapsed hours between `snap[-2]["captured_at"]` and `snap[-1]["captured_at"]`. If the gap exceeds ~30h, the prior snapshot is stale and the delta no longer represents a "24h" spike. In that case, apply the same RANK-06 graceful-degradation path — render the bucket header with a warming/unavailable note rather than emit a mislabeled rate. Whether the threshold is 30h, 48h, or "defer to HARD-02 in Phase 3" is a planner decision; the document flags the case.
+
 **RANK-04: 30-day sustained velocity (rolling window)**
 
 ```python
@@ -453,6 +455,16 @@ file_pattern: "data/** reports/**"
 ```
 
 **Warning signs:** Workflow runs succeed, `reports/` exists locally, but the remote repo never receives a `reports/YYYY-MM-DD.md` commit.
+
+### Pitfall 7: 24h spike bucket uses a stale prior snapshot (gap in collection)
+
+**What goes wrong:** `snapshots[-2]` is selected as the "prior" snapshot by recency, but if collection had a gap (e.g., the previous successful run was 5 days ago), the delta covers 5 days, not 24 hours. RANK-05 normalization keeps the *rate* mathematically correct, but RANK-03 is titled "24h Spike" — emitting a 5-day-delta bucket mislabels the signal.
+
+**Why it happens:** The 30-day bucket is designed for variable windows (D-06) and degrades gracefully; the 24h bucket has no equivalent "window too wide" guard in the locked decisions.
+
+**How to avoid:** Before computing the spike, check `(captured_at_latest - captured_at_prev).total_seconds() / 3600`. If the elapsed time exceeds a staleness threshold (e.g., ~30h), treat the 24h bucket as warming/unavailable and render the D-07 note instead. Exact threshold is a planner decision (30h / 48h / "defer to HARD-02"). At minimum, never silently emit a multi-day delta labeled as a 24h spike.
+
+**Warning signs:** The 24h bucket shows a massive delta that the user hasn't noticed recently; inspecting the two snapshot timestamps reveals they are days apart.
 
 ---
 
