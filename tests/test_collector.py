@@ -1,7 +1,9 @@
-"""Tests for src/collector.py (Plan 01-04).
+"""Tests for src/collector.py (Plan 01-04 + Plan 02-04).
 
 Task 1: build_client, run orchestration, token safety, entry-point gate.
 Task 2: workflow YAML content assertions.
+Phase 2 (Plan 02-04): Phase 2 step wiring, D-10 ordering, reported_ids union,
+    reports/** workflow assertion.
 
 All tests are offline (no network). The entry-point gate spawns a subprocess
 to verify that `python -m src.collector` resolves imports identically to pytest.
@@ -14,6 +16,40 @@ from pathlib import Path
 from unittest.mock import MagicMock, call, patch
 
 import pytest
+
+
+# ---------------------------------------------------------------------------
+# Helper: Four-bucket fake for Phase 2 compute_buckets
+# ---------------------------------------------------------------------------
+
+def _empty_buckets():
+    """Return a minimal four-bucket structure with no entries (Phase 2 fake)."""
+    return {
+        "brand_new_weekly": {
+            "active": True,
+            "snapshots_available": 1,
+            "window_target": 7,
+            "entries": [],
+        },
+        "brand_new_monthly": {
+            "active": True,
+            "snapshots_available": 1,
+            "window_target": 30,
+            "entries": [],
+        },
+        "spike_24h": {
+            "active": False,
+            "snapshots_available": 1,
+            "window_target": 2,
+            "entries": [],
+        },
+        "velocity_30d": {
+            "active": False,
+            "snapshots_available": 1,
+            "window_target": 30,
+            "entries": [],
+        },
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -118,6 +154,11 @@ class TestRun:
             refresh=mock_refresh,
             write_snap=mock_write_snap,
             write_meta=mock_write_meta,
+            compute_buckets=lambda *a, **k: _empty_buckets(),
+            load_seen_fn=lambda *a, **k: {},
+            classify_fn=lambda seen, ids, d: ({}, {}),
+            write_digest=MagicMock(),
+            save_seen_fn=MagicMock(),
         )
 
         mock_discover.assert_called_once_with(g)
@@ -157,6 +198,11 @@ class TestRun:
             refresh=lambda _g, _ids: {"333": repo_c},
             write_snap=fake_write_snap,
             write_meta=fake_write_meta,
+            compute_buckets=lambda *a, **k: _empty_buckets(),
+            load_seen_fn=lambda *a, **k: {},
+            classify_fn=lambda seen, ids, d: ({}, {}),
+            write_digest=MagicMock(),
+            save_seen_fn=MagicMock(),
         )
 
         assert "111" in captured_snap
@@ -192,6 +238,11 @@ class TestRun:
             refresh=lambda _g, _ids: {"111": repo_refresh},
             write_snap=fake_write_snap,
             write_meta=MagicMock(),
+            compute_buckets=lambda *a, **k: _empty_buckets(),
+            load_seen_fn=lambda *a, **k: {},
+            classify_fn=lambda seen, ids, d: ({}, {}),
+            write_digest=MagicMock(),
+            save_seen_fn=MagicMock(),
         )
 
         # The refreshed repo (999 stars) must win
@@ -217,12 +268,142 @@ class TestRun:
             refresh=lambda _g, _ids: {},
             write_snap=mock_write_snap,
             write_meta=mock_write_meta,
+            compute_buckets=lambda *a, **k: _empty_buckets(),
+            load_seen_fn=lambda *a, **k: {},
+            classify_fn=lambda seen, ids, d: ({}, {}),
+            write_digest=MagicMock(),
+            save_seen_fn=MagicMock(),
         )
 
         _, snap_ts = mock_write_snap.call_args[0]
         _, meta_ts = mock_write_meta.call_args[0]
         assert snap_ts is now
         assert meta_ts is now
+
+
+# ---------------------------------------------------------------------------
+# Plan 02-04: Phase 2 wiring tests
+# ---------------------------------------------------------------------------
+
+class TestPhase2Wiring:
+    """Phase 2 steps (compute_buckets → load_seen → classify → write_digest → save_seen)
+    must be called by run() in D-10 order with the correct arguments."""
+
+    def _make_fake_repo(self, repo_id: str, stars: int = 100):
+        r = MagicMock()
+        r.id = int(repo_id)
+        r.stargazers_count = stars
+        r.full_name = f"owner/repo-{repo_id}"
+        r.description = f"Repo {repo_id}"
+        r.html_url = f"https://github.com/owner/repo-{repo_id}"
+        r.created_at.isoformat.return_value = "2026-01-01T00:00:00+00:00"
+        return r
+
+    def test_phase2_steps_called(self):
+        """Each Phase 2 injectable is called exactly once per run() invocation."""
+        from datetime import datetime, timezone  # noqa: PLC0415
+        from src.collector import run  # noqa: PLC0415
+
+        g = MagicMock()
+        now = datetime(2026, 6, 28, 13, 0, 0, tzinfo=timezone.utc)
+
+        mock_compute_buckets = MagicMock(return_value=_empty_buckets())
+        mock_load_seen = MagicMock(return_value={})
+        mock_classify = MagicMock(return_value=({}, {}))
+        mock_write_digest = MagicMock()
+        mock_save_seen = MagicMock()
+
+        run(
+            g,
+            now,
+            discover=lambda _g: {},
+            established=lambda _g: {},
+            load_ids=lambda: [],
+            refresh=lambda _g, _ids: {},
+            write_snap=MagicMock(),
+            write_meta=MagicMock(),
+            compute_buckets=mock_compute_buckets,
+            load_seen_fn=mock_load_seen,
+            classify_fn=mock_classify,
+            write_digest=mock_write_digest,
+            save_seen_fn=mock_save_seen,
+        )
+
+        mock_compute_buckets.assert_called_once()
+        mock_load_seen.assert_called_once()
+        mock_classify.assert_called_once()
+        mock_write_digest.assert_called_once()
+        mock_save_seen.assert_called_once()
+
+    def test_report_written_before_seen_saved(self):
+        """write_digest must be called BEFORE save_seen_fn (D-10 ordering)."""
+        from datetime import datetime, timezone  # noqa: PLC0415
+        from src.collector import run  # noqa: PLC0415
+
+        g = MagicMock()
+        now = datetime(2026, 6, 28, 13, 0, 0, tzinfo=timezone.utc)
+        calls = []
+
+        run(
+            g,
+            now,
+            discover=lambda _g: {},
+            established=lambda _g: {},
+            load_ids=lambda: [],
+            refresh=lambda _g, _ids: {},
+            write_snap=MagicMock(),
+            write_meta=MagicMock(),
+            compute_buckets=lambda *a, **k: _empty_buckets(),
+            load_seen_fn=lambda *a, **k: {},
+            classify_fn=lambda seen, ids, d: ({}, {}),
+            write_digest=lambda *a, **k: calls.append("write_digest"),
+            save_seen_fn=lambda *a, **k: calls.append("save_seen"),
+        )
+
+        assert "write_digest" in calls, "write_digest was never called"
+        assert "save_seen" in calls, "save_seen was never called"
+        assert calls.index("write_digest") < calls.index("save_seen"), (
+            f"write_digest must come before save_seen (D-10); got order: {calls}"
+        )
+
+    def test_reported_ids_union_across_buckets(self):
+        """reported_ids passed to classify_fn is the union of ids across ALL four buckets."""
+        from datetime import datetime, timezone  # noqa: PLC0415
+        from src.collector import run  # noqa: PLC0415
+
+        g = MagicMock()
+        now = datetime(2026, 6, 28, 13, 0, 0, tzinfo=timezone.utc)
+
+        def buckets_with_entries(*a, **k):
+            b = _empty_buckets()
+            b["brand_new_weekly"]["entries"] = [{"id": 111, "name": "repo-a"}]
+            b["velocity_30d"]["entries"] = [{"id": 222, "name": "repo-b"}]
+            return b
+
+        captured_ids = []
+
+        def fake_classify(seen, ids, date):
+            captured_ids.extend(ids)
+            return ({}, {})
+
+        run(
+            g,
+            now,
+            discover=lambda _g: {},
+            established=lambda _g: {},
+            load_ids=lambda: [],
+            refresh=lambda _g, _ids: {},
+            write_snap=MagicMock(),
+            write_meta=MagicMock(),
+            compute_buckets=buckets_with_entries,
+            load_seen_fn=lambda *a, **k: {},
+            classify_fn=fake_classify,
+            write_digest=MagicMock(),
+            save_seen_fn=MagicMock(),
+        )
+
+        assert 111 in captured_ids, f"id 111 missing from reported_ids: {captured_ids}"
+        assert 222 in captured_ids, f"id 222 missing from reported_ids: {captured_ids}"
 
 
 # ---------------------------------------------------------------------------
@@ -362,8 +543,21 @@ class TestWorkflowYaml:
         assert "[skip ci]" in self._get_workflow_text()
 
     def test_file_pattern_data(self):
-        """git-auto-commit-action must commit only data/** files (AUTO-03)."""
-        assert 'file_pattern: "data/**"' in self._get_workflow_text()
+        """git-auto-commit-action file_pattern must include data/** (AUTO-03)."""
+        # The value is now 'data/** reports/**'; assert data/** is present as a substring.
+        text = self._get_workflow_text()
+        # Find the file_pattern line and assert 'data/**' appears in it.
+        pattern_lines = [ln for ln in text.splitlines() if "file_pattern" in ln]
+        assert pattern_lines, "file_pattern key not found in workflow YAML"
+        assert any("data/**" in ln for ln in pattern_lines), (
+            f"'data/**' not found in file_pattern line(s): {pattern_lines}"
+        )
+
+    def test_file_pattern_reports(self):
+        """git-auto-commit-action file_pattern must include reports/** (Plan 02-04, REPORT-01)."""
+        assert "reports/**" in self._get_workflow_text(), (
+            "reports/** must be in file_pattern so digests are committed (Pitfall 6)"
+        )
 
     def test_no_token_echo_in_run_steps(self):
         """No run: step echoes the token or the secrets context (Pitfall 4)."""
