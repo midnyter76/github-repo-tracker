@@ -45,7 +45,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. Each repo entry in the digest shows a clickable link, creation date, current star count, velocity/acceleration, and description
   5. Never-before-seen repos are flagged with a marker; returning repos are tagged; same-day retries do not incorrectly re-flag returning repos as new
 **Plans**: 4 plans (3 waves)
-- [ ] 02-01-PLAN.md — Config constants + rank.py velocity engine + compute_buckets (RANK-01/02/03/04/05/06) [wave 1]
+- [x] 02-01-PLAN.md — Config constants + rank.py velocity engine + compute_buckets (RANK-01/02/03/04/05/06) [wave 1]
 - [ ] 02-02-PLAN.md — Seen-store: load/save/classify new-vs-returning, id-keyed (REPORT-03/04/05) [wave 2]
 - [ ] 02-03-PLAN.md — Report rendering + description sanitization, four fixed sections (REPORT-01/02/04) [wave 2]
 - [ ] 02-04-PLAN.md — collector.run() wiring (D-10 order) + daily.yml reports/** commit (REPORT-01/04/05) [wave 3]
