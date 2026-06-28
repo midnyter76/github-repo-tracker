@@ -404,7 +404,7 @@ class TestWriteDigest:
         now = _now()
         buckets = _make_buckets()
         path = write_digest(buckets, markers={}, now=now, reports_dir=tmp_path)
-        content = path.read_text()
+        content = path.read_text(encoding="utf-8")
 
         assert "## Brand New Weekly" in content
         assert "## Brand New Monthly" in content
@@ -418,7 +418,7 @@ class TestWriteDigest:
         now = _now()
         buckets = _make_buckets()
         path = write_digest(buckets, markers={}, now=now, reports_dir=tmp_path)
-        content = path.read_text()
+        content = path.read_text(encoding="utf-8")
 
         idx_weekly = content.index("## Brand New Weekly")
         idx_monthly = content.index("## Brand New Monthly")
@@ -436,7 +436,7 @@ class TestWriteDigest:
         now = _now()
         buckets = _make_buckets(spike_active=False)
         path = write_digest(buckets, markers={}, now=now, reports_dir=tmp_path)
-        content = path.read_text()
+        content = path.read_text(encoding="utf-8")
 
         assert "## Breakthrough 24h Spike" in content, "header must always print"
         assert "warming up" in content, "warming note must appear for inactive bucket"
@@ -463,9 +463,9 @@ class TestWriteDigest:
         markers = {"42": "returning"}
         now = _now()
         path = write_digest(buckets, markers=markers, now=now, reports_dir=tmp_path)
-        content = path.read_text()
+        content = path.read_text(encoding="utf-8")
 
-        assert "↩" in content
+        assert "↩" in content  # ↩
 
     def test_link_injection_in_description_not_in_digest(self, tmp_path: Path):
         """SECURITY T-02-08: evil description with inject link does not produce ]( in sanitized output."""
@@ -485,6 +485,6 @@ class TestWriteDigest:
         now = _now()
         buckets = _make_buckets()
         path = write_digest(buckets, markers={}, now=now, reports_dir=tmp_path)
-        content = path.read_text()
+        content = path.read_text(encoding="utf-8")
 
-        assert "# AI Repo Tracker — 2026-06-28" in content
+        assert "# AI Repo Tracker — 2026-06-28" in content  # — is U+2014 em-dash
