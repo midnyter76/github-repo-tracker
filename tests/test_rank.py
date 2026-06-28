@@ -108,7 +108,8 @@ class TestCreationVelocity:
         """creation_velocity with 0 stars returns 0 regardless of age."""
         from src.rank import creation_velocity
 
-        result = creation_velocity(0, _iso(hour=0), _iso(hour=48))
+        # 48-hour-old repo: created 2 days ago, captured today
+        result = creation_velocity(0, _iso(day=26, hour=12), _iso(day=28, hour=12))
         assert result == 0.0
 
     def test_24h_age_equals_star_count(self):
