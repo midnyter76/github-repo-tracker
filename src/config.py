@@ -79,3 +79,26 @@ SNAPSHOTS_DIR = Path("data/snapshots")
 
 # Current metadata store — full overwrite each run (DATA-03).
 METADATA_PATH = Path("data/metadata.json")
+
+# ---------------------------------------------------------------------------
+# Phase 2 — Ranking + Reporting
+# ---------------------------------------------------------------------------
+
+# Phase 2 paths (D-05, D-09)
+REPORTS_DIR = Path("reports")
+SEEN_PATH = Path("data") / "seen.json"
+
+# Phase 2 ranking tunables (D-02, D-03, D-06)
+BRAND_NEW_WEEKLY_DAYS = 7       # RANK-01 creation window
+BRAND_NEW_WEEKLY_TOP = 10       # RANK-01 cap
+BRAND_NEW_MONTHLY_DAYS = 30     # RANK-02 creation window
+BRAND_NEW_MONTHLY_TOP = 5       # RANK-02 cap
+SPIKE_TOP = 10                  # RANK-03 cap
+VELOCITY_30D_TOP = 10           # RANK-04 cap
+VELOCITY_30D_WINDOW_DAYS = 30   # RANK-04 widest window (D-06)
+SPIKE_MIN_SNAPSHOTS = 2         # RANK-06: breakthrough activates at >=2 snapshots (D-06)
+
+# Phase 2 safety floors / guards
+AGE_HOURS_FLOOR = 1.0           # Pitfall 2: avoid div-by-zero for same-hour creation
+STALE_SPIKE_HOURS = 30.0        # Pitfall 7: prior snapshot older than this => 24h bucket warms instead of mislabeling a multi-day delta
+DESCRIPTION_MAX_CHARS = 120     # Pitfall 1: bullet-line truncation (used by Plan 03)
