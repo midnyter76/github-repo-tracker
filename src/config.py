@@ -102,3 +102,25 @@ SPIKE_MIN_SNAPSHOTS = 2         # RANK-06: breakthrough activates at >=2 snapsho
 AGE_HOURS_FLOOR = 1.0           # Pitfall 2: avoid div-by-zero for same-hour creation
 STALE_SPIKE_HOURS = 30.0        # Pitfall 7: prior snapshot older than this => 24h bucket warms instead of mislabeling a multi-day delta
 DESCRIPTION_MAX_CHARS = 120     # Pitfall 1: bullet-line truncation (used by Plan 03)
+
+# ---------------------------------------------------------------------------
+# Phase 3 — Production Hardening
+# ---------------------------------------------------------------------------
+
+# HARD-02: Gap detection
+# Gap check fires when the last snapshot's captured_at is older than this.
+# 26h gives 2h slack relative to the 24h run interval (D-05, CONTEXT.md).
+GAP_WARN_HOURS: float = 26.0
+
+# HARD-03: Star-gaming filters
+# Only apply the ratio filter above GAMING_MIN_STARS.
+# Repos below this threshold pass through unconditionally (avoids false positives
+# on legitimate day-1 rockets with organic traction but no forks yet).
+GAMING_MIN_STARS: int = 200           # [ASSUMED] — tune after first 30 days of data
+# Stars-to-forks ratio above which a repo is flagged as likely gamed.
+GAMING_STAR_FORK_RATIO: float = 50.0  # [ASSUMED] — tune after first 30 days of data
+
+# HARD-04: Snapshot retention
+# Files older than this are pruned by prune_snapshots(). 90 days = 3× the
+# widest velocity window (30d), providing headroom for missed days + debugging.
+SNAPSHOT_RETENTION_DAYS: int = 90    # D-08
