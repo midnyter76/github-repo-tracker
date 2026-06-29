@@ -1,0 +1,26 @@
+name: Keepalive
+
+on:
+  schedule:
+    - cron: '23 4 */10 * *'  # every 10 days, 04:23 UTC — off-peak, non-round minute (HARD-01)
+  workflow_dispatch:           # manual trigger for immediate keepalive if needed
+
+permissions:
+  contents: write              # required by git-auto-commit-action
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+        # persist-credentials: true (default) — needed for commit-back
+
+      - name: Update keepalive timestamp
+        run: echo "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > .github/keepalive
+
+      - name: Commit keepalive
+        uses: stefanzweifel/git-auto-commit-action@8621497c8c39c72f3e2a999a26b4ca1b5058a842  # v5.0.1
+        with:
+          commit_message: "chore: keepalive [skip ci]"
+          file_pattern: ".github/keepalive"
