@@ -60,8 +60,8 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Repos that match configurable star-gaming heuristics are excluded from rankings before the digest is written
   4. Snapshot files older than the configured retention window are automatically pruned, keeping repo size growth bounded
 **Plans**: 5 plans (3 waves)
-- [ ] 03-01-PLAN.md — config.py Phase 3 constants + gap.py check_gap + test_gap.py (HARD-02) [wave 1]
-- [ ] 03-02-PLAN.md — keepalive.yml workflow + .github/keepalive placeholder + TestKeepaliveYaml (HARD-01) [wave 1]
+- [x] 03-01-PLAN.md — config.py Phase 3 constants + gap.py check_gap + test_gap.py (HARD-02) [wave 1]
+- [x] 03-02-PLAN.md — keepalive.yml workflow + .github/keepalive placeholder + TestKeepaliveYaml (HARD-01) [wave 1]
 - [ ] 03-03-PLAN.md — gaming.py filter_gamed + test_gaming.py (HARD-03) [wave 2]
 - [ ] 03-04-PLAN.md — prune.py prune_snapshots + test_prune.py (HARD-04) [wave 2]
 - [ ] 03-05-PLAN.md — collector.run() wiring + daily.yml deletion staging + integration test (HARD-01/02/03/04) [wave 3]
@@ -75,4 +75,4 @@ Phases execute in numeric order: 1 → 2 → 3
 |-------|----------------|--------|-----------|
 | 1. Collection Loop | 0/4 | Planned | - |
 | 2. Velocity Ranking + Full Reporting | 0/4 | Planned | - |
-| 3. Production Hardening | 0/5 | Planned | - |
+| 3. Production Hardening | 2/5 | In Progress | - |
