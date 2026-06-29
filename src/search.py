@@ -173,9 +173,10 @@ def safe_search(g, query: str, **kwargs):
     """
     while True:
         rl = g.get_rate_limit()
-        if rl.search.remaining > 0:
+        search_rl = getattr(rl, 'search', None)
+        if search_rl is None or search_rl.remaining > 0:
             break
-        reset_utc = rl.search.reset.replace(tzinfo=timezone.utc)
+        reset_utc = search_rl.reset.replace(tzinfo=timezone.utc)
         sleep_sec = (reset_utc - datetime.now(timezone.utc)).total_seconds() + 2
         time.sleep(max(sleep_sec, 2))
     return g.search_repositories(query, **kwargs)
