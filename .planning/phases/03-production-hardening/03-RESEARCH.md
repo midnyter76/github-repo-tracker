@@ -482,14 +482,14 @@ SNAPSHOT_RETENTION_DAYS: int = 90    # D-08
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Does GITHUB_TOKEN (bot) commit count as "repository activity" for the 60-day timer?** (A3 above)
    - What we know: Human commits count. Tags/releases do not. Community conflict on bot commits. The `keepalive-workflow` action moved to API mode (not commit mode) as its v2 default, suggesting commit mode has reliability issues.
    - What's unclear: Official GitHub documentation does not define "repository activity" with enough specificity to settle the question.
-   - Recommendation: **Confirm D-02-vs-API during planning, not after a 60-day gamble.** If commit approach is chosen, add a post-deployment calendar reminder to verify workflow is still active at day 55. If disabled, switch to the workflow-enable REST API approach — requires only `permissions: actions: write`, no PAT.
+   - **RESOLVED:** D-02 (dummy commit approach) is accepted knowingly. The design locks in the dummy-commit implementation (`keepalive.yml` writes a UTC timestamp to `.github/keepalive` and commits it every 10 days). If commit mode fails to reset the timer, the API escalation path documented below is the confirmed fallback. **Day-55 monitoring reminder:** GitHub emails 7 days before auto-disabling a workflow — monitor at day 55 of production. If disabled, apply the API escalation immediately.
 
-   **Escalation pattern (API approach, if commit approach fails):**
+   **Escalation pattern (API approach, if commit approach fails at day 55):**
    ```yaml
    # Replace the "Update keepalive timestamp" + "Commit keepalive" steps with:
    - name: Keep workflow alive via API
@@ -507,7 +507,7 @@ SNAPSHOT_RETENTION_DAYS: int = 90    # D-08
 2. **Is the repo public or private?**
    - What we know: Repo has no remote configured yet (local-only). The 60-day auto-disable only affects public repos per GitHub docs.
    - What's unclear: The repo's eventual visibility on GitHub.
-   - Recommendation: If deployed as a private repo, HARD-01 (keepalive) may be unnecessary — but implementing it anyway is harmless and forward-compatible with a future visibility change.
+   - **RESOLVED:** Implementing keepalive regardless is harmless and forward-compatible with a future visibility change. No action required — 03-02 proceeds as planned.
 
 ---
 
