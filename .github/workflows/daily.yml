@@ -30,7 +30,7 @@ jobs:
         run: |
           DELETED=$(git ls-files --deleted data/ 2>/dev/null)
           if [ -n "$DELETED" ]; then
-            git rm $DELETED
+            echo "$DELETED" | xargs git rm --
           fi
 
       - name: Commit snapshot
