@@ -159,6 +159,10 @@ class TestRun:
             classify_fn=lambda seen, ids, d: ({}, {}),
             write_digest=MagicMock(),
             save_seen_fn=MagicMock(),
+            # Phase 3 no-ops — tests exercise Phase 1/2 logic only (Rule 1 isolation)
+            check_gap_fn=lambda *a, **k: None,
+            filter_gamed_fn=lambda c: c,
+            prune_fn=lambda *a, **k: [],
         )
 
         mock_discover.assert_called_once_with(g)
@@ -203,6 +207,10 @@ class TestRun:
             classify_fn=lambda seen, ids, d: ({}, {}),
             write_digest=MagicMock(),
             save_seen_fn=MagicMock(),
+            # Phase 3 no-ops — tests exercise Phase 1/2 logic only (Rule 1 isolation)
+            check_gap_fn=lambda *a, **k: None,
+            filter_gamed_fn=lambda c: c,
+            prune_fn=lambda *a, **k: [],
         )
 
         assert "111" in captured_snap
@@ -243,6 +251,10 @@ class TestRun:
             classify_fn=lambda seen, ids, d: ({}, {}),
             write_digest=MagicMock(),
             save_seen_fn=MagicMock(),
+            # Phase 3 no-ops — tests exercise Phase 1/2 logic only (Rule 1 isolation)
+            check_gap_fn=lambda *a, **k: None,
+            filter_gamed_fn=lambda c: c,
+            prune_fn=lambda *a, **k: [],
         )
 
         # The refreshed repo (999 stars) must win
@@ -273,6 +285,10 @@ class TestRun:
             classify_fn=lambda seen, ids, d: ({}, {}),
             write_digest=MagicMock(),
             save_seen_fn=MagicMock(),
+            # Phase 3 no-ops — tests exercise Phase 1/2 logic only (Rule 1 isolation)
+            check_gap_fn=lambda *a, **k: None,
+            filter_gamed_fn=lambda c: c,
+            prune_fn=lambda *a, **k: [],
         )
 
         _, snap_ts = mock_write_snap.call_args[0]
@@ -327,6 +343,10 @@ class TestPhase2Wiring:
             classify_fn=mock_classify,
             write_digest=mock_write_digest,
             save_seen_fn=mock_save_seen,
+            # Phase 3 no-ops — tests exercise Phase 2 logic only (Rule 1 isolation)
+            check_gap_fn=lambda *a, **k: None,
+            filter_gamed_fn=lambda c: c,
+            prune_fn=lambda *a, **k: [],
         )
 
         mock_compute_buckets.assert_called_once()
@@ -358,6 +378,10 @@ class TestPhase2Wiring:
             classify_fn=lambda seen, ids, d: ({}, {}),
             write_digest=lambda *a, **k: calls.append("write_digest"),
             save_seen_fn=lambda *a, **k: calls.append("save_seen"),
+            # Phase 3 no-ops — tests exercise Phase 2 D-10 ordering only (Rule 1 isolation)
+            check_gap_fn=lambda *a, **k: None,
+            filter_gamed_fn=lambda c: c,
+            prune_fn=lambda *a, **k: [],
         )
 
         assert "write_digest" in calls, "write_digest was never called"
@@ -400,6 +424,10 @@ class TestPhase2Wiring:
             classify_fn=fake_classify,
             write_digest=MagicMock(),
             save_seen_fn=MagicMock(),
+            # Phase 3 no-ops — tests exercise Phase 2 reported_ids logic only (Rule 1 isolation)
+            check_gap_fn=lambda *a, **k: None,
+            filter_gamed_fn=lambda c: c,
+            prune_fn=lambda *a, **k: [],
         )
 
         assert 111 in captured_ids, f"id 111 missing from reported_ids: {captured_ids}"
@@ -566,6 +594,10 @@ class TestWorkflowYaml:
         bad = re.search(r'run:.*(?:echo|print).*(?:token|secrets)', text, re.IGNORECASE)
         assert bad is None, f"Found token echo in run step: {bad.group()}"
 
+    def test_deletion_staging_step_present(self):
+        """daily.yml must include a step that stages deleted snapshot files (HARD-04)."""
+        assert "git ls-files --deleted" in self._get_workflow_text()
+
 
 class TestKeepaliveYaml:
     """keepalive.yml must contain all HARD-01 required strings."""
@@ -614,3 +646,83 @@ class TestKeepaliveYaml:
     def test_no_uv_setup(self):
         """keepalive.yml must NOT contain astral-sh/setup-uv (no Python in keepalive)."""
         assert "astral-sh/setup-uv" not in self._get_workflow_text()
+
+
+class TestRunPhase3CallOrder:
+    """Phase 3 callables must be integrated in the correct positions in collector.run() (HARD-02/03/04).
+
+    check_gap must fire FIRST (before any API call).
+    filter_gamed must fire AFTER candidate union, BEFORE write_snap (Pitfall 5).
+    prune must fire LAST (after save_seen — D-09).
+    """
+
+    def _make_call_logger(self, name: str, return_value=None):
+        """Return a callable that appends `name` to call_log on invocation."""
+        def logger(*args, **kwargs):
+            self._call_log.append(name)
+            return return_value
+        return logger
+
+    def test_phase3_call_order(self):
+        """check_gap first; filter_gamed after refresh before write_snap; prune last."""
+        import types
+        from datetime import datetime, timezone
+        from unittest.mock import MagicMock
+
+        from src import collector
+
+        self._call_log = []
+
+        fake_repo = types.SimpleNamespace(
+            id=111, stargazers_count=50, forks_count=5,
+            full_name="o/r", description="d",
+            html_url="u", created_at=MagicMock(),
+        )
+        fake_candidates = {"111": fake_repo}
+
+        empty_buckets = {
+            "bnw": {"entries": []},
+            "bnm": {"entries": []},
+            "spike": {"entries": []},
+            "vel30": {"entries": []},
+        }
+
+        now = datetime(2026, 6, 28, 13, 0, 0, tzinfo=timezone.utc)
+
+        collector.run(
+            MagicMock(),  # g — not used by fakes
+            now,
+            check_gap_fn=self._make_call_logger("check_gap"),
+            discover=self._make_call_logger("discover", fake_candidates),
+            established=self._make_call_logger("established", {}),
+            load_ids=self._make_call_logger("load_ids", []),
+            refresh=self._make_call_logger("refresh", {}),
+            filter_gamed_fn=self._make_call_logger("filter_gamed", fake_candidates),
+            write_snap=self._make_call_logger("write_snap"),
+            write_meta=self._make_call_logger("write_meta"),
+            compute_buckets=self._make_call_logger("compute_buckets", empty_buckets),
+            load_seen_fn=self._make_call_logger("load_seen", {}),
+            classify_fn=self._make_call_logger("classify", ({}, {})),
+            write_digest=self._make_call_logger("write_digest"),
+            save_seen_fn=self._make_call_logger("save_seen"),
+            prune_fn=self._make_call_logger("prune"),
+        )
+
+        log = self._call_log
+        assert "check_gap" in log, "check_gap must be called"
+        assert "filter_gamed" in log, "filter_gamed must be called"
+        assert "prune" in log, "prune must be called"
+
+        # check_gap must precede all discovery calls (D-05)
+        assert log.index("check_gap") < log.index("discover"), \
+            "check_gap must fire before discover"
+
+        # filter_gamed must fire after candidate union (after refresh) and before write_snap (Pitfall 5)
+        assert log.index("filter_gamed") > log.index("refresh"), \
+            "filter_gamed must follow refresh (candidate union)"
+        assert log.index("filter_gamed") < log.index("write_snap"), \
+            "filter_gamed must precede write_snap"
+
+        # prune must be the last call (D-09)
+        assert log[-1] == "prune", \
+            f"prune must be the last call in run(); got log: {log}"

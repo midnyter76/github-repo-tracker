@@ -14,8 +14,8 @@ from datetime import datetime, timezone
 
 import github
 
-from src import rank, report, search, seen, store
-from src.config import METADATA_PATH, REPORTS_DIR, SEEN_PATH, SNAPSHOTS_DIR
+from src import gap, gaming, prune, rank, report, search, seen, store
+from src.config import METADATA_PATH, REPORTS_DIR, SEEN_PATH, SNAPSHOT_RETENTION_DAYS, SNAPSHOTS_DIR
 
 
 def build_client():
@@ -52,6 +52,9 @@ def run(
     classify_fn=seen.classify_and_update,
     write_digest=report.write_digest,
     save_seen_fn=seen.save_seen,
+    check_gap_fn=gap.check_gap,           # HARD-02: gap detection (D-05)
+    filter_gamed_fn=gaming.filter_gamed,  # HARD-03: gaming filter (D-07)
+    prune_fn=prune.prune_snapshots,       # HARD-04: snapshot pruning (D-09)
 ):
     """Orchestrate the full collection loop for one run.
 
@@ -79,7 +82,13 @@ def run(
         classify_fn:     Callable matching seen.classify_and_update signature.
         write_digest:    Callable matching report.write_digest signature.
         save_seen_fn:    Callable matching seen.save_seen signature.
+        check_gap_fn:    Callable matching gap.check_gap signature. (HARD-02)
+        filter_gamed_fn: Callable matching gaming.filter_gamed signature. (HARD-03)
+        prune_fn:        Callable matching prune.prune_snapshots signature. (HARD-04)
     """
+    # 0. Gap detection — fires before any API quota is spent (HARD-02, D-05)
+    check_gap_fn(now, SNAPSHOTS_DIR)
+
     candidates: dict = {}
 
     # 1. Date-windowed new-repo discovery (topic + keyword)
@@ -92,6 +101,9 @@ def run(
     tracked_ids = load_ids()
     candidates.update(refresh(g, tracked_ids))
 
+    # 3.5. Filter likely-gamed repos before snapshot write (HARD-03, D-07, Pitfall 5)
+    candidates = filter_gamed_fn(candidates)
+
     # 4. Persist Phase 1 snapshot + metadata
     write_snap(candidates, now)
     write_meta(candidates, now)
@@ -103,6 +115,9 @@ def run(
     markers, updated_seen = classify_fn(current_seen, reported_ids, now.strftime("%Y-%m-%d"))
     write_digest(buckets, markers, now, REPORTS_DIR)   # write report FIRST (D-10)
     save_seen_fn(updated_seen, SEEN_PATH)              # then persist seen-store (D-10)
+
+    # 6. Prune old snapshots — LAST, after all writes (HARD-04, D-09)
+    prune_fn(now, SNAPSHOTS_DIR, SNAPSHOT_RETENTION_DAYS)
 
 
 def main():
