@@ -64,7 +64,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] 03-02-PLAN.md — keepalive.yml workflow + .github/keepalive placeholder + TestKeepaliveYaml (HARD-01) [wave 1]
 - [x] 03-03-PLAN.md — gaming.py filter_gamed + test_gaming.py (HARD-03) [wave 2]
 - [x] 03-04-PLAN.md — prune.py prune_snapshots + test_prune.py (HARD-04) [wave 2]
-- [ ] 03-05-PLAN.md — collector.run() wiring + daily.yml deletion staging + integration test (HARD-01/02/03/04) [wave 3]
+- [x] 03-05-PLAN.md — collector.run() wiring + daily.yml deletion staging + integration test (HARD-01/02/03/04) [wave 3]
 
 ## Progress
 
@@ -75,4 +75,4 @@ Phases execute in numeric order: 1 → 2 → 3
 |-------|----------------|--------|-----------|
 | 1. Collection Loop | 0/4 | Planned | - |
 | 2. Velocity Ranking + Full Reporting | 0/4 | Planned | - |
-| 3. Production Hardening | 4/5 | In Progress | - |
+| 3. Production Hardening | 5/5 | Complete | 2026-06-29 |
