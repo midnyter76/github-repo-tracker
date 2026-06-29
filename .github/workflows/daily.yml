@@ -33,6 +33,9 @@ jobs:
             echo "$DELETED" | xargs git rm --
           fi
 
+      - name: Sync with remote
+        run: git pull --rebase origin main
+
       - name: Commit snapshot
         uses: stefanzweifel/git-auto-commit-action@8621497c8c39c72f3e2a999a26b4ca1b5058a842  # v5.0.1
         with:
