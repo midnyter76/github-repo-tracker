@@ -565,3 +565,52 @@ class TestWorkflowYaml:
         text = self._get_workflow_text()
         bad = re.search(r'run:.*(?:echo|print).*(?:token|secrets)', text, re.IGNORECASE)
         assert bad is None, f"Found token echo in run step: {bad.group()}"
+
+
+class TestKeepaliveYaml:
+    """keepalive.yml must contain all HARD-01 required strings."""
+
+    def _get_workflow_text(self) -> str:
+        p = Path(__file__).parent.parent / ".github" / "workflows" / "keepalive.yml"
+        assert p.exists(), f"Workflow file not found: {p}"
+        return p.read_text()
+
+    def test_cron_schedule(self):
+        """keepalive.yml must use the every-10-days off-peak cron (HARD-01, RESEARCH Pattern 4)."""
+        assert "cron: '23 4 */10 * *'" in self._get_workflow_text()
+
+    def test_workflow_dispatch_present(self):
+        """keepalive.yml must have workflow_dispatch for manual trigger (HARD-01 SC #1)."""
+        assert "workflow_dispatch" in self._get_workflow_text()
+
+    def test_contents_write_permission(self):
+        """keepalive.yml requires contents: write for git-auto-commit-action."""
+        assert "contents: write" in self._get_workflow_text()
+
+    def test_checkout_action_sha(self):
+        """keepalive.yml must pin checkout to the same SHA as daily.yml."""
+        assert "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683" in self._get_workflow_text()
+
+    def test_auto_commit_action_present(self):
+        """keepalive.yml must use stefanzweifel/git-auto-commit-action (v5 SHA or tag)."""
+        text = self._get_workflow_text()
+        assert (
+            "stefanzweifel/git-auto-commit-action@8621497c8c39c72f3e2a999a26b4ca1b5058a842" in text
+            or "stefanzweifel/git-auto-commit-action@v5" in text
+        )
+
+    def test_skip_ci_in_commit_message(self):
+        """keepalive.yml commit message must contain [skip ci] (D-10 pattern)."""
+        assert "[skip ci]" in self._get_workflow_text()
+
+    def test_keepalive_file_pattern(self):
+        """keepalive.yml must target only the .github/keepalive dummy file."""
+        assert 'file_pattern: ".github/keepalive"' in self._get_workflow_text()
+
+    def test_keepalive_commit_message(self):
+        """keepalive.yml commit message must contain 'chore: keepalive'."""
+        assert "chore: keepalive" in self._get_workflow_text()
+
+    def test_no_uv_setup(self):
+        """keepalive.yml must NOT contain astral-sh/setup-uv (no Python in keepalive)."""
+        assert "astral-sh/setup-uv" not in self._get_workflow_text()
