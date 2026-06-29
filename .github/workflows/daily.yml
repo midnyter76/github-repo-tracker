@@ -26,6 +26,13 @@ jobs:
           # Token masked by Actions; never printed by the script (AUTO-02)
         run: uv run python -m src.collector
 
+      - name: Stage pruned snapshot deletions
+        run: |
+          DELETED=$(git ls-files --deleted data/ 2>/dev/null)
+          if [ -n "$DELETED" ]; then
+            git rm $DELETED
+          fi
+
       - name: Commit snapshot
         uses: stefanzweifel/git-auto-commit-action@8621497c8c39c72f3e2a999a26b4ca1b5058a842  # v5.0.1
         with:
