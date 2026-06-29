@@ -159,6 +159,10 @@ class TestRun:
             classify_fn=lambda seen, ids, d: ({}, {}),
             write_digest=MagicMock(),
             save_seen_fn=MagicMock(),
+            # Phase 3 no-ops — tests exercise Phase 1/2 logic only (Rule 1 isolation)
+            check_gap_fn=lambda *a, **k: None,
+            filter_gamed_fn=lambda c: c,
+            prune_fn=lambda *a, **k: [],
         )
 
         mock_discover.assert_called_once_with(g)
@@ -203,6 +207,10 @@ class TestRun:
             classify_fn=lambda seen, ids, d: ({}, {}),
             write_digest=MagicMock(),
             save_seen_fn=MagicMock(),
+            # Phase 3 no-ops — tests exercise Phase 1/2 logic only (Rule 1 isolation)
+            check_gap_fn=lambda *a, **k: None,
+            filter_gamed_fn=lambda c: c,
+            prune_fn=lambda *a, **k: [],
         )
 
         assert "111" in captured_snap
@@ -243,6 +251,10 @@ class TestRun:
             classify_fn=lambda seen, ids, d: ({}, {}),
             write_digest=MagicMock(),
             save_seen_fn=MagicMock(),
+            # Phase 3 no-ops — tests exercise Phase 1/2 logic only (Rule 1 isolation)
+            check_gap_fn=lambda *a, **k: None,
+            filter_gamed_fn=lambda c: c,
+            prune_fn=lambda *a, **k: [],
         )
 
         # The refreshed repo (999 stars) must win
@@ -273,6 +285,10 @@ class TestRun:
             classify_fn=lambda seen, ids, d: ({}, {}),
             write_digest=MagicMock(),
             save_seen_fn=MagicMock(),
+            # Phase 3 no-ops — tests exercise Phase 1/2 logic only (Rule 1 isolation)
+            check_gap_fn=lambda *a, **k: None,
+            filter_gamed_fn=lambda c: c,
+            prune_fn=lambda *a, **k: [],
         )
 
         _, snap_ts = mock_write_snap.call_args[0]
@@ -327,6 +343,10 @@ class TestPhase2Wiring:
             classify_fn=mock_classify,
             write_digest=mock_write_digest,
             save_seen_fn=mock_save_seen,
+            # Phase 3 no-ops — tests exercise Phase 2 logic only (Rule 1 isolation)
+            check_gap_fn=lambda *a, **k: None,
+            filter_gamed_fn=lambda c: c,
+            prune_fn=lambda *a, **k: [],
         )
 
         mock_compute_buckets.assert_called_once()
@@ -358,6 +378,10 @@ class TestPhase2Wiring:
             classify_fn=lambda seen, ids, d: ({}, {}),
             write_digest=lambda *a, **k: calls.append("write_digest"),
             save_seen_fn=lambda *a, **k: calls.append("save_seen"),
+            # Phase 3 no-ops — tests exercise Phase 2 D-10 ordering only (Rule 1 isolation)
+            check_gap_fn=lambda *a, **k: None,
+            filter_gamed_fn=lambda c: c,
+            prune_fn=lambda *a, **k: [],
         )
 
         assert "write_digest" in calls, "write_digest was never called"
@@ -400,6 +424,10 @@ class TestPhase2Wiring:
             classify_fn=fake_classify,
             write_digest=MagicMock(),
             save_seen_fn=MagicMock(),
+            # Phase 3 no-ops — tests exercise Phase 2 reported_ids logic only (Rule 1 isolation)
+            check_gap_fn=lambda *a, **k: None,
+            filter_gamed_fn=lambda c: c,
+            prune_fn=lambda *a, **k: [],
         )
 
         assert 111 in captured_ids, f"id 111 missing from reported_ids: {captured_ids}"
