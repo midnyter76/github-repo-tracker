@@ -22,6 +22,7 @@ _Validated in Phase 1: Collection Loop (code-complete + 96 tests green; live-run
 ### Validated
 
 _Validated in Phase 2: Velocity Ranking + Full Reporting (code-complete + 128 tests green; live-run UAT pending in 02-HUMAN-UAT.md)_
+_Validated in Phase 3: Production Hardening (code-complete + 221 tests green; HARD-01/02/03/04 all verified)_
 
 - [x] **Brand New — Top 10 weekly**: repos created in last 7 days, ranked by hour-normalized star velocity
 - [x] **Brand New — Top 5 monthly**: repos created in last 30 days, ranked by hour-normalized star velocity
@@ -72,7 +73,7 @@ _Validated in Phase 2: Velocity Ranking + Full Reporting (code-complete + 128 te
 
 This document evolves at phase transitions and milestone boundaries.
 
-Last updated: 2026-06-28
+Last updated: 2026-06-29
 
 **After each phase transition** (via `/gsd-transition`):
 1. Requirements invalidated? → Move to Out of Scope with reason
@@ -88,4 +89,4 @@ Last updated: 2026-06-28
 4. Update Context with current state
 
 ---
-*Last updated: 2026-06-27 — Phase 1 (Collection Loop) complete*
+*Last updated: 2026-06-29 — Phase 3 (Production Hardening) complete; milestone v1.0 all 13 plans verified (221 tests passing)*
