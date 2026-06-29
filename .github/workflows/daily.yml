@@ -20,6 +20,9 @@ jobs:
         with:
           enable-cache: true
 
+      - name: Sync with remote
+        run: git pull --rebase origin main
+
       - name: Run collector
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -32,9 +35,6 @@ jobs:
           if [ -n "$DELETED" ]; then
             echo "$DELETED" | xargs git rm --
           fi
-
-      - name: Sync with remote
-        run: git pull --rebase origin main
 
       - name: Commit snapshot
         uses: stefanzweifel/git-auto-commit-action@8621497c8c39c72f3e2a999a26b4ca1b5058a842  # v5.0.1
