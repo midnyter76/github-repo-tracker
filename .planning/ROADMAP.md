@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [ ] **Phase 1: Collection Loop** - Daily fetch→snapshot→commit-back loop running in GitHub Actions; history accumulation starts day 1
 - [ ] **Phase 2: Velocity Ranking + Full Reporting** - Complete four-bucket ranking with graceful cold-start degradation and dated markdown digest
-- [ ] **Phase 3: Production Hardening** - Scheduler resilience, gap detection, star-gaming filters, and snapshot pruning calibrated on real data
+- [x] **Phase 3: Production Hardening** - Scheduler resilience, gap detection, star-gaming filters, and snapshot pruning calibrated on real data
 
 ## Phase Details
 
