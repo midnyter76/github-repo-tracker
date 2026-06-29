@@ -52,5 +52,5 @@ def check_gap(
                 f"WARNING: Last snapshot {latest.name} was {delta_hours:.1f}h ago "
                 f"(threshold: {warn_hours}h). A collection run may have been missed."
             )
-    except (KeyError, ValueError, json.JSONDecodeError):
-        pass  # don't crash on malformed snapshot — gap check is best-effort
+    except (KeyError, ValueError, TypeError, json.JSONDecodeError):
+        pass  # don't crash on malformed/mixed-tz snapshot — gap check is best-effort
