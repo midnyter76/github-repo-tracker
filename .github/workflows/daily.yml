@@ -38,3 +38,33 @@ jobs:
         with:
           commit_message: "chore: daily snapshot [skip ci]"
           file_pattern: "data/** reports/**"
+
+      - name: Email daily report
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: |
+          uv run python - <<'EOF'
+          import os, smtplib, glob
+          from datetime import datetime, timezone
+          from email.message import EmailMessage
+          from pathlib import Path
+
+          today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+          matches = glob.glob(f"reports/{today}.md")
+          if not matches:
+              print(f"No report for {today}, skipping email.")
+              raise SystemExit(0)
+
+          body = Path(matches[0]).read_text()
+          msg = EmailMessage()
+          msg["Subject"] = f"AI Repo Tracker — {today}"
+          msg["From"] = os.environ["GMAIL_USER"]
+          msg["To"] = "midnyter@gmail.com"
+          msg.set_content(body)
+
+          with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+              smtp.login(os.environ["GMAIL_USER"], os.environ["GMAIL_APP_PASSWORD"])
+              smtp.send_message(msg)
+          print(f"Report emailed for {today}")
+          EOF
