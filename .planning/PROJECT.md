@@ -19,15 +19,20 @@ _Validated in Phase 1: Collection Loop (code-complete + 96 tests green; live-run
 - [x] Run automatically every morning via GitHub Actions cron
 - [x] Persist the snapshot store across scheduled runs (e.g. commit back to repo)
 
-### Active
+### Validated
 
-- [ ] **Brand New — Top 10 weekly**: repos created in last 7 days, ranked by star velocity
-- [ ] **Brand New — Top 5 monthly**: repos created in last 30 days, ranked by star velocity
-- [ ] **Breakthrough — Top 10 24h spike**: existing repos with a sudden star surge in the last 24h
-- [ ] **Breakthrough — Top 10 30-day velocity**: existing repos with sustained star growth over a rolling month
-- [ ] Per-repo report line: clickable link, creation date, current stars + star acceleration, primary description
-- [ ] Track which repos have already been reported; flag never-before-seen repos with a 🆕 marker, tag returning ones
-- [ ] Write each run's output as a dated markdown report file
+_Validated in Phase 2: Velocity Ranking + Full Reporting (code-complete + 128 tests green; live-run UAT pending in 02-HUMAN-UAT.md)_
+
+- [x] **Brand New — Top 10 weekly**: repos created in last 7 days, ranked by hour-normalized star velocity
+- [x] **Brand New — Top 5 monthly**: repos created in last 30 days, ranked by hour-normalized star velocity
+- [x] **Breakthrough — Top 10 24h spike**: existing repos with a sudden star surge in the last 24h (snapshot diff)
+- [x] **Breakthrough — Top 10 30-day velocity**: existing repos with sustained star growth over a rolling month
+- [x] Per-repo report line: clickable link, creation date, current stars + velocity/day, sanitized description (ASVS V5)
+- [x] Track which repos have already been reported; flag never-before-seen repos with 🆕, tag returning ones with ↩
+- [x] Write each run's output as a dated markdown report file (`reports/YYYY-MM-DD.md`)
+- [x] Breakthrough buckets degrade gracefully with a warming note until enough snapshots accumulate
+
+### Active
 
 ### Out of Scope
 
@@ -66,6 +71,8 @@ _Validated in Phase 1: Collection Loop (code-complete + 96 tests green; live-run
 ## Evolution
 
 This document evolves at phase transitions and milestone boundaries.
+
+Last updated: 2026-06-28
 
 **After each phase transition** (via `/gsd-transition`):
 1. Requirements invalidated? → Move to Out of Scope with reason
