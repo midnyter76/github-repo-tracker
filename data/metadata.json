@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-30T07:15:41.277476+00:00",
+  "updated_at": "2026-06-30T15:23:52.190600+00:00",
   "repos": {
     "1278930806": {
       "full_name": "benchflow-ai/awesome-evals",
@@ -585,7 +585,7 @@
     },
     "1280587340": {
       "full_name": "eliransu/wrud",
-      "description": "Local-first, API-first session recorder for AI coding agents. See every tool call, model, cost signal, and lesson from Claude Code, Cursor, Codex & more - in a queryable local dashboard.",
+      "description": "Local-first, open-source recorder for AI coding-agent sessions (Claude Code, Cursor) - tools, models, tokens, cost right-sizing. No cloud, no egress. npx @wrud/cli",
       "created_at": "2026-06-25T18:29:37+00:00",
       "html_url": "https://github.com/eliransu/wrud"
     },
@@ -1166,10 +1166,10 @@
       "html_url": "https://github.com/madebyalexander/verdex"
     },
     "1280074095": {
-      "full_name": "Jaimin-prajapati-ds/gitlab-duo-free-trial-guide",
+      "full_name": "jaimin229/gitlab-duo-free-trial-guide",
       "description": "?? Get Claude Opus 4.8 FREE for 30 days via GitLab Duo CLI | Complete setup guide with architecture diagrams, model comparison, and troubleshooting",
       "created_at": "2026-06-25T08:43:52+00:00",
-      "html_url": "https://github.com/Jaimin-prajapati-ds/gitlab-duo-free-trial-guide"
+      "html_url": "https://github.com/jaimin229/gitlab-duo-free-trial-guide"
     },
     "1280040583": {
       "full_name": "Rebel028/gauntlet",
@@ -1251,7 +1251,7 @@
     },
     "1277864874": {
       "full_name": "wholesphereai/calus",
-      "description": "Drop-in, detection-only AI-security gateway. Flags prompt injection, jailbreaks & agent abuse on every call, no code changes, never alters your traffic.",
+      "description": "Drop-in AI-security gateway. Detects and blocks prompt injection & agent abuse on every call, no code changes. Detection-only by default, one switch to enforce.",
       "created_at": "2026-06-23T08:57:56+00:00",
       "html_url": "https://github.com/wholesphereai/calus"
     },
@@ -1382,10 +1382,10 @@
       "html_url": "https://github.com/leoyang1984/translation-workshop-public"
     },
     "1278473963": {
-      "full_name": "Forest-Project-Lab/context-engineering-blueprint",
+      "full_name": "Forest-Project-Lab/doctrine",
       "description": "Stop stale specs from becoming code. A Markdown context-engineering blueprint for LLM coding agents: status, provenance, dependencies, and freshness.",
       "created_at": "2026-06-23T20:35:10+00:00",
-      "html_url": "https://github.com/Forest-Project-Lab/context-engineering-blueprint"
+      "html_url": "https://github.com/Forest-Project-Lab/doctrine"
     },
     "1283258538": {
       "full_name": "kitay-sudo/yata",
@@ -1461,7 +1461,7 @@
     },
     "1278080502": {
       "full_name": "practice-avtotor/ai-training",
-      "description": "\u041f\u0430\u0439\u043f\u043b\u0430\u0439\u043d \u0434\u043b\u044f \u044d\u0444\u0444\u0435\u043a\u0442\u0438\u0432\u043d\u043e\u0433\u043e 4-\u0431\u0438\u0442\u043d\u043e\u0433\u043e (QLoRA) \u0434\u043e\u043e\u0431\u0443\u0447\u0435\u043d\u0438\u044f Qwen 3 8B \u043d\u0430 \u043f\u043e\u0442\u0440\u0435\u0431\u0438\u0442\u0435\u043b\u044c\u0441\u043a\u0438\u0445 \u0432\u0438\u0434\u0435\u043e\u043a\u0430\u0440\u0442\u0430\u0445 (10 \u0413\u0411 VRAM). \u0412\u043a\u043b\u044e\u0447\u0430\u0435\u0442 \u044d\u0442\u0430\u043f\u044b CPT \u0438 SFT, \u0430 \u0442\u0430\u043a\u0436\u0435 \u044d\u0442\u0430\u043f\u044b \u0441\u0431\u043e\u0440\u0430 \u0434\u0430\u043d\u043d\u044b\u0445.",
+      "description": "\u041f\u0430\u0439\u043f\u043b\u0430\u0439\u043d \u0434\u043b\u044f \u044d\u0444\u0444\u0435\u043a\u0442\u0438\u0432\u043d\u043e\u0433\u043e 4-\u0431\u0438\u0442\u043d\u043e\u0433\u043e (QLoRA) \u0434\u043e\u043e\u0431\u0443\u0447\u0435\u043d\u0438\u044f Qwen3-8B \u043d\u0430 \u043f\u043e\u0442\u0440\u0435\u0431\u0438\u0442\u0435\u043b\u044c\u0441\u043a\u0438\u0445 \u0432\u0438\u0434\u0435\u043e\u043a\u0430\u0440\u0442\u0430\u0445 (10 \u0413\u0411 VRAM). \u0412\u043a\u043b\u044e\u0447\u0430\u0435\u0442 \u044d\u0442\u0430\u043f SFT \u0438 \u044d\u0442\u0430\u043f\u044b \u0441\u0431\u043e\u0440\u0430 \u0434\u0430\u043d\u043d\u044b\u0445.",
       "created_at": "2026-06-23T12:51:51+00:00",
       "html_url": "https://github.com/practice-avtotor/ai-training"
     },
@@ -2577,7 +2577,7 @@
     },
     "1282730400": {
       "full_name": "maniac1um/Man1Lab",
-      "description": "An autonomous research paper reproduction pipeline powered by LLMs.",
+      "description": "An AI-native platform for research paper reproduction and engineering automation.",
       "created_at": "2026-06-28T06:07:47+00:00",
       "html_url": "https://github.com/maniac1um/Man1Lab"
     },
@@ -4278,12 +4278,6 @@
       "description": "Domain-specific text corpus (241 documents, ~435K tokens) on short-term rental operations and property inspection. For LLM fine-tuning, RAG, and NLP research. CC BY 4.0.",
       "created_at": "2026-06-28T23:12:22+00:00",
       "html_url": "https://github.com/Metzpapa/vacation-rental-operations-corpus"
-    },
-    "1283309709": {
-      "full_name": "said-1366/Claude-Harness-Architect",
-      "description": "Claude Harness Creator: Build Production-Ready AI Workflows in Minutes 2026",
-      "created_at": "2026-06-28T19:33:03+00:00",
-      "html_url": "https://github.com/said-1366/Claude-Harness-Architect"
     },
     "1283313100": {
       "full_name": "noviaidrl/copilot-tunnel-proxy",
@@ -9133,12 +9127,6 @@
       "created_at": "2026-06-27T11:10:33+00:00",
       "html_url": "https://github.com/wolfgang-kriesel/pmo-intelligence"
     },
-    "1280408543": {
-      "full_name": "Jiangki/mcp-gateway",
-      "description": ".NET MCP gateway: dynamic tool registry, REST adapter, semantic routing, and standard MCP edge (Apache-2.0)",
-      "created_at": "2026-06-25T14:53:16+00:00",
-      "html_url": "https://github.com/Jiangki/mcp-gateway"
-    },
     "1278985156": {
       "full_name": "Shavvimal/cairn",
       "description": "Local, searchable memory for AI coding agents \u2014 Claude Code, Codex, Cursor & Granola, indexed on-device with QMD.",
@@ -12237,7 +12225,7 @@
     },
     "1278253689": {
       "full_name": "y-times-y/y",
-      "description": "MacOS coding agent app. Use Claude Code and Codex to code and reshape the app itself live.",
+      "description": "Malleable coding agent app. Use Claude Code and Codex to code and reshape the app itself live.",
       "created_at": "2026-06-23T16:01:44+00:00",
       "html_url": "https://github.com/y-times-y/y"
     },
@@ -14535,7 +14523,7 @@
     },
     "1269904726": {
       "full_name": "AttemorySystem/Attemory",
-      "description": "Semantic memory retrieval for AI agents, using reusable KV cache to retrieve evidence from million-token memory and cut agent token usage, with SOTA-class results on memory and code search benchmarks.",
+      "description": "Semantic retrieval for AI agents: high-recall memory and code search that cuts coding-agent token usage by nearly 50%",
       "created_at": "2026-06-15T07:53:50+00:00",
       "html_url": "https://github.com/AttemorySystem/Attemory"
     },
@@ -15285,7 +15273,7 @@
     },
     "1272624457": {
       "full_name": "CaspianG/wavemind",
-      "description": "Persistent dynamic memory for AI agents: vector search, wave-field priority, SQLite persistence.",
+      "description": "Local-first dynamic memory for agents and apps: SQLite source of truth, vector search candidates, hotness, decay, TTL, namespaces, and benchmarks.",
       "created_at": "2026-06-17T19:41:59+00:00",
       "html_url": "https://github.com/CaspianG/wavemind"
     },
@@ -15861,7 +15849,7 @@
     },
     "1266276839": {
       "full_name": "Gudvin82/seo-geo-ai-roadmap",
-      "description": "SEO + GEO + AI discoverability OS (RU + EN) for Google, Yandex & LLM era.",
+      "description": "Self-hosted SEO + GEO + AI discoverability OS: methodology, FastAPI app, scripts, validation helpers, cases and AI-agent task packs.",
       "created_at": "2026-06-11T13:23:01+00:00",
       "html_url": "https://github.com/Gudvin82/seo-geo-ai-roadmap"
     },
@@ -17120,10 +17108,10 @@
       "html_url": "https://github.com/hyeonsangjeon/when-reasoning-pays-off"
     },
     "1261151796": {
-      "full_name": "Dkm0315/muster",
+      "full_name": "musterhq/muster",
       "description": "The AI agent harness you can audit: token-waste ledger, leak-proof scoped memory, eval-gated learning, 20+ LLM providers (Claude, OpenAI, Ollama, Grok, Kimi). TypeScript, MIT.",
       "created_at": "2026-06-06T09:59:09+00:00",
-      "html_url": "https://github.com/Dkm0315/muster"
+      "html_url": "https://github.com/musterhq/muster"
     },
     "1268978083": {
       "full_name": "Zhonghui-li/sec-filing-agent",
@@ -17967,7 +17955,7 @@
     },
     "1268739964": {
       "full_name": "cyberturk01/repo-context-center",
-      "description": "Repository intelligence for AI coding agents. Find the right files, understand impact, and verify changes with minimal repository exploration.",
+      "description": "Repository intelligence for AI coding agents. Find the right files, understand change impact, and verify changes with minimal repository exploration.",
       "created_at": "2026-06-13T22:06:49+00:00",
       "html_url": "https://github.com/cyberturk01/repo-context-center"
     },
@@ -21798,12 +21786,6 @@
       "description": "Batteries-included local RAG pipeline \u2014 ingest, index, serve",
       "created_at": "2026-06-08T06:44:23+00:00",
       "html_url": "https://github.com/cognis-digital/ragkit"
-    },
-    "1270050460": {
-      "full_name": "korenko-git/opencode-setup",
-      "description": "Curated personal OpenCode setup",
-      "created_at": "2026-06-15T10:37:09+00:00",
-      "html_url": "https://github.com/korenko-git/opencode-setup"
     },
     "1275448489": {
       "full_name": "TheAnacondA57/BidAgent",
@@ -27777,7 +27759,7 @@
     },
     "1256526943": {
       "full_name": "jpgomesr/neuralvault",
-      "description": "Self-hosted AI memory & contextual retrieval platform. Hybrid semantic + keyword search via Qdrant + PostgreSQL, multi-workspace support, and BYOK multi-provider flexibility.",
+      "description": "Self-hosted AI memory and knowledge platform for contextual retrieval. Hybrid semantic + keyword search powered by Qdrant and PostgreSQL, with multi-workspace support and BYOK multi-provider flexibility.",
       "created_at": "2026-06-01T21:30:54+00:00",
       "html_url": "https://github.com/jpgomesr/neuralvault"
     },
@@ -35839,12 +35821,6 @@
       "created_at": "2026-06-13T11:55:46+00:00",
       "html_url": "https://github.com/Benjamin-KY/open-harness-atlas"
     },
-    "1264976875": {
-      "full_name": "readysteadyscience/codex-threaddeck",
-      "description": "Turn one Codex conversation into a live dispatch desk for the other Codex conversations you choose.",
-      "created_at": "2026-06-10T10:55:48+00:00",
-      "html_url": "https://github.com/readysteadyscience/codex-threaddeck"
-    },
     "1255117342": {
       "full_name": "2nd1st/api-log",
       "description": "Transparent LLM gateway trace recorder \u00b7 sub2api / CLIProxyAPI / new-api \u7684 LLM \u7f51\u5173\u6d41\u91cf\u5f55\u5236\u5668",
@@ -38418,12 +38394,6 @@
       "description": "Official repository for \u201cFrom Trainee to Trainer: LLM-Designed Training Environment for RL with Multi-Agent Reasoning\u201d\u201c",
       "created_at": "2026-06-13T11:25:59+00:00",
       "html_url": "https://github.com/LARK-AI-Lab/Trainee-to-Trainer"
-    },
-    "1271452378": {
-      "full_name": "Sorathiya123/claude-ai-free-desktop-app",
-      "description": "free claude code ai github  desktop pc windows linux macOS proxy server anthropic free api local llm router nvidia nim openrouter deepseek ollama lm studio vscode extension jetbrains cli terminal coding assistant",
-      "created_at": "2026-06-16T17:15:06+00:00",
-      "html_url": "https://github.com/Sorathiya123/claude-ai-free-desktop-app"
     },
     "1261142966": {
       "full_name": "Nhaked-try/evalforge",
