@@ -124,3 +124,10 @@ GAMING_STAR_FORK_RATIO: float = 50.0  # [ASSUMED] — tune after first 30 days o
 # Files older than this are pruned by prune_snapshots(). 90 days = 3× the
 # widest velocity window (30d), providing headroom for missed days + debugging.
 SNAPSHOT_RETENTION_DAYS: int = 90    # D-08
+
+# HARD-05: Metadata refresh age cap
+# Only re-fetch star counts (core API) for repos created within this window.
+# Older repos are always re-discovered fresh by discover_established() searches,
+# so individual refreshes are redundant and blow past the 1,000 req/hr Actions limit.
+# 45d = 30d velocity window + 15d buffer for missed runs / slow starters.
+METADATA_REFRESH_MAX_AGE_DAYS: int = 45

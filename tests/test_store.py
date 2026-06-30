@@ -324,6 +324,20 @@ class TestLoadMetadataIds:
         md_path = tmp_path / "metadata.json"
         write_metadata({"111": repo_111, "222": repo_222}, run_at, metadata_path=md_path)
 
-        ids = load_metadata_ids(metadata_path=md_path)
+        ids = load_metadata_ids(metadata_path=md_path, max_age_days=None)
         assert isinstance(ids, list)
         assert set(ids) == {"111", "222"}
+
+    def test_max_age_days_filters_old_repos(self, tmp_path: Path):
+        """max_age_days excludes repos whose created_at is older than the cutoff."""
+        from datetime import timedelta
+        from src.store import load_metadata_ids, write_metadata
+
+        run_at = _utc()
+        recent = _make_repo(id=111, stargazers_count=10, created_at=run_at - timedelta(days=10))
+        old = _make_repo(id=222, stargazers_count=99, created_at=datetime(2024, 1, 15, tzinfo=timezone.utc))
+        md_path = tmp_path / "metadata.json"
+        write_metadata({"111": recent, "222": old}, run_at, metadata_path=md_path)
+
+        ids = load_metadata_ids(metadata_path=md_path, max_age_days=45)
+        assert set(ids) == {"111"}

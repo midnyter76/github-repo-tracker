@@ -12,10 +12,10 @@ All stored timestamps are UTC ISO 8601 per D-07 / DATA-05.
 
 import json
 import warnings
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
-from src.config import METADATA_PATH, SNAPSHOTS_DIR
+from src.config import METADATA_PATH, METADATA_REFRESH_MAX_AGE_DAYS, SNAPSHOTS_DIR
 
 
 def write_snapshot(
@@ -144,16 +144,36 @@ def load_metadata(metadata_path: Path = METADATA_PATH) -> dict:
         return {}
 
 
-def load_metadata_ids(metadata_path: Path = METADATA_PATH) -> list[str]:
-    """Return the list of tracked repo-id string keys from the metadata store.
+def load_metadata_ids(
+    metadata_path: Path = METADATA_PATH,
+    max_age_days: int | None = METADATA_REFRESH_MAX_AGE_DAYS,
+) -> list[str]:
+    """Return tracked repo-id keys to re-fetch via the core API.
 
-    This is the input consumed by Plan 02's refresh_tracked — it tells the
-    refresher which numeric IDs to re-fetch from the GitHub Core API.
+    When max_age_days is set, only returns repos created within that window.
+    Older repos are re-discovered fresh by discover_established() searches every
+    run, so individual core-API refreshes are redundant and hit the 1,000 req/hr
+    Actions rate limit (HARD-05).
 
     Args:
         metadata_path: injectable for tests (defaults to METADATA_PATH from config)
+        max_age_days:  only return repos created within this many days; None = no filter.
 
     Returns:
         List of str repo-id keys (e.g. ["12345678", "87654321"]), empty if absent.
     """
-    return list(load_metadata(metadata_path).get("repos", {}).keys())
+    repos = load_metadata(metadata_path).get("repos", {})
+    if max_age_days is None:
+        return list(repos.keys())
+    cutoff = datetime.now(timezone.utc) - timedelta(days=max_age_days)
+    result = []
+    for rid, info in repos.items():
+        try:
+            created = datetime.fromisoformat(info["created_at"])
+            if created.tzinfo is None:
+                created = created.replace(tzinfo=timezone.utc)
+            if created >= cutoff:
+                result.append(rid)
+        except (KeyError, ValueError):
+            result.append(rid)
+    return result
