@@ -82,6 +82,7 @@ class TestBuildClient:
                 auth=mock_auth,
                 retry=mock_retry,
                 seconds_between_requests=0.5,
+                per_page=100,
             )
             assert result is mock_github_cls.return_value
 

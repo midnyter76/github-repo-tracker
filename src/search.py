@@ -181,7 +181,6 @@ def safe_search(g, query: str, **kwargs):
         reset_utc = search_rl.reset.replace(tzinfo=timezone.utc)
         sleep_sec = (reset_utc - datetime.now(timezone.utc)).total_seconds() + 2
         time.sleep(max(sleep_sec, 2))
-    kwargs.setdefault("per_page", 100)
     return g.search_repositories(query, **kwargs)
 
 

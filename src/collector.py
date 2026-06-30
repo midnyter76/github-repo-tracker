@@ -34,6 +34,7 @@ def build_client():
         auth=github.Auth.Token(token),
         retry=github.GithubRetry(),
         seconds_between_requests=0.5,
+        per_page=100,
     )
 
 

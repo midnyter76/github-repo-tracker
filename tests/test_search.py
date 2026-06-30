@@ -238,7 +238,7 @@ class TestSafeSearch:
         with patch("time.sleep") as mock_sleep:
             result = safe_search(g, "topic:llm")
 
-        g.search_repositories.assert_called_once_with("topic:llm", per_page=100)
+        g.search_repositories.assert_called_once_with("topic:llm")
         mock_sleep.assert_not_called()
         assert result is fake_result
 
@@ -252,7 +252,7 @@ class TestSafeSearch:
             result = safe_search(g, "topic:agents")
 
         assert mock_sleep.called, "sleep must be called when remaining == 0"
-        g.search_repositories.assert_called_once_with("topic:agents", per_page=100)
+        g.search_repositories.assert_called_once_with("topic:agents")
         assert result is fake_result
 
     def test_passes_kwargs_to_search(self):
@@ -261,7 +261,7 @@ class TestSafeSearch:
         g.search_repositories.return_value = _make_result(1)
 
         safe_search(g, "stars:>=100", sort="stars")
-        g.search_repositories.assert_called_once_with("stars:>=100", sort="stars", per_page=100)
+        g.search_repositories.assert_called_once_with("stars:>=100", sort="stars")
 
     def test_no_token_in_prints(self):
         """Verify search.py source does not print/log token/auth/client (T-01-04)."""
