@@ -21,7 +21,7 @@ jobs:
           enable-cache: true
 
       - name: Sync with remote
-        run: git pull --rebase origin main
+        run: git fetch origin main && git reset --hard FETCH_HEAD
 
       - name: Run collector
         env:
