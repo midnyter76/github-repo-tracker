@@ -21,7 +21,7 @@ from src.search import (
     discover_established,
     refresh_tracked,
 )
-from src.config import TOTAL_COUNT_CAP_WARN, TOPICS, NEW_REPO_WINDOWS
+from src.config import TOTAL_COUNT_CAP_WARN, TOPICS, NEW_REPO_WINDOWS, TOPIC_STAR_FLOOR
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -72,14 +72,14 @@ def _make_rate_limit_g(remaining_sequence):
 
 class TestBuildTopicQuery:
     def test_exact_string(self):
-        """Must match literal from <behavior> — no star floor on topic half (D-03)."""
+        """Topic query includes TOPIC_STAR_FLOOR to suppress 0-star placeholder repos."""
         result = build_topic_query("llm", since_date="2026-06-20")
-        assert result == "topic:llm fork:false archived:false created:>2026-06-20"
+        assert result == f"topic:llm stars:>={TOPIC_STAR_FLOOR} fork:false archived:false created:>2026-06-20"
 
-    def test_no_stars_qualifier(self):
-        """Topic half MUST NOT contain stars:>= (FILTER-03)."""
+    def test_star_floor_present(self):
+        """Topic half includes stars:>= floor to cap search result volume."""
         result = build_topic_query("agents", since_date="2026-01-01")
-        assert "stars:>=" not in result
+        assert f"stars:>={TOPIC_STAR_FLOOR}" in result
 
     def test_includes_qualifier_exclusions(self):
         result = build_topic_query("rag", since_date="2025-12-01")
@@ -317,15 +317,13 @@ class TestDiscoverRepos:
         result = discover_repos(MagicMock(), windows=[7], search=fake_search)
         assert set(result.keys()) == {"1", "2", "3"}
 
-    def test_topic_queries_have_no_star_floor(self):
-        """Topic-half queries must NOT contain stars:>= (FILTER-03 / D-03)."""
+    def test_topic_queries_have_star_floor(self):
+        """Topic-half queries include TOPIC_STAR_FLOOR to cap search result volume."""
         fake_search = self._make_fake_search({})
         discover_repos(MagicMock(), windows=[7], search=fake_search)
-        topic_queries = [q for q in fake_search.recorded if "topic:" in q and "stars" not in q.split("topic:")[0]]
-        # At least one query per topic (6 topics) should be topic-only without stars floor
         topic_qs = [q for q in fake_search.recorded if q.startswith("topic:")]
         for q in topic_qs:
-            assert "stars:>=" not in q, f"Topic query must not have star floor: {q}"
+            assert f"stars:>={TOPIC_STAR_FLOOR}" in q, f"Topic query missing star floor: {q}"
 
     def test_keyword_queries_have_star_floor(self):
         """Keyword-half queries must have stars:>=10 (FILTER-03)."""

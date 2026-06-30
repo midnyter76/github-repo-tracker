@@ -37,9 +37,13 @@ KEYWORD_SETS = [
 # Search qualifier for keyword matching (name/description).
 KEYWORD_IN_QUALIFIER = "in:name,description"
 
+# Minimum star count for the topic half.
+# Low floor suppresses 0-star placeholder repos while keeping fresh rockets.
+# topic:llm alone returns 1000+ repos/week with no floor, burning search quota.
+TOPIC_STAR_FLOOR: int = 5
+
 # Minimum star count for the keyword half (D-02).
 # Fresh-friendly low floor: prefer catching a 12-star day-2 rocket over noise.
-# The topic half intentionally has NO floor.
 KEYWORD_STAR_FLOOR = 10
 
 # ---------------------------------------------------------------------------

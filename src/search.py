@@ -15,6 +15,7 @@ import github
 from src.config import (
     TOPICS,
     KEYWORD_SETS,
+    TOPIC_STAR_FLOOR,
     KEYWORD_STAR_FLOOR,
     KEYWORD_IN_QUALIFIER,
     QUALIFIER_EXCLUSIONS,
@@ -50,7 +51,8 @@ def build_topic_query(
         date_qualifier = f"created:{since_date}..{until_date}"
     else:
         date_qualifier = f"created:>{since_date}"
-    return f"topic:{topic} {QUALIFIER_EXCLUSIONS} {date_qualifier}"
+    star_qualifier = f" stars:>={TOPIC_STAR_FLOOR}" if TOPIC_STAR_FLOOR > 0 else ""
+    return f"topic:{topic}{star_qualifier} {QUALIFIER_EXCLUSIONS} {date_qualifier}"
 
 
 def build_keyword_query(
