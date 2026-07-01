@@ -488,3 +488,227 @@ class TestWriteDigest:
         content = path.read_text(encoding="utf-8")
 
         assert "# AI Repo Tracker — 2026-06-28" in content  # — is U+2014 em-dash
+
+
+# ---------------------------------------------------------------------------
+# TestHtmlDigest — "4a: The Dispatch, hero edition" (Quick Task 260630-tl4)
+# ---------------------------------------------------------------------------
+# Security-sensitive (ASVS-aligned; matches TestSanitizeDescription rigor):
+# T-TL4-01 (description XSS), T-TL4-02 (full_name XSS), T-TL4-03 (href
+# attribute breakout). Plus logic/formatting parity with the ported JS math.
+
+class TestHtmlDigest:
+    # -- Security -----------------------------------------------------------
+
+    def test_description_script_tag_never_raw_in_output(self):
+        """T-TL4-01: description <script> payload never survives as a raw tag.
+
+        _esc() = html.escape(sanitize_description(text), quote=True). Because
+        sanitize_description() already STRIPS < and > (existing markdown-
+        injection contract, unmodified), the brackets are removed entirely
+        before html.escape runs — a stronger guarantee than mere escaping.
+        Assert both halves: no raw tag survives, AND the payload text still
+        flowed through (proving it was neutralized, not that the entry was
+        simply absent from output).
+        """
+        from src.report import render_html_row
+
+        e = _entry(id="1", description="<script>alert(1)</script>")
+        result = render_html_row(e, markers={}, bucket_max_vel=1.0, now=_now())
+        assert "<script" not in result, "raw <script tag must never appear"
+        assert "alert(1)" in result, "payload text must still be present (neutralized, not dropped)"
+
+    def test_full_name_img_payload_escaped(self):
+        """T-TL4-02: full_name XSS payload is HTML-escaped (not merely stripped).
+
+        full_name is NOT routed through sanitize_description (per design
+        spec) — it's html.escape(value, quote=True) directly. So unlike the
+        description path, angle brackets here DO survive as escaped entities.
+        """
+        from src.report import render_html_row
+
+        e = _entry(id="1", full_name='evil"><img src=x onerror=1>/repo')
+        result = render_html_row(e, markers={}, bucket_max_vel=1.0, now=_now())
+        assert "<img" not in result, "raw <img tag must never appear unescaped"
+        assert "&lt;img" in result or "&quot;" in result, "escaped form must be present"
+
+    def test_full_name_img_payload_escaped_in_hero(self):
+        """T-TL4-02: same guarantee in the hero card render path."""
+        from src.report import render_html_hero
+
+        e = _entry(id="1", full_name='evil"><img src=x onerror=1>/repo')
+        result = render_html_hero(e, "Brand New This Week", _now())
+        assert "<img" not in result
+        assert "&lt;img" in result or "&quot;" in result
+
+    def test_html_url_attribute_breakout_escaped(self):
+        """T-TL4-03: html_url is escaped for the href="..." attribute context."""
+        from src.report import render_html_row
+
+        e = _entry(id="1", html_url='https://x/repo"><script>alert(1)</script>')
+        result = render_html_row(e, markers={}, bucket_max_vel=1.0, now=_now())
+        assert '"><script>' not in result
+        assert "&quot;&gt;&lt;script&gt;" in result
+
+    def test_description_newline_and_link_injection_neutralized(self):
+        """Description with newline / ](url) injection: no raw newline, no '](' in the row."""
+        from src.report import render_html_row
+
+        e = _entry(id="1", description="line one\nline two [click](http://evil.com)")
+        result = render_html_row(e, markers={}, bucket_max_vel=1.0, now=_now())
+        # No embedded raw newline introduced BY the description itself surviving unsanitized.
+        assert "line one\nline two" not in result
+        assert "](" not in result
+
+    # -- Logic / formatting ---------------------------------------------------
+
+    def test_stars_full_thousands_separator(self):
+        from src.report import _stars_full
+
+        assert _stars_full(68693) == "68,693"
+
+    def test_vel_fmt_one_decimal(self):
+        from src.report import _vel_fmt
+
+        assert _vel_fmt(12.53) == "12.5"
+
+    def test_age_str_today(self):
+        from src.report import _age_str
+
+        now = _now()  # 2026-06-28
+        assert _age_str("2026-06-28T10:00:00+00:00", now) == "today"
+
+    def test_age_str_one_day(self):
+        from src.report import _age_str
+
+        now = _now()  # 2026-06-28
+        assert _age_str("2026-06-27T10:00:00+00:00", now) == "1d old"
+
+    def test_age_str_n_days(self):
+        from src.report import _age_str
+
+        now = _now()  # 2026-06-28
+        assert _age_str("2026-06-20T10:00:00+00:00", now) == "8d old"
+
+    def test_jsround_half_up(self):
+        from src.report import _jsround
+
+        assert _jsround(2.5) == 3
+
+    def test_bar_pct_floors_at_seven(self):
+        from src.report import _bar_pct
+
+        assert _bar_pct(0.01, 100.0) == 7
+
+    def test_bar_pct_bucket_max_is_100(self):
+        from src.report import _bar_pct
+
+        assert _bar_pct(50.0, 50.0) == 100
+
+    def test_bar_fill_hue_at_pct_100(self):
+        from src.report import _bar_fill
+
+        assert "oklch(0.6 0.12 72)" in _bar_fill(100)
+
+    def test_bar_fill_hue_at_pct_seven(self):
+        from src.report import _bar_fill
+
+        assert "oklch(0.6 0.12 146)" in _bar_fill(7)
+
+    def test_select_top_mover_picks_global_max_and_carries_bucket_title(self):
+        """The highest-velocity entry lives in a DIFFERENT bucket than the first
+        one checked; assert both the entry AND its bucket title are returned."""
+        from src.report import select_top_mover
+
+        low = _entry(id="1", velocity_per_day=5.0)
+        high = _entry(id="2", velocity_per_day=99.0)
+        buckets = _make_buckets(
+            weekly_entries=[low],
+            monthly_entries=[],
+            spike_active=False,
+            v30d_entries=[high],
+        )
+        entry, title = select_top_mover(buckets)
+        assert entry is high
+        assert title == "Breakthrough · 30-Day Velocity"
+
+    def test_select_top_mover_all_empty_returns_none_none(self):
+        """All buckets truly empty (active-empty and inactive) -> (None, None).
+
+        _make_buckets' `entries or [_entry()]` fallback treats an empty list
+        as falsy, so it must be bypassed here by building buckets directly.
+        """
+        from src.report import select_top_mover
+
+        buckets = {
+            "brand_new_weekly": _active_bucket(entries=[], window_target=7),
+            "brand_new_monthly": _active_bucket(entries=[], window_target=30),
+            "spike_24h": _inactive_bucket(snapshots_available=1, window_target=2),
+            "velocity_30d": _inactive_bucket(snapshots_available=1, window_target=30),
+        }
+        entry, title = select_top_mover(buckets)
+        assert entry is None
+        assert title is None
+
+    def test_render_html_digest_contains_masthead_and_titles(self):
+        from src.report import render_html_digest
+
+        buckets = _make_buckets()
+        result = render_html_digest(buckets, markers={}, now=_now())
+        assert "The Dispatch" in result
+        assert "Brand New This Week" in result
+        assert "Brand New This Month" in result
+        assert "Breakthrough · 24h Spike" in result
+        assert "Breakthrough · 30-Day Velocity" in result
+        assert "Fastest mover" in result
+        assert "<script" not in result
+
+    def test_render_html_digest_all_empty_buckets_no_crash(self):
+        """All-empty buckets -> valid HTML with placeholder, never raises."""
+        from src.report import render_html_digest
+
+        buckets = {
+            "brand_new_weekly": _active_bucket(entries=[], window_target=7),
+            "brand_new_monthly": _active_bucket(entries=[], window_target=30),
+            "spike_24h": _inactive_bucket(snapshots_available=1, window_target=2),
+            "velocity_30d": _inactive_bucket(snapshots_available=1, window_target=30),
+        }
+        result = render_html_digest(buckets, markers={}, now=_now())
+        assert result  # non-empty string
+        assert "No qualifying repos yet — the radar is still warming up." in result
+        assert "<script" not in result
+
+    def test_inactive_bucket_renders_warming_message_no_underscores(self):
+        from src.report import render_html_digest
+
+        buckets = _make_buckets(spike_active=False)
+        result = render_html_digest(buckets, markers={}, now=_now())
+        assert "warming up" in result
+        assert "_Breakthrough buckets warming up" not in result
+
+    # -- File write -------------------------------------------------------------
+
+    def test_write_html_digest_creates_html_file_no_md(self, tmp_path: Path):
+        from src.report import write_html_digest
+
+        now = _now()  # 2026-06-28
+        buckets = _make_buckets()
+        path = write_html_digest(buckets, markers={}, now=now, reports_dir=tmp_path)
+
+        assert isinstance(path, Path)
+        assert path.exists()
+        assert path.name == "2026-06-28.html"
+        md_files = list(tmp_path.glob("*.md"))
+        assert md_files == [], f"write_html_digest must not write any .md file, found: {md_files}"
+
+    def test_write_html_digest_creates_reports_dir_if_missing(self, tmp_path: Path):
+        from src.report import write_html_digest
+
+        nested = tmp_path / "a" / "b" / "reports"
+        assert not nested.exists()
+
+        now = _now()
+        buckets = _make_buckets()
+        write_html_digest(buckets, markers={}, now=now, reports_dir=nested)
+
+        assert nested.exists()
