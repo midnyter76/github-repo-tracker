@@ -159,6 +159,7 @@ class TestRun:
             load_seen_fn=lambda *a, **k: {},
             classify_fn=lambda seen, ids, d: ({}, {}),
             write_digest=MagicMock(),
+            write_html_digest=MagicMock(),
             save_seen_fn=MagicMock(),
             # Phase 3 no-ops — tests exercise Phase 1/2 logic only (Rule 1 isolation)
             check_gap_fn=lambda *a, **k: None,
@@ -207,6 +208,7 @@ class TestRun:
             load_seen_fn=lambda *a, **k: {},
             classify_fn=lambda seen, ids, d: ({}, {}),
             write_digest=MagicMock(),
+            write_html_digest=MagicMock(),
             save_seen_fn=MagicMock(),
             # Phase 3 no-ops — tests exercise Phase 1/2 logic only (Rule 1 isolation)
             check_gap_fn=lambda *a, **k: None,
@@ -251,6 +253,7 @@ class TestRun:
             load_seen_fn=lambda *a, **k: {},
             classify_fn=lambda seen, ids, d: ({}, {}),
             write_digest=MagicMock(),
+            write_html_digest=MagicMock(),
             save_seen_fn=MagicMock(),
             # Phase 3 no-ops — tests exercise Phase 1/2 logic only (Rule 1 isolation)
             check_gap_fn=lambda *a, **k: None,
@@ -285,6 +288,7 @@ class TestRun:
             load_seen_fn=lambda *a, **k: {},
             classify_fn=lambda seen, ids, d: ({}, {}),
             write_digest=MagicMock(),
+            write_html_digest=MagicMock(),
             save_seen_fn=MagicMock(),
             # Phase 3 no-ops — tests exercise Phase 1/2 logic only (Rule 1 isolation)
             check_gap_fn=lambda *a, **k: None,
@@ -328,6 +332,7 @@ class TestPhase2Wiring:
         mock_load_seen = MagicMock(return_value={})
         mock_classify = MagicMock(return_value=({}, {}))
         mock_write_digest = MagicMock()
+        mock_write_html_digest = MagicMock()
         mock_save_seen = MagicMock()
 
         run(
@@ -343,6 +348,7 @@ class TestPhase2Wiring:
             load_seen_fn=mock_load_seen,
             classify_fn=mock_classify,
             write_digest=mock_write_digest,
+            write_html_digest=mock_write_html_digest,
             save_seen_fn=mock_save_seen,
             # Phase 3 no-ops — tests exercise Phase 2 logic only (Rule 1 isolation)
             check_gap_fn=lambda *a, **k: None,
@@ -354,10 +360,13 @@ class TestPhase2Wiring:
         mock_load_seen.assert_called_once()
         mock_classify.assert_called_once()
         mock_write_digest.assert_called_once()
+        mock_write_html_digest.assert_called_once()
         mock_save_seen.assert_called_once()
 
     def test_report_written_before_seen_saved(self):
-        """write_digest must be called BEFORE save_seen_fn (D-10 ordering)."""
+        """write_digest must be called BEFORE save_seen_fn (D-10 ordering);
+        write_html_digest must be called AFTER write_digest and BEFORE
+        save_seen_fn (Quick Task 260630-tl4)."""
         from datetime import datetime, timezone  # noqa: PLC0415
         from src.collector import run  # noqa: PLC0415
 
@@ -378,6 +387,7 @@ class TestPhase2Wiring:
             load_seen_fn=lambda *a, **k: {},
             classify_fn=lambda seen, ids, d: ({}, {}),
             write_digest=lambda *a, **k: calls.append("write_digest"),
+            write_html_digest=lambda *a, **k: calls.append("write_html_digest"),
             save_seen_fn=lambda *a, **k: calls.append("save_seen"),
             # Phase 3 no-ops — tests exercise Phase 2 D-10 ordering only (Rule 1 isolation)
             check_gap_fn=lambda *a, **k: None,
@@ -386,9 +396,16 @@ class TestPhase2Wiring:
         )
 
         assert "write_digest" in calls, "write_digest was never called"
+        assert "write_html_digest" in calls, "write_html_digest was never called"
         assert "save_seen" in calls, "save_seen was never called"
         assert calls.index("write_digest") < calls.index("save_seen"), (
             f"write_digest must come before save_seen (D-10); got order: {calls}"
+        )
+        assert calls.index("write_digest") < calls.index("write_html_digest"), (
+            f"write_html_digest must come after write_digest; got order: {calls}"
+        )
+        assert calls.index("write_html_digest") < calls.index("save_seen"), (
+            f"write_html_digest must come before save_seen; got order: {calls}"
         )
 
     def test_reported_ids_union_across_buckets(self):
@@ -424,6 +441,7 @@ class TestPhase2Wiring:
             load_seen_fn=lambda *a, **k: {},
             classify_fn=fake_classify,
             write_digest=MagicMock(),
+            write_html_digest=MagicMock(),
             save_seen_fn=MagicMock(),
             # Phase 3 no-ops — tests exercise Phase 2 reported_ids logic only (Rule 1 isolation)
             check_gap_fn=lambda *a, **k: None,
@@ -599,6 +617,24 @@ class TestWorkflowYaml:
         """daily.yml must include a step that stages deleted snapshot files (HARD-04)."""
         assert "git ls-files --deleted" in self._get_workflow_text()
 
+    def test_email_multipart_alternative(self):
+        """Email step must build MIMEMultipart('alternative') (Quick Task 260630-tl4)."""
+        text = self._get_workflow_text()
+        assert 'MIMEMultipart("alternative")' in text or "MIMEMultipart('alternative')" in text
+
+    def test_email_mimetext_present(self):
+        """Email step must use MIMEText for both plain and html parts."""
+        assert "MIMEText" in self._get_workflow_text()
+
+    def test_email_html_subtype_present(self):
+        """Email step must attach a text/html part."""
+        assert '"html"' in self._get_workflow_text()
+
+    def test_email_reads_html_report(self):
+        """Email step must read reports/{today}.html for the HTML part."""
+        text = self._get_workflow_text()
+        assert "reports/{today}.html" in text or ".html" in text
+
 
 class TestKeepaliveYaml:
     """keepalive.yml must contain all HARD-01 required strings."""
@@ -705,6 +741,7 @@ class TestRunPhase3CallOrder:
             load_seen_fn=self._make_call_logger("load_seen", {}),
             classify_fn=self._make_call_logger("classify", ({}, {})),
             write_digest=self._make_call_logger("write_digest"),
+            write_html_digest=self._make_call_logger("write_html_digest"),
             save_seen_fn=self._make_call_logger("save_seen"),
             prune_fn=self._make_call_logger("prune"),
         )
@@ -713,6 +750,13 @@ class TestRunPhase3CallOrder:
         assert "check_gap" in log, "check_gap must be called"
         assert "filter_gamed" in log, "filter_gamed must be called"
         assert "prune" in log, "prune must be called"
+        assert "write_html_digest" in log, "write_html_digest must be called"
+        assert log.index("write_digest") < log.index("write_html_digest"), (
+            "write_html_digest must follow write_digest"
+        )
+        assert log.index("write_html_digest") < log.index("save_seen"), (
+            "write_html_digest must precede save_seen"
+        )
 
         # check_gap must precede all discovery calls (D-05)
         assert log.index("check_gap") < log.index("discover"), \

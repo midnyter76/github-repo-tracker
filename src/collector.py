@@ -52,6 +52,7 @@ def run(
     load_seen_fn=seen.load_seen,
     classify_fn=seen.classify_and_update,
     write_digest=report.write_digest,
+    write_html_digest=report.write_html_digest,
     save_seen_fn=seen.save_seen,
     check_gap_fn=gap.check_gap,           # HARD-02: gap detection (D-05)
     filter_gamed_fn=gaming.filter_gamed,  # HARD-03: gaming filter (D-07)
@@ -81,7 +82,9 @@ def run(
         compute_buckets: Callable matching rank.compute_buckets signature.
         load_seen_fn:    Callable matching seen.load_seen signature.
         classify_fn:     Callable matching seen.classify_and_update signature.
-        write_digest:    Callable matching report.write_digest signature.
+        write_digest:      Callable matching report.write_digest signature.
+        write_html_digest: Callable matching report.write_html_digest signature
+                           (Quick Task 260630-tl4 — HTML digest for email).
         save_seen_fn:    Callable matching seen.save_seen signature.
         check_gap_fn:    Callable matching gap.check_gap signature. (HARD-02)
         filter_gamed_fn: Callable matching gaming.filter_gamed signature. (HARD-03)
@@ -117,8 +120,9 @@ def run(
     reported_ids = [e["id"] for b in buckets.values() for e in b["entries"]]
     current_seen = load_seen_fn(SEEN_PATH)
     markers, updated_seen = classify_fn(current_seen, reported_ids, now.strftime("%Y-%m-%d"))
-    write_digest(buckets, markers, now, REPORTS_DIR)   # write report FIRST (D-10)
-    save_seen_fn(updated_seen, SEEN_PATH)              # then persist seen-store (D-10)
+    write_digest(buckets, markers, now, REPORTS_DIR)      # write report FIRST (D-10)
+    write_html_digest(buckets, markers, now, REPORTS_DIR)  # NEW — HTML digest for email
+    save_seen_fn(updated_seen, SEEN_PATH)                 # then persist seen-store (D-10)
 
     # 6. Prune old snapshots — LAST, after all writes (HARD-04, D-09)
     prune_fn(now, SNAPSHOTS_DIR, SNAPSHOT_RETENTION_DAYS)
