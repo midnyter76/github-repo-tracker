@@ -802,3 +802,144 @@ class TestHtmlDigest:
 
         result = render_html_digest(_make_buckets(), markers={}, now=_now())
         assert "gap:" not in result, "no email-HTML element may rely on flexbox gap for spacing"
+
+
+# ---------------------------------------------------------------------------
+# TestHtmlLeaders — CATEGORY LEADERS grid + stats strip (Quick Task 260701-j1w)
+# ---------------------------------------------------------------------------
+# Covers _vel_abbr, _count_tracked, _count_brand_new helpers, render_html_leaders
+# grid/strip cells, table-based structural layout (Gmail-safe, no flex stack),
+# and repo-name escaping (attacker-influenceable GitHub text).
+
+class TestVelAbbr:
+    def test_vel_abbr_thousands(self):
+        from src.report import _vel_abbr
+
+        assert _vel_abbr(3692.2) == "3.7k"
+
+    def test_vel_abbr_under_thousand_falls_back_to_vel_fmt(self):
+        from src.report import _vel_abbr
+
+        assert _vel_abbr(94.9) == "94.9"
+
+    def test_vel_abbr_boundary_at_1000_uses_k_suffix(self):
+        from src.report import _vel_abbr
+
+        assert _vel_abbr(1000.0) == "1.0k"
+
+
+class TestCountTracked:
+    def test_dedupes_same_id_across_buckets(self):
+        """The same repo appearing in weekly + spike counts once; a distinct
+        id in another bucket adds to the count."""
+        from src.report import _count_tracked
+
+        shared_weekly = _entry(id="1")
+        shared_spike = _entry(id="1")  # same repo id, different bucket dict
+        distinct_monthly = _entry(id="2")
+        distinct_v30d = _entry(id="3")
+        buckets = _make_buckets(
+            weekly_entries=[shared_weekly],
+            monthly_entries=[distinct_monthly],
+            spike_entries=[shared_spike],
+            v30d_entries=[distinct_v30d],
+        )
+        assert _count_tracked(buckets) == 3  # ids {1, 2, 3} — "1" counted once
+
+
+class TestCountBrandNew:
+    def test_counts_new_only_in_weekly_and_monthly(self):
+        """Absent marker defaults to 'new'; explicit 'returning' does not count;
+        entries in spike/velocity_30d must NOT count even if marked new."""
+        from src.report import _count_brand_new
+
+        new_entry = _entry(id="1")
+        returning_entry = _entry(id="2")
+        absent_entry = _entry(id="3")  # not in markers -> defaults to "new"
+        spike_entry = _entry(id="4")  # must not be counted (wrong bucket)
+        buckets = _make_buckets(
+            weekly_entries=[new_entry, returning_entry],
+            monthly_entries=[absent_entry],
+            spike_entries=[spike_entry],
+        )
+        markers = {"1": "new", "2": "returning", "4": "new"}
+        assert _count_brand_new(buckets, markers) == 2
+
+
+class TestRenderHtmlLeaders:
+    def test_grid_and_strip_are_table_based(self):
+        """STRUCTURAL guard: exactly four 25%-wide grid cells and three
+        33.33%-wide strip cells. This is the check that actually catches a
+        Gmail-breaking flex stack — do not replace with a label-only check."""
+        from src.report import render_html_leaders
+
+        result = render_html_leaders(_make_buckets(), markers={}, now=_now())
+        assert result.count('<td width="25%"') == 4
+        assert result.count('<td width="33.33%"') == 3
+
+    def test_active_cell_shows_kicker_leader_name_and_velocity(self):
+        from src.report import render_html_leaders
+
+        e = _entry(id="1", full_name="owner/cool-repo", velocity_per_day=42.0)
+        buckets = _make_buckets(weekly_entries=[e])
+        result = render_html_leaders(buckets, markers={}, now=_now())
+        assert "NEW · WEEK" in result
+        assert "cool-repo" in result
+        assert "42.0" in result
+
+    def test_inactive_cell_shows_warming_up_and_no_number(self):
+        from src.report import render_html_leaders
+
+        buckets = _make_buckets(spike_active=False)
+        result = render_html_leaders(buckets, markers={}, now=_now())
+        cells = result.split('<td width="25%"')[1:5]
+        spike_cell = cells[2]  # spike_24h is third in _HTML_SECTIONS order
+        assert "24H SPIKE" in spike_cell
+        assert "Warming up." in spike_cell
+        assert not re.search(r"\d+\.\d", spike_cell), "no velocity number in a warming-up cell"
+
+    def test_repo_name_escaped_not_raw_script_tag(self):
+        """SECURITY: repo name is attacker-influenceable GitHub text; must be
+        html.escape(quote=True) exactly like render_html_hero."""
+        from src.report import render_html_leaders
+
+        e = _entry(id="1", full_name="owner/<script>evil")
+        buckets = _make_buckets(weekly_entries=[e])
+        result = render_html_leaders(buckets, markers={}, now=_now())
+        assert "<script>evil" not in result
+        assert "&lt;script&gt;evil" in result
+
+    def test_leaders_block_has_no_gap_declarations(self):
+        from src.report import render_html_leaders
+
+        result = render_html_leaders(_make_buckets(), markers={}, now=_now())
+        assert "gap:" not in result
+
+
+class TestHtmlDigestStatsStrip:
+    def test_stats_strip_labels_present(self):
+        from src.report import render_html_digest
+
+        result = render_html_digest(_make_buckets(), markers={}, now=_now())
+        assert "REPOS TRACKED" in result
+        assert "BRAND NEW" in result
+        assert "TOP */DAY" in result
+
+    def test_top_per_day_shows_abbreviated_global_max(self):
+        from src.report import render_html_digest
+
+        high = _entry(id="9", velocity_per_day=3692.2)
+        buckets = _make_buckets(v30d_entries=[high])
+        result = render_html_digest(buckets, markers={}, now=_now())
+        assert "3.7k" in result
+
+    def test_leaders_grid_inserted_between_hero_and_sections(self):
+        """Leaders block must appear after the hero ('Fastest mover') and
+        before the first bucket section header ('Brand New This Week')."""
+        from src.report import render_html_digest
+
+        result = render_html_digest(_make_buckets(), markers={}, now=_now())
+        idx_hero = result.index("Fastest mover")
+        idx_leaders = result.index("REPOS TRACKED")
+        idx_sections = result.index("Brand New This Week")
+        assert idx_hero < idx_leaders < idx_sections
