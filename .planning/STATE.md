@@ -76,6 +76,12 @@ None yet.
 - MEDIUM: 60-day keepalive via GITHUB_TOKEN commits — community reports conflict on whether bot commits reset the inactivity timer; validate within first 60 days (HARD-01, Phase 3)
 - MEDIUM: AI filter topic list completeness — 18-topic list needs validation against live API output on day 1 of Phase 1
 
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260630-tl4 | Implement 4a hero-edition HTML email design (write_html_digest renderer, collector wiring, multipart email) | 2026-06-30 | 00a8800 | [260630-tl4-implement-4a-hero-edition-claude-design-](./quick/260630-tl4-implement-4a-hero-edition-claude-design-/) |
+
 ## Deferred Items
 
 Items acknowledged and carried forward from previous milestone close:
@@ -89,3 +95,5 @@ Items acknowledged and carried forward from previous milestone close:
 Last session: 2026-06-29T05:00:00.000Z
 Stopped at: Phase 3 verified — milestone v1.0 complete
 Resume file: .planning/phases/03-production-hardening/03-VERIFICATION.md
+
+Last activity: 2026-06-30 - Completed quick task 260630-tl4: Implement 4a hero-edition HTML email design
