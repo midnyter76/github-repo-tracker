@@ -135,3 +135,15 @@ SNAPSHOT_RETENTION_DAYS: int = 90    # D-08
 # so individual refreshes are redundant and blow past the 1,000 req/hr Actions limit.
 # 45d = 30d velocity window + 15d buffer for missed runs / slow starters.
 METADATA_REFRESH_MAX_AGE_DAYS: int = 45
+
+# HARD-04-EXT: Tracked-repo eviction ledger
+# Runtime ledger {str(repo_id): last-active YYYY-MM-DD}, created on first run by
+# prune_metadata(). Additive-only file — never touches metadata.json's schema or
+# seen.json's contracted dict shape (see PLAN <why_a_separate_ledger>).
+TRACKED_LEDGER_PATH = Path("data/tracked_ledger.json")
+
+# Repos absent from every ranked bucket for this many days are evicted from
+# metadata.json by prune_metadata(). 14 gives a fresh repo two weeks to prove
+# velocity, and discover_repos' 30d window re-finds any evicted repo that later
+# spikes, so eviction never permanently loses a spike candidate.
+METADATA_TRACKED_RETENTION_DAYS: int = 14
