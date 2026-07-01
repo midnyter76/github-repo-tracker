@@ -57,6 +57,7 @@ def run(
     check_gap_fn=gap.check_gap,           # HARD-02: gap detection (D-05)
     filter_gamed_fn=gaming.filter_gamed,  # HARD-03: gaming filter (D-07)
     prune_fn=prune.prune_snapshots,       # HARD-04: snapshot pruning (D-09)
+    prune_meta_fn=prune.prune_metadata,   # HARD-04-EXT: tracked-repo eviction
 ):
     """Orchestrate the full collection loop for one run.
 
@@ -89,6 +90,7 @@ def run(
         check_gap_fn:    Callable matching gap.check_gap signature. (HARD-02)
         filter_gamed_fn: Callable matching gaming.filter_gamed signature. (HARD-03)
         prune_fn:        Callable matching prune.prune_snapshots signature. (HARD-04)
+        prune_meta_fn:   Callable matching prune.prune_metadata signature. (HARD-04-EXT)
     """
     # 0. Gap detection — fires before any API quota is spent (HARD-02, D-05)
     check_gap_fn(now, SNAPSHOTS_DIR)
@@ -126,6 +128,10 @@ def run(
 
     # 6. Prune old snapshots — LAST, after all writes (HARD-04, D-09)
     prune_fn(now, SNAPSHOTS_DIR, SNAPSHOT_RETENTION_DAYS)
+    # 6b. Evict stale tracked repos from metadata.json — after prune_fn, using
+    # this run's final reported_ids (HARD-04-EXT). metadata_path/ledger_path/
+    # retention_days all default from config.
+    prune_meta_fn(now, reported_ids)
 
 
 def main():

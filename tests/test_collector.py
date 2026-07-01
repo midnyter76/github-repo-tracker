@@ -165,6 +165,7 @@ class TestRun:
             check_gap_fn=lambda *a, **k: None,
             filter_gamed_fn=lambda c: c,
             prune_fn=lambda *a, **k: [],
+            prune_meta_fn=lambda *a, **k: [],
         )
 
         mock_discover.assert_called_once_with(g)
@@ -214,6 +215,7 @@ class TestRun:
             check_gap_fn=lambda *a, **k: None,
             filter_gamed_fn=lambda c: c,
             prune_fn=lambda *a, **k: [],
+            prune_meta_fn=lambda *a, **k: [],
         )
 
         assert "111" in captured_snap
@@ -259,6 +261,7 @@ class TestRun:
             check_gap_fn=lambda *a, **k: None,
             filter_gamed_fn=lambda c: c,
             prune_fn=lambda *a, **k: [],
+            prune_meta_fn=lambda *a, **k: [],
         )
 
         # The refreshed repo (999 stars) must win
@@ -294,6 +297,7 @@ class TestRun:
             check_gap_fn=lambda *a, **k: None,
             filter_gamed_fn=lambda c: c,
             prune_fn=lambda *a, **k: [],
+            prune_meta_fn=lambda *a, **k: [],
         )
 
         _, snap_ts = mock_write_snap.call_args[0]
@@ -354,6 +358,7 @@ class TestPhase2Wiring:
             check_gap_fn=lambda *a, **k: None,
             filter_gamed_fn=lambda c: c,
             prune_fn=lambda *a, **k: [],
+            prune_meta_fn=lambda *a, **k: [],
         )
 
         mock_compute_buckets.assert_called_once()
@@ -393,6 +398,7 @@ class TestPhase2Wiring:
             check_gap_fn=lambda *a, **k: None,
             filter_gamed_fn=lambda c: c,
             prune_fn=lambda *a, **k: [],
+            prune_meta_fn=lambda *a, **k: [],
         )
 
         assert "write_digest" in calls, "write_digest was never called"
@@ -447,6 +453,7 @@ class TestPhase2Wiring:
             check_gap_fn=lambda *a, **k: None,
             filter_gamed_fn=lambda c: c,
             prune_fn=lambda *a, **k: [],
+            prune_meta_fn=lambda *a, **k: [],
         )
 
         assert 111 in captured_ids, f"id 111 missing from reported_ids: {captured_ids}"
@@ -744,6 +751,10 @@ class TestRunPhase3CallOrder:
             write_html_digest=self._make_call_logger("write_html_digest"),
             save_seen_fn=self._make_call_logger("save_seen"),
             prune_fn=self._make_call_logger("prune"),
+            # Silent no-op (not a logging spy): prune_meta_fn is wired to fire
+            # AFTER prune_fn (HARD-04-EXT); keeping it out of call_log preserves
+            # this test's `log[-1] == "prune"` assertion below.
+            prune_meta_fn=lambda *a, **k: [],
         )
 
         log = self._call_log
@@ -771,3 +782,67 @@ class TestRunPhase3CallOrder:
         # prune must be the last call (D-09)
         assert log[-1] == "prune", \
             f"prune must be the last call in run(); got log: {log}"
+
+
+class TestPruneMetaWiring:
+    """prune_meta_fn must be called exactly once per run(), after prune_fn, with
+    the run's final reported_ids (HARD-04-EXT)."""
+
+    def test_prune_meta_called_once_with_reported_ids(self):
+        """prune_meta_fn fires exactly once, after prune_fn, with the reported_ids union."""
+        from datetime import datetime, timezone  # noqa: PLC0415
+        from unittest.mock import MagicMock  # noqa: PLC0415
+
+        from src.collector import run  # noqa: PLC0415
+
+        g = MagicMock()
+        now = datetime(2026, 6, 28, 13, 0, 0, tzinfo=timezone.utc)
+
+        def buckets_with_entries(*a, **k):
+            b = _empty_buckets()
+            b["brand_new_weekly"]["entries"] = [{"id": 111, "name": "repo-a"}]
+            b["velocity_30d"]["entries"] = [{"id": 222, "name": "repo-b"}]
+            return b
+
+        call_log = []
+        mock_prune_meta = MagicMock(return_value=[])
+
+        def logging_prune_fn(*a, **k):
+            call_log.append("prune")
+            return []
+
+        def logging_prune_meta_fn(*a, **k):
+            call_log.append("prune_meta")
+            return mock_prune_meta(*a, **k)
+
+        run(
+            g,
+            now,
+            discover=lambda _g: {},
+            established=lambda _g: {},
+            load_ids=lambda: [],
+            refresh=lambda _g, _ids: {},
+            write_snap=MagicMock(),
+            write_meta=MagicMock(),
+            compute_buckets=buckets_with_entries,
+            load_seen_fn=lambda *a, **k: {},
+            classify_fn=lambda seen, ids, d: ({}, {}),
+            write_digest=MagicMock(),
+            write_html_digest=MagicMock(),
+            save_seen_fn=MagicMock(),
+            check_gap_fn=lambda *a, **k: None,
+            filter_gamed_fn=lambda c: c,
+            prune_fn=logging_prune_fn,
+            prune_meta_fn=logging_prune_meta_fn,
+        )
+
+        mock_prune_meta.assert_called_once()
+        call_args = mock_prune_meta.call_args
+        assert call_args[0][0] is now, "prune_meta_fn must receive the run's 'now'"
+        reported_ids_arg = call_args[0][1]
+        assert 111 in reported_ids_arg, f"id 111 missing from reported_ids: {reported_ids_arg}"
+        assert 222 in reported_ids_arg, f"id 222 missing from reported_ids: {reported_ids_arg}"
+
+        assert call_log == ["prune", "prune_meta"], (
+            f"prune_meta_fn must fire exactly once, after prune_fn; got: {call_log}"
+        )
