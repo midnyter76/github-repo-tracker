@@ -727,6 +727,10 @@ class TestHtmlDigest:
         assert re.search(r'Issue No\. \d+</span>\s*<span style="[^"]*margin', result), (
             "date span must be styled with an explicit margin, not bare"
         )
+        assert not re.search(r'Issue No\. \d+</span><span>', result), (
+            "no bare </span><span> adjacency between issue-no and date "
+            "(the pre-fix concatenation signature)"
+        )
 
     def test_bucket_header_kicker_and_count_have_margin_not_gap(self):
         """Bucket header has THREE children (kicker, rule, count) around one
