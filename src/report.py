@@ -20,6 +20,7 @@ Public API:
     render_html_hero(top_mover, bucket_title, now) -> str
     render_html_row(entry, markers, bucket_max_vel, now) -> str
     render_html_bucket(bucket_key, kicker, title, bucket, markers, now) -> str
+    render_html_leaders(buckets, markers, now) -> str
     render_html_digest(buckets, markers, now) -> str
     write_html_digest(buckets, markers, now, reports_dir) -> Path
 """
@@ -264,6 +265,16 @@ def _vel_fmt(v: float) -> str:
     return f"{v:.1f}"
 
 
+def _vel_abbr(v: float) -> str:
+    """Abbreviate a velocity for the compact stats strip: 3692.2 -> '3.7k'.
+
+    Values under 1000 fall back to _vel_fmt (one decimal, no suffix).
+    """
+    if v >= 1000:
+        return f"{v / 1000:.1f}k"
+    return _vel_fmt(v)
+
+
 def _stars_full(n: int) -> str:
     """Format a star count with en-US thousands separators, e.g. 68693 -> '68,693'."""
     return f"{n:,}"
@@ -485,6 +496,120 @@ def render_html_bucket(
 </div>"""
 
 
+_LEADER_KICKERS = {
+    "brand_new_weekly": "NEW · WEEK",
+    "brand_new_monthly": "NEW · MONTH",
+    "spike_24h": "24H SPIKE",
+    "velocity_30d": "30D VELOCITY",
+}
+
+
+def _count_tracked(buckets: dict) -> int:
+    """Distinct repos across all four buckets, deduped by numeric id."""
+    ids = {str(e["id"]) for key, _kicker, _title in _HTML_SECTIONS for e in buckets[key]["entries"]}
+    return len(ids)
+
+
+def _count_brand_new(buckets: dict, markers: dict) -> int:
+    """Count of brand-new-flagged entries across the two brand-new buckets.
+
+    Uses the same NEW rule as render_html_row: absent marker defaults to 'new'.
+    """
+    n = 0
+    for key in ("brand_new_weekly", "brand_new_monthly"):
+        for e in buckets[key]["entries"]:
+            if markers.get(str(e["id"]), "new") == "new":
+                n += 1
+    return n
+
+
+def _render_leader_cell(key: str, bucket: dict) -> str:
+    """Render one CATEGORY LEADERS grid cell (card in a <td width="25%">)."""
+    kicker = _LEADER_KICKERS[key]
+    kicker_html = (
+        "<div style=\"font-family:'IBM Plex Mono', monospace; font-size:9.5px; "
+        "letter-spacing:0.12em; text-transform:uppercase; color:#34d399; "
+        f"font-weight:600;\">{html.escape(kicker)}</div>"
+    )
+
+    if bucket["active"] and bucket["entries"]:
+        leader = bucket["entries"][0]
+        _, _, name = leader["full_name"].partition("/")
+        name = html.escape(name, quote=True)
+        vel_fmt = _vel_fmt(leader["velocity_per_day"])
+        body_html = f"""<div style="font-family:'Newsreader', serif; font-size:30px; font-weight:500; color:#34d399; margin-top:8px; letter-spacing:-0.01em;">{vel_fmt}</div>
+      <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.08em; text-transform:uppercase; color:#5b6573; margin-top:2px;">stars / day</div>
+      <div style="font-family:'IBM Plex Sans', sans-serif; font-size:13px; font-weight:600; color:#f4f4f5; margin-top:8px;">{name}</div>"""
+    else:
+        body_html = (
+            "<div style=\"font-family:'Newsreader', serif; font-style:italic; font-size:14px; "
+            "color:#71717a; margin-top:10px;\">Warming up.</div>"
+        )
+
+    return f"""<td width="25%" valign="top">
+      <div style="background:#111318; border:1px solid #23262f; border-radius:10px; padding:14px 16px;">
+        {kicker_html}
+        {body_html}
+      </div>
+    </td>"""
+
+
+def _render_strip_cell(label: str, value: str, color: str) -> str:
+    """Render one footer stats strip cell (card in a <td width="33.33%">)."""
+    return f"""<td width="33.33%" valign="top">
+      <div style="background:#111318; border:1px solid #23262f; border-radius:10px; padding:14px 16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:600; color:{color}; letter-spacing:-0.01em;">{value}</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:#5b6573; margin-top:4px;">{html.escape(label)}</div>
+      </div>
+    </td>"""
+
+
+def render_html_leaders(buckets: dict, markers: dict, now: datetime) -> str:
+    """Render the CATEGORY LEADERS grid (4 cells) + footer stats strip (3 cells).
+
+    Table-based layout (Gmail-safe — no `display:flex`/`gap:`), inserted
+    between the hero card and the per-bucket sections in render_html_digest.
+
+    Args:
+        buckets: Dict from rank.compute_buckets (four-bucket contract).
+        markers: Dict from seen.classify_and_update.
+        now:     UTC datetime for the run (unused directly here, kept for
+                 interface symmetry with the other render_html_* functions).
+
+    Returns:
+        HTML string: a grid <table> followed by a stats-strip <table>.
+    """
+    del now  # unused directly; kept for interface symmetry
+
+    grid_cells = "\n    ".join(_render_leader_cell(key, buckets[key]) for key, _kicker, _title in _HTML_SECTIONS)
+    grid_html = f"""<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate; border-spacing:8px 0;">
+  <tr>
+    {grid_cells}
+  </tr>
+</table>"""
+
+    top_mover, _ = select_top_mover(buckets)
+    top_per_day = "—" if top_mover is None else _vel_abbr(top_mover["velocity_per_day"])
+
+    strip_cells = "\n    ".join(
+        [
+            _render_strip_cell("REPOS TRACKED", str(_count_tracked(buckets)), "#34d399"),
+            _render_strip_cell("BRAND NEW", str(_count_brand_new(buckets, markers)), "#f4f4f5"),
+            _render_strip_cell("TOP */DAY", top_per_day, "#34d399"),
+        ]
+    )
+    strip_html = f"""<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate; border-spacing:8px 0; margin-top:10px;">
+  <tr>
+    {strip_cells}
+  </tr>
+</table>"""
+
+    return f"""<div style="margin-top:28px;">
+{grid_html}
+{strip_html}
+</div>"""
+
+
 def render_html_digest(buckets: dict, markers: dict, now: datetime) -> str:
     """Render the full "4a: The Dispatch, hero edition" HTML digest document.
 
@@ -512,6 +637,7 @@ def render_html_digest(buckets: dict, markers: dict, now: datetime) -> str:
         render_html_bucket(key, kicker, title, buckets[key], markers, now)
         for key, kicker, title in _HTML_SECTIONS
     )
+    leaders_html = render_html_leaders(buckets, markers, now)
 
     fonts_link = (
         '<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;'
@@ -542,6 +668,7 @@ def render_html_digest(buckets: dict, markers: dict, now: datetime) -> str:
 {hero_html}
 </div>
 <div style="padding:0 44px 40px;">
+{leaders_html}
 {sections_html}
 </div>
 </div>
