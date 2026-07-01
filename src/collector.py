@@ -96,7 +96,10 @@ def run(
     candidates.update(discover(g))
 
     # 2. Star-banded established-repo discovery (D-11, Reading B)
-    candidates.update(established(g))
+    # Skipped until 30+ days of snapshot history exist — spike detection requires
+    # >=2 snapshots (SPIKE_MIN_SNAPSHOTS) and the established pass burns ~60% of
+    # search quota for zero ranking benefit in the first month.
+    # candidates.update(established(g))
 
     # 3. Refresh tracked repos LAST so re-fetched star counts win (DATA-01)
     tracked_ids = load_ids()

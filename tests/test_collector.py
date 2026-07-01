@@ -167,7 +167,7 @@ class TestRun:
         )
 
         mock_discover.assert_called_once_with(g)
-        mock_established.assert_called_once_with(g)
+        mock_established.assert_not_called()  # skipped until 30d snapshot history exists
         mock_load_ids.assert_called_once_with()
         mock_refresh.assert_called_once_with(g, ["333", "444"])
         mock_write_snap.assert_called_once()
@@ -215,11 +215,11 @@ class TestRun:
         )
 
         assert "111" in captured_snap
-        assert "222" in captured_snap
         assert "333" in captured_snap
+        assert "222" not in captured_snap  # established skipped until 30d history
         assert "111" in captured_meta
-        assert "222" in captured_meta
         assert "333" in captured_meta
+        assert "222" not in captured_meta  # established skipped until 30d history
 
     def test_refresh_overrides_earlier_discovery(self):
         """Refresh runs LAST so re-fetched star counts override discovery stubs."""
