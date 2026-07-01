@@ -935,6 +935,21 @@ class TestHtmlDigestStatsStrip:
         result = render_html_digest(buckets, markers={}, now=_now())
         assert "3.7k" in result
 
+    def test_brand_new_stat_is_white_not_green(self):
+        """Plan explicitly requires BRAND NEW to render WHITE #f4f4f5, NOT
+        green #34d399 (the color used by REPOS TRACKED and TOP */DAY) —
+        an easy point to silently get wrong by copy-pasting the cell color."""
+        from src.report import render_html_leaders
+
+        result = render_html_leaders(_make_buckets(), markers={}, now=_now())
+        match = re.search(
+            r'color:(#[0-9a-fA-F]{6});[^<]*">\d+</div>\s*'
+            r'<div style="[^"]*">BRAND NEW</div>',
+            result,
+        )
+        assert match is not None, "BRAND NEW value+label pair not found"
+        assert match.group(1) == "#f4f4f5", "BRAND NEW must be white, not green"
+
     def test_leaders_grid_inserted_between_hero_and_sections(self):
         """Leaders block must appear after the hero ('Fastest mover') and
         before the first bucket section kicker ('Brand New · Weekly' — the
