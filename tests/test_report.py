@@ -896,7 +896,9 @@ class TestRenderHtmlLeaders:
         spike_cell = cells[2]  # spike_24h is third in _HTML_SECTIONS order
         assert "24H SPIKE" in spike_cell
         assert "Warming up." in spike_cell
-        assert not re.search(r"\d+\.\d", spike_cell), "no velocity number in a warming-up cell"
+        # "stars / day" + a big velocity number only render for an active
+        # leader cell; their absence proves no number is shown here.
+        assert "stars / day" not in spike_cell
 
     def test_repo_name_escaped_not_raw_script_tag(self):
         """SECURITY: repo name is attacker-influenceable GitHub text; must be
@@ -935,11 +937,13 @@ class TestHtmlDigestStatsStrip:
 
     def test_leaders_grid_inserted_between_hero_and_sections(self):
         """Leaders block must appear after the hero ('Fastest mover') and
-        before the first bucket section header ('Brand New This Week')."""
+        before the first bucket section kicker ('Brand New · Weekly' — the
+        section-only kicker text; the hero uses the longer title 'Brand New
+        This Week', which would give a false-early match via .index())."""
         from src.report import render_html_digest
 
         result = render_html_digest(_make_buckets(), markers={}, now=_now())
         idx_hero = result.index("Fastest mover")
         idx_leaders = result.index("REPOS TRACKED")
-        idx_sections = result.index("Brand New This Week")
+        idx_sections = result.index("Brand New · Weekly")
         assert idx_hero < idx_leaders < idx_sections
