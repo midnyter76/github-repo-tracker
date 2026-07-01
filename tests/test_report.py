@@ -790,3 +790,11 @@ class TestHtmlDigest:
         stars_day_match = re.search(r'<span style="([^"]*)">stars / day</span>', result)
         assert stars_day_match is not None, "'stars / day' span not found"
         assert "margin-left:7px" in stars_day_match.group(1)
+
+    def test_render_html_digest_has_no_gap_declarations_anywhere(self):
+        """Whole-document guard: catches any missed `gap:` token across the
+        entire rendered digest, not just the 6 enumerated locations."""
+        from src.report import render_html_digest
+
+        result = render_html_digest(_make_buckets(), markers={}, now=_now())
+        assert "gap:" not in result, "no email-HTML element may rely on flexbox gap for spacing"
