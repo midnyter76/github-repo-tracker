@@ -12,6 +12,7 @@ Covers:
 - Sparse bucket: active bucket with fewer entries than cap renders exactly that many bullets
 """
 
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -712,3 +713,92 @@ class TestHtmlDigest:
         write_html_digest(buckets, markers={}, now=now, reports_dir=nested)
 
         assert nested.exists()
+
+    # -- Gmail rendering fix — gap removed, equivalent margin added (quick task 260701-ibb) --
+
+    def test_masthead_issue_no_and_date_have_explicit_spacing(self):
+        """Gmail drops flexbox `gap:`; pre-fix the two bare masthead spans are
+        directly adjacent and concatenate ("Issue No. 3Wed..."). Post-fix the
+        date span must carry an explicit margin-left so real whitespace exists
+        even without gap support."""
+        from src.report import render_html_digest
+
+        result = render_html_digest(_make_buckets(), markers={}, now=_now())
+        assert re.search(r'Issue No\. \d+</span>\s*<span style="[^"]*margin', result), (
+            "date span must be styled with an explicit margin, not bare"
+        )
+        assert not re.search(r'Issue No\. \d+</span><span>', result), (
+            "no bare </span><span> adjacency between issue-no and date "
+            "(the pre-fix concatenation signature)"
+        )
+
+    def test_bucket_header_kicker_and_count_have_margin_not_gap(self):
+        """Bucket header has THREE children (kicker, rule, count) around one
+        `gap:12px`; a single margin only covers one side, so both the kicker
+        and the count_label span need their own margin."""
+        from src.report import render_html_bucket
+
+        result = render_html_bucket(
+            "brand_new_weekly",
+            "Brand New · Weekly",
+            "Brand New This Week",
+            _active_bucket([_entry()]),
+            {},
+            _now(),
+        )
+
+        kicker_match = re.search(r'<span style="([^"]*)">Brand New · Weekly</span>', result)
+        assert kicker_match is not None, "kicker span not found"
+        assert "margin-right:12px" in kicker_match.group(1)
+
+        count_match = re.search(r'<span style="([^"]*)">(?:\d+ repos|warming up)</span>', result)
+        assert count_match is not None, "count_label span not found"
+        assert "margin-left:12px" in count_match.group(1)
+
+        header_div_match = re.search(
+            r'<div style="([^"]*)">\s*<span style="[^"]*">Brand New · Weekly</span>', result
+        )
+        assert header_div_match is not None, "header row div not found"
+        assert "gap:12px" not in header_div_match.group(1), (
+            "gap must be REMOVED from the header row, not duplicated alongside margin"
+        )
+
+    def test_row_stat_block_has_explicit_margin_not_gap(self):
+        """Row outer <a> loses gap:16px; the 78px stat-block div gets an
+        equivalent margin-right so it stays separated from the description
+        column in Gmail."""
+        from src.report import render_html_row
+
+        result = render_html_row(_entry(), markers={}, bucket_max_vel=1.0, now=_now())
+
+        a_tag_match = re.search(r'<a href="[^"]*" style="([^"]*)">', result)
+        assert a_tag_match is not None, "outer <a> tag not found"
+        assert "gap:16px" not in a_tag_match.group(1)
+
+        stat_div_match = re.search(r'<div style="([^"]*width:78px[^"]*)">', result)
+        assert stat_div_match is not None, "78px stat block div not found"
+        assert "margin-right:16px" in stat_div_match.group(1)
+
+    def test_hero_stat_row_has_explicit_margin_not_gap(self):
+        """Hero stat row loses gap:7px; the 'stars / day' span gets an
+        equivalent margin-left so it stays separated from the big velocity
+        number in Gmail."""
+        from src.report import render_html_hero
+
+        result = render_html_hero(_entry(), "Brand New This Week", _now())
+
+        stat_row_match = re.search(r'<div style="display:flex; align-items:flex-end;([^"]*)">', result)
+        assert stat_row_match is not None, "hero stat row div not found"
+        assert "gap:7px" not in stat_row_match.group(1)
+
+        stars_day_match = re.search(r'<span style="([^"]*)">stars / day</span>', result)
+        assert stars_day_match is not None, "'stars / day' span not found"
+        assert "margin-left:7px" in stars_day_match.group(1)
+
+    def test_render_html_digest_has_no_gap_declarations_anywhere(self):
+        """Whole-document guard: catches any missed `gap:` token across the
+        entire rendered digest, not just the 6 enumerated locations."""
+        from src.report import render_html_digest
+
+        result = render_html_digest(_make_buckets(), markers={}, now=_now())
+        assert "gap:" not in result, "no email-HTML element may rely on flexbox gap for spacing"

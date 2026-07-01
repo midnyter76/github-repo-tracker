@@ -364,9 +364,9 @@ def render_html_hero(top_mover: dict | None, bucket_title: str | None, now: date
   <div style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:#34d399; font-weight:600;">● Fastest mover · {title}</div>
   <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#f4f4f5; margin-top:11px; letter-spacing:-0.01em;">{owner}/{name}</div>
   <div style="font-family:'Newsreader', serif; font-size:15px; color:#9ca3af; line-height:1.5; margin-top:6px;">{desc}</div>
-  <div style="display:flex; align-items:flex-end; gap:7px; margin-top:20px;">
+  <div style="display:flex; align-items:flex-end; margin-top:20px;">
     <span style="font-family:'Newsreader', serif; font-size:52px; font-weight:500; color:#34d399; line-height:0.85; letter-spacing:-0.02em;">{vel_fmt}</span>
-    <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#71717a; text-transform:uppercase; letter-spacing:0.08em; padding-bottom:5px;">stars / day</span>
+    <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#71717a; text-transform:uppercase; letter-spacing:0.08em; padding-bottom:5px; margin-left:7px;">stars / day</span>
     <span style="margin-left:auto; font-family:'IBM Plex Mono', monospace; font-size:11px; color:#5b6573; padding-bottom:5px;">★ {stars_full} · {age}</span>
   </div>
 </a>"""
@@ -401,27 +401,27 @@ def render_html_row(entry: dict, markers: dict, bucket_max_vel: float, now: date
     new_badge = (
         "<span style=\"font-family:'IBM Plex Mono', monospace; font-size:9px; font-weight:600; "
         "letter-spacing:0.08em; color:#34d399; border:1px solid #2f6f55; padding:1px 6px; "
-        "border-radius:99px;\">NEW</span>"
+        "border-radius:99px; margin-left:9px;\">NEW</span>"
         if is_new
         else ""
     )
 
-    return f"""<a href="{url}" style="display:flex; gap:16px; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
-  <div style="flex-shrink:0; width:78px; text-align:right;">
+    return f"""<a href="{url}" style="display:flex; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <div style="flex-shrink:0; width:78px; text-align:right; margin-right:16px;">
     <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">{vel_fmt}</div>
     <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
   </div>
   <div style="flex:1;">
-    <div style="display:flex; align-items:center; gap:9px;">
+    <div style="display:flex; align-items:center;">
       <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">{owner}/{name}</span>
       {new_badge}
     </div>
     <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">{desc}</div>
-    <div style="display:flex; align-items:center; gap:12px; margin-top:8px;">
+    <div style="display:flex; align-items:center; margin-top:8px;">
       <div style="flex:1; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
         <div style="height:100%; background: {bar_fill}; border-radius:3px; width: {bar_pct}%;"></div>
       </div>
-      <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ {stars_full} · {age}</span>
+      <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap; margin-left:12px;">★ {stars_full} · {age}</span>
     </div>
   </div>
 </a>"""
@@ -475,10 +475,10 @@ def render_html_bucket(
         body = "\n".join(render_html_row(e, markers, bucket_max_vel, now) for e in entries)
 
     return f"""<div style="margin-top:34px;">
-  <div style="display:flex; align-items:baseline; gap:12px;">
-    <span style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#34d399; font-weight:600;">{html.escape(kicker)}</span>
+  <div style="display:flex; align-items:baseline;">
+    <span style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#34d399; font-weight:600; margin-right:12px;">{html.escape(kicker)}</span>
     <span style="flex:1; height:1px; background:#20222a;"></span>
-    <span style="font-family:'IBM Plex Mono', monospace; font-size:11px; color:#5b6573;">{count_label}</span>
+    <span style="font-family:'IBM Plex Mono', monospace; font-size:11px; color:#5b6573; margin-left:12px;">{count_label}</span>
   </div>
   <div style="font-family:'Newsreader', serif; font-size:24px; font-weight:500; color:#f4f4f5; margin-top:6px; letter-spacing:-0.01em;">{html.escape(title)}</div>
   {body}
@@ -535,7 +535,7 @@ def render_html_digest(buckets: dict, markers: dict, now: datetime) -> str:
 <div style="width:620px; background:#0c0d10; border:1px solid #20222a; border-radius:4px; overflow:hidden; box-shadow:0 24px 60px -24px rgba(0,0,0,.55);">
 <div style="padding:38px 44px 26px;">
 <div style="display:flex; justify-content:space-between; align-items:baseline; font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#5b6573;">
-<span>Issue No. {issue_no}</span><span>{date_label}</span>
+<span>Issue No. {issue_no}</span><span style="margin-left:16px;">{date_label}</span>
 </div>
 <div style="font-family:'Newsreader', serif; font-size:46px; font-weight:500; color:#f4f4f5; line-height:1.0; margin-top:18px; letter-spacing:-0.015em;">The Dispatch</div>
 <div style="font-family:'Newsreader', serif; font-size:16px; font-style:italic; color:#8b8f99; margin-top:8px;">What the open-source AI world is starring this week.</div>
