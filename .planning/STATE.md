@@ -81,6 +81,7 @@ None yet.
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
 | 260630-tl4 | Implement 4a hero-edition HTML email design (write_html_digest renderer, collector wiring, multipart email) | 2026-06-30 | 00a8800 | [260630-tl4-implement-4a-hero-edition-claude-design-](./quick/260630-tl4-implement-4a-hero-edition-claude-design-/) |
+| 260630-wif | Fix unbounded growth of tracked-repo set in data/metadata.json causing GitHub API rate-limit stalls (prune_metadata eviction + tracked_ledger.json) | 2026-07-01 | 3ff421c | [260630-wif-fix-unbounded-growth-of-tracked-repo-set](./quick/260630-wif-fix-unbounded-growth-of-tracked-repo-set/) |
 
 ## Deferred Items
 
@@ -96,4 +97,4 @@ Last session: 2026-06-29T05:00:00.000Z
 Stopped at: Phase 3 verified — milestone v1.0 complete
 Resume file: .planning/phases/03-production-hardening/03-VERIFICATION.md
 
-Last activity: 2026-06-30 - Completed quick task 260630-tl4: Implement 4a hero-edition HTML email design
+Last activity: 2026-07-01 - Completed quick task 260630-wif: Fix unbounded growth of tracked-repo set in data/metadata.json
