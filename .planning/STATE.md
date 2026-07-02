@@ -75,6 +75,7 @@ None yet.
 
 - MEDIUM: 60-day keepalive via GITHUB_TOKEN commits — community reports conflict on whether bot commits reset the inactivity timer; validate within first 60 days (HARD-01, Phase 3)
 - MEDIUM: AI filter topic list completeness — 18-topic list needs validation against live API output on day 1 of Phase 1
+- HIGH: refresh_tracked has no age/relevance cap — hits every id in metadata.json unconditionally (search.py:388-418). origin/main metadata.json has 7,320 tracked repos (14-day eviction grace refills faster than it drains); at seconds_between_requests=0.5 that's a ~61min floor just from throttle, explaining 1h41m and 45min+ run durations vs the ~15-20min perf-tuning target (checkpoint-2026-06-30, never actually verified). Needs its own quick task: shrink METADATA_TRACKED_RETENTION_DAYS, add a star-count/relevance floor before tracking, or cap refresh_tracked batch size per run.
 
 ### Quick Tasks Completed
 
