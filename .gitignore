@@ -2,3 +2,6 @@
 __pycache__/
 *.pyc
 .pytest_cache/
+
+# checkpoint-skill session scratch (machine-local; .planning/STATE.md is the tracked one)
+/STATE.md
