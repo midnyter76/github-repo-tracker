@@ -382,11 +382,9 @@ class TestDiscoverRepos:
         so the middle band has its own 1000-result budget.
         """
         from src.search import since_date_for
-        from datetime import datetime, timezone
 
-        now = datetime(2026, 6, 27, tzinfo=timezone.utc)
-        date_7d = since_date_for(7, now=now)
-        date_30d = since_date_for(30, now=now)
+        date_7d = since_date_for(7)
+        date_30d = since_date_for(30)
 
         def fake_search(g, query, **kwargs):
             # Wide 30d query — over-cap (would be truncated; repo_id=1 not in 7d)
