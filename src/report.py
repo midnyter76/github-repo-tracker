@@ -581,8 +581,15 @@ def render_html_leaders(buckets: dict, markers: dict, now: datetime) -> str:
     """
     del now  # unused directly; kept for interface symmetry
 
+    section_label_html = (
+        "<div style=\"font-family:'IBM Plex Mono', monospace; font-size:11px; "
+        "letter-spacing:0.14em; text-transform:uppercase; color:#34d399; "
+        "font-weight:600; margin-bottom:10px;\">Category Leaders</div>"
+    )
+
     grid_cells = "\n    ".join(_render_leader_cell(key, buckets[key]) for key, _kicker, _title in _HTML_SECTIONS)
-    grid_html = f"""<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate; border-spacing:8px 0;">
+    grid_html = f"""{section_label_html}
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate; border-spacing:8px 0;">
   <tr>
     {grid_cells}
   </tr>

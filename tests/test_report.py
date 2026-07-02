@@ -877,6 +877,15 @@ class TestRenderHtmlLeaders:
         assert result.count('<td width="25%"') == 4
         assert result.count('<td width="33.33%"') == 3
 
+    def test_section_label_present_before_grid(self):
+        from src.report import render_html_leaders
+
+        result = render_html_leaders(_make_buckets(), markers={}, now=_now())
+        label_idx = result.lower().find("category leaders")
+        grid_idx = result.find('<td width="25%"')
+        assert label_idx != -1
+        assert label_idx < grid_idx
+
     def test_active_cell_shows_kicker_leader_name_and_velocity(self):
         from src.report import render_html_leaders
 
