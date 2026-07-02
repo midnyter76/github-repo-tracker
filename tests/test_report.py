@@ -926,6 +926,21 @@ class TestRenderHtmlLeaders:
         result = render_html_leaders(_make_buckets(), markers={}, now=_now())
         assert "gap:" not in result
 
+    def test_active_and_empty_cards_share_min_height(self):
+        """REGRESSION: an empty-state card must not shrink to fit its shorter
+        content — both branches share the same card min-height so the grid
+        row keeps a flush bottom edge."""
+        from src.report import render_html_leaders
+
+        e = _entry(id="1", full_name="owner/cool-repo", velocity_per_day=42.0)
+        buckets = _make_buckets(weekly_entries=[e], spike_active=False)
+        result = render_html_leaders(buckets, markers={}, now=_now())
+        cells = result.split('<td width="25%"')[1:5]
+        active_cell = cells[0]  # brand_new_weekly
+        empty_cell = cells[2]  # spike_24h
+        assert "min-height:96px" in active_cell
+        assert "min-height:96px" in empty_cell
+
 
 class TestHtmlDigestStatsStrip:
     def test_stats_strip_labels_present(self):

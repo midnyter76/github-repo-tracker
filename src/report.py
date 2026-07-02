@@ -547,7 +547,7 @@ def _render_leader_cell(key: str, bucket: dict) -> str:
         )
 
     return f"""<td width="25%" valign="top">
-      <div style="background:#111318; border:1px solid #23262f; border-radius:10px; padding:14px 16px;">
+      <div style="background:#111318; border:1px solid #23262f; border-radius:10px; padding:14px 16px; min-height:96px;">
         {kicker_html}
         {body_html}
       </div>
