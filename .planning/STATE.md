@@ -86,6 +86,7 @@ None yet.
 | 260701-ibb | Fix Gmail rendering bugs in HTML digest caused by unsupported CSS flexbox gap (replaced with equivalent margins) | 2026-07-01 | 4bd432a | [260701-ibb-fix-gmail-rendering-bugs-in-html-digest-](./quick/260701-ibb-fix-gmail-rendering-bugs-in-html-digest-/) |
 | 260701-j1w | Add CATEGORY LEADERS grid and stats strip to HTML digest top (table-based layout, not flexbox) | 2026-07-01 | 910ee7c | [260701-j1w-add-category-leaders-grid-and-stats-stri](./quick/260701-j1w-add-category-leaders-grid-and-stats-stri/) |
 | 260701-tnx | Fix CATEGORY LEADERS grid card alignment (empty-state card shorter than active siblings; shared min-height:96px) | 2026-07-02 | e6916f8 | [260701-tnx-fix-leaders-alignment](./quick/260701-tnx-fix-leaders-alignment/) |
+| 260701-u16 | Full pixel port of CATEGORY LEADERS grid + stats strip to match the 4a Claude Design reference (bottom-anchored cards, NEW dot, joined strip); fixed oldstyle-numeral baseline wobble in value+unit rendering | 2026-07-02 | c51acdb | [260701-u16-port-4a-leaders-strip](./quick/260701-u16-port-4a-leaders-strip/) |
 
 ## Deferred Items
 
@@ -101,4 +102,4 @@ Last session: 2026-06-29T05:00:00.000Z
 Stopped at: Phase 3 verified — milestone v1.0 complete
 Resume file: .planning/phases/03-production-hardening/03-VERIFICATION.md
 
-Last activity: 2026-07-02 - Completed quick task 260701-tnx: Fix CATEGORY LEADERS grid card alignment
+Last activity: 2026-07-02 - Completed quick task 260701-u16: Port CATEGORY LEADERS grid + stats strip to match 4a reference design
