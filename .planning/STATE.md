@@ -75,7 +75,7 @@ None yet.
 
 - MEDIUM: 60-day keepalive via GITHUB_TOKEN commits — community reports conflict on whether bot commits reset the inactivity timer; validate within first 60 days (HARD-01, Phase 3)
 - MEDIUM: AI filter topic list completeness — 18-topic list needs validation against live API output on day 1 of Phase 1
-- HIGH: refresh_tracked has no age/relevance cap — hits every id in metadata.json unconditionally (search.py:388-418). origin/main metadata.json has 7,320 tracked repos (14-day eviction grace refills faster than it drains); at seconds_between_requests=0.5 that's a ~61min floor just from throttle, explaining 1h41m and 45min+ run durations vs the ~15-20min perf-tuning target (checkpoint-2026-06-30, never actually verified). Needs its own quick task: shrink METADATA_TRACKED_RETENTION_DAYS, add a star-count/relevance floor before tracking, or cap refresh_tracked batch size per run.
+- RESOLVED (260702-ihe, commit 243e1fe): refresh_tracked runtime blowout — collector.run() now refreshes only tracked ids discovery missed this run (`[rid for rid in tracked_ids if rid not in candidates]`), cutting ~7,300 serial core-API get_repo calls to only discovery-missed residuals. Verify next scheduled run drops from ~1h33m toward the 15-20min target; if still slow, fall back to shrinking METADATA_TRACKED_RETENTION_DAYS or capping refresh batch size.
 
 ### Quick Tasks Completed
 
@@ -87,6 +87,7 @@ None yet.
 | 260701-j1w | Add CATEGORY LEADERS grid and stats strip to HTML digest top (table-based layout, not flexbox) | 2026-07-01 | 910ee7c | [260701-j1w-add-category-leaders-grid-and-stats-stri](./quick/260701-j1w-add-category-leaders-grid-and-stats-stri/) |
 | 260701-tnx | Fix CATEGORY LEADERS grid card alignment (empty-state card shorter than active siblings; shared min-height:96px) | 2026-07-02 | e6916f8 | [260701-tnx-fix-leaders-alignment](./quick/260701-tnx-fix-leaders-alignment/) |
 | 260701-u16 | Full pixel port of CATEGORY LEADERS grid + stats strip to match the 4a Claude Design reference (bottom-anchored cards, NEW dot, joined strip); fixed oldstyle-numeral baseline wobble in value+unit rendering | 2026-07-02 | c51acdb | [260701-u16-port-4a-leaders-strip](./quick/260701-u16-port-4a-leaders-strip/) |
+| 260702-ihe | Fix collector runtime blowout: refresh only tracked ids discovery missed (cuts ~7,300 redundant core-API get_repo calls/run); unpin date-hardcoded monthly-cohort search test | 2026-07-02 | 243e1fe | [260702-ihe-refresh-skip-discovered](./quick/260702-ihe-refresh-skip-discovered/) |
 
 ## Deferred Items
 
@@ -102,4 +103,4 @@ Last session: 2026-06-29T05:00:00.000Z
 Stopped at: Phase 3 verified — milestone v1.0 complete
 Resume file: .planning/phases/03-production-hardening/03-VERIFICATION.md
 
-Last activity: 2026-07-02 - Completed quick task 260701-u16: Port CATEGORY LEADERS grid + stats strip to match 4a reference design
+Last activity: 2026-07-02 - Completed quick task 260702-ihe: refresh only discovery-missed tracked ids (runtime fix) + unpin date-hardcoded search test
