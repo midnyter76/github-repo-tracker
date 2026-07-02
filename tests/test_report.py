@@ -905,8 +905,9 @@ class TestRenderHtmlLeaders:
         spike_cell = cells[2]  # spike_24h is third in _HTML_SECTIONS order
         assert "24H SPIKE" in spike_cell
         assert "Warming up." in spike_cell
-        # "stars / day" + a big velocity number only render for an active
-        # leader cell; their absence proves no number is shown here.
+        # "★/d" unit + a velocity number only render for an active leader
+        # cell; their absence proves no number is shown here.
+        assert "★/d" not in spike_cell
         assert "stars / day" not in spike_cell
 
     def test_repo_name_escaped_not_raw_script_tag(self):
@@ -925,6 +926,59 @@ class TestRenderHtmlLeaders:
 
         result = render_html_leaders(_make_buckets(), markers={}, now=_now())
         assert "gap:" not in result
+        assert "display:flex" not in result
+        assert "display:grid" not in result
+
+    def test_active_and_empty_cells_use_bottom_anchor_table(self):
+        """STRUCTURAL: both branches render inside the same height="46"
+        nested table (Gmail-safe substitute for justify-content:space-between)
+        so kicker stays flush top and body flush bottom at equal card height."""
+        from src.report import render_html_leaders
+
+        e = _entry(id="1", full_name="owner/cool-repo", velocity_per_day=42.0)
+        buckets = _make_buckets(weekly_entries=[e], spike_active=False)
+        result = render_html_leaders(buckets, markers={}, now=_now())
+        cells = result.split('<td width="25%"')[1:5]
+        active_cell = cells[0]  # brand_new_weekly
+        empty_cell = cells[2]  # spike_24h
+        assert 'height="46"' in active_cell
+        assert 'height="46"' in empty_cell
+        assert 'valign="bottom"' in active_cell
+        assert 'valign="bottom"' in empty_cell
+
+    def test_value_and_unit_render_on_same_line(self):
+        """The velocity value and its "★/d" unit sit on one line, as two
+        cells of a single-row table (Gmail-safe valign — immune to the
+        per-digit baseline wobble that inline baseline-align + serif
+        oldstyle figures produces), not stacked on separate lines."""
+        from src.report import render_html_leaders
+
+        e = _entry(id="1", full_name="owner/cool-repo", velocity_per_day=42.0)
+        buckets = _make_buckets(weekly_entries=[e])
+        result = render_html_leaders(buckets, markers={}, now=_now())
+        match = re.search(
+            r'<td valign="middle"[^>]*>42\.0</td><td valign="middle"[^>]*>★/d</td>',
+            result,
+        )
+        assert match is not None, "value and unit must be adjacent same-row table cells"
+
+    def test_new_dot_marker_present_for_new_leader_absent_for_returning(self):
+        """A leader entry counted as NEW (per the shared marker rule) gets a
+        small green dot next to its name; a returning entry does not."""
+        from src.report import render_html_leaders
+
+        new_entry = _entry(id="1", full_name="owner/new-repo", velocity_per_day=10.0)
+        returning_entry = _entry(id="2", full_name="owner/old-repo", velocity_per_day=20.0)
+
+        new_buckets = _make_buckets(weekly_entries=[new_entry])
+        new_result = render_html_leaders(new_buckets, markers={"1": "new"}, now=_now())
+        new_cell = new_result.split('<td width="25%"')[1]
+        assert "border-radius:50%" in new_cell
+
+        returning_buckets = _make_buckets(weekly_entries=[returning_entry])
+        returning_result = render_html_leaders(returning_buckets, markers={"2": "returning"}, now=_now())
+        returning_cell = returning_result.split('<td width="25%"')[1]
+        assert "border-radius:50%" not in returning_cell
 
     def test_active_and_empty_cards_share_min_height(self):
         """REGRESSION: an empty-state card must not shrink to fit its shorter
@@ -938,8 +992,8 @@ class TestRenderHtmlLeaders:
         cells = result.split('<td width="25%"')[1:5]
         active_cell = cells[0]  # brand_new_weekly
         empty_cell = cells[2]  # spike_24h
-        assert "min-height:96px" in active_cell
-        assert "min-height:96px" in empty_cell
+        assert "min-height:64px" in active_cell
+        assert "min-height:64px" in empty_cell
 
 
 class TestHtmlDigestStatsStrip:
@@ -967,8 +1021,8 @@ class TestHtmlDigestStatsStrip:
 
         result = render_html_leaders(_make_buckets(), markers={}, now=_now())
         match = re.search(
-            r'color:(#[0-9a-fA-F]{6});[^<]*">\d+</div>\s*'
-            r'<div style="[^"]*">BRAND NEW</div>',
+            r'color:(#[0-9a-fA-F]{6});">\d+</span>'
+            r'<span style="[^"]*">BRAND NEW</span>',
             result,
         )
         assert match is not None, "BRAND NEW value+label pair not found"
