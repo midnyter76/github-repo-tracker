@@ -64,8 +64,13 @@ def run(
     Execution order (see §System Architecture Diagram in RESEARCH.md):
       1. discover_repos(g)       — date-windowed topic + keyword discovery
       2. discover_established(g) — star-banded standing query (D-11)
-      3. refresh_tracked(g, ids) — re-fetch star counts for all tracked repos
-      4. union all three into candidates (refresh LAST so it wins — DATA-01)
+      3. refresh_tracked(g, ids) — re-fetch star counts only for tracked repos
+         discovery MISSED this run (ids discovery already returned keep this
+         run's fresh search data — see Quick Task 260702-ihe)
+      4. union all three into candidates (refresh still runs LAST, but no
+         longer overrides discovery for overlapping ids — those are skipped
+         since discovery's data is equally fresh; DATA-01 freshest-wins still
+         holds because every id in candidates carries this run's data)
       5. write_snapshot + write_metadata
 
     All dependency functions are keyword-injectable so tests can pass fakes
@@ -106,9 +111,12 @@ def run(
     # search quota for zero ranking benefit in the first month.
     # candidates.update(established(g))
 
-    # 3. Refresh tracked repos LAST so re-fetched star counts win (DATA-01)
+    # 3. Refresh only tracked repos discovery MISSED this run — ids discovery
+    # already returned carry this run's equally-fresh search data, so
+    # re-fetching them via a core-API get_repo call is redundant quota spend
+    # (DATA-01 freshest-wins still holds; Quick Task 260702-ihe).
     tracked_ids = load_ids()
-    candidates.update(refresh(g, tracked_ids))
+    candidates.update(refresh(g, [rid for rid in tracked_ids if rid not in candidates]))
 
     # 3.5. Filter likely-gamed repos before snapshot write (HARD-03, D-07, Pitfall 5)
     candidates = filter_gamed_fn(candidates)

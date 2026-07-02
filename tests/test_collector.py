@@ -267,6 +267,52 @@ class TestRun:
         # The refreshed repo (999 stars) must win
         assert captured["111"] is repo_refresh
 
+    def test_refresh_receives_only_discovery_missed_ids(self):
+        """refresh() is called only with tracked ids discovery did NOT already return.
+
+        Discovery returns "111" and "222"; load_ids returns ["222", "333"], so
+        "222" overlaps with discovery (must be skipped) and "333" is missed
+        (must be passed to refresh). Refresh must receive exactly ["333"].
+        """
+        from datetime import datetime, timezone  # noqa: PLC0415
+        from src.collector import run  # noqa: PLC0415
+
+        g = MagicMock()
+        now = datetime(2026, 6, 27, 13, 0, 0, tzinfo=timezone.utc)
+
+        repo_a = self._make_fake_repo("111")
+        repo_b = self._make_fake_repo("222")
+
+        captured_refresh_ids = []
+
+        def fake_refresh(_g, ids):
+            captured_refresh_ids.extend(ids)
+            return {}
+
+        run(
+            g,
+            now,
+            discover=lambda _g: {"111": repo_a, "222": repo_b},
+            established=lambda _g: {},
+            load_ids=lambda: ["222", "333"],
+            refresh=fake_refresh,
+            write_snap=MagicMock(),
+            write_meta=MagicMock(),
+            compute_buckets=lambda *a, **k: _empty_buckets(),
+            load_seen_fn=lambda *a, **k: {},
+            classify_fn=lambda seen, ids, d: ({}, {}),
+            write_digest=MagicMock(),
+            write_html_digest=MagicMock(),
+            save_seen_fn=MagicMock(),
+            # Phase 3 no-ops — tests exercise Phase 1/2 logic only (Rule 1 isolation)
+            check_gap_fn=lambda *a, **k: None,
+            filter_gamed_fn=lambda c: c,
+            prune_fn=lambda *a, **k: [],
+            prune_meta_fn=lambda *a, **k: [],
+        )
+
+        assert captured_refresh_ids == ["333"]
+
     def test_write_functions_receive_now_timestamp(self):
         """write_snap and write_meta are called with the 'now' datetime."""
         from datetime import datetime, timezone  # noqa: PLC0415
