@@ -830,6 +830,132 @@ class TestRunPhase3CallOrder:
             f"prune must be the last call in run(); got log: {log}"
 
 
+class TestResidualCap:
+    """run() caps the residual refresh set at residual_cap, prioritized by
+    last-known stars descending (HARD-05-CAP)."""
+
+    def _snaps(self, stars_by_id):
+        return [{"date": "2026-06-30", "captured_at": "2026-06-30T13:00:00+00:00",
+                 "repos": {rid: {"stars": s} for rid, s in stars_by_id.items()}}]
+
+    def _common(self):
+        return dict(
+            discover=lambda _g: {}, established=lambda _g: {},
+            write_snap=MagicMock(), write_meta=MagicMock(),
+            compute_buckets=lambda *a, **k: _empty_buckets(),
+            load_seen_fn=lambda *a, **k: {}, classify_fn=lambda s, i, d: ({}, {}),
+            write_digest=MagicMock(), write_html_digest=MagicMock(), save_seen_fn=MagicMock(),
+            check_gap_fn=lambda *a, **k: None, filter_gamed_fn=lambda c: c,
+            prune_fn=lambda *a, **k: [], prune_meta_fn=lambda *a, **k: [],
+        )
+
+    def test_residual_over_cap_keeps_top_cap_by_stars(self):
+        """Over cap: capped ids are the top-cap by last-known stars descending."""
+        from datetime import datetime, timezone  # noqa: PLC0415
+        from src.collector import run  # noqa: PLC0415
+
+        g = MagicMock()
+        now = datetime(2026, 6, 30, 13, 0, 0, tzinfo=timezone.utc)
+
+        captured = []
+
+        def fake_refresh(_g, ids):
+            captured.extend(ids)
+            return {}
+
+        run(
+            g,
+            now,
+            load_ids=lambda: ["1", "2", "3", "4"],
+            refresh=fake_refresh,
+            load_snaps=lambda *_a, **_k: self._snaps({"1": 10, "2": 100, "3": 50, "4": 5}),
+            residual_cap=2,
+            **self._common(),
+        )
+
+        assert captured == ["2", "3"]
+
+    def test_residual_at_or_under_cap_passes_through_unchanged(self):
+        """Under cap: residual passes through unchanged and load_snaps is not called."""
+        from datetime import datetime, timezone  # noqa: PLC0415
+        from src.collector import run  # noqa: PLC0415
+
+        g = MagicMock()
+        now = datetime(2026, 6, 30, 13, 0, 0, tzinfo=timezone.utc)
+
+        captured = []
+        mock_load_snaps = MagicMock()
+
+        def fake_refresh(_g, ids):
+            captured.extend(ids)
+            return {}
+
+        run(
+            g,
+            now,
+            load_ids=lambda: ["1", "2"],
+            refresh=fake_refresh,
+            load_snaps=mock_load_snaps,
+            residual_cap=5,
+            **self._common(),
+        )
+
+        assert captured == ["1", "2"]
+        mock_load_snaps.assert_not_called()
+
+    def test_id_missing_from_snapshot_sorts_as_zero(self):
+        """An id absent from the latest snapshot sorts as 0 stars and is cut first."""
+        from datetime import datetime, timezone  # noqa: PLC0415
+        from src.collector import run  # noqa: PLC0415
+
+        g = MagicMock()
+        now = datetime(2026, 6, 30, 13, 0, 0, tzinfo=timezone.utc)
+
+        captured = []
+
+        def fake_refresh(_g, ids):
+            captured.extend(ids)
+            return {}
+
+        run(
+            g,
+            now,
+            load_ids=lambda: ["1", "5"],
+            refresh=fake_refresh,
+            load_snaps=lambda *_a, **_k: self._snaps({"1": 10}),
+            residual_cap=1,
+            **self._common(),
+        )
+
+        assert captured == ["1"]
+
+    def test_empty_snapshots_dir_still_bounds_residual(self):
+        """Empty snapshot list (no history) still bounds residual to cap, stable order."""
+        from datetime import datetime, timezone  # noqa: PLC0415
+        from src.collector import run  # noqa: PLC0415
+
+        g = MagicMock()
+        now = datetime(2026, 6, 30, 13, 0, 0, tzinfo=timezone.utc)
+
+        captured = []
+
+        def fake_refresh(_g, ids):
+            captured.extend(ids)
+            return {}
+
+        run(
+            g,
+            now,
+            load_ids=lambda: ["1", "2", "3"],
+            refresh=fake_refresh,
+            load_snaps=lambda *_a, **_k: [],
+            residual_cap=2,
+            **self._common(),
+        )
+
+        assert captured == ["1", "2"]
+
+
 class TestPruneMetaWiring:
     """prune_meta_fn must be called exactly once per run(), after prune_fn, with
     the run's final reported_ids (HARD-04-EXT)."""
