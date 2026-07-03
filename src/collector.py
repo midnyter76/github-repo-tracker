@@ -15,7 +15,7 @@ from datetime import datetime, timezone
 import github
 
 from src import gap, gaming, prune, rank, report, search, seen, store
-from src.config import METADATA_PATH, REPORTS_DIR, SEEN_PATH, SNAPSHOT_RETENTION_DAYS, SNAPSHOTS_DIR
+from src.config import METADATA_PATH, REFRESH_RESIDUAL_CAP, REPORTS_DIR, SEEN_PATH, SNAPSHOT_RETENTION_DAYS, SNAPSHOTS_DIR
 
 
 def build_client():
@@ -46,6 +46,8 @@ def run(
     established=search.discover_established,
     load_ids=store.load_metadata_ids,
     refresh=search.refresh_tracked,
+    load_snaps=rank.load_snapshots,
+    residual_cap=REFRESH_RESIDUAL_CAP,
     write_snap=store.write_snapshot,
     write_meta=store.write_metadata,
     compute_buckets=rank.compute_buckets,
@@ -83,6 +85,8 @@ def run(
         established:     Callable matching search.discover_established signature.
         load_ids:        Callable matching store.load_metadata_ids signature.
         refresh:         Callable matching search.refresh_tracked signature.
+        load_snaps:      Callable matching rank.load_snapshots signature. (HARD-05-CAP)
+        residual_cap:    Max residual ids refreshed per run. (HARD-05-CAP)
         write_snap:      Callable matching store.write_snapshot signature.
         write_meta:      Callable matching store.write_metadata signature.
         compute_buckets: Callable matching rank.compute_buckets signature.
@@ -116,7 +120,26 @@ def run(
     # re-fetching them via a core-API get_repo call is redundant quota spend
     # (DATA-01 freshest-wins still holds; Quick Task 260702-ihe).
     tracked_ids = load_ids()
-    candidates.update(refresh(g, [rid for rid in tracked_ids if rid not in candidates]))
+    residual = [rid for rid in tracked_ids if rid not in candidates]
+    # HARD-05-CAP: bound the residual refresh set to residual_cap ids, keeping the
+    # highest-signal repos by last-known stars. Only sort when over the cap so the
+    # under-cap path preserves residual order exactly (no disk read, no reorder).
+    if len(residual) > residual_cap:
+        snaps = load_snaps(SNAPSHOTS_DIR)
+        latest_repos = snaps[-1]["repos"] if snaps else {}
+        # sorted() is stable: equal-star ids retain original residual order.
+        residual = sorted(
+            residual,
+            key=lambda rid: -latest_repos.get(rid, {}).get("stars", 0),
+        )
+    capped = residual[:residual_cap]
+    # Stage counts for the Actions log (plain stdout, gap.py convention).
+    # NEVER print the token or client object.
+    print(
+        f"collector: discovered={len(candidates)} tracked={len(tracked_ids)} "
+        f"residual={len(residual)} refreshing={len(capped)}"
+    )
+    candidates.update(refresh(g, capped))
 
     # 3.5. Filter likely-gamed repos before snapshot write (HARD-03, D-07, Pitfall 5)
     candidates = filter_gamed_fn(candidates)

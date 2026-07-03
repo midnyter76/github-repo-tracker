@@ -136,6 +136,19 @@ SNAPSHOT_RETENTION_DAYS: int = 90    # D-08
 # 45d = 30d velocity window + 15d buffer for missed runs / slow starters.
 METADATA_REFRESH_MAX_AGE_DAYS: int = 45
 
+# HARD-05-CAP: Residual refresh cap
+# Upper bound on the number of tracked repos re-fetched via the core API each run
+# (the "residual" = tracked ids that discovery MISSED this run). At
+# seconds_between_requests=0.5 (~2 req/s), 500 get_repo calls finish in ~4 min and
+# stay under the GITHUB_TOKEN 1,000 req/hr core quota — beyond ~1,000 residual, the
+# quota trips and GithubRetry sleeps ~40 min until the hourly window resets.
+# Measured 2026-07-03: residual ~2k -> 65 min refresh stage. Residual is capped by
+# last-known stars (descending), so the highest-signal repos are always refreshed;
+# repos cut by the cap drop from metadata via the existing full-overwrite
+# write_metadata semantics and are re-discovered if they spike within their 30d
+# creation window (same eviction philosophy as prune_metadata).
+REFRESH_RESIDUAL_CAP: int = 500
+
 # HARD-04-EXT: Tracked-repo eviction ledger
 # Runtime ledger {str(repo_id): last-active YYYY-MM-DD}, created on first run by
 # prune_metadata(). Additive-only file — never touches metadata.json's schema or
