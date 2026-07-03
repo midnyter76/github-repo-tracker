@@ -75,7 +75,7 @@ None yet.
 
 - MEDIUM: 60-day keepalive via GITHUB_TOKEN commits — community reports conflict on whether bot commits reset the inactivity timer; validate within first 60 days (HARD-01, Phase 3)
 - MEDIUM: AI filter topic list completeness — 18-topic list needs validation against live API output on day 1 of Phase 1
-- RESOLVED (260702-ihe, commit 243e1fe): refresh_tracked runtime blowout — collector.run() now refreshes only tracked ids discovery missed this run (`[rid for rid in tracked_ids if rid not in candidates]`), cutting ~7,300 serial core-API get_repo calls to only discovery-missed residuals. Verify next scheduled run drops from ~1h33m toward the 15-20min target; if still slow, fall back to shrinking METADATA_TRACKED_RETENTION_DAYS or capping refresh batch size.
+- RESOLVED (260702-ihe + 260702-ty3): refresh_tracked runtime blowout. Fix 1 (243e1fe): refresh only discovery-missed ids. Manual run 28636064996 verified: discovery ~8min, but residual ~2k ids still blew the GITHUB_TOKEN 1,000 req/hr quota → ~40min GithubRetry sleep → 1h14m total. Fix 2 (3045eb6): REFRESH_RESIDUAL_CAP=500 bounds residual refresh (~4min), prioritized by last-known stars desc; stage-count print added for Actions-log observability. Expected total ~12-15min. Verify next run's duration + stage-count log line.
 
 ### Quick Tasks Completed
 
@@ -88,6 +88,7 @@ None yet.
 | 260701-tnx | Fix CATEGORY LEADERS grid card alignment (empty-state card shorter than active siblings; shared min-height:96px) | 2026-07-02 | e6916f8 | [260701-tnx-fix-leaders-alignment](./quick/260701-tnx-fix-leaders-alignment/) |
 | 260701-u16 | Full pixel port of CATEGORY LEADERS grid + stats strip to match the 4a Claude Design reference (bottom-anchored cards, NEW dot, joined strip); fixed oldstyle-numeral baseline wobble in value+unit rendering | 2026-07-02 | c51acdb | [260701-u16-port-4a-leaders-strip](./quick/260701-u16-port-4a-leaders-strip/) |
 | 260702-ihe | Fix collector runtime blowout: refresh only tracked ids discovery missed (cuts ~7,300 redundant core-API get_repo calls/run); unpin date-hardcoded monthly-cohort search test | 2026-07-02 | 243e1fe | [260702-ihe-refresh-skip-discovered](./quick/260702-ihe-refresh-skip-discovered/) |
+| 260702-ty3 | Cap residual refresh at REFRESH_RESIDUAL_CAP=500 (star-prioritized) so refresh never trips the 1,000 req/hr core quota; add stage-count print for Actions-log observability | 2026-07-02 | 3045eb6 | [260702-ty3-cap-refresh-residual](./quick/260702-ty3-cap-refresh-residual/) |
 
 ## Deferred Items
 
@@ -103,4 +104,4 @@ Last session: 2026-06-29T05:00:00.000Z
 Stopped at: Phase 3 verified — milestone v1.0 complete
 Resume file: .planning/phases/03-production-hardening/03-VERIFICATION.md
 
-Last activity: 2026-07-02 - Completed quick task 260702-ihe: refresh only discovery-missed tracked ids (runtime fix) + unpin date-hardcoded search test
+Last activity: 2026-07-02 - Completed quick task 260702-ty3: cap residual refresh at 500 star-prioritized ids (runtime bound + quota safety)
