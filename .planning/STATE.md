@@ -89,6 +89,7 @@ None yet.
 | 260701-u16 | Full pixel port of CATEGORY LEADERS grid + stats strip to match the 4a Claude Design reference (bottom-anchored cards, NEW dot, joined strip); fixed oldstyle-numeral baseline wobble in value+unit rendering | 2026-07-02 | c51acdb | [260701-u16-port-4a-leaders-strip](./quick/260701-u16-port-4a-leaders-strip/) |
 | 260702-ihe | Fix collector runtime blowout: refresh only tracked ids discovery missed (cuts ~7,300 redundant core-API get_repo calls/run); unpin date-hardcoded monthly-cohort search test | 2026-07-02 | 243e1fe | [260702-ihe-refresh-skip-discovered](./quick/260702-ihe-refresh-skip-discovered/) |
 | 260702-ty3 | Cap residual refresh at REFRESH_RESIDUAL_CAP=500 (star-prioritized) so refresh never trips the 1,000 req/hr core quota; add stage-count print for Actions-log observability | 2026-07-02 | 3045eb6 | [260702-ty3-cap-refresh-residual](./quick/260702-ty3-cap-refresh-residual/) |
+| 260705-j51 | Filter jailbreak/junk repos from digest reports | 2026-07-05 | bf9caf6 | [260705-j51-filter-jailbreak-junk-repos-from-digest-](./quick/260705-j51-filter-jailbreak-junk-repos-from-digest-/) |
 
 ## Deferred Items
 
@@ -104,4 +105,4 @@ Last session: 2026-06-29T05:00:00.000Z
 Stopped at: Phase 3 verified — milestone v1.0 complete
 Resume file: .planning/phases/03-production-hardening/03-VERIFICATION.md
 
-Last activity: 2026-07-02 - Completed quick task 260702-ty3: cap residual refresh at 500 star-prioritized ids (runtime bound + quota safety)
+Last activity: 2026-07-05 - Completed quick task 260705-j51: filter jailbreak/junk repos from digest reports
