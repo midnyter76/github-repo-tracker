@@ -124,6 +124,28 @@ GAMING_MIN_STARS: int = 200           # [ASSUMED] — tune after first 30 days o
 # Stars-to-forks ratio above which a repo is flagged as likely gamed.
 GAMING_STAR_FORK_RATIO: float = 50.0  # [ASSUMED] — tune after first 30 days of data
 
+# FILTER-JUNK-01: Jailbreak/blank-junk filter (quick task 260705-j51)
+# Calibration knob: blank descriptions are common on legit day-1 repos.
+# Toggle to False in config.py if Brand New buckets thin out.
+EXCLUDE_BLANK_DESCRIPTION: bool = True
+
+# Lowercase deny-list (English + Chinese). Terms are tunable — some are broad
+# (破解=crack, 越狱=also iOS jailbreak) — prune if false positives appear.
+JUNK_KEYWORDS: list[str] = [
+    "jailbreak",
+    "disable all content filters",
+    "unrestricted mode",
+    "bypass safety",
+    "no filter",
+    "越狱",
+    "破解",
+    "无限制",
+    "内容过滤器",
+    "绕过审查",
+    "无限制模式",
+    "破甲",
+]
+
 # HARD-04: Snapshot retention
 # Files older than this are pruned by prune_snapshots(). 90 days = 3× the
 # widest velocity window (30d), providing headroom for missed days + debugging.
