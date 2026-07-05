@@ -14,7 +14,7 @@ from datetime import datetime, timezone
 
 import github
 
-from src import gap, gaming, prune, rank, report, search, seen, store
+from src import gap, gaming, junk, prune, rank, report, search, seen, store
 from src.config import METADATA_PATH, REFRESH_RESIDUAL_CAP, REPORTS_DIR, SEEN_PATH, SNAPSHOT_RETENTION_DAYS, SNAPSHOTS_DIR
 
 
@@ -58,6 +58,7 @@ def run(
     save_seen_fn=seen.save_seen,
     check_gap_fn=gap.check_gap,           # HARD-02: gap detection (D-05)
     filter_gamed_fn=gaming.filter_gamed,  # HARD-03: gaming filter (D-07)
+    filter_junk_fn=junk.filter_junk,      # FILTER-JUNK-01: jailbreak/blank-junk filter
     prune_fn=prune.prune_snapshots,       # HARD-04: snapshot pruning (D-09)
     prune_meta_fn=prune.prune_metadata,   # HARD-04-EXT: tracked-repo eviction
 ):
@@ -98,6 +99,7 @@ def run(
         save_seen_fn:    Callable matching seen.save_seen signature.
         check_gap_fn:    Callable matching gap.check_gap signature. (HARD-02)
         filter_gamed_fn: Callable matching gaming.filter_gamed signature. (HARD-03)
+        filter_junk_fn:  Callable matching junk.filter_junk signature. (FILTER-JUNK-01)
         prune_fn:        Callable matching prune.prune_snapshots signature. (HARD-04)
         prune_meta_fn:   Callable matching prune.prune_metadata signature. (HARD-04-EXT)
     """
@@ -143,6 +145,7 @@ def run(
 
     # 3.5. Filter likely-gamed repos before snapshot write (HARD-03, D-07, Pitfall 5)
     candidates = filter_gamed_fn(candidates)
+    candidates = filter_junk_fn(candidates)  # drop jailbreak/blank-junk (260705-j51)
 
     # 4. Persist Phase 1 snapshot + metadata
     write_snap(candidates, now)
