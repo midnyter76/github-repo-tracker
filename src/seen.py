@@ -5,7 +5,7 @@ or returning (↩) in the digest. Keyed by numeric repo id (as a string key),
 never by owner/name slug — this survives repo renames and transfers (D-09).
 
 Functions:
-  load_seen            — read data/seen.json; returns {} when absent or corrupt
+  load_seen            — read data/seen.json; returns {} when absent, aborts on corrupt
   save_seen            — write data/seen.json with indent=2; creates parent dir
   classify_and_update  — produce {rid: "new"|"returning"} markers + updated dict
                          WITHOUT mutating the input or writing to disk (D-10)
@@ -17,34 +17,40 @@ Decision references:
 """
 
 import json
-import warnings
 from pathlib import Path
 
 from src import config
 
 
 def load_seen(seen_path: Path = config.SEEN_PATH) -> dict:
-    """Load the seen-store. Returns {} when the file is absent or corrupt.
+    """Load the seen-store. Returns {} when the file is absent.
 
-    Mirrors the corrupt-file guard in store.load_metadata: an unreadable ledger
-    degrades to "everything looks new this run" rather than crashing (T-02-04).
+    Aborts the run on corrupt JSON (T-uec-01): the corrupt file is renamed to
+    `<name>.corrupt` (preserved for manual inspection) and a RuntimeError is
+    raised. This is a primary load path — a downstream write would otherwise
+    silently overwrite it with only this run's results, permanently erasing
+    prior 🆕/↩ history. A crashed Actions run is recoverable; a silent wipe
+    is not.
 
     Args:
         seen_path: path to data/seen.json (injectable for tests).
 
     Returns:
-        Parsed seen dict, or {} if file does not exist or contains invalid JSON.
+        Parsed seen dict, or {} if the file does not exist.
+
+    Raises:
+        RuntimeError: if the file contains invalid JSON.
     """
     if not seen_path.exists():
         return {}
     try:
         return json.loads(seen_path.read_text())
-    except json.JSONDecodeError:
-        warnings.warn(
-            f"Corrupt seen-store at {seen_path}; treating as empty.",
-            stacklevel=2,
-        )
-        return {}
+    except json.JSONDecodeError as exc:
+        corrupt_path = seen_path.with_name(seen_path.name + ".corrupt")
+        seen_path.replace(corrupt_path)
+        raise RuntimeError(
+            f"Corrupt seen-store at {seen_path}; moved to {corrupt_path} for inspection."
+        ) from exc
 
 
 def save_seen(seen: dict, seen_path: Path = config.SEEN_PATH) -> None:

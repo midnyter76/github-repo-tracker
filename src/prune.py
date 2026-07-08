@@ -83,8 +83,10 @@ def prune_metadata(
     (now - retention_days) is evicted from metadata.json.
 
     Safe to call when metadata_path does not exist — returns [] without raising.
-    Corrupt metadata.json or ledger JSON is treated as empty (warns, no raise),
-    mirroring the store.py/seen.py corrupt-file guard convention.
+    Corrupt metadata.json or ledger JSON is treated as empty (warns, no raise) —
+    this eviction pass intentionally degrades gracefully, unlike the primary
+    load paths (store.load_metadata / seen.load_seen), which now abort the run
+    on corruption to avoid silently wiping history (T-uec-01).
 
     Args:
         now:            Current UTC datetime (used to compute cutoff date + stamps).

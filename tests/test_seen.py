@@ -1,13 +1,12 @@
 """Tests for src/seen.py — seen-store module.
 
 Covers:
-- load_seen: absent file, corrupt JSON (warns), valid round-trip
+- load_seen: absent file, corrupt JSON (renames + raises), valid round-trip
 - save_seen: creates missing parent directory, writes indent-2 JSON
 - classify_and_update: new marker + first_seen, returning marker, non-mutation, same-day retry
 """
 
 import json
-import warnings
 from pathlib import Path
 
 import pytest
@@ -26,16 +25,23 @@ class TestLoadSeen:
         result = load_seen(tmp_path / "no_such_file.json")
         assert result == {}
 
-    def test_corrupt_json_warns_and_returns_empty(self, tmp_path: Path):
-        """load_seen warns (UserWarning) and returns {} on corrupt JSON."""
+    def test_corrupt_json_renamed_and_raises(self, tmp_path: Path):
+        """load_seen renames corrupt seen.json to .corrupt and raises RuntimeError."""
         from src.seen import load_seen
 
         corrupt = tmp_path / "seen.json"
-        corrupt.write_text("not valid json {{{")
+        corrupt_bytes = b"not valid json {{{"
+        corrupt.write_bytes(corrupt_bytes)
 
-        with pytest.warns(UserWarning, match="Corrupt seen-store"):
-            result = load_seen(corrupt)
-        assert result == {}
+        with pytest.raises(RuntimeError, match="Corrupt seen-store"):
+            load_seen(corrupt)
+
+        assert not corrupt.exists(), "original corrupt file must be renamed away"
+        corrupt_backup = tmp_path / "seen.json.corrupt"
+        assert corrupt_backup.exists(), ".corrupt backup must be created"
+        assert corrupt_backup.read_bytes() == corrupt_bytes, (
+            "corrupt bytes must be preserved verbatim in the .corrupt backup"
+        )
 
     def test_valid_file_returns_parsed_dict(self, tmp_path: Path):
         """load_seen returns the parsed dict from a valid seen.json."""
