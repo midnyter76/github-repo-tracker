@@ -112,6 +112,15 @@ class TestCreationVelocity:
         result = creation_velocity(0, _iso(day=26, hour=12), _iso(day=28, hour=12))
         assert result == 0.0
 
+    def test_naive_created_at_normalized_to_utc(self):
+        """A naive (no-tzinfo) created_at_iso is treated as UTC, not raise TypeError."""
+        from src.rank import creation_velocity
+
+        created_naive = "2026-06-28T00:00:00"
+        captured_aware = "2026-06-28T10:00:00+00:00"
+        result = creation_velocity(240, created_naive, captured_aware)
+        assert abs(result - 576.0) < 0.01
+
     def test_24h_age_equals_star_count(self):
         """creation_velocity for a 24h-old repo equals star count directly."""
         from src.rank import creation_velocity

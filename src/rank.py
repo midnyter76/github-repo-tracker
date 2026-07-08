@@ -45,7 +45,11 @@ def creation_velocity(stars: int, created_at_iso: str, captured_at_iso: str) -> 
         Stars per day (float).
     """
     created = datetime.fromisoformat(created_at_iso)
+    if created.tzinfo is None:
+        created = created.replace(tzinfo=timezone.utc)
     captured = datetime.fromisoformat(captured_at_iso)
+    if captured.tzinfo is None:
+        captured = captured.replace(tzinfo=timezone.utc)
     age_hours = (captured - created).total_seconds() / 3600
     age_hours = max(age_hours, config.AGE_HOURS_FLOOR)  # floor: avoid div-by-zero
     return (stars / age_hours) * 24  # → stars/day
