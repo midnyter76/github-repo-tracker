@@ -91,7 +91,7 @@ None yet.
 | 260702-ty3 | Cap residual refresh at REFRESH_RESIDUAL_CAP=500 (star-prioritized) so refresh never trips the 1,000 req/hr core quota; add stage-count print for Actions-log observability | 2026-07-02 | 3045eb6 | [260702-ty3-cap-refresh-residual](./quick/260702-ty3-cap-refresh-residual/) |
 | 260705-j51 | Filter jailbreak/junk repos from digest reports | 2026-07-05 | bf9caf6 | [260705-j51-filter-jailbreak-junk-repos-from-digest-](./quick/260705-j51-filter-jailbreak-junk-repos-from-digest-/) |
 | 260707-u0z | Fix confirmed pagination crash bug in src/search.py: cap iteration at 1000 items in discover_repos and discover_established over_cap branches to prevent GitHub 422 crash on page 11 | 2026-07-08 | 128d340 | [260707-u0z-fix-confirmed-pagination-crash-bug-in-sr](./quick/260707-u0z-fix-confirmed-pagination-crash-bug-in-sr/) |
-| 260707-uc5 | Fix GSD planning doc drift: ROADMAP.md phase 1/2 marked Complete, PROJECT.md email delivery moved to Shipped Post-Milestone, Key Decisions Pending -> Decided | 2026-07-08 | (pending) | [260707-uc5-fix-gsd-planning-doc-drift-roadmap-md-st](./quick/260707-uc5-fix-gsd-planning-doc-drift-roadmap-md-st/) |
+| 260707-uc5 | Fix GSD planning doc drift: ROADMAP.md phase 1/2 marked Complete, PROJECT.md email delivery moved to Shipped Post-Milestone, Key Decisions Pending -> Decided | 2026-07-08 | 6fcf736 | [260707-uc5-fix-gsd-planning-doc-drift-roadmap-md-st](./quick/260707-uc5-fix-gsd-planning-doc-drift-roadmap-md-st/) |
 
 ## Deferred Items
 
