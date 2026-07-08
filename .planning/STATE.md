@@ -93,6 +93,7 @@ None yet.
 | 260707-u0z | Fix confirmed pagination crash bug in src/search.py: cap iteration at 1000 items in discover_repos and discover_established over_cap branches to prevent GitHub 422 crash on page 11 | 2026-07-08 | 128d340 | [260707-u0z-fix-confirmed-pagination-crash-bug-in-sr](./quick/260707-u0z-fix-confirmed-pagination-crash-bug-in-sr/) |
 | 260707-uc5 | Fix GSD planning doc drift: ROADMAP.md phase 1/2 marked Complete, PROJECT.md email delivery moved to Shipped Post-Milestone, Key Decisions Pending -> Decided | 2026-07-08 | 6fcf736 | [260707-uc5-fix-gsd-planning-doc-drift-roadmap-md-st](./quick/260707-uc5-fix-gsd-planning-doc-drift-roadmap-md-st/) |
 | 260707-uec | Fix seen.json/metadata.json silent data loss on corruption (rename to .corrupt + abort instead of returning {}); add prune_seen() to bound seen.json growth via existing SNAPSHOT_RETENTION_DAYS | 2026-07-08 | 051b2cf | [260707-uec-fix-seen-json-data-loss-and-unbounded-gr](./quick/260707-uec-fix-seen-json-data-loss-and-unbounded-gr/) |
+| 260707-us2 | Fix rank.py naive-datetime crash risk (tzinfo-is-None guard in creation_velocity); fix daily.yml UTC-midnight email race (pass actual report path via $GITHUB_OUTPUT instead of recomputing date); move hardcoded email recipient to vars.REPORT_TO_EMAIL | 2026-07-08 | (pending) | [260707-us2-fix-three-low-medium-findings-1-rank-py-](./quick/260707-us2-fix-three-low-medium-findings-1-rank-py-/) |
 
 ## Deferred Items
 
@@ -108,4 +109,4 @@ Last session: 2026-06-29T05:00:00.000Z
 Stopped at: Phase 3 verified — milestone v1.0 complete
 Resume file: .planning/phases/03-production-hardening/03-VERIFICATION.md
 
-Last activity: 2026-07-08 - Completed quick task 260707-uec: fix seen.json corruption data-loss + unbounded growth
+Last activity: 2026-07-08 - Completed quick task 260707-us2: fix rank.py tz crash risk, daily.yml email race, hardcoded recipient
