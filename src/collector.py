@@ -61,6 +61,7 @@ def run(
     filter_junk_fn=junk.filter_junk,      # FILTER-JUNK-01: jailbreak/blank-junk filter
     prune_fn=prune.prune_snapshots,       # HARD-04: snapshot pruning (D-09)
     prune_meta_fn=prune.prune_metadata,   # HARD-04-EXT: tracked-repo eviction
+    prune_seen_fn=prune.prune_seen,       # HARD-04-SEEN: bound seen.json growth
 ):
     """Orchestrate the full collection loop for one run.
 
@@ -102,6 +103,7 @@ def run(
         filter_junk_fn:  Callable matching junk.filter_junk signature. (FILTER-JUNK-01)
         prune_fn:        Callable matching prune.prune_snapshots signature. (HARD-04)
         prune_meta_fn:   Callable matching prune.prune_metadata signature. (HARD-04-EXT)
+        prune_seen_fn:   Callable matching prune.prune_seen signature. (HARD-04-SEEN)
     """
     # 0. Gap detection — fires before any API quota is spent (HARD-02, D-05)
     check_gap_fn(now, SNAPSHOTS_DIR)
@@ -158,7 +160,8 @@ def run(
     markers, updated_seen = classify_fn(current_seen, reported_ids, now.strftime("%Y-%m-%d"))
     write_digest(buckets, markers, now, REPORTS_DIR)      # write report FIRST (D-10)
     write_html_digest(buckets, markers, now, REPORTS_DIR)  # NEW — HTML digest for email
-    save_seen_fn(updated_seen, SEEN_PATH)                 # then persist seen-store (D-10)
+    pruned_seen = prune_seen_fn(updated_seen, now)  # HARD-04-SEEN: bound seen.json growth
+    save_seen_fn(pruned_seen, SEEN_PATH)            # then persist seen-store (D-10)
 
     # 6. Prune old snapshots — LAST, after all writes (HARD-04, D-09)
     prune_fn(now, SNAPSHOTS_DIR, SNAPSHOT_RETENTION_DAYS)

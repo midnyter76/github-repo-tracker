@@ -506,6 +506,90 @@ class TestPhase2Wiring:
         assert 222 in captured_ids, f"id 222 missing from reported_ids: {captured_ids}"
 
 
+class TestPruneSeenWiring:
+    """prune_seen_fn must be called on updated_seen (from classify_fn) AFTER the
+    report writes and BEFORE save_seen_fn; save_seen_fn must receive
+    prune_seen_fn's return value, not the unpruned updated_seen (HARD-04-SEEN)."""
+
+    def test_prune_seen_called_after_reports_before_save(self):
+        """prune_seen_fn fires after write_digest/write_html_digest, before save_seen_fn."""
+        from datetime import datetime, timezone  # noqa: PLC0415
+        from src.collector import run  # noqa: PLC0415
+
+        g = MagicMock()
+        now = datetime(2026, 6, 28, 13, 0, 0, tzinfo=timezone.utc)
+        calls = []
+
+        run(
+            g,
+            now,
+            discover=lambda _g: {},
+            established=lambda _g: {},
+            load_ids=lambda: [],
+            refresh=lambda _g, _ids: {},
+            write_snap=MagicMock(),
+            write_meta=MagicMock(),
+            compute_buckets=lambda *a, **k: _empty_buckets(),
+            load_seen_fn=lambda *a, **k: {},
+            classify_fn=lambda seen, ids, d: ({}, {}),
+            write_digest=lambda *a, **k: calls.append("write_digest"),
+            write_html_digest=lambda *a, **k: calls.append("write_html_digest"),
+            prune_seen_fn=lambda *a, **k: (calls.append("prune_seen") or {}),
+            save_seen_fn=lambda *a, **k: calls.append("save_seen"),
+            check_gap_fn=lambda *a, **k: None,
+            filter_gamed_fn=lambda c: c,
+            prune_fn=lambda *a, **k: [],
+            prune_meta_fn=lambda *a, **k: [],
+        )
+
+        assert calls.index("write_html_digest") < calls.index("prune_seen"), (
+            f"prune_seen_fn must come after write_html_digest; got order: {calls}"
+        )
+        assert calls.index("prune_seen") < calls.index("save_seen"), (
+            f"prune_seen_fn must come before save_seen; got order: {calls}"
+        )
+
+    def test_save_seen_receives_pruned_result_not_updated_seen(self):
+        """save_seen_fn must be called with prune_seen_fn's return value."""
+        from datetime import datetime, timezone  # noqa: PLC0415
+        from src.collector import run  # noqa: PLC0415
+
+        g = MagicMock()
+        now = datetime(2026, 6, 28, 13, 0, 0, tzinfo=timezone.utc)
+
+        unpruned = {"111": {"first_seen": "2026-01-01"}, "222": {"first_seen": "2026-06-28"}}
+        pruned = {"222": {"first_seen": "2026-06-28"}}
+        mock_save_seen = MagicMock()
+
+        run(
+            g,
+            now,
+            discover=lambda _g: {},
+            established=lambda _g: {},
+            load_ids=lambda: [],
+            refresh=lambda _g, _ids: {},
+            write_snap=MagicMock(),
+            write_meta=MagicMock(),
+            compute_buckets=lambda *a, **k: _empty_buckets(),
+            load_seen_fn=lambda *a, **k: {},
+            classify_fn=lambda seen, ids, d: ({}, unpruned),
+            write_digest=MagicMock(),
+            write_html_digest=MagicMock(),
+            prune_seen_fn=lambda updated, n: pruned,
+            save_seen_fn=mock_save_seen,
+            check_gap_fn=lambda *a, **k: None,
+            filter_gamed_fn=lambda c: c,
+            prune_fn=lambda *a, **k: [],
+            prune_meta_fn=lambda *a, **k: [],
+        )
+
+        mock_save_seen.assert_called_once()
+        call_args = mock_save_seen.call_args
+        assert call_args[0][0] == pruned, (
+            "save_seen_fn must receive prune_seen_fn's return value, not updated_seen"
+        )
+
+
 # ---------------------------------------------------------------------------
 # Task 1: Token safety grep gate (static analysis of collector.py source)
 # ---------------------------------------------------------------------------
