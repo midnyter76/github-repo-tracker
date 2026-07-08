@@ -18,6 +18,8 @@ Covers:
 - prune_metadata: ledger self-cleans (drops rids no longer in metadata)
 - prune_metadata: corrupt metadata.json / ledger.json → warns, treats as empty
 - prune_metadata: reported_ids referencing unknown rid does not crash or resurrect
+- prune_seen: recent/stale/boundary first_seen entries, missing/malformed first_seen,
+  non-mutation of the input dict (HARD-04-SEEN)
 
 All tests use tmp_path so no writes ever touch the real data/snapshots directory.
 """
@@ -333,3 +335,97 @@ class TestPruneMetadata:
 
         assert callable(prune_metadata)
         assert callable(prune_snapshots)
+
+
+class TestPruneSeen:
+    """prune_seen() drops seen.json entries whose first_seen predates the
+    retention window (HARD-04-SEEN)."""
+
+    def test_recent_entry_kept_unchanged(self):
+        """Entry with first_seen 27 days old (retention_days=90) is kept, value unchanged."""
+        from src.prune import prune_seen
+
+        now = _now()
+        recent_date = (now - timedelta(days=27)).date().isoformat()
+        seen = {"111": {"first_seen": recent_date}}
+
+        result = prune_seen(seen, now, retention_days=90)
+
+        assert result == {"111": {"first_seen": recent_date}}
+
+    def test_stale_entry_dropped(self):
+        """Entry with first_seen ~178 days old (retention_days=90) is dropped."""
+        from src.prune import prune_seen
+
+        now = _now()
+        stale_date = (now - timedelta(days=178)).date().isoformat()
+        seen = {"111": {"first_seen": stale_date}}
+
+        result = prune_seen(seen, now, retention_days=90)
+
+        assert "111" not in result
+
+    def test_boundary_cutoff_date_kept(self):
+        """With retention_days=10, an entry dated exactly at the cutoff is KEPT (>=)."""
+        from src.prune import prune_seen
+
+        now = _now()
+        cutoff_date = (now - timedelta(days=10)).date().isoformat()
+        seen = {"111": {"first_seen": cutoff_date}}
+
+        result = prune_seen(seen, now, retention_days=10)
+
+        assert "111" in result
+
+    def test_boundary_one_day_past_cutoff_pruned(self):
+        """With retention_days=10, an entry one day older than the cutoff is PRUNED."""
+        from src.prune import prune_seen
+
+        now = _now()
+        past_cutoff_date = (now - timedelta(days=11)).date().isoformat()
+        seen = {"111": {"first_seen": past_cutoff_date}}
+
+        result = prune_seen(seen, now, retention_days=10)
+
+        assert "111" not in result
+
+    def test_missing_first_seen_kept(self):
+        """Entry missing first_seen is kept as-is, no crash."""
+        from src.prune import prune_seen
+
+        now = _now()
+        seen = {"111": {}}
+
+        result = prune_seen(seen, now, retention_days=90)
+
+        assert result == {"111": {}}
+
+    def test_malformed_first_seen_kept_and_warns(self):
+        """Entry with malformed first_seen is kept as-is, warning emitted."""
+        from src.prune import prune_seen
+
+        now = _now()
+        seen = {"111": {"first_seen": "not-a-date"}}
+
+        with warnings.catch_warnings(record=True) as w:
+            warnings.simplefilter("always")
+            result = prune_seen(seen, now, retention_days=90)
+
+        assert result == {"111": {"first_seen": "not-a-date"}}
+        assert any("first_seen" in str(warning.message) for warning in w)
+
+    def test_input_dict_not_mutated(self):
+        """prune_seen must not mutate the input dict."""
+        from src.prune import prune_seen
+
+        now = _now()
+        stale_date = (now - timedelta(days=178)).date().isoformat()
+        seen = {
+            "111": {"first_seen": stale_date},
+            "222": {"first_seen": now.date().isoformat()},
+        }
+        original_keys = set(seen.keys())
+
+        prune_seen(seen, now, retention_days=90)
+
+        assert set(seen.keys()) == original_keys, "input dict key set must be unchanged"

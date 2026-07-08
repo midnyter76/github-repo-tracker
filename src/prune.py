@@ -11,7 +11,12 @@ additive ledger file (data/tracked_ledger.json) to track each repo's last-active
 date — see PLAN <why_a_separate_ledger> for why this can't live in seen.json or
 metadata.json itself.
 
-Both functions return their affected ids/paths for test assertions without mocking.
+prune_seen() bounds seen.json (HARD-04-SEEN), dropping entries whose
+first_seen predates SNAPSHOT_RETENTION_DAYS. Pure in-memory function — the
+caller (collector.run) passes the pruned result straight to save_seen.
+
+All three functions return their affected ids/paths/dict for test assertions
+without mocking.
 """
 import json
 import warnings
@@ -83,8 +88,10 @@ def prune_metadata(
     (now - retention_days) is evicted from metadata.json.
 
     Safe to call when metadata_path does not exist — returns [] without raising.
-    Corrupt metadata.json or ledger JSON is treated as empty (warns, no raise),
-    mirroring the store.py/seen.py corrupt-file guard convention.
+    Corrupt metadata.json or ledger JSON is treated as empty (warns, no raise) —
+    this eviction pass intentionally degrades gracefully, unlike the primary
+    load paths (store.load_metadata / seen.load_seen), which now abort the run
+    on corruption to avoid silently wiping history (T-uec-01).
 
     Args:
         now:            Current UTC datetime (used to compute cutoff date + stamps).
@@ -160,3 +167,52 @@ def prune_metadata(
     ledger_path.write_text(json.dumps(ledger, indent=2))
 
     return evicted
+
+
+def prune_seen(
+    seen: dict,
+    now: datetime,
+    retention_days: int = SNAPSHOT_RETENTION_DAYS,
+) -> dict:
+    """Drop seen-store entries whose first_seen predates retention_days (HARD-04-SEEN).
+
+    Pure function — no disk I/O, does not mutate `seen` — mirrors
+    seen.classify_and_update's contract (the caller already holds
+    updated_seen in memory and hands the pruned result straight to
+    save_seen_fn, same D-10 shape).
+
+    Entries with a missing or malformed first_seen are kept as-is (malformed
+    dates warn, mirroring prune_metadata's malformed-ledger-date guard).
+
+    # ponytail: pruning by first_seen (not a last-active ledger like
+    # prune_metadata's TRACKED_LEDGER_PATH) means a repo reported continuously
+    # past the retention window flips back to "new" (🆕) once its entry ages
+    # out. Upgrade to a last-active ledger if that ever matters.
+
+    Args:
+        seen:           current seen-store (str repo id -> {"first_seen": "YYYY-MM-DD"}).
+        now:             Current UTC datetime (used to compute cutoff date).
+        retention_days: entries older than this many days are dropped.
+
+    Returns:
+        New dict with stale entries removed (input `seen` is not mutated).
+    """
+    cutoff = (now - timedelta(days=retention_days)).date()
+    pruned: dict = {}
+    for rid, entry in seen.items():
+        raw_date = entry.get("first_seen") if isinstance(entry, dict) else None
+        if raw_date is None:
+            pruned[rid] = entry
+            continue
+        try:
+            first_seen = date.fromisoformat(raw_date)
+        except ValueError:
+            warnings.warn(
+                f"Malformed first_seen for repo {rid!r} ({raw_date!r}); keeping entry.",
+                stacklevel=2,
+            )
+            pruned[rid] = entry
+            continue
+        if first_seen >= cutoff:
+            pruned[rid] = entry
+    return pruned

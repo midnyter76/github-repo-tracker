@@ -126,22 +126,31 @@ def write_metadata(
 def load_metadata(metadata_path: Path = METADATA_PATH) -> dict:
     """Load the metadata store. Returns {} when the file is absent.
 
+    Aborts the run on corrupt JSON (T-uec-01): the corrupt file is renamed to
+    `<name>.corrupt` (preserved for manual inspection) and a RuntimeError is
+    raised. This is the primary load path (feeds load_metadata_ids -> collector
+    step 3, before write_meta's step-4 overwrite) — silently degrading to {}
+    here would let the next write permanently erase prior metadata history.
+
     Args:
         metadata_path: injectable for tests (defaults to METADATA_PATH from config)
 
     Returns:
         Parsed metadata dict, or {} if the file does not exist.
+
+    Raises:
+        RuntimeError: if the file contains invalid JSON.
     """
     if not metadata_path.exists():
         return {}
     try:
         return json.loads(metadata_path.read_text())
-    except json.JSONDecodeError:
-        warnings.warn(
-            f"Corrupt metadata at {metadata_path}; treating as empty.",
-            stacklevel=2,
-        )
-        return {}
+    except json.JSONDecodeError as exc:
+        corrupt_path = metadata_path.with_name(metadata_path.name + ".corrupt")
+        metadata_path.replace(corrupt_path)
+        raise RuntimeError(
+            f"Corrupt metadata at {metadata_path}; moved to {corrupt_path} for inspection."
+        ) from exc
 
 
 def load_metadata_ids(

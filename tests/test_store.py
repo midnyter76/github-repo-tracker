@@ -13,6 +13,8 @@ import types
 from datetime import datetime, timezone
 from pathlib import Path
 
+import pytest
+
 # ---------------------------------------------------------------------------
 # Helpers — minimal fake repo objects (no PyGithub dependency)
 # ---------------------------------------------------------------------------
@@ -304,6 +306,24 @@ class TestLoadMetadata:
         result = load_metadata(metadata_path=md_path)
         assert "repos" in result
         assert "111" in result["repos"]
+
+    def test_corrupt_json_renamed_and_raises(self, tmp_path: Path):
+        """load_metadata renames corrupt metadata.json to .corrupt and raises RuntimeError."""
+        from src.store import load_metadata
+
+        md_path = tmp_path / "metadata.json"
+        corrupt_bytes = b"not valid json {{{"
+        md_path.write_bytes(corrupt_bytes)
+
+        with pytest.raises(RuntimeError, match="Corrupt metadata"):
+            load_metadata(metadata_path=md_path)
+
+        assert not md_path.exists(), "original corrupt file must be renamed away"
+        corrupt_backup = tmp_path / "metadata.json.corrupt"
+        assert corrupt_backup.exists(), ".corrupt backup must be created"
+        assert corrupt_backup.read_bytes() == corrupt_bytes, (
+            "corrupt bytes must be preserved verbatim in the .corrupt backup"
+        )
 
 
 class TestLoadMetadataIds:
