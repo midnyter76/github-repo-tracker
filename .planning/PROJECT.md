@@ -40,8 +40,11 @@ _Validated in Phase 3: Production Hardening (code-complete + 221 tests green; HA
 - Web dashboard / UI — markdown report is the deliverable; no frontend in v1
 - Tracking non-AI repos — scope is deliberately AI tooling only
 - Realtime / intraday polling — once-daily cadence is sufficient for early discovery
-- Push delivery (Discord/Slack/email) — file output chosen for v1; revisit later
 - Auto-acting on results (starring, posting, DMs) — read-and-report only
+
+### Shipped Post-Milestone
+
+- [x] HTML email digest delivery (Gmail, via quick tasks 260630-tl4 through 260701-ibb) — revisits the "push delivery" out-of-scope call; markdown report remains the source artifact, email is a rendered copy sent alongside it
 
 ## Context
 
@@ -62,12 +65,12 @@ _Validated in Phase 3: Production Hardening (code-complete + 221 tests green; HA
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Python for the script | Best GitHub API + data ecosystem fit | — Pending |
-| Store daily star snapshots | Only way to compute true 24h/30d velocity; API gives no history | — Pending |
-| Markdown file output | Simplest high-signal deliverable; no UI needed in v1 | — Pending |
-| GitHub Actions cron scheduler | Free cloud run, no local machine dependency | — Pending |
-| AI-repo filter strategy deferred to research | Best GitHub Search query (topics vs keyword vs combo) is a research question | — Pending |
-| Dedup = mark seen, 🆕 flag new | Keeps sustained risers visible while highlighting fresh discoveries | — Pending |
+| Python for the script | Best GitHub API + data ecosystem fit | Decided — shipped v1.0 |
+| Store daily star snapshots | Only way to compute true 24h/30d velocity; API gives no history | Decided — shipped v1.0 |
+| Markdown file output | Simplest high-signal deliverable; no UI needed in v1 | Decided — shipped v1.0 |
+| GitHub Actions cron scheduler | Free cloud run, no local machine dependency | Decided — shipped v1.0 |
+| AI-repo filter strategy deferred to research | Best GitHub Search query (topics vs keyword vs combo) is a research question | Decided — combo topic+keyword query, shipped v1.0 |
+| Dedup = mark seen, 🆕 flag new | Keeps sustained risers visible while highlighting fresh discoveries | Decided — shipped v1.0 |
 
 ## Evolution
 

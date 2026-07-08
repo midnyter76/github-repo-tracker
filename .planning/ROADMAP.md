@@ -12,8 +12,8 @@ Three phases deliver a complete daily velocity tracker for emerging AI repos. Ph
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Collection Loop** - Daily fetch→snapshot→commit-back loop running in GitHub Actions; history accumulation starts day 1
-- [ ] **Phase 2: Velocity Ranking + Full Reporting** - Complete four-bucket ranking with graceful cold-start degradation and dated markdown digest
+- [x] **Phase 1: Collection Loop** - Daily fetch→snapshot→commit-back loop running in GitHub Actions; history accumulation starts day 1
+- [x] **Phase 2: Velocity Ranking + Full Reporting** - Complete four-bucket ranking with graceful cold-start degradation and dated markdown digest
 - [x] **Phase 3: Production Hardening** - Scheduler resilience, gap detection, star-gaming filters, and snapshot pruning calibrated on real data
 
 ## Phase Details
@@ -73,6 +73,6 @@ Phases execute in numeric order: 1 → 2 → 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Collection Loop | 0/4 | Planned | - |
-| 2. Velocity Ranking + Full Reporting | 0/4 | Planned | - |
+| 1. Collection Loop | 4/4 | Complete | 2026-06-29 |
+| 2. Velocity Ranking + Full Reporting | 4/4 | Complete | 2026-06-29 |
 | 3. Production Hardening | 5/5 | Complete | 2026-06-29 |
