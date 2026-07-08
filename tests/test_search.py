@@ -185,6 +185,85 @@ class TestOverCap:
 
 
 # ---------------------------------------------------------------------------
+# Task 2 (quick-260707-u0z): pagination hard-cap — FILTER-02 crash regression
+# ---------------------------------------------------------------------------
+
+
+def _make_raising_result(total_count, raise_after):
+    """Fake result whose iterator yields raise_after fake repos then raises
+    github.GithubException on the next pull — models GitHub's real page-11 422."""
+    import github as gh
+
+    def gen():
+        for i in range(raise_after):
+            yield _make_repo(i)
+        raise gh.GithubException(422, "Unprocessable Entity: page 11", None)
+
+    result = MagicMock()
+    result.totalCount = total_count
+    result.__iter__ = MagicMock(side_effect=lambda: gen())
+    return result
+
+
+class TestPaginationHardCap:
+    """Regression tests for the confirmed pagination crash (FILTER-02).
+
+    discover_repos / discover_established must never let a merge loop pull past
+    the 1,000th item, since GitHub 422s on the page-11 fetch that would trigger.
+    """
+
+    def test_discover_repos_does_not_raise_on_page_11(self):
+        """PRIMARY/discriminating test: a source that raises on the 1001st item
+        must not propagate through discover_repos. Fails against any
+        implementation (e.g. enumerate+break) that fetches one item past cap."""
+        def fake_search(g, query, **kwargs):
+            return _make_raising_result(1500, 1000)
+
+        with warnings.catch_warnings(record=True):
+            warnings.simplefilter("always")
+            result = discover_repos(MagicMock(), windows=[7], search=fake_search)
+
+        assert len(result) == 1000
+
+    def test_discover_established_does_not_raise_on_page_11(self):
+        """Same discriminating shape as above, routed through discover_established."""
+        def fake_search(g, query, **kwargs):
+            return _make_raising_result(1500, 1000)
+
+        with warnings.catch_warnings(record=True):
+            warnings.simplefilter("always")
+            result = discover_established(MagicMock(), search=fake_search)
+
+        assert len(result) == 1000
+
+    def test_discover_repos_stops_at_1000_for_non_raising_over_cap(self):
+        """Secondary sanity check on the count only — insufficient on its own,
+        since a subtly broken enumerate+break implementation would also pass
+        this (it still stops the loop at 1000, it just fetches item 1001 first
+        to trigger the break). The raising-iterator test above is the one that
+        actually proves the page-11 crash is fixed."""
+        def fake_search(g, query, **kwargs):
+            return _make_result(1500, list(range(1500)))
+
+        with warnings.catch_warnings(record=True):
+            warnings.simplefilter("always")
+            result = discover_repos(MagicMock(), windows=[7], search=fake_search)
+
+        assert len(result) <= 1000
+
+    def test_discover_established_stops_at_1000_for_non_raising_over_cap(self):
+        """Secondary count-only sanity check (see note above)."""
+        def fake_search(g, query, **kwargs):
+            return _make_result(1500, list(range(1500)))
+
+        with warnings.catch_warnings(record=True):
+            warnings.simplefilter("always")
+            result = discover_established(MagicMock(), search=fake_search)
+
+        assert len(result) <= 1000
+
+
+# ---------------------------------------------------------------------------
 # Task 1: split_star_band
 # ---------------------------------------------------------------------------
 

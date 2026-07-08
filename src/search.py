@@ -6,6 +6,7 @@ star-banded established-repo discovery, and tracked-repo refresh.
 All constants are imported from src.config — never inline filter values here.
 """
 
+import itertools
 import time
 import warnings
 from datetime import datetime, timezone, timedelta
@@ -134,6 +135,27 @@ def over_cap(results) -> bool:
     return results.totalCount >= TOTAL_COUNT_CAP_WARN
 
 
+# GitHub Search API hard-caps results at 1,000 (10 pages x 100/page) and raises
+# a 422 if a PaginatedList is iterated past that. over_cap() only warns — this
+# is the guard that actually prevents the crash (FILTER-02). itertools.islice
+# requests exactly `cap` items and never looks ahead to item cap+1, so it never
+# triggers the page-11 fetch that causes the 422 (unlike enumerate+break, which
+# must fetch item `cap` to evaluate the break condition).
+SEARCH_RESULT_HARD_CAP = 1000
+
+
+def _merge_capped(found: dict, results, cap: int = SEARCH_RESULT_HARD_CAP) -> None:
+    """Merge a search result's repos into found, stopping at cap items.
+
+    Args:
+        found: Accumulator dict, mutated in place, keyed by str(repo.id).
+        results: PaginatedList (or PaginatedList-like) of repo objects.
+        cap: Max items to consume from results before stopping.
+    """
+    for repo in itertools.islice(results, cap):
+        found[str(repo.id)] = repo
+
+
 def split_star_band(band: str) -> list:
     """Split a star band into two contiguous sub-bands at the midpoint.
 
@@ -235,8 +257,7 @@ def discover_repos(g, windows=None, search=None) -> dict:
                         "per-star-band slice",
                         stacklevel=2,
                     )
-                    for repo in results:
-                        found[str(repo.id)] = repo
+                    _merge_capped(found, results)
                 else:
                     # WR-02: issue a complementary date-range query that covers only
                     # the portion of this window NOT already handled by the tightest
@@ -266,11 +287,9 @@ def discover_repos(g, windows=None, search=None) -> dict:
                             "truncated — consider per-star-band slicing",
                             stacklevel=2,
                         )
-                    for repo in mid_results:
-                        found[str(repo.id)] = repo
+                    _merge_capped(found, mid_results)
             else:
-                for repo in results:
-                    found[str(repo.id)] = repo
+                _merge_capped(found, results)
 
         for kw_set in KEYWORD_SETS:
             query = build_keyword_query(kw_set, since_date=since)
@@ -286,8 +305,7 @@ def discover_repos(g, windows=None, search=None) -> dict:
                         "per-star-band slice",
                         stacklevel=2,
                     )
-                    for repo in results:
-                        found[str(repo.id)] = repo
+                    _merge_capped(found, results)
                 else:
                     # WR-02 / WR-03: complementary date-range query for the middle band.
                     tight_since = since_date_for(tightest_window)
@@ -312,11 +330,9 @@ def discover_repos(g, windows=None, search=None) -> dict:
                             "truncated — consider per-star-band slicing",
                             stacklevel=2,
                         )
-                    for repo in mid_results:
-                        found[str(repo.id)] = repo
+                    _merge_capped(found, mid_results)
             else:
-                for repo in results:
-                    found[str(repo.id)] = repo
+                _merge_capped(found, results)
 
     return found
 
@@ -371,11 +387,9 @@ def discover_established(g, search=None) -> dict:
                             "— consider further splitting",
                             stacklevel=2,
                         )
-                    for repo in sub_results:
-                        found[str(repo.id)] = repo
+                    _merge_capped(found, sub_results)
             else:
-                for repo in results:
-                    found[str(repo.id)] = repo
+                _merge_capped(found, results)
 
     return found
 
