@@ -908,3 +908,83 @@ class TestComputeBucketsExcludeIds:
         assert "7" in weekly_ids
         assert "1" in v30d_ids
         assert "7" in v30d_ids
+
+
+# ---------------------------------------------------------------------------
+# Task 4 — Finding 4: per-repo captured_at, legacy fallback
+# ---------------------------------------------------------------------------
+
+class TestEntryCapturedAt:
+    """entry_captured_at reads the per-repo captured_at, falling back to the
+    file-level value for legacy snapshots that predate Finding 4."""
+
+    def test_uses_per_repo_captured_at_when_present(self):
+        from src.rank import entry_captured_at
+
+        snap = {
+            "captured_at": "2026-06-28T12:00:00+00:00",  # file-level (retry time)
+            "repos": {"1": {"stars": 100, "captured_at": "2026-06-27T13:00:00+00:00"}},
+        }
+        assert entry_captured_at(snap, "1") == "2026-06-27T13:00:00+00:00"
+
+    def test_falls_back_to_file_level_when_repo_entry_has_no_captured_at(self):
+        """Legacy snapshot entries (pre-Finding-4, no per-repo captured_at) fall
+        back to the file-level captured_at."""
+        from src.rank import entry_captured_at
+
+        snap = {
+            "captured_at": "2026-06-28T12:00:00+00:00",
+            "repos": {"1": {"stars": 100}},  # no per-repo captured_at (legacy)
+        }
+        assert entry_captured_at(snap, "1") == "2026-06-28T12:00:00+00:00"
+
+
+class TestVelocityUsesPerRepoCapturedAt:
+    """spike_velocity / rolling_velocity / creation_velocity (via compute_buckets)
+    use per-repo captured_at when present, so a same-day retry's carried-forward
+    repos are not corrupted by the retry's later file-level captured_at."""
+
+    def test_spike_velocity_uses_per_repo_captured_at(self):
+        """A repo carried forward with an OLDER per-repo captured_at than the file-level
+        value produces the elapsed hours based on its own timestamp, not the file's."""
+        from src.rank import spike_velocity
+
+        # File-level captured_at is the retry time (15:00); repo "1" was actually
+        # captured at 13:00 (carried forward from the original same-day write).
+        snap_prev = {
+            "captured_at": "2026-06-27T01:00:00+00:00",
+            "repos": {"1": {"stars": 100, "captured_at": "2026-06-27T01:00:00+00:00"}},
+        }
+        snap_latest = {
+            "captured_at": "2026-06-28T15:00:00+00:00",  # retry file-level time
+            "repos": {"1": {"stars": 340, "captured_at": "2026-06-28T13:00:00+00:00"}},
+        }
+        # Elapsed = 13:00 (day 28) - 01:00 (day 27) = 36h; delta = 240
+        result = spike_velocity(snap_latest, snap_prev, "1")
+        assert result is not None
+        assert abs(result - (240 / 36)) < 0.01
+
+    def test_legacy_snapshots_without_per_repo_captured_at_still_rank(self, tmp_path: Path):
+        """A legacy snapshot pair (no per-repo captured_at — the exact shape of the
+        27 pre-existing files in data/snapshots/) still ranks correctly end-to-end
+        via compute_buckets's file-level fallback."""
+        from src.rank import compute_buckets
+
+        snaps_dir = tmp_path / "snapshots"
+        snaps_dir.mkdir()
+        meta_path = tmp_path / "metadata.json"
+        now = _utc(month=6, day=28, hour=12)
+        prev_at = (now - timedelta(hours=24)).isoformat()
+
+        # Legacy shape: repo entries have ONLY "stars", no "captured_at".
+        _write_snapshot(snaps_dir, "2026-06-27", prev_at, {"1": {"stars": 100}})
+        _write_snapshot(snaps_dir, "2026-06-28", now.isoformat(), {"1": {"stars": 340}})
+        meta_path.write_text(json.dumps({
+            "updated_at": now.isoformat(),
+            "repos": {"1": _meta_entry(created_at="2026-01-01T00:00:00+00:00")},
+        }))
+
+        buckets = compute_buckets(snaps_dir, meta_path, now)
+        assert buckets["spike_24h"]["active"] is True
+        assert len(buckets["spike_24h"]["entries"]) == 1
+        assert buckets["spike_24h"]["entries"][0]["velocity_per_day"] == pytest.approx(240.0)

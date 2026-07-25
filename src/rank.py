@@ -12,6 +12,7 @@ Public API:
     rolling_velocity(snap_current, snap_oldest, rid) -> float | None
     load_snapshots(snapshots_dir) -> list[dict]
     select_30d_window(snapshots, run_date) -> list[dict] | None
+    entry_captured_at(snap, rid) -> str
 
 All functions are pure (no side effects outside warnings.warn) and take
 injectable paths so they can be unit-tested without real file I/O.
@@ -73,6 +74,26 @@ def is_new(created_at_iso: str, run_date: date, window_days: int) -> bool:
     return (run_date - created).days <= window_days
 
 
+def entry_captured_at(snap: dict, rid: str) -> str:
+    """Per-repo capture time, falling back to the file-level value (legacy snapshots).
+
+    Finding 4: same-day retries stamp only the repos present in that retry's
+    call, so a repo carried forward from an earlier same-day write keeps its
+    original per-repo captured_at even though the file-level captured_at
+    advances to the retry's time. Snapshots written before this fix have no
+    per-repo captured_at at all — those fall back to the file-level value.
+
+    Args:
+        snap: Snapshot dict (has "repos", "captured_at").
+        rid:  Numeric repo ID as string key. Must be present in snap["repos"].
+
+    Returns:
+        ISO 8601 UTC string — the repo's own captured_at, or the snapshot's
+        file-level captured_at when the repo entry predates Finding 4.
+    """
+    return snap["repos"][rid].get("captured_at") or snap["captured_at"]
+
+
 def spike_velocity(snap_latest: dict, snap_prev: dict, rid: str) -> float | None:
     """Stars per hour between the two most recent snapshots.
 
@@ -91,8 +112,8 @@ def spike_velocity(snap_latest: dict, snap_prev: dict, rid: str) -> float | None
     if rid not in snap_latest["repos"] or rid not in snap_prev["repos"]:
         return None
     delta = snap_latest["repos"][rid]["stars"] - snap_prev["repos"][rid]["stars"]
-    t_latest = datetime.fromisoformat(snap_latest["captured_at"])
-    t_prev = datetime.fromisoformat(snap_prev["captured_at"])
+    t_latest = datetime.fromisoformat(entry_captured_at(snap_latest, rid))
+    t_prev = datetime.fromisoformat(entry_captured_at(snap_prev, rid))
     elapsed_hours = (t_latest - t_prev).total_seconds() / 3600
     elapsed_hours = max(elapsed_hours, 0.1)  # guard against identical captured_at
     return delta / elapsed_hours  # → stars/hour
@@ -115,8 +136,8 @@ def rolling_velocity(snap_current: dict, snap_oldest: dict, rid: str) -> float |
     if rid not in snap_current["repos"] or rid not in snap_oldest["repos"]:
         return None
     delta = snap_current["repos"][rid]["stars"] - snap_oldest["repos"][rid]["stars"]
-    t_current = datetime.fromisoformat(snap_current["captured_at"])
-    t_oldest = datetime.fromisoformat(snap_oldest["captured_at"])
+    t_current = datetime.fromisoformat(entry_captured_at(snap_current, rid))
+    t_oldest = datetime.fromisoformat(entry_captured_at(snap_oldest, rid))
     elapsed_hours = (t_current - t_oldest).total_seconds() / 3600
     elapsed_hours = max(elapsed_hours, 0.1)
     return delta / elapsed_hours  # → stars/hour
@@ -282,7 +303,7 @@ def compute_buckets(
 
             created_at = meta_repos[rid]["created_at"]
             stars = snap_data["stars"]
-            vel = creation_velocity(stars, created_at, current["captured_at"])
+            vel = creation_velocity(stars, created_at, entry_captured_at(current, rid))
 
             if is_new(created_at, run_date, config.BRAND_NEW_WEEKLY_DAYS):
                 weekly_entries.append(_build_entry(rid, stars, vel, meta_repos))

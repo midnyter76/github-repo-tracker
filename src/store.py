@@ -29,12 +29,18 @@ def write_snapshot(
         {
             "date": "YYYY-MM-DD",
             "captured_at": "<UTC ISO 8601 string>",
-            "repos": {"<str repo id>": {"stars": <int>}, ...}
+            "repos": {"<str repo id>": {"stars": <int>, "captured_at": "<UTC ISO 8601 string>"}, ...}
         }
 
     Idempotency (DATA-04 / Pitfall 5): if a snapshot for this date already exists,
     the existing repos are loaded and merged with the new ones. The new run only
     adds or updates entries — it never drops repos written by a prior same-day run.
+    Each repo entry is stamped with THIS call's run_at as its per-repo captured_at
+    (Finding 4); a repo carried forward from an earlier same-day write keeps its
+    ORIGINAL captured_at because the upsert only overwrites entries for repos
+    present in this call's `repos` argument. Legacy entries with no per-repo
+    captured_at (pre-Finding-4 files) are read via rank.entry_captured_at's
+    file-level fallback — no migration needed.
 
     Args:
         repos:        dict mapping str(repo.id) → repo object (with .stargazers_count)
@@ -60,8 +66,15 @@ def write_snapshot(
             )
             existing = {}
 
-    # Upsert: existing entries survive; new entries overwrite by id (new value wins)
-    stars = {**existing, **{rid: {"stars": r.stargazers_count} for rid, r in repos.items()}}
+    # Upsert: existing entries survive with their ORIGINAL captured_at; new entries
+    # overwrite by id and are stamped with this call's run_at (new value wins).
+    stars = {
+        **existing,
+        **{
+            rid: {"stars": r.stargazers_count, "captured_at": run_at.isoformat()}
+            for rid, r in repos.items()
+        },
+    }
 
     snapshot = {
         "date": date_str,

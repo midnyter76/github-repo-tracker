@@ -64,7 +64,8 @@ class TestWriteSnapshot:
         assert "repos" in data
 
     def test_repos_keyed_by_str_id_with_star_count(self, tmp_path: Path):
-        """repos dict is keyed by str(repo.id) and contains star count only (DATA-02)."""
+        """repos dict is keyed by str(repo.id) and contains star count + per-repo
+        captured_at (DATA-02, Finding 4)."""
         from src.store import write_snapshot
 
         run_at = _utc()
@@ -73,7 +74,7 @@ class TestWriteSnapshot:
 
         data = json.loads(snap_path.read_text())
         assert "111" in data["repos"]
-        assert data["repos"]["111"] == {"stars": 50}
+        assert data["repos"]["111"] == {"stars": 50, "captured_at": run_at.isoformat()}
 
     def test_filename_derived_from_run_at_date(self, tmp_path: Path):
         """Snapshot filename is YYYY-MM-DD.json derived from run_at (DATA-05)."""
@@ -145,6 +146,34 @@ class TestWriteSnapshot:
         data = json.loads((tmp_path / "2026-06-27.json").read_text())
         assert data["repos"]["111"]["stars"] == 75
         assert "222" in data["repos"], "repo 222 must not be dropped when updating 111"
+
+    def test_retry_carries_forward_original_captured_at(self, tmp_path: Path):
+        """A same-day retry leaves a carried-forward repo with its ORIGINAL
+        captured_at, while the file-level captured_at advances to the retry
+        time (Finding 4)."""
+        from src.store import write_snapshot
+
+        first_run_at = _utc(hour=13)
+        retry_run_at = _utc(hour=15)  # same date, later time (retry)
+
+        repo_111 = _make_repo(id=111, stargazers_count=50)
+        repo_222 = _make_repo(id=222, stargazers_count=99)
+
+        # First write: repo 111 only, at 13:00
+        write_snapshot({"111": repo_111}, first_run_at, snapshots_dir=tmp_path)
+        # Retry: repo 222 only, at 15:00 (repo 111 is carried forward untouched)
+        write_snapshot({"222": repo_222}, retry_run_at, snapshots_dir=tmp_path)
+
+        data = json.loads((tmp_path / "2026-06-27.json").read_text())
+        assert data["captured_at"] == retry_run_at.isoformat(), (
+            "file-level captured_at advances to the retry time"
+        )
+        assert data["repos"]["111"]["captured_at"] == first_run_at.isoformat(), (
+            "carried-forward repo must keep its ORIGINAL per-repo captured_at"
+        )
+        assert data["repos"]["222"]["captured_at"] == retry_run_at.isoformat(), (
+            "repo written by the retry gets the retry's captured_at"
+        )
 
     def test_creates_snapshots_dir_if_missing(self, tmp_path: Path):
         """SNAPSHOTS_DIR is created with mkdir parents/exist_ok if it doesn't exist."""
