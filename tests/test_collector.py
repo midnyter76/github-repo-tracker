@@ -920,6 +920,59 @@ class TestWorkflowYaml:
         text = self._get_workflow_text()
         assert "reports/{today}.html" in text or ".html" in text
 
+    def test_concurrency_group_shared_with_keepalive(self):
+        """daily.yml must declare the shared repo-writes concurrency group (Finding 5)."""
+        assert "group: repo-writes" in self._get_workflow_text()
+
+    def test_collect_job_has_timeout(self):
+        """daily.yml's collect job must set timeout-minutes: 60 (Finding 5)."""
+        assert "timeout-minutes: 60" in self._get_workflow_text()
+
+
+class TestCiYaml:
+    """ci.yml must run pytest on push + pull_request with SHA-pinned actions (Finding 5)."""
+
+    def _get_workflow_text(self) -> str:
+        p = Path(__file__).parent.parent / ".github" / "workflows" / "ci.yml"
+        assert p.exists(), f"Workflow file not found: {p}"
+        return p.read_text()
+
+    def test_file_exists(self):
+        """ci.yml must exist."""
+        assert self._get_workflow_text()
+
+    def test_triggers_on_pull_request(self):
+        """ci.yml must trigger on pull_request (as well as push)."""
+        assert "pull_request" in self._get_workflow_text()
+
+    def test_triggers_on_push(self):
+        """ci.yml must trigger on push."""
+        assert "push" in self._get_workflow_text()
+
+    def test_contains_pytest_invocation(self):
+        """ci.yml must run pytest."""
+        assert "pytest" in self._get_workflow_text()
+
+    def test_contents_read_permission(self):
+        """ci.yml must scope permissions to contents: read (T-hmy-05)."""
+        assert "contents: read" in self._get_workflow_text()
+
+    def test_checkout_action_pinned_sha(self):
+        """ci.yml must reuse the exact pinned checkout SHA from daily.yml."""
+        assert "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683" in self._get_workflow_text()
+
+    def test_setup_uv_action_pinned_sha(self):
+        """ci.yml must reuse the exact pinned setup-uv SHA from daily.yml."""
+        assert "astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39" in self._get_workflow_text()
+
+    def test_no_concurrency_group(self):
+        """ci.yml must NOT declare a concurrency group — it does not write to the repo."""
+        assert "group: repo-writes" not in self._get_workflow_text()
+
+    def test_job_has_timeout(self):
+        """ci.yml's test job must declare a timeout-minutes."""
+        assert "timeout-minutes:" in self._get_workflow_text()
+
 
 class TestKeepaliveYaml:
     """keepalive.yml must contain all HARD-01 required strings."""
@@ -968,6 +1021,29 @@ class TestKeepaliveYaml:
     def test_no_uv_setup(self):
         """keepalive.yml must NOT contain astral-sh/setup-uv (no Python in keepalive)."""
         assert "astral-sh/setup-uv" not in self._get_workflow_text()
+
+    def test_concurrency_group_shared_with_daily(self):
+        """keepalive.yml must declare the shared repo-writes concurrency group (Finding 5)."""
+        assert "group: repo-writes" in self._get_workflow_text()
+
+
+class TestSharedConcurrencyGroup:
+    """daily.yml and keepalive.yml must share an IDENTICAL concurrency group name
+    so the two writers actually serialize against each other (Finding 5)."""
+
+    def test_daily_and_keepalive_share_group_name(self):
+        import re  # noqa: PLC0415
+
+        base = Path(__file__).parent.parent / ".github" / "workflows"
+        daily_text = (base / "daily.yml").read_text()
+        keepalive_text = (base / "keepalive.yml").read_text()
+
+        daily_group = re.search(r"group:\s*(\S+)", daily_text)
+        keepalive_group = re.search(r"group:\s*(\S+)", keepalive_text)
+        assert daily_group and keepalive_group, "both workflows must declare a concurrency group"
+        assert daily_group.group(1) == keepalive_group.group(1), (
+            "daily.yml and keepalive.yml must use the identical concurrency group name"
+        )
 
 
 class TestRunPhase3CallOrder:
