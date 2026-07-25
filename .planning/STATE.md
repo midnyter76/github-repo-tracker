@@ -94,6 +94,7 @@ None yet.
 | 260707-uc5 | Fix GSD planning doc drift: ROADMAP.md phase 1/2 marked Complete, PROJECT.md email delivery moved to Shipped Post-Milestone, Key Decisions Pending -> Decided | 2026-07-08 | 6fcf736 | [260707-uc5-fix-gsd-planning-doc-drift-roadmap-md-st](./quick/260707-uc5-fix-gsd-planning-doc-drift-roadmap-md-st/) |
 | 260707-uec | Fix seen.json/metadata.json silent data loss on corruption (rename to .corrupt + abort instead of returning {}); add prune_seen() to bound seen.json growth via existing SNAPSHOT_RETENTION_DAYS | 2026-07-08 | 051b2cf | [260707-uec-fix-seen-json-data-loss-and-unbounded-gr](./quick/260707-uec-fix-seen-json-data-loss-and-unbounded-gr/) |
 | 260707-us2 | Fix rank.py naive-datetime crash risk (tzinfo-is-None guard in creation_velocity); fix daily.yml UTC-midnight email race (pass actual report path via $GITHUB_OUTPUT instead of recomputing date); move hardcoded email recipient to vars.REPORT_TO_EMAIL | 2026-07-08 | 31ce3cf | [260707-us2-fix-three-low-medium-findings-1-rank-py-](./quick/260707-us2-fix-three-low-medium-findings-1-rank-py-/) |
+| 260725-hmy | Fix five joint Claude+Codex audit findings: 30d velocity per-repo oldest-containing-snapshot join, write_metadata merge (not overwrite), filter at digest-selection not persistence, per-repo captured_at for retry safety, CI workflow + shared concurrency group + daily job timeout | 2026-07-25 | 0e7fd2a | [260725-hmy-fix-five-audit-findings-30d-velocity-per](./quick/260725-hmy-fix-five-audit-findings-30d-velocity-per/) |
 
 ## Deferred Items
 
@@ -109,4 +110,4 @@ Last session: 2026-06-29T05:00:00.000Z
 Stopped at: Phase 3 verified — milestone v1.0 complete
 Resume file: .planning/phases/03-production-hardening/03-VERIFICATION.md
 
-Last activity: 2026-07-08 - Completed quick task 260707-us2: fix rank.py tz crash risk, daily.yml email race, hardcoded recipient
+Last activity: 2026-07-25 - Completed quick task 260725-hmy: fix five audit findings (30d velocity join, metadata merge, filter-at-digest, per-repo captured_at, CI workflow)
