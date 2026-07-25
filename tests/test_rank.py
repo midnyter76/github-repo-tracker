@@ -295,8 +295,8 @@ class TestLoadSnapshots:
 # ---------------------------------------------------------------------------
 
 class TestSelect30dWindow:
-    def test_returns_oldest_and_newest_in_window(self):
-        """select_30d_window returns (oldest_in_window, current) tuple."""
+    def test_returns_full_in_window_list_ascending(self):
+        """select_30d_window returns the full in-window snapshot list, ascending."""
         from src.rank import select_30d_window
 
         run_date = date(2026, 6, 28)
@@ -307,9 +307,7 @@ class TestSelect30dWindow:
         ]
         result = select_30d_window(snaps, run_date)
         assert result is not None
-        oldest, newest = result
-        assert oldest["date"] == "2026-05-29"
-        assert newest["date"] == "2026-06-28"
+        assert [s["date"] for s in result] == ["2026-05-29", "2026-06-14", "2026-06-28"]
 
     def test_returns_none_when_less_than_2_in_window(self):
         """select_30d_window returns None when fewer than 2 snapshots are in window."""
@@ -752,3 +750,104 @@ class TestComputeBucketsOverlapAndNegative:
 
         buckets = compute_buckets(snaps_dir, meta_path, now)
         assert buckets["velocity_30d"]["window_target"] == 30
+
+
+# ---------------------------------------------------------------------------
+# Task 1 — Finding 1: per-repo oldest-containing-snapshot join for velocity_30d
+# ---------------------------------------------------------------------------
+
+class TestVelocity30dOldestContainingSnapshot:
+    """A repo absent from the globally-oldest in-window snapshot but present in
+    a middle one must still get a velocity_30d entry, joined against that
+    middle snapshot — not silently dropped (Finding 1)."""
+
+    def test_repo_absent_from_oldest_present_in_middle_gets_entry(self, tmp_path: Path):
+        """Repo missing from the globally-oldest snapshot but present in a middle
+        and the newest snapshot produces a velocity_30d entry computed against
+        the middle (oldest-containing) snapshot."""
+        from src.rank import compute_buckets
+
+        snaps_dir = tmp_path / "snapshots"
+        snaps_dir.mkdir()
+        meta_path = tmp_path / "metadata.json"
+        now = _utc(month=6, day=28, hour=12)
+
+        oldest_at = (now - timedelta(days=20)).isoformat()
+        middle_at = (now - timedelta(days=10)).isoformat()
+        # Repo "2" does NOT exist in the globally-oldest snapshot.
+        _write_snapshot(snaps_dir, "2026-06-08", oldest_at, {"1": {"stars": 1000}})
+        _write_snapshot(snaps_dir, "2026-06-18", middle_at, {"1": {"stars": 1100}, "2": {"stars": 50}})
+        _write_snapshot(snaps_dir, "2026-06-28", now.isoformat(), {"1": {"stars": 1200}, "2": {"stars": 150}})
+        meta_path.write_text(json.dumps({
+            "updated_at": now.isoformat(),
+            "repos": {
+                "1": _meta_entry("owner/repo1", created_at="2026-01-01T00:00:00+00:00"),
+                "2": _meta_entry("owner/repo2", created_at="2026-01-01T00:00:00+00:00"),
+            },
+        }))
+
+        buckets = compute_buckets(snaps_dir, meta_path, now)
+        entries_by_id = {e["id"]: e for e in buckets["velocity_30d"]["entries"]}
+        assert "2" in entries_by_id, (
+            "Repo present only in a middle + newest snapshot must still produce a velocity_30d entry"
+        )
+        # Sanity: velocity computed against the middle snapshot (10 days = 240h elapsed), not
+        # dropped for having no entry in the globally-oldest snapshot.
+        expected_per_hour = (150 - 50) / 240
+        assert entries_by_id["2"]["velocity_per_day"] == pytest.approx(expected_per_hour * 24)
+
+    def test_repo_present_only_in_newest_snapshot_gets_no_entry(self, tmp_path: Path):
+        """Repo present ONLY in the newest snapshot (absent from every older
+        in-window snapshot) still produces no velocity_30d entry."""
+        from src.rank import compute_buckets
+
+        snaps_dir = tmp_path / "snapshots"
+        snaps_dir.mkdir()
+        meta_path = tmp_path / "metadata.json"
+        now = _utc(month=6, day=28, hour=12)
+
+        oldest_at = (now - timedelta(days=20)).isoformat()
+        middle_at = (now - timedelta(days=10)).isoformat()
+        _write_snapshot(snaps_dir, "2026-06-08", oldest_at, {"1": {"stars": 1000}})
+        _write_snapshot(snaps_dir, "2026-06-18", middle_at, {"1": {"stars": 1100}})
+        # Repo "3" appears for the first time in the newest snapshot only.
+        _write_snapshot(snaps_dir, "2026-06-28", now.isoformat(), {"1": {"stars": 1200}, "3": {"stars": 10}})
+        meta_path.write_text(json.dumps({
+            "updated_at": now.isoformat(),
+            "repos": {
+                "1": _meta_entry("owner/repo1", created_at="2026-01-01T00:00:00+00:00"),
+                "3": _meta_entry("owner/repo3", created_at="2026-01-01T00:00:00+00:00"),
+            },
+        }))
+
+        buckets = compute_buckets(snaps_dir, meta_path, now)
+        entry_ids = {e["id"] for e in buckets["velocity_30d"]["entries"]}
+        assert "3" not in entry_ids, "Repo present only in the newest snapshot must produce no entry"
+
+    def test_negative_delta_still_excluded_against_oldest_containing_snapshot(self, tmp_path: Path):
+        """Negative-delta exclusion is preserved when joined against the
+        per-repo oldest-containing snapshot (not the globally-oldest one)."""
+        from src.rank import compute_buckets
+
+        snaps_dir = tmp_path / "snapshots"
+        snaps_dir.mkdir()
+        meta_path = tmp_path / "metadata.json"
+        now = _utc(month=6, day=28, hour=12)
+
+        oldest_at = (now - timedelta(days=20)).isoformat()
+        middle_at = (now - timedelta(days=10)).isoformat()
+        _write_snapshot(snaps_dir, "2026-06-08", oldest_at, {"1": {"stars": 1000}})
+        # Repo "2" first appears in the middle snapshot with 500 stars, then loses stars.
+        _write_snapshot(snaps_dir, "2026-06-18", middle_at, {"1": {"stars": 1100}, "2": {"stars": 500}})
+        _write_snapshot(snaps_dir, "2026-06-28", now.isoformat(), {"1": {"stars": 1200}, "2": {"stars": 400}})
+        meta_path.write_text(json.dumps({
+            "updated_at": now.isoformat(),
+            "repos": {
+                "1": _meta_entry("owner/repo1", created_at="2026-01-01T00:00:00+00:00"),
+                "2": _meta_entry("owner/repo2", created_at="2026-01-01T00:00:00+00:00"),
+            },
+        }))
+
+        buckets = compute_buckets(snaps_dir, meta_path, now)
+        entry_ids = {e["id"] for e in buckets["velocity_30d"]["entries"]}
+        assert "2" not in entry_ids, "Repo that lost stars vs. its oldest-containing snapshot must be excluded"

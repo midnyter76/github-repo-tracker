@@ -11,7 +11,7 @@ Public API:
     spike_velocity(snap_latest, snap_prev, rid) -> float | None
     rolling_velocity(snap_current, snap_oldest, rid) -> float | None
     load_snapshots(snapshots_dir) -> list[dict]
-    select_30d_window(snapshots, run_date) -> tuple[dict, dict] | None
+    select_30d_window(snapshots, run_date) -> list[dict] | None
 
 All functions are pure (no side effects outside warnings.warn) and take
 injectable paths so they can be unit-tested without real file I/O.
@@ -160,18 +160,20 @@ def load_snapshots(snapshots_dir: Path) -> list[dict]:
 # Window Selection
 # ---------------------------------------------------------------------------
 
-def select_30d_window(snapshots: list[dict], run_date: date) -> tuple[dict, dict] | None:
-    """Return (oldest_in_window, current) or None if <2 snapshots in the 30d window.
+def select_30d_window(snapshots: list[dict], run_date: date) -> list[dict] | None:
+    """Return the full in-window snapshot list (ascending), or None if <2 qualify.
 
     Window is inclusive: a snapshot exactly 30 days old qualifies (>= cutoff).
-    "Current" is the last snapshot in the list (already sorted ascending).
+    Callers join each repo against the oldest in-window snapshot that CONTAINS
+    it (not necessarily in_window[0]) so repos absent from the globally-oldest
+    snapshot but present in a middle one still get a velocity_30d entry.
 
     Args:
         snapshots: List of snapshot dicts sorted ascending by date.
         run_date:  The date on which ranking is computed.
 
     Returns:
-        (oldest_in_window, current) tuple, or None if fewer than 2 qualify.
+        List of in-window snapshot dicts (ascending), or None if fewer than 2 qualify.
     """
     cutoff = run_date - timedelta(days=config.VELOCITY_30D_WINDOW_DAYS)
     in_window = [
@@ -180,7 +182,7 @@ def select_30d_window(snapshots: list[dict], run_date: date) -> tuple[dict, dict
     ]
     if len(in_window) < 2:
         return None
-    return in_window[0], in_window[-1]  # oldest, newest (list is sorted ascending)
+    return in_window
 
 
 # ---------------------------------------------------------------------------
@@ -319,13 +321,22 @@ def compute_buckets(
     v30d_active = False
     v30d_entries: list[dict] = []
 
-    window = select_30d_window(snaps, run_date)
-    if window is not None:
-        snap_oldest, snap_newest = window
+    in_window = select_30d_window(snaps, run_date)
+    if in_window is not None:
+        snap_newest = in_window[-1]
         v30d_active = True
         for rid in snap_newest["repos"]:
             if rid not in meta_repos:
                 continue  # Pitfall 4
+            # Join against the oldest in-window snapshot CONTAINING this repo —
+            # not necessarily in_window[0] (Finding 1: a repo absent from the
+            # globally-oldest snapshot but present in a middle one still gets
+            # a velocity_30d entry against that middle snapshot).
+            snap_oldest = next(
+                (s for s in in_window[:-1] if rid in s["repos"]), None
+            )
+            if snap_oldest is None:
+                continue  # repo present only in the newest snapshot — no history
             per_hour = rolling_velocity(snap_newest, snap_oldest, rid)
             if per_hour is None:
                 continue
