@@ -75,7 +75,10 @@ def run(
          longer overrides discovery for overlapping ids — those are skipped
          since discovery's data is equally fresh; DATA-01 freshest-wins still
          holds because every id in candidates carries this run's data)
-      5. write_snapshot + write_metadata
+      5. write_snapshot + write_metadata — the FULL candidate set, including
+         gamed/junk repos (history is retained even for repos the digest
+         excludes); filter_gamed_fn/filter_junk_fn only compute an exclude_ids
+         set passed to compute_buckets, which gates the digest, not persistence
 
     All dependency functions are keyword-injectable so tests can pass fakes
     without monkeypatching module-level names.
@@ -100,7 +103,10 @@ def run(
         save_seen_fn:    Callable matching seen.save_seen signature.
         check_gap_fn:    Callable matching gap.check_gap signature. (HARD-02)
         filter_gamed_fn: Callable matching gaming.filter_gamed signature. (HARD-03)
+                         Gates the digest (via exclude_ids) only — snapshot/metadata
+                         persistence always uses the full candidate set.
         filter_junk_fn:  Callable matching junk.filter_junk signature. (FILTER-JUNK-01)
+                         Gates the digest (via exclude_ids) only — same as filter_gamed_fn.
         prune_fn:        Callable matching prune.prune_snapshots signature. (HARD-04)
         prune_meta_fn:   Callable matching prune.prune_metadata signature. (HARD-04-EXT)
         prune_seen_fn:   Callable matching prune.prune_seen signature. (HARD-04-SEEN)
@@ -145,16 +151,17 @@ def run(
     )
     candidates.update(refresh(g, capped))
 
-    # 3.5. Filter likely-gamed repos before snapshot write (HARD-03, D-07, Pitfall 5)
-    candidates = filter_gamed_fn(candidates)
-    candidates = filter_junk_fn(candidates)  # drop jailbreak/blank-junk (260705-j51)
+    # 3.5. Gaming/junk repos still get snapshot + metadata rows (history is retained);
+    # they are excluded at digest-selection time only (HARD-03, D-07, FILTER-JUNK-01).
+    kept = filter_junk_fn(filter_gamed_fn(candidates))
+    exclude_ids = set(candidates) - set(kept)
 
-    # 4. Persist Phase 1 snapshot + metadata
+    # 4. Persist Phase 1 snapshot + metadata — FULL candidate set
     write_snap(candidates, now)
     write_meta(candidates, now)
 
     # 5. Phase 2: rank → classify → report → save seen (D-10 ordering)
-    buckets = compute_buckets(SNAPSHOTS_DIR, METADATA_PATH, now)
+    buckets = compute_buckets(SNAPSHOTS_DIR, METADATA_PATH, now, exclude_ids=exclude_ids)
     reported_ids = [e["id"] for b in buckets.values() for e in b["entries"]]
     current_seen = load_seen_fn(SEEN_PATH)
     markers, updated_seen = classify_fn(current_seen, reported_ids, now.strftime("%Y-%m-%d"))

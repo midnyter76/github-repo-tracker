@@ -295,8 +295,8 @@ class TestLoadSnapshots:
 # ---------------------------------------------------------------------------
 
 class TestSelect30dWindow:
-    def test_returns_oldest_and_newest_in_window(self):
-        """select_30d_window returns (oldest_in_window, current) tuple."""
+    def test_returns_full_in_window_list_ascending(self):
+        """select_30d_window returns the full in-window snapshot list, ascending."""
         from src.rank import select_30d_window
 
         run_date = date(2026, 6, 28)
@@ -307,9 +307,7 @@ class TestSelect30dWindow:
         ]
         result = select_30d_window(snaps, run_date)
         assert result is not None
-        oldest, newest = result
-        assert oldest["date"] == "2026-05-29"
-        assert newest["date"] == "2026-06-28"
+        assert [s["date"] for s in result] == ["2026-05-29", "2026-06-14", "2026-06-28"]
 
     def test_returns_none_when_less_than_2_in_window(self):
         """select_30d_window returns None when fewer than 2 snapshots are in window."""
@@ -752,3 +750,241 @@ class TestComputeBucketsOverlapAndNegative:
 
         buckets = compute_buckets(snaps_dir, meta_path, now)
         assert buckets["velocity_30d"]["window_target"] == 30
+
+
+# ---------------------------------------------------------------------------
+# Task 1 — Finding 1: per-repo oldest-containing-snapshot join for velocity_30d
+# ---------------------------------------------------------------------------
+
+class TestVelocity30dOldestContainingSnapshot:
+    """A repo absent from the globally-oldest in-window snapshot but present in
+    a middle one must still get a velocity_30d entry, joined against that
+    middle snapshot — not silently dropped (Finding 1)."""
+
+    def test_repo_absent_from_oldest_present_in_middle_gets_entry(self, tmp_path: Path):
+        """Repo missing from the globally-oldest snapshot but present in a middle
+        and the newest snapshot produces a velocity_30d entry computed against
+        the middle (oldest-containing) snapshot."""
+        from src.rank import compute_buckets
+
+        snaps_dir = tmp_path / "snapshots"
+        snaps_dir.mkdir()
+        meta_path = tmp_path / "metadata.json"
+        now = _utc(month=6, day=28, hour=12)
+
+        oldest_at = (now - timedelta(days=20)).isoformat()
+        middle_at = (now - timedelta(days=10)).isoformat()
+        # Repo "2" does NOT exist in the globally-oldest snapshot.
+        _write_snapshot(snaps_dir, "2026-06-08", oldest_at, {"1": {"stars": 1000}})
+        _write_snapshot(snaps_dir, "2026-06-18", middle_at, {"1": {"stars": 1100}, "2": {"stars": 50}})
+        _write_snapshot(snaps_dir, "2026-06-28", now.isoformat(), {"1": {"stars": 1200}, "2": {"stars": 150}})
+        meta_path.write_text(json.dumps({
+            "updated_at": now.isoformat(),
+            "repos": {
+                "1": _meta_entry("owner/repo1", created_at="2026-01-01T00:00:00+00:00"),
+                "2": _meta_entry("owner/repo2", created_at="2026-01-01T00:00:00+00:00"),
+            },
+        }))
+
+        buckets = compute_buckets(snaps_dir, meta_path, now)
+        entries_by_id = {e["id"]: e for e in buckets["velocity_30d"]["entries"]}
+        assert "2" in entries_by_id, (
+            "Repo present only in a middle + newest snapshot must still produce a velocity_30d entry"
+        )
+        # Sanity: velocity computed against the middle snapshot (10 days = 240h elapsed), not
+        # dropped for having no entry in the globally-oldest snapshot.
+        expected_per_hour = (150 - 50) / 240
+        assert entries_by_id["2"]["velocity_per_day"] == pytest.approx(expected_per_hour * 24)
+
+    def test_repo_present_only_in_newest_snapshot_gets_no_entry(self, tmp_path: Path):
+        """Repo present ONLY in the newest snapshot (absent from every older
+        in-window snapshot) still produces no velocity_30d entry."""
+        from src.rank import compute_buckets
+
+        snaps_dir = tmp_path / "snapshots"
+        snaps_dir.mkdir()
+        meta_path = tmp_path / "metadata.json"
+        now = _utc(month=6, day=28, hour=12)
+
+        oldest_at = (now - timedelta(days=20)).isoformat()
+        middle_at = (now - timedelta(days=10)).isoformat()
+        _write_snapshot(snaps_dir, "2026-06-08", oldest_at, {"1": {"stars": 1000}})
+        _write_snapshot(snaps_dir, "2026-06-18", middle_at, {"1": {"stars": 1100}})
+        # Repo "3" appears for the first time in the newest snapshot only.
+        _write_snapshot(snaps_dir, "2026-06-28", now.isoformat(), {"1": {"stars": 1200}, "3": {"stars": 10}})
+        meta_path.write_text(json.dumps({
+            "updated_at": now.isoformat(),
+            "repos": {
+                "1": _meta_entry("owner/repo1", created_at="2026-01-01T00:00:00+00:00"),
+                "3": _meta_entry("owner/repo3", created_at="2026-01-01T00:00:00+00:00"),
+            },
+        }))
+
+        buckets = compute_buckets(snaps_dir, meta_path, now)
+        entry_ids = {e["id"] for e in buckets["velocity_30d"]["entries"]}
+        assert "3" not in entry_ids, "Repo present only in the newest snapshot must produce no entry"
+
+    def test_negative_delta_still_excluded_against_oldest_containing_snapshot(self, tmp_path: Path):
+        """Negative-delta exclusion is preserved when joined against the
+        per-repo oldest-containing snapshot (not the globally-oldest one)."""
+        from src.rank import compute_buckets
+
+        snaps_dir = tmp_path / "snapshots"
+        snaps_dir.mkdir()
+        meta_path = tmp_path / "metadata.json"
+        now = _utc(month=6, day=28, hour=12)
+
+        oldest_at = (now - timedelta(days=20)).isoformat()
+        middle_at = (now - timedelta(days=10)).isoformat()
+        _write_snapshot(snaps_dir, "2026-06-08", oldest_at, {"1": {"stars": 1000}})
+        # Repo "2" first appears in the middle snapshot with 500 stars, then loses stars.
+        _write_snapshot(snaps_dir, "2026-06-18", middle_at, {"1": {"stars": 1100}, "2": {"stars": 500}})
+        _write_snapshot(snaps_dir, "2026-06-28", now.isoformat(), {"1": {"stars": 1200}, "2": {"stars": 400}})
+        meta_path.write_text(json.dumps({
+            "updated_at": now.isoformat(),
+            "repos": {
+                "1": _meta_entry("owner/repo1", created_at="2026-01-01T00:00:00+00:00"),
+                "2": _meta_entry("owner/repo2", created_at="2026-01-01T00:00:00+00:00"),
+            },
+        }))
+
+        buckets = compute_buckets(snaps_dir, meta_path, now)
+        entry_ids = {e["id"] for e in buckets["velocity_30d"]["entries"]}
+        assert "2" not in entry_ids, "Repo that lost stars vs. its oldest-containing snapshot must be excluded"
+
+
+# ---------------------------------------------------------------------------
+# Task 3 — Finding 3: exclude_ids digest-selection filter
+# ---------------------------------------------------------------------------
+
+class TestComputeBucketsExcludeIds:
+    """exclude_ids (Finding 3) omits gamed/junk repos from every ranked bucket
+    while everything else ranks normally; default None/omitted is unchanged."""
+
+    def _setup(self, tmp_path: Path, gap_hours: int = 24) -> tuple[Path, Path, datetime]:
+        snaps_dir = tmp_path / "snapshots"
+        snaps_dir.mkdir()
+        meta_path = tmp_path / "metadata.json"
+        now = _utc(month=6, day=28, hour=12)
+
+        prev_at = (now - timedelta(hours=gap_hours)).isoformat()
+        _write_snapshot(snaps_dir, "2026-06-27", prev_at, {"1": {"stars": 100}, "7": {"stars": 100}})
+        _write_snapshot(snaps_dir, "2026-06-28", now.isoformat(), {"1": {"stars": 340}, "7": {"stars": 340}})
+        meta_path.write_text(json.dumps({
+            "updated_at": now.isoformat(),
+            "repos": {
+                # Repo "1" is old (qualifies for velocity/spike, not brand-new).
+                "1": _meta_entry("owner/repo1", created_at="2026-01-01T00:00:00+00:00"),
+                # Repo "7" is brand-new (3 days old) AND has the same velocity profile.
+                "7": _meta_entry("owner/repo7", created_at="2026-06-25T12:00:00+00:00"),
+            },
+        }))
+        return snaps_dir, meta_path, now
+
+    def test_exclude_ids_omits_from_all_four_buckets(self, tmp_path: Path):
+        """exclude_ids={'7'} omits id 7 from all four buckets while ranking '1' normally."""
+        from src.rank import compute_buckets
+
+        snaps_dir, meta_path, now = self._setup(tmp_path)
+        buckets = compute_buckets(snaps_dir, meta_path, now, exclude_ids={"7"})
+
+        for bucket_name, bucket in buckets.items():
+            ids = {e["id"] for e in bucket["entries"]}
+            assert "7" not in ids, f"excluded id must be absent from {bucket_name}"
+
+        # "1" is unaffected — still ranks in spike_24h and velocity_30d.
+        assert "1" in {e["id"] for e in buckets["spike_24h"]["entries"]}
+        assert "1" in {e["id"] for e in buckets["velocity_30d"]["entries"]}
+
+    def test_exclude_ids_none_is_unchanged(self, tmp_path: Path):
+        """exclude_ids omitted/None behaves exactly as before (both repos ranked)."""
+        from src.rank import compute_buckets
+
+        snaps_dir, meta_path, now = self._setup(tmp_path)
+        buckets = compute_buckets(snaps_dir, meta_path, now)
+
+        weekly_ids = {e["id"] for e in buckets["brand_new_weekly"]["entries"]}
+        v30d_ids = {e["id"] for e in buckets["velocity_30d"]["entries"]}
+        assert "7" in weekly_ids
+        assert "1" in v30d_ids
+        assert "7" in v30d_ids
+
+
+# ---------------------------------------------------------------------------
+# Task 4 — Finding 4: per-repo captured_at, legacy fallback
+# ---------------------------------------------------------------------------
+
+class TestEntryCapturedAt:
+    """entry_captured_at reads the per-repo captured_at, falling back to the
+    file-level value for legacy snapshots that predate Finding 4."""
+
+    def test_uses_per_repo_captured_at_when_present(self):
+        from src.rank import entry_captured_at
+
+        snap = {
+            "captured_at": "2026-06-28T12:00:00+00:00",  # file-level (retry time)
+            "repos": {"1": {"stars": 100, "captured_at": "2026-06-27T13:00:00+00:00"}},
+        }
+        assert entry_captured_at(snap, "1") == "2026-06-27T13:00:00+00:00"
+
+    def test_falls_back_to_file_level_when_repo_entry_has_no_captured_at(self):
+        """Legacy snapshot entries (pre-Finding-4, no per-repo captured_at) fall
+        back to the file-level captured_at."""
+        from src.rank import entry_captured_at
+
+        snap = {
+            "captured_at": "2026-06-28T12:00:00+00:00",
+            "repos": {"1": {"stars": 100}},  # no per-repo captured_at (legacy)
+        }
+        assert entry_captured_at(snap, "1") == "2026-06-28T12:00:00+00:00"
+
+
+class TestVelocityUsesPerRepoCapturedAt:
+    """spike_velocity / rolling_velocity / creation_velocity (via compute_buckets)
+    use per-repo captured_at when present, so a same-day retry's carried-forward
+    repos are not corrupted by the retry's later file-level captured_at."""
+
+    def test_spike_velocity_uses_per_repo_captured_at(self):
+        """A repo carried forward with an OLDER per-repo captured_at than the file-level
+        value produces the elapsed hours based on its own timestamp, not the file's."""
+        from src.rank import spike_velocity
+
+        # File-level captured_at is the retry time (15:00); repo "1" was actually
+        # captured at 13:00 (carried forward from the original same-day write).
+        snap_prev = {
+            "captured_at": "2026-06-27T01:00:00+00:00",
+            "repos": {"1": {"stars": 100, "captured_at": "2026-06-27T01:00:00+00:00"}},
+        }
+        snap_latest = {
+            "captured_at": "2026-06-28T15:00:00+00:00",  # retry file-level time
+            "repos": {"1": {"stars": 340, "captured_at": "2026-06-28T13:00:00+00:00"}},
+        }
+        # Elapsed = 13:00 (day 28) - 01:00 (day 27) = 36h; delta = 240
+        result = spike_velocity(snap_latest, snap_prev, "1")
+        assert result is not None
+        assert abs(result - (240 / 36)) < 0.01
+
+    def test_legacy_snapshots_without_per_repo_captured_at_still_rank(self, tmp_path: Path):
+        """A legacy snapshot pair (no per-repo captured_at — the exact shape of the
+        27 pre-existing files in data/snapshots/) still ranks correctly end-to-end
+        via compute_buckets's file-level fallback."""
+        from src.rank import compute_buckets
+
+        snaps_dir = tmp_path / "snapshots"
+        snaps_dir.mkdir()
+        meta_path = tmp_path / "metadata.json"
+        now = _utc(month=6, day=28, hour=12)
+        prev_at = (now - timedelta(hours=24)).isoformat()
+
+        # Legacy shape: repo entries have ONLY "stars", no "captured_at".
+        _write_snapshot(snaps_dir, "2026-06-27", prev_at, {"1": {"stars": 100}})
+        _write_snapshot(snaps_dir, "2026-06-28", now.isoformat(), {"1": {"stars": 340}})
+        meta_path.write_text(json.dumps({
+            "updated_at": now.isoformat(),
+            "repos": {"1": _meta_entry(created_at="2026-01-01T00:00:00+00:00")},
+        }))
+
+        buckets = compute_buckets(snaps_dir, meta_path, now)
+        assert buckets["spike_24h"]["active"] is True
+        assert len(buckets["spike_24h"]["entries"]) == 1
+        assert buckets["spike_24h"]["entries"][0]["velocity_per_day"] == pytest.approx(240.0)

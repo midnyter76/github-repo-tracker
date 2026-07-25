@@ -11,7 +11,8 @@ Public API:
     spike_velocity(snap_latest, snap_prev, rid) -> float | None
     rolling_velocity(snap_current, snap_oldest, rid) -> float | None
     load_snapshots(snapshots_dir) -> list[dict]
-    select_30d_window(snapshots, run_date) -> tuple[dict, dict] | None
+    select_30d_window(snapshots, run_date) -> list[dict] | None
+    entry_captured_at(snap, rid) -> str
 
 All functions are pure (no side effects outside warnings.warn) and take
 injectable paths so they can be unit-tested without real file I/O.
@@ -73,6 +74,26 @@ def is_new(created_at_iso: str, run_date: date, window_days: int) -> bool:
     return (run_date - created).days <= window_days
 
 
+def entry_captured_at(snap: dict, rid: str) -> str:
+    """Per-repo capture time, falling back to the file-level value (legacy snapshots).
+
+    Finding 4: same-day retries stamp only the repos present in that retry's
+    call, so a repo carried forward from an earlier same-day write keeps its
+    original per-repo captured_at even though the file-level captured_at
+    advances to the retry's time. Snapshots written before this fix have no
+    per-repo captured_at at all — those fall back to the file-level value.
+
+    Args:
+        snap: Snapshot dict (has "repos", "captured_at").
+        rid:  Numeric repo ID as string key. Must be present in snap["repos"].
+
+    Returns:
+        ISO 8601 UTC string — the repo's own captured_at, or the snapshot's
+        file-level captured_at when the repo entry predates Finding 4.
+    """
+    return snap["repos"][rid].get("captured_at") or snap["captured_at"]
+
+
 def spike_velocity(snap_latest: dict, snap_prev: dict, rid: str) -> float | None:
     """Stars per hour between the two most recent snapshots.
 
@@ -91,8 +112,8 @@ def spike_velocity(snap_latest: dict, snap_prev: dict, rid: str) -> float | None
     if rid not in snap_latest["repos"] or rid not in snap_prev["repos"]:
         return None
     delta = snap_latest["repos"][rid]["stars"] - snap_prev["repos"][rid]["stars"]
-    t_latest = datetime.fromisoformat(snap_latest["captured_at"])
-    t_prev = datetime.fromisoformat(snap_prev["captured_at"])
+    t_latest = datetime.fromisoformat(entry_captured_at(snap_latest, rid))
+    t_prev = datetime.fromisoformat(entry_captured_at(snap_prev, rid))
     elapsed_hours = (t_latest - t_prev).total_seconds() / 3600
     elapsed_hours = max(elapsed_hours, 0.1)  # guard against identical captured_at
     return delta / elapsed_hours  # → stars/hour
@@ -115,8 +136,8 @@ def rolling_velocity(snap_current: dict, snap_oldest: dict, rid: str) -> float |
     if rid not in snap_current["repos"] or rid not in snap_oldest["repos"]:
         return None
     delta = snap_current["repos"][rid]["stars"] - snap_oldest["repos"][rid]["stars"]
-    t_current = datetime.fromisoformat(snap_current["captured_at"])
-    t_oldest = datetime.fromisoformat(snap_oldest["captured_at"])
+    t_current = datetime.fromisoformat(entry_captured_at(snap_current, rid))
+    t_oldest = datetime.fromisoformat(entry_captured_at(snap_oldest, rid))
     elapsed_hours = (t_current - t_oldest).total_seconds() / 3600
     elapsed_hours = max(elapsed_hours, 0.1)
     return delta / elapsed_hours  # → stars/hour
@@ -160,18 +181,20 @@ def load_snapshots(snapshots_dir: Path) -> list[dict]:
 # Window Selection
 # ---------------------------------------------------------------------------
 
-def select_30d_window(snapshots: list[dict], run_date: date) -> tuple[dict, dict] | None:
-    """Return (oldest_in_window, current) or None if <2 snapshots in the 30d window.
+def select_30d_window(snapshots: list[dict], run_date: date) -> list[dict] | None:
+    """Return the full in-window snapshot list (ascending), or None if <2 qualify.
 
     Window is inclusive: a snapshot exactly 30 days old qualifies (>= cutoff).
-    "Current" is the last snapshot in the list (already sorted ascending).
+    Callers join each repo against the oldest in-window snapshot that CONTAINS
+    it (not necessarily in_window[0]) so repos absent from the globally-oldest
+    snapshot but present in a middle one still get a velocity_30d entry.
 
     Args:
         snapshots: List of snapshot dicts sorted ascending by date.
         run_date:  The date on which ranking is computed.
 
     Returns:
-        (oldest_in_window, current) tuple, or None if fewer than 2 qualify.
+        List of in-window snapshot dicts (ascending), or None if fewer than 2 qualify.
     """
     cutoff = run_date - timedelta(days=config.VELOCITY_30D_WINDOW_DAYS)
     in_window = [
@@ -180,7 +203,7 @@ def select_30d_window(snapshots: list[dict], run_date: date) -> tuple[dict, dict
     ]
     if len(in_window) < 2:
         return None
-    return in_window[0], in_window[-1]  # oldest, newest (list is sorted ascending)
+    return in_window
 
 
 # ---------------------------------------------------------------------------
@@ -217,6 +240,8 @@ def compute_buckets(
     snapshots_dir: Path = config.SNAPSHOTS_DIR,
     metadata_path: Path = config.METADATA_PATH,
     now: datetime = None,
+    *,
+    exclude_ids: set[str] | None = None,
 ) -> dict:
     """Load snapshots + metadata and produce the four-bucket ranking structure.
 
@@ -241,12 +266,18 @@ def compute_buckets(
         snapshots_dir:  Path to directory of per-date snapshot JSON files.
         metadata_path:  Path to metadata.json written by store.write_metadata.
         now:            UTC datetime for run_date. Defaults to datetime.now(UTC).
+        exclude_ids:    Digest-selection filter (Finding 3) — repo ids to omit from
+                         every ranked bucket (e.g. gamed/junk repos). These repos are
+                         still persisted to snapshots/metadata by the caller; this is
+                         the ONLY place they are filtered out. None/omitted behaves
+                         exactly as before (no exclusions).
 
     Returns:
         Dict with four fixed keys as above.
     """
     if now is None:
         now = datetime.now(timezone.utc)
+    exclude_ids = exclude_ids or set()
 
     run_date = now.date()
     meta = load_metadata(metadata_path)
@@ -267,10 +298,12 @@ def compute_buckets(
         for rid, snap_data in current["repos"].items():
             if rid not in meta_repos:
                 continue  # Pitfall 4: inner-join; skip if metadata absent
+            if rid in exclude_ids:
+                continue  # Finding 3: digest-selection filter (gamed/junk)
 
             created_at = meta_repos[rid]["created_at"]
             stars = snap_data["stars"]
-            vel = creation_velocity(stars, created_at, current["captured_at"])
+            vel = creation_velocity(stars, created_at, entry_captured_at(current, rid))
 
             if is_new(created_at, run_date, config.BRAND_NEW_WEEKLY_DAYS):
                 weekly_entries.append(_build_entry(rid, stars, vel, meta_repos))
@@ -299,6 +332,8 @@ def compute_buckets(
             for rid in snap_latest["repos"]:
                 if rid not in meta_repos:
                     continue  # Pitfall 4
+                if rid in exclude_ids:
+                    continue  # Finding 3: digest-selection filter (gamed/junk)
                 per_hour = spike_velocity(snap_latest, snap_prev, rid)
                 if per_hour is None:
                     continue
@@ -319,13 +354,24 @@ def compute_buckets(
     v30d_active = False
     v30d_entries: list[dict] = []
 
-    window = select_30d_window(snaps, run_date)
-    if window is not None:
-        snap_oldest, snap_newest = window
+    in_window = select_30d_window(snaps, run_date)
+    if in_window is not None:
+        snap_newest = in_window[-1]
         v30d_active = True
         for rid in snap_newest["repos"]:
             if rid not in meta_repos:
                 continue  # Pitfall 4
+            if rid in exclude_ids:
+                continue  # Finding 3: digest-selection filter (gamed/junk)
+            # Join against the oldest in-window snapshot CONTAINING this repo —
+            # not necessarily in_window[0] (Finding 1: a repo absent from the
+            # globally-oldest snapshot but present in a middle one still gets
+            # a velocity_30d entry against that middle snapshot).
+            snap_oldest = next(
+                (s for s in in_window[:-1] if rid in s["repos"]), None
+            )
+            if snap_oldest is None:
+                continue  # repo present only in the newest snapshot — no history
             per_hour = rolling_velocity(snap_newest, snap_oldest, rid)
             if per_hour is None:
                 continue

@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write              # required by git-auto-commit-action
 
+concurrency:
+  group: repo-writes
+  cancel-in-progress: false
+
 jobs:
   keepalive:
     runs-on: ubuntu-latest
