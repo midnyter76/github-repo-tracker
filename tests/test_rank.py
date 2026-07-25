@@ -851,3 +851,60 @@ class TestVelocity30dOldestContainingSnapshot:
         buckets = compute_buckets(snaps_dir, meta_path, now)
         entry_ids = {e["id"] for e in buckets["velocity_30d"]["entries"]}
         assert "2" not in entry_ids, "Repo that lost stars vs. its oldest-containing snapshot must be excluded"
+
+
+# ---------------------------------------------------------------------------
+# Task 3 — Finding 3: exclude_ids digest-selection filter
+# ---------------------------------------------------------------------------
+
+class TestComputeBucketsExcludeIds:
+    """exclude_ids (Finding 3) omits gamed/junk repos from every ranked bucket
+    while everything else ranks normally; default None/omitted is unchanged."""
+
+    def _setup(self, tmp_path: Path, gap_hours: int = 24) -> tuple[Path, Path, datetime]:
+        snaps_dir = tmp_path / "snapshots"
+        snaps_dir.mkdir()
+        meta_path = tmp_path / "metadata.json"
+        now = _utc(month=6, day=28, hour=12)
+
+        prev_at = (now - timedelta(hours=gap_hours)).isoformat()
+        _write_snapshot(snaps_dir, "2026-06-27", prev_at, {"1": {"stars": 100}, "7": {"stars": 100}})
+        _write_snapshot(snaps_dir, "2026-06-28", now.isoformat(), {"1": {"stars": 340}, "7": {"stars": 340}})
+        meta_path.write_text(json.dumps({
+            "updated_at": now.isoformat(),
+            "repos": {
+                # Repo "1" is old (qualifies for velocity/spike, not brand-new).
+                "1": _meta_entry("owner/repo1", created_at="2026-01-01T00:00:00+00:00"),
+                # Repo "7" is brand-new (3 days old) AND has the same velocity profile.
+                "7": _meta_entry("owner/repo7", created_at="2026-06-25T12:00:00+00:00"),
+            },
+        }))
+        return snaps_dir, meta_path, now
+
+    def test_exclude_ids_omits_from_all_four_buckets(self, tmp_path: Path):
+        """exclude_ids={'7'} omits id 7 from all four buckets while ranking '1' normally."""
+        from src.rank import compute_buckets
+
+        snaps_dir, meta_path, now = self._setup(tmp_path)
+        buckets = compute_buckets(snaps_dir, meta_path, now, exclude_ids={"7"})
+
+        for bucket_name, bucket in buckets.items():
+            ids = {e["id"] for e in bucket["entries"]}
+            assert "7" not in ids, f"excluded id must be absent from {bucket_name}"
+
+        # "1" is unaffected — still ranks in spike_24h and velocity_30d.
+        assert "1" in {e["id"] for e in buckets["spike_24h"]["entries"]}
+        assert "1" in {e["id"] for e in buckets["velocity_30d"]["entries"]}
+
+    def test_exclude_ids_none_is_unchanged(self, tmp_path: Path):
+        """exclude_ids omitted/None behaves exactly as before (both repos ranked)."""
+        from src.rank import compute_buckets
+
+        snaps_dir, meta_path, now = self._setup(tmp_path)
+        buckets = compute_buckets(snaps_dir, meta_path, now)
+
+        weekly_ids = {e["id"] for e in buckets["brand_new_weekly"]["entries"]}
+        v30d_ids = {e["id"] for e in buckets["velocity_30d"]["entries"]}
+        assert "7" in weekly_ids
+        assert "1" in v30d_ids
+        assert "7" in v30d_ids

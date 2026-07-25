@@ -219,6 +219,8 @@ def compute_buckets(
     snapshots_dir: Path = config.SNAPSHOTS_DIR,
     metadata_path: Path = config.METADATA_PATH,
     now: datetime = None,
+    *,
+    exclude_ids: set[str] | None = None,
 ) -> dict:
     """Load snapshots + metadata and produce the four-bucket ranking structure.
 
@@ -243,12 +245,18 @@ def compute_buckets(
         snapshots_dir:  Path to directory of per-date snapshot JSON files.
         metadata_path:  Path to metadata.json written by store.write_metadata.
         now:            UTC datetime for run_date. Defaults to datetime.now(UTC).
+        exclude_ids:    Digest-selection filter (Finding 3) — repo ids to omit from
+                         every ranked bucket (e.g. gamed/junk repos). These repos are
+                         still persisted to snapshots/metadata by the caller; this is
+                         the ONLY place they are filtered out. None/omitted behaves
+                         exactly as before (no exclusions).
 
     Returns:
         Dict with four fixed keys as above.
     """
     if now is None:
         now = datetime.now(timezone.utc)
+    exclude_ids = exclude_ids or set()
 
     run_date = now.date()
     meta = load_metadata(metadata_path)
@@ -269,6 +277,8 @@ def compute_buckets(
         for rid, snap_data in current["repos"].items():
             if rid not in meta_repos:
                 continue  # Pitfall 4: inner-join; skip if metadata absent
+            if rid in exclude_ids:
+                continue  # Finding 3: digest-selection filter (gamed/junk)
 
             created_at = meta_repos[rid]["created_at"]
             stars = snap_data["stars"]
@@ -301,6 +311,8 @@ def compute_buckets(
             for rid in snap_latest["repos"]:
                 if rid not in meta_repos:
                     continue  # Pitfall 4
+                if rid in exclude_ids:
+                    continue  # Finding 3: digest-selection filter (gamed/junk)
                 per_hour = spike_velocity(snap_latest, snap_prev, rid)
                 if per_hour is None:
                     continue
@@ -328,6 +340,8 @@ def compute_buckets(
         for rid in snap_newest["repos"]:
             if rid not in meta_repos:
                 continue  # Pitfall 4
+            if rid in exclude_ids:
+                continue  # Finding 3: digest-selection filter (gamed/junk)
             # Join against the oldest in-window snapshot CONTAINING this repo —
             # not necessarily in_window[0] (Finding 1: a repo absent from the
             # globally-oldest snapshot but present in a middle one still gets

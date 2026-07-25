@@ -353,6 +353,154 @@ class TestRun:
 
 
 # ---------------------------------------------------------------------------
+# Task 3 (Finding 3): filtered repos retain history — filtered at digest
+# selection only. write_snap/write_meta get the FULL candidate set;
+# compute_buckets receives exclude_ids = candidates - kept.
+# ---------------------------------------------------------------------------
+
+class TestFilterRetainsHistory:
+    """Gamed/junk repos still get a snapshot + metadata row; they are excluded
+    only from compute_buckets via exclude_ids (Finding 3)."""
+
+    def _make_fake_repo(self, repo_id: str, stars: int = 100, description: str = None):
+        r = MagicMock()
+        r.id = int(repo_id)
+        r.stargazers_count = stars
+        r.full_name = f"owner/repo-{repo_id}"
+        r.description = description if description is not None else f"Repo {repo_id}"
+        r.html_url = f"https://github.com/owner/repo-{repo_id}"
+        r.created_at.isoformat.return_value = "2026-01-01T00:00:00+00:00"
+        return r
+
+    def test_full_candidate_set_reaches_write_snap_and_write_meta(self):
+        """A repo dropped by filter_gamed_fn still reaches write_snap/write_meta."""
+        from datetime import datetime, timezone  # noqa: PLC0415
+        from src.collector import run  # noqa: PLC0415
+
+        g = MagicMock()
+        now = datetime(2026, 6, 27, 13, 0, 0, tzinfo=timezone.utc)
+
+        repo_kept = self._make_fake_repo("111")
+        repo_gamed = self._make_fake_repo("222")
+
+        captured_snap = {}
+        captured_meta = {}
+
+        def fake_write_snap(candidates, ts):
+            captured_snap.update(candidates)
+
+        def fake_write_meta(candidates, ts):
+            captured_meta.update(candidates)
+
+        run(
+            g,
+            now,
+            discover=lambda _g: {"111": repo_kept, "222": repo_gamed},
+            established=lambda _g: {},
+            load_ids=lambda: [],
+            refresh=lambda _g, _ids: {},
+            write_snap=fake_write_snap,
+            write_meta=fake_write_meta,
+            compute_buckets=lambda *a, **k: _empty_buckets(),
+            load_seen_fn=lambda *a, **k: {},
+            classify_fn=lambda seen, ids, d: ({}, {}),
+            write_digest=MagicMock(),
+            write_html_digest=MagicMock(),
+            save_seen_fn=MagicMock(),
+            check_gap_fn=lambda *a, **k: None,
+            filter_gamed_fn=lambda c: {rid: r for rid, r in c.items() if rid != "222"},
+            filter_junk_fn=lambda c: c,
+            prune_fn=lambda *a, **k: [],
+            prune_meta_fn=lambda *a, **k: [],
+        )
+
+        assert "222" in captured_snap, "repo dropped by filter_gamed_fn must still be snapshotted"
+        assert "222" in captured_meta, "repo dropped by filter_gamed_fn must still get a metadata row"
+        assert "111" in captured_snap
+        assert "111" in captured_meta
+
+    def test_exclude_ids_reaches_compute_buckets(self):
+        """exclude_ids passed to compute_buckets equals candidates minus filtered-kept."""
+        from datetime import datetime, timezone  # noqa: PLC0415
+        from src.collector import run  # noqa: PLC0415
+
+        g = MagicMock()
+        now = datetime(2026, 6, 27, 13, 0, 0, tzinfo=timezone.utc)
+
+        repo_kept = self._make_fake_repo("111")
+        repo_gamed = self._make_fake_repo("222")
+        repo_junk = self._make_fake_repo("333")
+
+        captured_exclude_ids = {}
+
+        def fake_compute_buckets(*args, **kwargs):
+            captured_exclude_ids["value"] = kwargs.get("exclude_ids")
+            return _empty_buckets()
+
+        run(
+            g,
+            now,
+            discover=lambda _g: {"111": repo_kept, "222": repo_gamed, "333": repo_junk},
+            established=lambda _g: {},
+            load_ids=lambda: [],
+            refresh=lambda _g, _ids: {},
+            write_snap=MagicMock(),
+            write_meta=MagicMock(),
+            compute_buckets=fake_compute_buckets,
+            load_seen_fn=lambda *a, **k: {},
+            classify_fn=lambda seen, ids, d: ({}, {}),
+            write_digest=MagicMock(),
+            write_html_digest=MagicMock(),
+            save_seen_fn=MagicMock(),
+            check_gap_fn=lambda *a, **k: None,
+            filter_gamed_fn=lambda c: {rid: r for rid, r in c.items() if rid != "222"},
+            filter_junk_fn=lambda c: {rid: r for rid, r in c.items() if rid != "333"},
+            prune_fn=lambda *a, **k: [],
+            prune_meta_fn=lambda *a, **k: [],
+        )
+
+        assert captured_exclude_ids["value"] == {"222", "333"}
+
+    def test_no_stdout_stderr_from_filter_path(self, capsys):
+        """Filtering stays silent — no stdout/stderr output from the filter path (D-07)."""
+        from datetime import datetime, timezone  # noqa: PLC0415
+        from src.collector import run  # noqa: PLC0415
+
+        g = MagicMock()
+        now = datetime(2026, 6, 27, 13, 0, 0, tzinfo=timezone.utc)
+        repo_gamed = self._make_fake_repo("222")
+
+        run(
+            g,
+            now,
+            discover=lambda _g: {"222": repo_gamed},
+            established=lambda _g: {},
+            load_ids=lambda: [],
+            refresh=lambda _g, _ids: {},
+            write_snap=MagicMock(),
+            write_meta=MagicMock(),
+            compute_buckets=lambda *a, **k: _empty_buckets(),
+            load_seen_fn=lambda *a, **k: {},
+            classify_fn=lambda seen, ids, d: ({}, {}),
+            write_digest=MagicMock(),
+            write_html_digest=MagicMock(),
+            save_seen_fn=MagicMock(),
+            check_gap_fn=lambda *a, **k: None,
+            filter_gamed_fn=lambda c: {},  # drops everything
+            filter_junk_fn=lambda c: c,
+            prune_fn=lambda *a, **k: [],
+            prune_meta_fn=lambda *a, **k: [],
+        )
+
+        captured = capsys.readouterr()
+        # collector.run() prints a stage-count summary line (HARD-05-CAP) unrelated
+        # to filtering — assert the filter path itself adds no additional output beyond it.
+        assert "gamed" not in captured.out.lower()
+        assert "junk" not in captured.out.lower()
+        assert captured.err == ""
+
+
+# ---------------------------------------------------------------------------
 # Plan 02-04: Phase 2 wiring tests
 # ---------------------------------------------------------------------------
 
@@ -826,7 +974,10 @@ class TestRunPhase3CallOrder:
     """Phase 3 callables must be integrated in the correct positions in collector.run() (HARD-02/03/04).
 
     check_gap must fire FIRST (before any API call).
-    filter_gamed must fire AFTER candidate union, BEFORE write_snap (Pitfall 5).
+    filter_gamed/filter_junk must fire AFTER candidate union, BEFORE write_snap —
+    but only to compute exclude_ids for compute_buckets (Finding 3). They no
+    longer gate persistence: write_snap/write_meta always receive the FULL
+    candidate set, and gamed/junk repos are excluded only from the digest.
     prune must fire LAST (after save_seen — D-09).
     """
 
@@ -903,7 +1054,9 @@ class TestRunPhase3CallOrder:
         assert log.index("check_gap") < log.index("discover"), \
             "check_gap must fire before discover"
 
-        # filter_gamed must fire after candidate union (after refresh) and before write_snap (Pitfall 5)
+        # filter_gamed must fire after candidate union (after refresh) and before write_snap —
+        # it only computes exclude_ids for compute_buckets now; write_snap always gets the
+        # full (pre-filter) candidate set (Finding 3)
         assert log.index("filter_gamed") > log.index("refresh"), \
             "filter_gamed must follow refresh (candidate union)"
         assert log.index("filter_gamed") < log.index("write_snap"), \
