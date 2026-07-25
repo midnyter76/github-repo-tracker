@@ -2,7 +2,7 @@
 
 Functions:
   write_snapshot  — idempotent per-date star snapshot (DATA-02, DATA-04, DATA-05)
-  write_metadata  — separate, fully-overwritten metadata store (DATA-03)
+  write_metadata  — merges this run's entries into the existing metadata store (DATA-03)
   load_metadata   — read metadata file, returns {} when absent
   load_metadata_ids — list of str repo-id keys (input to Plan 02 refresh_tracked)
 
@@ -77,7 +77,7 @@ def write_metadata(
     run_at: datetime,
     metadata_path: Path = METADATA_PATH,
 ) -> Path:
-    """Write metadata store — FULL OVERWRITE each run (DATA-03).
+    """Write metadata store — MERGES this run's entries into existing data (DATA-03).
 
     Metadata schema (Pattern 9):
         {
@@ -93,8 +93,12 @@ def write_metadata(
             }
         }
 
-    Unlike write_snapshot, this is a FULL OVERWRITE — no merging with existing data.
-    Writing {"111"} then {"222"} leaves only {"222"} in the file (DATA-03).
+    Unlike a full overwrite, this MERGES: existing entries for repos absent from
+    this run's candidate set are preserved untouched. Writing {"111"} then
+    {"222"} leaves BOTH ids in the file; re-writing an existing id overwrites
+    that id's fields with this run's data. Eviction is owned solely by
+    prune.prune_metadata's ledger (METADATA_TRACKED_RETENTION_DAYS) — this
+    function never drops a tracked repo just because it wasn't refreshed today.
     Topics are intentionally omitted (Pitfall 6 — the PyGithub topics accessor
     makes an extra API call per repo; not required for Phase 2 velocity ranking).
 
@@ -107,17 +111,19 @@ def write_metadata(
         Path to the written metadata file.
     """
     metadata_path.parent.mkdir(parents=True, exist_ok=True)
+    existing = load_metadata(metadata_path).get("repos", {})
+    new_entries = {
+        rid: {
+            "full_name": r.full_name,
+            "description": r.description or "",
+            "created_at": r.created_at.isoformat(),
+            "html_url": r.html_url,
+        }
+        for rid, r in repos.items()
+    }
     metadata = {
         "updated_at": run_at.isoformat(),
-        "repos": {
-            rid: {
-                "full_name": r.full_name,
-                "description": r.description or "",
-                "created_at": r.created_at.isoformat(),
-                "html_url": r.html_url,
-            }
-            for rid, r in repos.items()
-        },
+        "repos": {**existing, **new_entries},
     }
     metadata_path.write_text(json.dumps(metadata, indent=2))
     return metadata_path

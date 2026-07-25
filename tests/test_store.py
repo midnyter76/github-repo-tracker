@@ -2,7 +2,7 @@
 
 Covers:
 - write_snapshot: idempotent per-date star snapshots (DATA-02, DATA-04, DATA-05)
-- write_metadata: separate, fully-overwritten metadata store (DATA-03)
+- write_metadata: merges this run's entries into the existing metadata store (DATA-03)
 - load_metadata / load_metadata_ids: read helpers for refresh_tracked (Plan 02)
 
 All tests inject tmp_path so no writes ever reach the real data/ directory.
@@ -243,8 +243,9 @@ class TestWriteMetadata:
         assert parsed.tzinfo is not None, "created_at must be timezone-aware"
         assert parsed == created
 
-    def test_full_overwrite_not_merge(self, tmp_path: Path):
-        """write_metadata OVERWRITES the file — second call with different ids replaces, not merges (DATA-03)."""
+    def test_merge_preserves_prior_entries(self, tmp_path: Path):
+        """write_metadata MERGES — a second call with a disjoint id set leaves BOTH ids
+        in the file instead of dropping the first (DATA-03, Finding 2)."""
         from src.store import write_metadata
 
         run_at = _utc()
@@ -259,7 +260,51 @@ class TestWriteMetadata:
 
         data = json.loads(md_path.read_text())
         assert "222" in data["repos"], "second write must be present"
-        assert "111" not in data["repos"], "first write must be replaced (full overwrite, not merge)"
+        assert "111" in data["repos"], "first write must survive a disjoint second write (merge, not overwrite)"
+
+    def test_rewritten_id_gets_fresh_fields(self, tmp_path: Path):
+        """Re-writing an existing id overwrites that id's fields with this run's data."""
+        from src.store import write_metadata
+
+        run_at = _utc()
+        repo_v1 = _make_repo(id=111, stargazers_count=50, full_name="owner/old-name")
+        repo_v2 = _make_repo(id=111, stargazers_count=999, full_name="owner/new-name")
+        md_path = tmp_path / "metadata.json"
+
+        write_metadata({"111": repo_v1}, run_at, metadata_path=md_path)
+        write_metadata({"111": repo_v2}, run_at, metadata_path=md_path)
+
+        data = json.loads(md_path.read_text())
+        assert data["repos"]["111"]["full_name"] == "owner/new-name", (
+            "re-written id must reflect this run's fresh fields"
+        )
+
+    def test_absent_metadata_file_writes_fresh(self, tmp_path: Path):
+        """write_metadata with no existing file behaves as before — writes fresh."""
+        from src.store import write_metadata
+
+        run_at = _utc()
+        repo = _make_repo(id=111, stargazers_count=50)
+        md_path = tmp_path / "metadata.json"
+        assert not md_path.exists()
+
+        write_metadata({"111": repo}, run_at, metadata_path=md_path)
+
+        data = json.loads(md_path.read_text())
+        assert "111" in data["repos"]
+
+    def test_corrupt_metadata_file_aborts_instead_of_merging(self, tmp_path: Path):
+        """A corrupt existing metadata file aborts the run (via load_metadata's existing
+        RuntimeError semantics) instead of being silently merged into."""
+        from src.store import write_metadata
+
+        run_at = _utc()
+        repo = _make_repo(id=111, stargazers_count=50)
+        md_path = tmp_path / "metadata.json"
+        md_path.write_text("{not valid json")
+
+        with pytest.raises(RuntimeError):
+            write_metadata({"111": repo}, run_at, metadata_path=md_path)
 
     def test_no_topics_field_in_metadata(self, tmp_path: Path):
         """write_metadata must NOT include a 'topics' field (Pitfall 6 — avoid get_topics())."""

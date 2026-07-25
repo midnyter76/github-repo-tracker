@@ -166,9 +166,9 @@ METADATA_REFRESH_MAX_AGE_DAYS: int = 45
 # quota trips and GithubRetry sleeps ~40 min until the hourly window resets.
 # Measured 2026-07-03: residual ~2k -> 65 min refresh stage. Residual is capped by
 # last-known stars (descending), so the highest-signal repos are always refreshed;
-# repos cut by the cap drop from metadata via the existing full-overwrite
-# write_metadata semantics and are re-discovered if they spike within their 30d
-# creation window (same eviction philosophy as prune_metadata).
+# repos cut by the cap are carried forward untouched by write_metadata's merge
+# semantics (they are NOT dropped) and are evicted only via prune_metadata's
+# ledger (METADATA_TRACKED_RETENTION_DAYS), same as every other tracked repo.
 REFRESH_RESIDUAL_CAP: int = 500
 
 # HARD-04-EXT: Tracked-repo eviction ledger
