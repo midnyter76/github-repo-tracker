@@ -151,6 +151,15 @@ JUNK_KEYWORDS: list[str] = [
 # widest velocity window (30d), providing headroom for missed days + debugging.
 SNAPSHOT_RETENTION_DAYS: int = 90    # D-08
 
+# HARD-04-HTML: Report HTML retention (quick task 260726-hf2)
+# reports/*.html is pruned at 30 days by prune_reports(); reports/*.md is NEVER pruned.
+# Deliberately shorter than SNAPSHOT_RETENTION_DAYS (90): the HTML is a *delivered* email
+# artifact already sitting in the recipient's inbox, and it is 86% of reports/ bulk
+# (~78KB/day vs ~11KB/day for markdown). 30 days is ample to re-inspect a rendering bug
+# against a real digest. The markdown is the permanent, greppable archive of what surfaced
+# when, and is small enough to keep forever.
+REPORT_HTML_RETENTION_DAYS: int = 30
+
 # HARD-05: Metadata refresh age cap
 # Only re-fetch star counts (core API) for repos created within this window.
 # Older repos are always re-discovered fresh by discover_established() searches,

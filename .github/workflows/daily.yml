@@ -38,9 +38,9 @@ jobs:
         id: report
         run: echo "md=$(ls -t reports/*.md | head -1)" >> "$GITHUB_OUTPUT"
 
-      - name: Stage pruned snapshot deletions
+      - name: Stage pruned file deletions
         run: |
-          DELETED=$(git ls-files --deleted data/ 2>/dev/null)
+          DELETED=$(git ls-files --deleted data/ reports/ 2>/dev/null)
           if [ -n "$DELETED" ]; then
             echo "$DELETED" | xargs git rm --
           fi

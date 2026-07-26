@@ -166,6 +166,7 @@ class TestRun:
             filter_gamed_fn=lambda c: c,
             prune_fn=lambda *a, **k: [],
             prune_meta_fn=lambda *a, **k: [],
+            prune_reports_fn=lambda *a, **k: [],
         )
 
         mock_discover.assert_called_once_with(g)
@@ -216,6 +217,7 @@ class TestRun:
             filter_gamed_fn=lambda c: c,
             prune_fn=lambda *a, **k: [],
             prune_meta_fn=lambda *a, **k: [],
+            prune_reports_fn=lambda *a, **k: [],
         )
 
         assert "111" in captured_snap
@@ -262,6 +264,7 @@ class TestRun:
             filter_gamed_fn=lambda c: c,
             prune_fn=lambda *a, **k: [],
             prune_meta_fn=lambda *a, **k: [],
+            prune_reports_fn=lambda *a, **k: [],
         )
 
         # The refreshed repo (999 stars) must win
@@ -309,6 +312,7 @@ class TestRun:
             filter_gamed_fn=lambda c: c,
             prune_fn=lambda *a, **k: [],
             prune_meta_fn=lambda *a, **k: [],
+            prune_reports_fn=lambda *a, **k: [],
         )
 
         assert captured_refresh_ids == ["333"]
@@ -344,6 +348,7 @@ class TestRun:
             filter_gamed_fn=lambda c: c,
             prune_fn=lambda *a, **k: [],
             prune_meta_fn=lambda *a, **k: [],
+            prune_reports_fn=lambda *a, **k: [],
         )
 
         _, snap_ts = mock_write_snap.call_args[0]
@@ -412,6 +417,7 @@ class TestFilterRetainsHistory:
             filter_junk_fn=lambda c: c,
             prune_fn=lambda *a, **k: [],
             prune_meta_fn=lambda *a, **k: [],
+            prune_reports_fn=lambda *a, **k: [],
         )
 
         assert "222" in captured_snap, "repo dropped by filter_gamed_fn must still be snapshotted"
@@ -457,6 +463,7 @@ class TestFilterRetainsHistory:
             filter_junk_fn=lambda c: {rid: r for rid, r in c.items() if rid != "333"},
             prune_fn=lambda *a, **k: [],
             prune_meta_fn=lambda *a, **k: [],
+            prune_reports_fn=lambda *a, **k: [],
         )
 
         assert captured_exclude_ids["value"] == {"222", "333"}
@@ -490,6 +497,7 @@ class TestFilterRetainsHistory:
             filter_junk_fn=lambda c: c,
             prune_fn=lambda *a, **k: [],
             prune_meta_fn=lambda *a, **k: [],
+            prune_reports_fn=lambda *a, **k: [],
         )
 
         captured = capsys.readouterr()
@@ -553,6 +561,7 @@ class TestPhase2Wiring:
             filter_gamed_fn=lambda c: c,
             prune_fn=lambda *a, **k: [],
             prune_meta_fn=lambda *a, **k: [],
+            prune_reports_fn=lambda *a, **k: [],
         )
 
         mock_compute_buckets.assert_called_once()
@@ -593,6 +602,7 @@ class TestPhase2Wiring:
             filter_gamed_fn=lambda c: c,
             prune_fn=lambda *a, **k: [],
             prune_meta_fn=lambda *a, **k: [],
+            prune_reports_fn=lambda *a, **k: [],
         )
 
         assert "write_digest" in calls, "write_digest was never called"
@@ -648,6 +658,7 @@ class TestPhase2Wiring:
             filter_gamed_fn=lambda c: c,
             prune_fn=lambda *a, **k: [],
             prune_meta_fn=lambda *a, **k: [],
+            prune_reports_fn=lambda *a, **k: [],
         )
 
         assert 111 in captured_ids, f"id 111 missing from reported_ids: {captured_ids}"
@@ -688,6 +699,7 @@ class TestPruneSeenWiring:
             filter_gamed_fn=lambda c: c,
             prune_fn=lambda *a, **k: [],
             prune_meta_fn=lambda *a, **k: [],
+            prune_reports_fn=lambda *a, **k: [],
         )
 
         assert calls.index("write_html_digest") < calls.index("prune_seen"), (
@@ -729,6 +741,7 @@ class TestPruneSeenWiring:
             filter_gamed_fn=lambda c: c,
             prune_fn=lambda *a, **k: [],
             prune_meta_fn=lambda *a, **k: [],
+            prune_reports_fn=lambda *a, **k: [],
         )
 
         mock_save_seen.assert_called_once()
@@ -1112,6 +1125,7 @@ class TestRunPhase3CallOrder:
             # AFTER prune_fn (HARD-04-EXT); keeping it out of call_log preserves
             # this test's `log[-1] == "prune"` assertion below.
             prune_meta_fn=lambda *a, **k: [],
+            prune_reports_fn=lambda *a, **k: [],
         )
 
         log = self._call_log
@@ -1160,6 +1174,7 @@ class TestResidualCap:
             write_digest=MagicMock(), write_html_digest=MagicMock(), save_seen_fn=MagicMock(),
             check_gap_fn=lambda *a, **k: None, filter_gamed_fn=lambda c: c,
             prune_fn=lambda *a, **k: [], prune_meta_fn=lambda *a, **k: [],
+            prune_reports_fn=lambda *a, **k: [],
         )
 
     def test_residual_over_cap_keeps_top_cap_by_stars(self):
@@ -1319,6 +1334,7 @@ class TestPruneMetaWiring:
             filter_gamed_fn=lambda c: c,
             prune_fn=logging_prune_fn,
             prune_meta_fn=logging_prune_meta_fn,
+            prune_reports_fn=lambda *a, **k: [],
         )
 
         mock_prune_meta.assert_called_once()
@@ -1330,4 +1346,67 @@ class TestPruneMetaWiring:
 
         assert call_log == ["prune", "prune_meta"], (
             f"prune_meta_fn must fire exactly once, after prune_fn; got: {call_log}"
+        )
+
+
+class TestPruneReportsWiring:
+    """prune_reports_fn must be called exactly once per run(), after prune_meta_fn,
+    with (now, REPORTS_DIR, REPORT_HTML_RETENTION_DAYS) (260726-hf2)."""
+
+    def test_prune_reports_called_once_after_prune_meta(self):
+        """prune_reports_fn fires exactly once, after prune_meta_fn, with the
+        right positional args."""
+        from datetime import datetime, timezone  # noqa: PLC0415
+
+        from src.collector import run  # noqa: PLC0415
+        from src.config import REPORTS_DIR  # noqa: PLC0415
+
+        g = MagicMock()
+        now = datetime(2026, 6, 28, 13, 0, 0, tzinfo=timezone.utc)
+
+        call_log = []
+        mock_prune_reports = MagicMock(return_value=[])
+
+        def logging_prune_fn(*a, **k):
+            call_log.append("prune")
+            return []
+
+        def logging_prune_meta_fn(*a, **k):
+            call_log.append("prune_meta")
+            return []
+
+        def logging_prune_reports_fn(*a, **k):
+            call_log.append("prune_reports")
+            return mock_prune_reports(*a, **k)
+
+        run(
+            g,
+            now,
+            discover=lambda _g: {},
+            established=lambda _g: {},
+            load_ids=lambda: [],
+            refresh=lambda _g, _ids: {},
+            write_snap=MagicMock(),
+            write_meta=MagicMock(),
+            compute_buckets=lambda *a, **k: _empty_buckets(),
+            load_seen_fn=lambda *a, **k: {},
+            classify_fn=lambda seen, ids, d: ({}, {}),
+            write_digest=MagicMock(),
+            write_html_digest=MagicMock(),
+            save_seen_fn=MagicMock(),
+            check_gap_fn=lambda *a, **k: None,
+            filter_gamed_fn=lambda c: c,
+            prune_fn=logging_prune_fn,
+            prune_meta_fn=logging_prune_meta_fn,
+            prune_reports_fn=logging_prune_reports_fn,
+        )
+
+        mock_prune_reports.assert_called_once()
+        call_args = mock_prune_reports.call_args
+        assert call_args[0][0] is now, "prune_reports_fn must receive the run's 'now'"
+        assert call_args[0][1] == REPORTS_DIR, "prune_reports_fn must receive REPORTS_DIR"
+        assert call_args[0][2] == 30, "prune_reports_fn must receive REPORT_HTML_RETENTION_DAYS"
+
+        assert call_log == ["prune", "prune_meta", "prune_reports"], (
+            f"prune_reports_fn must fire exactly once, after prune_meta_fn; got: {call_log}"
         )

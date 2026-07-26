@@ -15,7 +15,11 @@ prune_seen() bounds seen.json (HARD-04-SEEN), dropping entries whose
 first_seen predates SNAPSHOT_RETENTION_DAYS. Pure in-memory function — the
 caller (collector.run) passes the pruned result straight to save_seen.
 
-All three functions return their affected ids/paths/dict for test assertions
+prune_reports() deletes reports/*.html older than REPORT_HTML_RETENTION_DAYS
+(quick task 260726-hf2); reports/*.md is the permanent archive and is never
+pruned at any age.
+
+All functions return their affected ids/paths/dict for test assertions
 without mocking.
 """
 import json
@@ -26,10 +30,44 @@ from pathlib import Path
 from src.config import (
     METADATA_PATH,
     METADATA_TRACKED_RETENTION_DAYS,
+    REPORT_HTML_RETENTION_DAYS,
+    REPORTS_DIR,
     SNAPSHOT_RETENTION_DAYS,
     SNAPSHOTS_DIR,
     TRACKED_LEDGER_PATH,
 )
+
+
+def _prune_dated(
+    now: datetime,
+    directory: Path,
+    retention_days: int,
+    pattern: str,
+) -> list[Path]:
+    """Delete files in directory matching pattern whose filename stem is a date
+    older than retention_days. Shared body of prune_snapshots + prune_reports.
+
+    Pruning is by filename stem date, never mtime — mtime is meaningless on a
+    fresh GitHub Actions checkout. Non-date-named files are silently ignored.
+    Safe to call when directory does not exist — returns [].
+    """
+    if not directory.exists():
+        return []
+
+    cutoff = (now - timedelta(days=retention_days)).date()
+    pruned: list[Path] = []
+
+    for path in directory.glob(pattern):
+        try:
+            stem_date = date.fromisoformat(path.stem)
+        except ValueError:
+            continue  # ignore non-date-named files (e.g. backup.json, notes.html)
+
+        if stem_date < cutoff:
+            path.unlink()
+            pruned.append(path)
+
+    return pruned
 
 
 def prune_snapshots(
@@ -51,23 +89,30 @@ def prune_snapshots(
     Returns:
         List of deleted file Paths (empty if nothing pruned).
     """
-    if not snapshots_dir.exists():
-        return []
+    return _prune_dated(now, snapshots_dir, retention_days, "*.json")
 
-    cutoff = (now - timedelta(days=retention_days)).date()
-    pruned: list[Path] = []
 
-    for snap_path in snapshots_dir.glob("*.json"):
-        try:
-            snap_date = date.fromisoformat(snap_path.stem)
-        except ValueError:
-            continue  # ignore non-date-named files (e.g. backup.json)
+def prune_reports(
+    now: datetime,
+    reports_dir: Path = REPORTS_DIR,
+    retention_days: int = REPORT_HTML_RETENTION_DAYS,
+) -> list[Path]:
+    """Delete reports/*.html older than retention_days (quick task 260726-hf2).
 
-        if snap_date < cutoff:
-            snap_path.unlink()
-            pruned.append(snap_path)
+    ONLY *.html is pruned. reports/*.md is the permanent archive and is never
+    touched at any age — the glob pattern is the entire guarantee, so do not
+    widen it. The HTML is a delivered email artifact; 30 days is enough to
+    re-inspect a rendering bug against a real digest.
 
-    return pruned
+    Args:
+        now:            Current UTC datetime (used to compute cutoff date).
+        reports_dir:    Directory containing per-date report files.
+        retention_days: HTML files with stem date older than this are deleted.
+
+    Returns:
+        List of deleted .html Paths (empty if nothing pruned).
+    """
+    return _prune_dated(now, reports_dir, retention_days, "*.html")
 
 
 def prune_metadata(
