@@ -15,7 +15,7 @@ from datetime import datetime, timezone
 import github
 
 from src import gap, gaming, junk, prune, rank, report, search, seen, store
-from src.config import METADATA_PATH, REFRESH_RESIDUAL_CAP, REPORTS_DIR, SEEN_PATH, SNAPSHOT_RETENTION_DAYS, SNAPSHOTS_DIR
+from src.config import METADATA_PATH, REFRESH_RESIDUAL_CAP, REPORT_HTML_RETENTION_DAYS, REPORTS_DIR, SEEN_PATH, SNAPSHOT_RETENTION_DAYS, SNAPSHOTS_DIR
 
 
 def build_client():
@@ -62,6 +62,7 @@ def run(
     prune_fn=prune.prune_snapshots,       # HARD-04: snapshot pruning (D-09)
     prune_meta_fn=prune.prune_metadata,   # HARD-04-EXT: tracked-repo eviction
     prune_seen_fn=prune.prune_seen,       # HARD-04-SEEN: bound seen.json growth
+    prune_reports_fn=prune.prune_reports,  # 260726-hf2: bound reports/*.html growth
 ):
     """Orchestrate the full collection loop for one run.
 
@@ -110,6 +111,8 @@ def run(
         prune_fn:        Callable matching prune.prune_snapshots signature. (HARD-04)
         prune_meta_fn:   Callable matching prune.prune_metadata signature. (HARD-04-EXT)
         prune_seen_fn:   Callable matching prune.prune_seen signature. (HARD-04-SEEN)
+        prune_reports_fn: Callable matching prune.prune_reports signature. (260726-hf2)
+                          Prunes reports/*.html only — markdown is never pruned.
     """
     # 0. Gap detection — fires before any API quota is spent (HARD-02, D-05)
     check_gap_fn(now, SNAPSHOTS_DIR)
@@ -176,6 +179,10 @@ def run(
     # this run's final reported_ids (HARD-04-EXT). metadata_path/ledger_path/
     # retention_days all default from config.
     prune_meta_fn(now, reported_ids)
+    # 6c. Prune reports/*.html older than REPORT_HTML_RETENTION_DAYS (260726-hf2).
+    # Markdown is NEVER pruned — it is the permanent archive. Requires daily.yml's
+    # deletion-staging step to cover reports/, or the deletes never reach the commit.
+    prune_reports_fn(now, REPORTS_DIR, REPORT_HTML_RETENTION_DAYS)
 
 
 def main():
