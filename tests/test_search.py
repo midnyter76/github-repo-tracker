@@ -672,6 +672,81 @@ class TestRefreshTracked:
             "Should warn about the malformed metadata key 'abc'"
         )
 
+    def test_skips_repo_on_non_404_github_exception(self):
+        """A non-404 GithubException on one tracked repo skips that repo; the
+        rest of the run still completes."""
+        import github
+
+        repo_ok = _make_repo(100)
+
+        def get_repo_side_effect(rid):
+            if rid == 999:
+                raise github.GithubException(451, "DMCA", None)
+            return repo_ok
+
+        g = MagicMock()
+        g.get_repo.side_effect = get_repo_side_effect
+
+        with warnings.catch_warnings(record=True) as caught:
+            warnings.simplefilter("always")
+            result = refresh_tracked(g, ["100", "999"])
+
+        assert "100" in result
+        assert "999" not in result
+        assert any("999" in str(w.message) for w in caught)
+
+    def test_raises_when_error_skips_exceed_threshold(self):
+        """More unexpected errors than max_error_skips aborts with RuntimeError
+        instead of returning a gutted dict."""
+        import github
+
+        g = MagicMock()
+        g.get_repo.side_effect = github.GithubException(500, "boom", None)
+
+        with pytest.raises(RuntimeError):
+            refresh_tracked(g, [str(i) for i in range(5)], max_error_skips=2)
+
+    def test_rate_limit_propagates_immediately(self):
+        """RateLimitExceededException aborts the run immediately, without
+        waiting for the skip threshold."""
+        import github
+
+        g = MagicMock()
+        g.get_repo.side_effect = github.RateLimitExceededException(403, "rate", None)
+
+        with pytest.raises(github.RateLimitExceededException):
+            refresh_tracked(g, ["1"], max_error_skips=100)
+
+    def test_bad_credentials_propagates_immediately(self):
+        """BadCredentialsException aborts the run immediately, without waiting
+        for the skip threshold."""
+        import github
+
+        g = MagicMock()
+        g.get_repo.side_effect = github.BadCredentialsException(401, "bad", None)
+
+        with pytest.raises(github.BadCredentialsException):
+            refresh_tracked(g, ["1"], max_error_skips=100)
+
+    def test_deleted_repos_do_not_count_toward_threshold(self):
+        """UnknownObjectException skips never push the run toward abort."""
+        import github
+
+        repo_42 = _make_repo(42)
+
+        def get_repo_side_effect(rid):
+            if rid == 42:
+                return repo_42
+            raise github.UnknownObjectException(404, "Not Found", None)
+
+        g = MagicMock()
+        g.get_repo.side_effect = get_repo_side_effect
+
+        ids = [str(i) for i in range(10)] + ["42"]
+        result = refresh_tracked(g, ids, max_error_skips=2)
+
+        assert "42" in result
+
     def test_exception_handler_only_references_rid(self):
         """WR-08 / T-01-04: exception handlers in refresh_tracked must not log the
         caught exception object (which could contain auth/connection details) or the
