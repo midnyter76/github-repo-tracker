@@ -451,9 +451,12 @@ def refresh_tracked(g, tracked_ids: list, *, max_error_skips: int | None = None)
         except github.GithubException:
             error_skips += 1
             if error_skips > max_error_skips:
+                # `from None` suppresses the chained GithubException context so the
+                # abort traceback carries counts only — the triggering exception can
+                # hold auth/connection detail (T-01-04, same control as the warnings).
                 raise RuntimeError(
                     f"refresh_tracked aborted: {error_skips} repo errors exceeded threshold {max_error_skips}"
-                )
+                ) from None
             warnings.warn(f"Repo id {rid} refresh failed; skipping")
             continue
     return refreshed

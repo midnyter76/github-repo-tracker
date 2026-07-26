@@ -706,6 +706,21 @@ class TestRefreshTracked:
         with pytest.raises(RuntimeError):
             refresh_tracked(g, [str(i) for i in range(5)], max_error_skips=2)
 
+    def test_abort_does_not_chain_github_exception(self):
+        """T-01-04: the abort RuntimeError must not chain the triggering
+        GithubException — that object can carry auth/connection detail, and a
+        chained context would print it in the Actions traceback."""
+        import github
+
+        g = MagicMock()
+        g.get_repo.side_effect = github.GithubException(500, "boom", None)
+
+        with pytest.raises(RuntimeError) as excinfo:
+            refresh_tracked(g, [str(i) for i in range(5)], max_error_skips=2)
+
+        assert excinfo.value.__cause__ is None
+        assert excinfo.value.__suppress_context__ is True
+
     def test_rate_limit_propagates_immediately(self):
         """RateLimitExceededException aborts the run immediately, without
         waiting for the skip threshold."""
