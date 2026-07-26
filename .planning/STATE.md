@@ -96,6 +96,7 @@ None yet.
 | 260707-us2 | Fix rank.py naive-datetime crash risk (tzinfo-is-None guard in creation_velocity); fix daily.yml UTC-midnight email race (pass actual report path via $GITHUB_OUTPUT instead of recomputing date); move hardcoded email recipient to vars.REPORT_TO_EMAIL | 2026-07-08 | 31ce3cf | [260707-us2-fix-three-low-medium-findings-1-rank-py-](./quick/260707-us2-fix-three-low-medium-findings-1-rank-py-/) |
 | 260725-hmy | Fix five joint Claude+Codex audit findings: 30d velocity per-repo oldest-containing-snapshot join, write_metadata merge (not overwrite), filter at digest-selection not persistence, per-repo captured_at for retry safety, CI workflow + shared concurrency group + daily job timeout | 2026-07-25 | 0e7fd2a | [260725-hmy-fix-five-audit-findings-30d-velocity-per](./quick/260725-hmy-fix-five-audit-findings-30d-velocity-per/) |
 | 260725-u4s | Fix four HTML email digest defects from the same audit: convert remaining flexbox layout (hero card, repo rows, wrapper, masthead, bucket headers) to Gmail-safe nested tables; REPOS TRACKED now shows the true tracked total (2211) via a tracked_total key on each bucket instead of counting digest entries; BRAND NEW deduped by repo id across the overlapping weekly/monthly buckets; restored the ★ glyph in the TOP ★/DAY label | 2026-07-25 | eb97b3b | [260725-u4s-fix-email-digest-rendering-gmail-safe-ta](./quick/260725-u4s-fix-email-digest-rendering-gmail-safe-ta/) |
+| 260726-gqd | Broaden refresh_tracked exception handling (resolves the one open disagreement from the 2026-07-25 audit): a 451/5xx on a single tracked repo now warns and skips instead of aborting the whole run before any snapshot write; RateLimitExceededException and BadCredentialsException still propagate immediately as systemic; abort past max(10, 5% of tracked ids) unexpected skips so a systemic failure cannot silently write a gutted snapshot; deleted/private repos do not count toward the threshold | 2026-07-26 | e3139e9 | [260726-gqd-broaden-refresh-tracked-exception-handli](./quick/260726-gqd-broaden-refresh-tracked-exception-handli/) |
 
 ## Deferred Items
 
@@ -111,4 +112,4 @@ Last session: 2026-06-29T05:00:00.000Z
 Stopped at: Phase 3 verified — milestone v1.0 complete
 Resume file: .planning/phases/03-production-hardening/03-VERIFICATION.md
 
-Last activity: 2026-07-25 - Completed quick task 260725-u4s: fix email digest rendering (Gmail-safe tables, true tracked count, deduped BRAND NEW, star glyph)
+Last activity: 2026-07-26 - Completed quick task 260726-gqd: broaden refresh_tracked exception handling with skip threshold
