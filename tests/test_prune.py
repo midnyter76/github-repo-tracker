@@ -429,3 +429,93 @@ class TestPruneSeen:
         prune_seen(seen, now, retention_days=90)
 
         assert set(seen.keys()) == original_keys, "input dict key set must be unchanged"
+
+
+def _report_path(d: Path, days_ago: int, suffix: str, now: datetime = None) -> Path:
+    """Create a dummy report file in d with stem = (now - days_ago) date."""
+    if now is None:
+        now = _now()
+    file_date = (now - timedelta(days=days_ago)).date()
+    path = d / f"{file_date}{suffix}"
+    path.write_text(f"<html>{file_date}</html>" if suffix == ".html" else f"# {file_date}")
+    return path
+
+
+class TestPruneReports:
+    """prune_reports() deletes reports/*.html older than retention_days;
+    reports/*.md is never pruned at any age (quick task 260726-hf2)."""
+
+    def test_old_html_deleted_and_returned(self, tmp_path: Path):
+        """HTML 31 days old (retention_days=30) is deleted and returned."""
+        from src.prune import prune_reports
+
+        old_html = _report_path(tmp_path, days_ago=31, suffix=".html")
+        result = prune_reports(_now(), reports_dir=tmp_path, retention_days=30)
+        assert old_html in result
+        assert not old_html.exists()
+
+    def test_recent_html_kept(self, tmp_path: Path):
+        """HTML 29 days old is kept, not in return list."""
+        from src.prune import prune_reports
+
+        recent_html = _report_path(tmp_path, days_ago=29, suffix=".html")
+        result = prune_reports(_now(), reports_dir=tmp_path, retention_days=30)
+        assert recent_html not in result
+        assert recent_html.exists()
+
+    def test_markdown_of_same_stale_date_survives(self, tmp_path: Path):
+        """CORE GUARANTEE: .md and .html for the SAME 31-day-old date — only .html
+        is deleted; .md still exists and is not in the return list."""
+        from src.prune import prune_reports
+
+        html = _report_path(tmp_path, days_ago=31, suffix=".html")
+        md = _report_path(tmp_path, days_ago=31, suffix=".md")
+
+        result = prune_reports(_now(), reports_dir=tmp_path, retention_days=30)
+
+        assert html in result
+        assert not html.exists()
+        assert md not in result
+        assert md.exists()
+
+    def test_ancient_markdown_never_pruned(self, tmp_path: Path):
+        """Markdown 400 days old still exists — markdown is never pruned at any age."""
+        from src.prune import prune_reports
+
+        ancient_md = _report_path(tmp_path, days_ago=400, suffix=".md")
+        result = prune_reports(_now(), reports_dir=tmp_path, retention_days=30)
+        assert ancient_md not in result
+        assert ancient_md.exists()
+
+    def test_non_date_named_files_untouched(self, tmp_path: Path):
+        """Non-date-named notes.html and README.md are untouched, not in return list."""
+        from src.prune import prune_reports
+
+        notes = tmp_path / "notes.html"
+        notes.write_text("<html>notes</html>")
+        readme = tmp_path / "README.md"
+        readme.write_text("# readme")
+
+        result = prune_reports(_now(), reports_dir=tmp_path, retention_days=30)
+
+        assert notes not in result
+        assert readme not in result
+        assert notes.exists()
+        assert readme.exists()
+
+    def test_missing_directory_returns_empty(self, tmp_path: Path):
+        """Missing directory returns [] without raising."""
+        from src.prune import prune_reports
+
+        missing_dir = tmp_path / "nonexistent"
+        result = prune_reports(_now(), reports_dir=missing_dir, retention_days=30)
+        assert result == []
+
+    def test_boundary_exact_cutoff_kept(self, tmp_path: Path):
+        """File dated exactly days_ago == retention_days is KEPT (strict <)."""
+        from src.prune import prune_reports
+
+        boundary_html = _report_path(tmp_path, days_ago=30, suffix=".html")
+        result = prune_reports(_now(), reports_dir=tmp_path, retention_days=30)
+        assert boundary_html not in result
+        assert boundary_html.exists()
