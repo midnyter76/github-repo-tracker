@@ -375,11 +375,13 @@ def render_html_hero(top_mover: dict | None, bucket_title: str | None, now: date
   <div style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:#34d399; font-weight:600;">● Fastest mover · {title}</div>
   <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#f4f4f5; margin-top:11px; letter-spacing:-0.01em;">{owner}/{name}</div>
   <div style="font-family:'Newsreader', serif; font-size:15px; color:#9ca3af; line-height:1.5; margin-top:6px;">{desc}</div>
-  <div style="display:flex; align-items:flex-end; margin-top:20px;">
-    <span style="font-family:'Newsreader', serif; font-size:52px; font-weight:500; color:#34d399; line-height:0.85; letter-spacing:-0.02em;">{vel_fmt}</span>
-    <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#71717a; text-transform:uppercase; letter-spacing:0.08em; padding-bottom:5px; margin-left:7px;">stars / day</span>
-    <span style="margin-left:auto; font-family:'IBM Plex Mono', monospace; font-size:11px; color:#5b6573; padding-bottom:5px;">★ {stars_full} · {age}</span>
-  </div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:20px;">
+    <tr>
+      <td width="1" valign="bottom" style="white-space:nowrap;"><span style="font-family:'Newsreader', serif; font-size:52px; font-weight:500; color:#34d399; line-height:0.85; letter-spacing:-0.02em;">{vel_fmt}</span></td>
+      <td width="1" valign="bottom" style="white-space:nowrap; padding-left:7px;"><span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#71717a; text-transform:uppercase; letter-spacing:0.08em; padding-bottom:5px;">stars / day</span></td>
+      <td align="right" valign="bottom"><span style="font-family:'IBM Plex Mono', monospace; font-size:11px; color:#5b6573; padding-bottom:5px;">★ {stars_full} · {age}</span></td>
+    </tr>
+  </table>
 </a>"""
 
 
@@ -417,24 +419,34 @@ def render_html_row(entry: dict, markers: dict, bucket_max_vel: float, now: date
         else ""
     )
 
-    return f"""<a href="{url}" style="display:flex; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
-  <div style="flex-shrink:0; width:78px; text-align:right; margin-right:16px;">
-    <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">{vel_fmt}</div>
-    <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
-  </div>
-  <div style="flex:1;">
-    <div style="display:flex; align-items:center;">
-      <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">{owner}/{name}</span>
-      {new_badge}
-    </div>
-    <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">{desc}</div>
-    <div style="display:flex; align-items:center; margin-top:8px;">
-      <div style="flex:1; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
-        <div style="height:100%; background: {bar_fill}; border-radius:3px; width: {bar_pct}%;"></div>
-      </div>
-      <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap; margin-left:12px;">★ {stars_full} · {age}</span>
-    </div>
-  </div>
+    return f"""<a href="{url}" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">{vel_fmt}</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">{owner}/{name}</span>
+          {new_badge}
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">{desc}</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: {bar_fill}; border-radius:3px; width: {bar_pct}%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ {stars_full} · {age}</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
 </a>"""
 
 
@@ -486,11 +498,13 @@ def render_html_bucket(
         body = "\n".join(render_html_row(e, markers, bucket_max_vel, now) for e in entries)
 
     return f"""<div style="margin-top:34px;">
-  <div style="display:flex; align-items:baseline;">
-    <span style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#34d399; font-weight:600; margin-right:12px;">{html.escape(kicker)}</span>
-    <span style="flex:1; height:1px; background:#20222a;"></span>
-    <span style="font-family:'IBM Plex Mono', monospace; font-size:11px; color:#5b6573; margin-left:12px;">{count_label}</span>
-  </div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="1" valign="middle" style="white-space:nowrap;"><span style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#34d399; font-weight:600; margin-right:12px;">{html.escape(kicker)}</span></td>
+      <td width="100%" valign="middle"><div style="height:1px; background:#20222a; font-size:0; line-height:0;"></div></td>
+      <td width="1" align="right" valign="middle" style="white-space:nowrap;"><span style="font-family:'IBM Plex Mono', monospace; font-size:11px; color:#5b6573; margin-left:12px;">{count_label}</span></td>
+    </tr>
+  </table>
   <div style="font-family:'Newsreader', serif; font-size:24px; font-weight:500; color:#f4f4f5; margin-top:6px; letter-spacing:-0.01em;">{html.escape(title)}</div>
   {body}
 </div>"""
@@ -505,22 +519,30 @@ _LEADER_KICKERS = {
 
 
 def _count_tracked(buckets: dict) -> int:
-    """Distinct repos across all four buckets, deduped by numeric id."""
+    """Total repos tracked today (rank.compute_buckets surfaces `tracked_total`
+    on each bucket). Falls back to the distinct-id count across the four
+    rendered buckets when the key is absent (pre-tracked_total bucket dicts)."""
+    total = buckets["brand_new_weekly"].get("tracked_total")
+    if total is not None:
+        return total
     ids = {str(e["id"]) for key, _kicker, _title in _HTML_SECTIONS for e in buckets[key]["entries"]}
     return len(ids)
 
 
 def _count_brand_new(buckets: dict, markers: dict) -> int:
-    """Count of brand-new-flagged entries across the two brand-new buckets.
+    """Distinct brand-new-flagged repos across the two brand-new buckets.
 
     Uses the same NEW rule as render_html_row: absent marker defaults to 'new'.
+    Weekly/monthly overlap is intentional (a repo created 3 days ago is in
+    both), which is why the dedupe is required.
     """
-    n = 0
-    for key in ("brand_new_weekly", "brand_new_monthly"):
-        for e in buckets[key]["entries"]:
-            if markers.get(str(e["id"]), "new") == "new":
-                n += 1
-    return n
+    ids = {
+        str(e["id"])
+        for key in ("brand_new_weekly", "brand_new_monthly")
+        for e in buckets[key]["entries"]
+        if markers.get(str(e["id"]), "new") == "new"
+    }
+    return len(ids)
 
 
 def _render_leader_cell(key: str, bucket: dict, markers: dict) -> str:
@@ -619,7 +641,7 @@ def render_html_leaders(buckets: dict, markers: dict, now: datetime) -> str:
         [
             _render_strip_cell("REPOS TRACKED", str(_count_tracked(buckets)), "#34d399", border_right=True),
             _render_strip_cell("BRAND NEW", str(_count_brand_new(buckets, markers)), "#f4f4f5", border_right=True),
-            _render_strip_cell("TOP */DAY", top_per_day, "#34d399", border_right=False),
+            _render_strip_cell("TOP ★/DAY", top_per_day, "#34d399", border_right=False),
         ]
     )
     strip_html = f"""<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate; border:1px solid #20222a; border-radius:7px; background:#0e0f12; margin-top:22px;">
@@ -681,12 +703,16 @@ def render_html_digest(buckets: dict, markers: dict, now: datetime) -> str:
 </style>
 </head>
 <body style="margin:0; padding:0; background:#d8dadc;">
-<div style="width:100%; padding:40px 0; display:flex; justify-content:center;">
-<div style="width:620px; background:#0c0d10; border:1px solid #20222a; border-radius:4px; overflow:hidden; box-shadow:0 24px 60px -24px rgba(0,0,0,.55);">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#d8dadc;">
+<tr><td align="center" style="padding:40px 0;">
+<div style="width:620px; margin:0 auto; background:#0c0d10; border:1px solid #20222a; border-radius:4px; overflow:hidden; box-shadow:0 24px 60px -24px rgba(0,0,0,.55);">
 <div style="padding:38px 44px 26px;">
-<div style="display:flex; justify-content:space-between; align-items:baseline; font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#5b6573;">
-<span>Issue No. {issue_no}</span><span style="margin-left:16px;">{date_label}</span>
-</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="bottom" style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#5b6573;"><span>Issue No. {issue_no}</span></td>
+<td align="right" valign="bottom" style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#5b6573;"><span style="margin-left:16px;">{date_label}</span></td>
+</tr>
+</table>
 <div style="font-family:'Newsreader', serif; font-size:46px; font-weight:500; color:#f4f4f5; line-height:1.0; margin-top:18px; letter-spacing:-0.015em;">The Dispatch</div>
 <div style="font-family:'Newsreader', serif; font-size:16px; font-style:italic; color:#8b8f99; margin-top:8px;">What the open-source AI world is starring this week.</div>
 {hero_html}
@@ -696,7 +722,7 @@ def render_html_digest(buckets: dict, markers: dict, now: datetime) -> str:
 {sections_html}
 </div>
 </div>
-</div>
+</td></tr></table>
 </body>
 </html>
 """

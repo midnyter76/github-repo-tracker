@@ -46,22 +46,37 @@ def _entry(
     }
 
 
-def _active_bucket(entries: list[dict], window_target: int = 7, snapshots_available: int = 5) -> dict:
-    return {
+def _active_bucket(
+    entries: list[dict],
+    window_target: int = 7,
+    snapshots_available: int = 5,
+    tracked_total: int | None = None,
+) -> dict:
+    bucket = {
         "active": True,
         "snapshots_available": snapshots_available,
         "window_target": window_target,
         "entries": entries,
     }
+    if tracked_total is not None:
+        bucket["tracked_total"] = tracked_total
+    return bucket
 
 
-def _inactive_bucket(snapshots_available: int = 1, window_target: int = 2) -> dict:
-    return {
+def _inactive_bucket(
+    snapshots_available: int = 1,
+    window_target: int = 2,
+    tracked_total: int | None = None,
+) -> dict:
+    bucket = {
         "active": False,
         "snapshots_available": snapshots_available,
         "window_target": window_target,
         "entries": [],
     }
+    if tracked_total is not None:
+        bucket["tracked_total"] = tracked_total
+    return bucket
 
 
 def _make_buckets(
@@ -71,20 +86,21 @@ def _make_buckets(
     spike_entries=None,
     v30d_active=True,
     v30d_entries=None,
+    tracked_total: int | None = None,
 ) -> dict:
     """Build a complete four-bucket dict matching compute_buckets output."""
     return {
-        "brand_new_weekly": _active_bucket(weekly_entries or [_entry()], window_target=7),
-        "brand_new_monthly": _active_bucket(monthly_entries or [_entry()], window_target=30),
+        "brand_new_weekly": _active_bucket(weekly_entries or [_entry()], window_target=7, tracked_total=tracked_total),
+        "brand_new_monthly": _active_bucket(monthly_entries or [_entry()], window_target=30, tracked_total=tracked_total),
         "spike_24h": (
-            _active_bucket(spike_entries or [_entry()], window_target=2)
+            _active_bucket(spike_entries or [_entry()], window_target=2, tracked_total=tracked_total)
             if spike_active
-            else _inactive_bucket(snapshots_available=1, window_target=2)
+            else _inactive_bucket(snapshots_available=1, window_target=2, tracked_total=tracked_total)
         ),
         "velocity_30d": (
-            _active_bucket(v30d_entries or [_entry()], window_target=30)
+            _active_bucket(v30d_entries or [_entry()], window_target=30, tracked_total=tracked_total)
             if v30d_active
-            else _inactive_bucket(snapshots_available=1, window_target=30)
+            else _inactive_bucket(snapshots_available=1, window_target=30, tracked_total=tracked_total)
         ),
     }
 
@@ -717,16 +733,16 @@ class TestHtmlDigest:
     # -- Gmail rendering fix — gap removed, equivalent margin added (quick task 260701-ibb) --
 
     def test_masthead_issue_no_and_date_have_explicit_spacing(self):
-        """Gmail drops flexbox `gap:`; pre-fix the two bare masthead spans are
-        directly adjacent and concatenate ("Issue No. 3Wed..."). Post-fix the
-        date span must carry an explicit margin-left so real whitespace exists
-        even without gap support."""
+        """Masthead is now a two-cell table row (not adjacent flex siblings).
+        The date span still carries an explicit margin, and its <td> carries
+        align="right" (the justify-content:space-between replacement)."""
         from src.report import render_html_digest
 
         result = render_html_digest(_make_buckets(), markers={}, now=_now())
-        assert re.search(r'Issue No\. \d+</span>\s*<span style="[^"]*margin', result), (
-            "date span must be styled with an explicit margin, not bare"
-        )
+        assert re.search(
+            r'<td align="right"[^>]*>\s*<span style="[^"]*margin[^"]*">[^<]*</span>',
+            result,
+        ), "date span must sit in a right-aligned td with an explicit margin, not bare"
         assert not re.search(r'Issue No\. \d+</span><span>', result), (
             "no bare </span><span> adjacency between issue-no and date "
             "(the pre-fix concatenation signature)"
@@ -755,18 +771,20 @@ class TestHtmlDigest:
         assert count_match is not None, "count_label span not found"
         assert "margin-left:12px" in count_match.group(1)
 
-        header_div_match = re.search(
-            r'<div style="([^"]*)">\s*<span style="[^"]*">Brand New · Weekly</span>', result
+        header_table_match = re.search(
+            r'<table role="presentation"[^>]*>\s*<tr>\s*<td[^>]*>\s*<span style="[^"]*">Brand New · Weekly</span>',
+            result,
         )
-        assert header_div_match is not None, "header row div not found"
-        assert "gap:12px" not in header_div_match.group(1), (
+        assert header_table_match is not None, "header row table not found"
+        assert "gap:12px" not in result.split("Brand New This Week")[0], (
             "gap must be REMOVED from the header row, not duplicated alongside margin"
         )
 
     def test_row_stat_block_has_explicit_margin_not_gap(self):
-        """Row outer <a> loses gap:16px; the 78px stat-block div gets an
-        equivalent margin-right so it stays separated from the description
-        column in Gmail."""
+        """Row outer <a> loses gap:16px; the 78px stat-block <td> gets an
+        equivalent padding-right so it stays separated from the description
+        column in Gmail (260701-ibb no-gap regression guard, now on the
+        table-based markup)."""
         from src.report import render_html_row
 
         result = render_html_row(_entry(), markers={}, bucket_max_vel=1.0, now=_now())
@@ -774,26 +792,28 @@ class TestHtmlDigest:
         a_tag_match = re.search(r'<a href="[^"]*" style="([^"]*)">', result)
         assert a_tag_match is not None, "outer <a> tag not found"
         assert "gap:16px" not in a_tag_match.group(1)
+        assert "gap:" not in a_tag_match.group(1)
 
-        stat_div_match = re.search(r'<div style="([^"]*width:78px[^"]*)">', result)
-        assert stat_div_match is not None, "78px stat block div not found"
-        assert "margin-right:16px" in stat_div_match.group(1)
+        stat_td_match = re.search(r'<td width="78"[^>]*style="([^"]*)"', result)
+        assert stat_td_match is not None, "78px stat block td not found"
+        assert "padding-right:16px" in stat_td_match.group(1)
+        assert "gap:16px" not in stat_td_match.group(1)
 
     def test_hero_stat_row_has_explicit_margin_not_gap(self):
-        """Hero stat row loses gap:7px; the 'stars / day' span gets an
-        equivalent margin-left so it stays separated from the big velocity
-        number in Gmail."""
+        """Hero stat row loses gap:7px; the 'stars / day' <td> gets an
+        equivalent padding-left so it stays separated from the big velocity
+        number in Gmail (260701-ibb no-gap regression guard, now on the
+        table-based markup)."""
         from src.report import render_html_hero
 
         result = render_html_hero(_entry(), "Brand New This Week", _now())
 
-        stat_row_match = re.search(r'<div style="display:flex; align-items:flex-end;([^"]*)">', result)
-        assert stat_row_match is not None, "hero stat row div not found"
-        assert "gap:7px" not in stat_row_match.group(1)
+        assert "gap:7px" not in result
+        assert "gap:" not in result
 
-        stars_day_match = re.search(r'<span style="([^"]*)">stars / day</span>', result)
-        assert stars_day_match is not None, "'stars / day' span not found"
-        assert "margin-left:7px" in stars_day_match.group(1)
+        stars_day_td_match = re.search(r'<td[^>]*style="([^"]*)"><span[^>]*>stars / day</span>', result)
+        assert stars_day_td_match is not None, "'stars / day' td not found"
+        assert "padding-left:7px" in stars_day_td_match.group(1)
 
     def test_render_html_digest_has_no_gap_declarations_anywhere(self):
         """Whole-document guard: catches any missed `gap:` token across the
@@ -802,6 +822,56 @@ class TestHtmlDigest:
 
         result = render_html_digest(_make_buckets(), markers={}, now=_now())
         assert "gap:" not in result, "no email-HTML element may rely on flexbox gap for spacing"
+
+    def test_hero_has_no_flex_declarations(self):
+        """F1: Gmail strips display:flex — the hero card must be table-based."""
+        from src.report import render_html_hero
+
+        result = render_html_hero(_entry(), "Brand New This Week", _now())
+        for token in ("display:flex", "align-items:", "margin-left:auto", "flex:1", "flex-shrink"):
+            assert token not in result, f"hero card still contains flex token: {token}"
+
+    def test_row_has_no_flex_declarations(self):
+        """F1: Gmail strips display:flex — the repo row must be table-based."""
+        from src.report import render_html_row
+
+        result = render_html_row(_entry(), markers={}, bucket_max_vel=1.0, now=_now())
+        for token in ("display:flex", "align-items:", "margin-left:auto", "flex:1", "flex-shrink"):
+            assert token not in result, f"repo row still contains flex token: {token}"
+
+    def test_hero_star_age_cell_is_right_aligned(self):
+        """Hero's '★ N · age' text sits in a right-aligned <td> (the
+        margin-left:auto replacement)."""
+        from src.report import render_html_hero
+
+        result = render_html_hero(_entry(stars=500), "Brand New This Week", _now())
+        match = re.search(r'<td align="right"[^>]*>\s*<span[^>]*>★ [^<]*</span>', result)
+        assert match is not None, "★ ... · age text not found in a right-aligned td"
+
+    def test_render_html_digest_has_no_flex_declarations_anywhere(self):
+        """F1 acceptance test: the whole rendered document must contain zero
+        flexbox declarations — this covers the full document, not one
+        function, so it catches any location the per-function guards miss."""
+        from src.report import render_html_digest
+
+        result = render_html_digest(_make_buckets(), markers={}, now=_now())
+        tokens = [
+            "display:flex", "display:grid", "justify-content", "align-items",
+            "flex:1", "flex-shrink", "margin-left:auto", "gap:",
+        ]
+        for token in tokens:
+            assert token not in result, f"rendered digest still contains flex token: {token}"
+
+    def test_card_is_centered_by_table_cell_not_flex(self):
+        """The 620px card is centered via align="center" on a table cell plus
+        margin:0 auto on the card div — not justify-content:center."""
+        from src.report import render_html_digest
+
+        result = render_html_digest(_make_buckets(), markers={}, now=_now())
+        assert re.search(r'<td align="center"[^>]*>', result), 'no <td align="center"> found'
+        assert re.search(r'<div style="[^"]*width:620px;[^"]*margin:0 auto;', result), (
+            "620px card div missing margin:0 auto"
+        )
 
 
 # ---------------------------------------------------------------------------
@@ -829,9 +899,10 @@ class TestVelAbbr:
 
 
 class TestCountTracked:
-    def test_dedupes_same_id_across_buckets(self):
-        """The same repo appearing in weekly + spike counts once; a distinct
-        id in another bucket adds to the count."""
+    def test_dedupes_same_id_across_buckets_when_tracked_total_absent(self):
+        """Fallback path (no tracked_total key on the bucket dicts): the same
+        repo appearing in weekly + spike counts once; a distinct id in
+        another bucket adds to the count."""
         from src.report import _count_tracked
 
         shared_weekly = _entry(id="1")
@@ -845,6 +916,15 @@ class TestCountTracked:
             v30d_entries=[distinct_v30d],
         )
         assert _count_tracked(buckets) == 3  # ids {1, 2, 3} — "1" counted once
+
+    def test_uses_tracked_total_when_present(self):
+        """When rank.compute_buckets surfaces tracked_total, that value wins
+        even though the four rendered buckets hold at most a handful of
+        entries."""
+        from src.report import _count_tracked
+
+        buckets = _make_buckets(tracked_total=2211)
+        assert _count_tracked(buckets) == 2211
 
 
 class TestCountBrandNew:
@@ -864,6 +944,21 @@ class TestCountBrandNew:
         )
         markers = {"1": "new", "2": "returning", "4": "new"}
         assert _count_brand_new(buckets, markers) == 2
+
+    def test_repo_in_both_brand_new_buckets_counts_once(self):
+        """Pre-fix failure mode: the same repo id (created 3 days ago, so it
+        qualifies for both weekly and monthly windows) must contribute 1 to
+        BRAND NEW, not 2 — weekly/monthly overlap is intentional (Q1) and
+        must be deduped by _count_brand_new."""
+        from src.report import _count_brand_new
+
+        shared = _entry(id="1")
+        distinct = _entry(id="2")
+        buckets = _make_buckets(
+            weekly_entries=[shared],
+            monthly_entries=[shared, distinct],
+        )
+        assert _count_brand_new(buckets, markers={}) == 2  # not 3
 
 
 class TestRenderHtmlLeaders:
@@ -1003,7 +1098,8 @@ class TestHtmlDigestStatsStrip:
         result = render_html_digest(_make_buckets(), markers={}, now=_now())
         assert "REPOS TRACKED" in result
         assert "BRAND NEW" in result
-        assert "TOP */DAY" in result
+        assert "TOP ★/DAY" in result
+        assert "TOP */DAY" not in result
 
     def test_top_per_day_shows_abbreviated_global_max(self):
         from src.report import render_html_digest
@@ -1027,6 +1123,15 @@ class TestHtmlDigestStatsStrip:
         )
         assert match is not None, "BRAND NEW value+label pair not found"
         assert match.group(1) == "#f4f4f5", "BRAND NEW must be white, not green"
+
+    def test_repos_tracked_shows_true_total_not_bucket_count(self):
+        """REPOS TRACKED must show tracked_total (today's snapshot count),
+        not the <=35 rendered-bucket entry count."""
+        from src.report import render_html_leaders
+
+        result = render_html_leaders(_make_buckets(tracked_total=2211), markers={}, now=_now())
+        match = re.search(r'>2211</span><span style="[^"]*">REPOS TRACKED</span>', result)
+        assert match is not None, "REPOS TRACKED value+label pair with tracked_total not found"
 
     def test_leaders_grid_inserted_between_hero_and_sections(self):
         """Leaders block must appear after the hero ('Fastest mover') and

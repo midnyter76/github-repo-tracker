@@ -458,6 +458,34 @@ class TestComputeBucketsTwoSnapshots:
         for key in ("brand_new_weekly", "brand_new_monthly", "spike_24h", "velocity_30d"):
             assert buckets[key]["snapshots_available"] == 2, f"{key} snapshots_available wrong"
 
+    def test_tracked_total_set_on_all_buckets_and_four_keys_unbroken(self, tmp_path: Path):
+        """tracked_total == len(today's snapshot repos) on all four buckets
+        (F2); compute_buckets still returns exactly the four top-level keys
+        collector.py iterates over `for b in buckets.values()`."""
+        from src.rank import compute_buckets
+
+        snaps_dir, meta_path, now = self._setup(tmp_path, gap_hours=24)
+        buckets = compute_buckets(snaps_dir, meta_path, now)
+        assert set(buckets.keys()) == {
+            "brand_new_weekly", "brand_new_monthly", "spike_24h", "velocity_30d",
+        }
+        for key in ("brand_new_weekly", "brand_new_monthly", "spike_24h", "velocity_30d"):
+            assert buckets[key]["tracked_total"] == 1, f"{key} tracked_total wrong"  # today's snapshot has repo id "1"
+
+    def test_tracked_total_zero_with_no_snapshots(self, tmp_path: Path):
+        """Cold start: zero snapshots -> tracked_total == 0 on all four buckets."""
+        from src.rank import compute_buckets
+
+        snaps_dir = tmp_path / "snapshots"
+        snaps_dir.mkdir()
+        meta_path = tmp_path / "metadata.json"
+        now = _utc(month=6, day=28, hour=12)
+        meta_path.write_text(json.dumps({"updated_at": now.isoformat(), "repos": {}}))
+
+        buckets = compute_buckets(snaps_dir, meta_path, now)
+        for key in ("brand_new_weekly", "brand_new_monthly", "spike_24h", "velocity_30d"):
+            assert buckets[key]["tracked_total"] == 0, f"{key} tracked_total wrong"
+
 
 class TestComputeBucketsGuards:
     """Edge-case guards: staleness, negative-delta, missing-metadata."""
