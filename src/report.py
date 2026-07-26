@@ -375,11 +375,13 @@ def render_html_hero(top_mover: dict | None, bucket_title: str | None, now: date
   <div style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:#34d399; font-weight:600;">● Fastest mover · {title}</div>
   <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#f4f4f5; margin-top:11px; letter-spacing:-0.01em;">{owner}/{name}</div>
   <div style="font-family:'Newsreader', serif; font-size:15px; color:#9ca3af; line-height:1.5; margin-top:6px;">{desc}</div>
-  <div style="display:flex; align-items:flex-end; margin-top:20px;">
-    <span style="font-family:'Newsreader', serif; font-size:52px; font-weight:500; color:#34d399; line-height:0.85; letter-spacing:-0.02em;">{vel_fmt}</span>
-    <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#71717a; text-transform:uppercase; letter-spacing:0.08em; padding-bottom:5px; margin-left:7px;">stars / day</span>
-    <span style="margin-left:auto; font-family:'IBM Plex Mono', monospace; font-size:11px; color:#5b6573; padding-bottom:5px;">★ {stars_full} · {age}</span>
-  </div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:20px;">
+    <tr>
+      <td width="1" valign="bottom" style="white-space:nowrap;"><span style="font-family:'Newsreader', serif; font-size:52px; font-weight:500; color:#34d399; line-height:0.85; letter-spacing:-0.02em;">{vel_fmt}</span></td>
+      <td width="1" valign="bottom" style="white-space:nowrap; padding-left:7px;"><span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#71717a; text-transform:uppercase; letter-spacing:0.08em; padding-bottom:5px;">stars / day</span></td>
+      <td align="right" valign="bottom"><span style="font-family:'IBM Plex Mono', monospace; font-size:11px; color:#5b6573; padding-bottom:5px;">★ {stars_full} · {age}</span></td>
+    </tr>
+  </table>
 </a>"""
 
 
@@ -417,24 +419,34 @@ def render_html_row(entry: dict, markers: dict, bucket_max_vel: float, now: date
         else ""
     )
 
-    return f"""<a href="{url}" style="display:flex; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
-  <div style="flex-shrink:0; width:78px; text-align:right; margin-right:16px;">
-    <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">{vel_fmt}</div>
-    <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
-  </div>
-  <div style="flex:1;">
-    <div style="display:flex; align-items:center;">
-      <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">{owner}/{name}</span>
-      {new_badge}
-    </div>
-    <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">{desc}</div>
-    <div style="display:flex; align-items:center; margin-top:8px;">
-      <div style="flex:1; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
-        <div style="height:100%; background: {bar_fill}; border-radius:3px; width: {bar_pct}%;"></div>
-      </div>
-      <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap; margin-left:12px;">★ {stars_full} · {age}</span>
-    </div>
-  </div>
+    return f"""<a href="{url}" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">{vel_fmt}</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">{owner}/{name}</span>
+          {new_badge}
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">{desc}</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: {bar_fill}; border-radius:3px; width: {bar_pct}%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ {stars_full} · {age}</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
 </a>"""
 
 

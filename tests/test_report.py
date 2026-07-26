@@ -780,9 +780,10 @@ class TestHtmlDigest:
         )
 
     def test_row_stat_block_has_explicit_margin_not_gap(self):
-        """Row outer <a> loses gap:16px; the 78px stat-block div gets an
-        equivalent margin-right so it stays separated from the description
-        column in Gmail."""
+        """Row outer <a> loses gap:16px; the 78px stat-block <td> gets an
+        equivalent padding-right so it stays separated from the description
+        column in Gmail (260701-ibb no-gap regression guard, now on the
+        table-based markup)."""
         from src.report import render_html_row
 
         result = render_html_row(_entry(), markers={}, bucket_max_vel=1.0, now=_now())
@@ -790,26 +791,28 @@ class TestHtmlDigest:
         a_tag_match = re.search(r'<a href="[^"]*" style="([^"]*)">', result)
         assert a_tag_match is not None, "outer <a> tag not found"
         assert "gap:16px" not in a_tag_match.group(1)
+        assert "gap:" not in a_tag_match.group(1)
 
-        stat_div_match = re.search(r'<div style="([^"]*width:78px[^"]*)">', result)
-        assert stat_div_match is not None, "78px stat block div not found"
-        assert "margin-right:16px" in stat_div_match.group(1)
+        stat_td_match = re.search(r'<td width="78"[^>]*style="([^"]*)"', result)
+        assert stat_td_match is not None, "78px stat block td not found"
+        assert "padding-right:16px" in stat_td_match.group(1)
+        assert "gap:16px" not in stat_td_match.group(1)
 
     def test_hero_stat_row_has_explicit_margin_not_gap(self):
-        """Hero stat row loses gap:7px; the 'stars / day' span gets an
-        equivalent margin-left so it stays separated from the big velocity
-        number in Gmail."""
+        """Hero stat row loses gap:7px; the 'stars / day' <td> gets an
+        equivalent padding-left so it stays separated from the big velocity
+        number in Gmail (260701-ibb no-gap regression guard, now on the
+        table-based markup)."""
         from src.report import render_html_hero
 
         result = render_html_hero(_entry(), "Brand New This Week", _now())
 
-        stat_row_match = re.search(r'<div style="display:flex; align-items:flex-end;([^"]*)">', result)
-        assert stat_row_match is not None, "hero stat row div not found"
-        assert "gap:7px" not in stat_row_match.group(1)
+        assert "gap:7px" not in result
+        assert "gap:" not in result
 
-        stars_day_match = re.search(r'<span style="([^"]*)">stars / day</span>', result)
-        assert stars_day_match is not None, "'stars / day' span not found"
-        assert "margin-left:7px" in stars_day_match.group(1)
+        stars_day_td_match = re.search(r'<td[^>]*style="([^"]*)"><span[^>]*>stars / day</span>', result)
+        assert stars_day_td_match is not None, "'stars / day' td not found"
+        assert "padding-left:7px" in stars_day_td_match.group(1)
 
     def test_render_html_digest_has_no_gap_declarations_anywhere(self):
         """Whole-document guard: catches any missed `gap:` token across the
@@ -818,6 +821,31 @@ class TestHtmlDigest:
 
         result = render_html_digest(_make_buckets(), markers={}, now=_now())
         assert "gap:" not in result, "no email-HTML element may rely on flexbox gap for spacing"
+
+    def test_hero_has_no_flex_declarations(self):
+        """F1: Gmail strips display:flex — the hero card must be table-based."""
+        from src.report import render_html_hero
+
+        result = render_html_hero(_entry(), "Brand New This Week", _now())
+        for token in ("display:flex", "align-items:", "margin-left:auto", "flex:1", "flex-shrink"):
+            assert token not in result, f"hero card still contains flex token: {token}"
+
+    def test_row_has_no_flex_declarations(self):
+        """F1: Gmail strips display:flex — the repo row must be table-based."""
+        from src.report import render_html_row
+
+        result = render_html_row(_entry(), markers={}, bucket_max_vel=1.0, now=_now())
+        for token in ("display:flex", "align-items:", "margin-left:auto", "flex:1", "flex-shrink"):
+            assert token not in result, f"repo row still contains flex token: {token}"
+
+    def test_hero_star_age_cell_is_right_aligned(self):
+        """Hero's '★ N · age' text sits in a right-aligned <td> (the
+        margin-left:auto replacement)."""
+        from src.report import render_html_hero
+
+        result = render_html_hero(_entry(stars=500), "Brand New This Week", _now())
+        match = re.search(r'<td align="right"[^>]*>\s*<span[^>]*>★ [^<]*</span>', result)
+        assert match is not None, "★ ... · age text not found in a right-aligned td"
 
 
 # ---------------------------------------------------------------------------
