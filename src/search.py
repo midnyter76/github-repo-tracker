@@ -399,11 +399,16 @@ def discover_established(g, search=None) -> dict:
 # ---------------------------------------------------------------------------
 
 
-def refresh_tracked(g, tracked_ids: list) -> dict:
+def refresh_tracked(g, tracked_ids: list, *, max_error_skips: int | None = None) -> dict:
     """Re-fetch current star counts for all previously tracked repos.
 
     Uses numeric ID lookup (Pattern 3) — survives renames and transfers.
     Skips repos that have been deleted or made private (UnknownObjectException).
+    Also skips repos that raise any other GithubException (e.g. 451 DMCA takedown,
+    5xx) — up to a threshold — so one bad repo no longer aborts the whole run
+    before any snapshot is written. RateLimitExceededException and
+    BadCredentialsException are systemic (the rest of the run is doomed) and are
+    re-raised immediately, without waiting for the threshold.
 
     Does NOT call the repo.get_topics method — that is a separate API call per
     repo and would double core API usage (Pitfall 6).
@@ -414,11 +419,23 @@ def refresh_tracked(g, tracked_ids: list) -> dict:
     Args:
         g: Authenticated Github client.
         tracked_ids: List of str repo ids from the metadata store.
+        max_error_skips: Max unexpected per-repo GithubException skips (deleted/
+            private repos do not count) before aborting. Defaults to
+            max(10, 5% of tracked_ids) when not supplied.
 
     Returns:
-        dict keyed by str(repo.id) → repo object (deleted/private repos omitted).
+        dict keyed by str(repo.id) → repo object (deleted/private/errored repos
+        omitted).
+
+    Raises:
+        RuntimeError: if unexpected per-repo errors exceed max_error_skips.
+        RateLimitExceededException, BadCredentialsException: propagated immediately.
     """
+    if max_error_skips is None:
+        max_error_skips = max(10, len(tracked_ids) // 20)
+
     refreshed: dict = {}
+    error_skips = 0
     for rid in tracked_ids:
         try:
             repo = g.get_repo(int(rid))
@@ -428,5 +445,15 @@ def refresh_tracked(g, tracked_ids: list) -> dict:
             continue
         except github.UnknownObjectException:
             warnings.warn(f"Repo id {rid} unavailable (deleted or private); skipping")
+            continue
+        except (github.RateLimitExceededException, github.BadCredentialsException):
+            raise
+        except github.GithubException:
+            error_skips += 1
+            if error_skips > max_error_skips:
+                raise RuntimeError(
+                    f"refresh_tracked aborted: {error_skips} repo errors exceeded threshold {max_error_skips}"
+                )
+            warnings.warn(f"Repo id {rid} refresh failed; skipping")
             continue
     return refreshed
