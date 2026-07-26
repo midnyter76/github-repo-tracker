@@ -98,6 +98,8 @@ None yet.
 | 260725-u4s | Fix four HTML email digest defects from the same audit: convert remaining flexbox layout (hero card, repo rows, wrapper, masthead, bucket headers) to Gmail-safe nested tables; REPOS TRACKED now shows the true tracked total (2211) via a tracked_total key on each bucket instead of counting digest entries; BRAND NEW deduped by repo id across the overlapping weekly/monthly buckets; restored the ★ glyph in the TOP ★/DAY label | 2026-07-25 | eb97b3b | [260725-u4s-fix-email-digest-rendering-gmail-safe-ta](./quick/260725-u4s-fix-email-digest-rendering-gmail-safe-ta/) |
 | 260726-gqd | Broaden refresh_tracked exception handling (resolves the one open disagreement from the 2026-07-25 audit): a 451/5xx on a single tracked repo now warns and skips instead of aborting the whole run before any snapshot write; RateLimitExceededException and BadCredentialsException still propagate immediately as systemic; abort past max(10, 5% of tracked ids) unexpected skips so a systemic failure cannot silently write a gutted snapshot; deleted/private repos do not count toward the threshold | 2026-07-26 | e3139e9 | [260726-gqd-broaden-refresh-tracked-exception-handli](./quick/260726-gqd-broaden-refresh-tracked-exception-handli/) |
 
+| 260726-hf2 | Bound reports/ growth (audit finding): prune reports/*.html at REPORT_HTML_RETENTION_DAYS=30 via new prune_reports(); reports/*.md is never pruned at any age (permanent archive). Extracted shared _prune_dated() helper so prune_snapshots is unchanged. Widened daily.yml deletion staging from `data/` to `data/ reports/` — without it the prunes never reach the commit and the fix is inert | 2026-07-26 | 98df212 | [260726-hf2-prune-reports-html-at-30-days-keep-markd](./quick/260726-hf2-prune-reports-html-at-30-days-keep-markd/) |
+
 ## Deferred Items
 
 Items acknowledged and carried forward from previous milestone close:
@@ -112,4 +114,4 @@ Last session: 2026-06-29T05:00:00.000Z
 Stopped at: Phase 3 verified — milestone v1.0 complete
 Resume file: .planning/phases/03-production-hardening/03-VERIFICATION.md
 
-Last activity: 2026-07-26 - Completed quick task 260726-gqd: broaden refresh_tracked exception handling with skip threshold
+Last activity: 2026-07-26 - Completed quick task 260726-hf2: prune reports/ HTML at 30 days, keep markdown forever
