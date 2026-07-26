@@ -46,22 +46,37 @@ def _entry(
     }
 
 
-def _active_bucket(entries: list[dict], window_target: int = 7, snapshots_available: int = 5) -> dict:
-    return {
+def _active_bucket(
+    entries: list[dict],
+    window_target: int = 7,
+    snapshots_available: int = 5,
+    tracked_total: int | None = None,
+) -> dict:
+    bucket = {
         "active": True,
         "snapshots_available": snapshots_available,
         "window_target": window_target,
         "entries": entries,
     }
+    if tracked_total is not None:
+        bucket["tracked_total"] = tracked_total
+    return bucket
 
 
-def _inactive_bucket(snapshots_available: int = 1, window_target: int = 2) -> dict:
-    return {
+def _inactive_bucket(
+    snapshots_available: int = 1,
+    window_target: int = 2,
+    tracked_total: int | None = None,
+) -> dict:
+    bucket = {
         "active": False,
         "snapshots_available": snapshots_available,
         "window_target": window_target,
         "entries": [],
     }
+    if tracked_total is not None:
+        bucket["tracked_total"] = tracked_total
+    return bucket
 
 
 def _make_buckets(
@@ -71,20 +86,21 @@ def _make_buckets(
     spike_entries=None,
     v30d_active=True,
     v30d_entries=None,
+    tracked_total: int | None = None,
 ) -> dict:
     """Build a complete four-bucket dict matching compute_buckets output."""
     return {
-        "brand_new_weekly": _active_bucket(weekly_entries or [_entry()], window_target=7),
-        "brand_new_monthly": _active_bucket(monthly_entries or [_entry()], window_target=30),
+        "brand_new_weekly": _active_bucket(weekly_entries or [_entry()], window_target=7, tracked_total=tracked_total),
+        "brand_new_monthly": _active_bucket(monthly_entries or [_entry()], window_target=30, tracked_total=tracked_total),
         "spike_24h": (
-            _active_bucket(spike_entries or [_entry()], window_target=2)
+            _active_bucket(spike_entries or [_entry()], window_target=2, tracked_total=tracked_total)
             if spike_active
-            else _inactive_bucket(snapshots_available=1, window_target=2)
+            else _inactive_bucket(snapshots_available=1, window_target=2, tracked_total=tracked_total)
         ),
         "velocity_30d": (
-            _active_bucket(v30d_entries or [_entry()], window_target=30)
+            _active_bucket(v30d_entries or [_entry()], window_target=30, tracked_total=tracked_total)
             if v30d_active
-            else _inactive_bucket(snapshots_available=1, window_target=30)
+            else _inactive_bucket(snapshots_available=1, window_target=30, tracked_total=tracked_total)
         ),
     }
 
@@ -829,9 +845,10 @@ class TestVelAbbr:
 
 
 class TestCountTracked:
-    def test_dedupes_same_id_across_buckets(self):
-        """The same repo appearing in weekly + spike counts once; a distinct
-        id in another bucket adds to the count."""
+    def test_dedupes_same_id_across_buckets_when_tracked_total_absent(self):
+        """Fallback path (no tracked_total key on the bucket dicts): the same
+        repo appearing in weekly + spike counts once; a distinct id in
+        another bucket adds to the count."""
         from src.report import _count_tracked
 
         shared_weekly = _entry(id="1")
@@ -845,6 +862,15 @@ class TestCountTracked:
             v30d_entries=[distinct_v30d],
         )
         assert _count_tracked(buckets) == 3  # ids {1, 2, 3} — "1" counted once
+
+    def test_uses_tracked_total_when_present(self):
+        """When rank.compute_buckets surfaces tracked_total, that value wins
+        even though the four rendered buckets hold at most a handful of
+        entries."""
+        from src.report import _count_tracked
+
+        buckets = _make_buckets(tracked_total=2211)
+        assert _count_tracked(buckets) == 2211
 
 
 class TestCountBrandNew:
@@ -1027,6 +1053,15 @@ class TestHtmlDigestStatsStrip:
         )
         assert match is not None, "BRAND NEW value+label pair not found"
         assert match.group(1) == "#f4f4f5", "BRAND NEW must be white, not green"
+
+    def test_repos_tracked_shows_true_total_not_bucket_count(self):
+        """REPOS TRACKED must show tracked_total (today's snapshot count),
+        not the <=35 rendered-bucket entry count."""
+        from src.report import render_html_leaders
+
+        result = render_html_leaders(_make_buckets(tracked_total=2211), markers={}, now=_now())
+        match = re.search(r'>2211</span><span style="[^"]*">REPOS TRACKED</span>', result)
+        assert match is not None, "REPOS TRACKED value+label pair with tracked_total not found"
 
     def test_leaders_grid_inserted_between_hero_and_sections(self):
         """Leaders block must appear after the hero ('Fastest mover') and

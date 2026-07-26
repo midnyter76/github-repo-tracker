@@ -505,7 +505,12 @@ _LEADER_KICKERS = {
 
 
 def _count_tracked(buckets: dict) -> int:
-    """Distinct repos across all four buckets, deduped by numeric id."""
+    """Total repos tracked today (rank.compute_buckets surfaces `tracked_total`
+    on each bucket). Falls back to the distinct-id count across the four
+    rendered buckets when the key is absent (pre-tracked_total bucket dicts)."""
+    total = buckets["brand_new_weekly"].get("tracked_total")
+    if total is not None:
+        return total
     ids = {str(e["id"]) for key, _kicker, _title in _HTML_SECTIONS for e in buckets[key]["entries"]}
     return len(ids)
 

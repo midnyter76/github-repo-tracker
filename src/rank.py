@@ -247,11 +247,14 @@ def compute_buckets(
 
     Bucket contract (Plan 03 renders this exact shape):
     {
-      "brand_new_weekly":  {"active": True,  "snapshots_available": N, "window_target": 7,  "entries": [...]},
-      "brand_new_monthly": {"active": True,  "snapshots_available": N, "window_target": 30, "entries": [...]},
-      "spike_24h":         {"active": bool,  "snapshots_available": N, "window_target": 2,  "entries": [...]},
-      "velocity_30d":      {"active": bool,  "snapshots_available": N, "window_target": 30, "entries": [...]},
+      "brand_new_weekly":  {"active": True,  "snapshots_available": N, "window_target": 7,  "tracked_total": N, "entries": [...]},
+      "brand_new_monthly": {"active": True,  "snapshots_available": N, "window_target": 30, "tracked_total": N, "entries": [...]},
+      "spike_24h":         {"active": bool,  "snapshots_available": N, "window_target": 2,  "tracked_total": N, "entries": [...]},
+      "velocity_30d":      {"active": bool,  "snapshots_available": N, "window_target": 30, "tracked_total": N, "entries": [...]},
     }
+
+    "tracked_total" is the count of repos in today's snapshot (total tracked),
+    distinct from the per-bucket entry counts.
 
     Each entry carries: id, full_name, html_url, description, created_at, stars,
     velocity_per_day.
@@ -286,6 +289,7 @@ def compute_buckets(
     snaps = load_snapshots(snapshots_dir)
     n_snaps = len(snaps)
     current = snaps[-1] if snaps else None
+    tracked_total = len(current["repos"]) if current is not None else 0
 
     # -----------------------------------------------------------------------
     # Brand New Weekly (RANK-01) and Brand New Monthly (RANK-02)
@@ -394,24 +398,28 @@ def compute_buckets(
             "active": True,
             "snapshots_available": n_snaps,
             "window_target": config.BRAND_NEW_WEEKLY_DAYS,
+            "tracked_total": tracked_total,
             "entries": weekly_entries,
         },
         "brand_new_monthly": {
             "active": True,
             "snapshots_available": n_snaps,
             "window_target": config.BRAND_NEW_MONTHLY_DAYS,
+            "tracked_total": tracked_total,
             "entries": monthly_entries,
         },
         "spike_24h": {
             "active": spike_active,
             "snapshots_available": n_snaps,
             "window_target": config.SPIKE_MIN_SNAPSHOTS,
+            "tracked_total": tracked_total,
             "entries": spike_entries,
         },
         "velocity_30d": {
             "active": v30d_active,
             "snapshots_available": n_snaps,
             "window_target": config.VELOCITY_30D_WINDOW_DAYS,
+            "tracked_total": tracked_total,
             "entries": v30d_entries,
         },
     }
