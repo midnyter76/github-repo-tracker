@@ -516,16 +516,19 @@ def _count_tracked(buckets: dict) -> int:
 
 
 def _count_brand_new(buckets: dict, markers: dict) -> int:
-    """Count of brand-new-flagged entries across the two brand-new buckets.
+    """Distinct brand-new-flagged repos across the two brand-new buckets.
 
     Uses the same NEW rule as render_html_row: absent marker defaults to 'new'.
+    Weekly/monthly overlap is intentional (a repo created 3 days ago is in
+    both), which is why the dedupe is required.
     """
-    n = 0
-    for key in ("brand_new_weekly", "brand_new_monthly"):
-        for e in buckets[key]["entries"]:
-            if markers.get(str(e["id"]), "new") == "new":
-                n += 1
-    return n
+    ids = {
+        str(e["id"])
+        for key in ("brand_new_weekly", "brand_new_monthly")
+        for e in buckets[key]["entries"]
+        if markers.get(str(e["id"]), "new") == "new"
+    }
+    return len(ids)
 
 
 def _render_leader_cell(key: str, bucket: dict, markers: dict) -> str:
@@ -624,7 +627,7 @@ def render_html_leaders(buckets: dict, markers: dict, now: datetime) -> str:
         [
             _render_strip_cell("REPOS TRACKED", str(_count_tracked(buckets)), "#34d399", border_right=True),
             _render_strip_cell("BRAND NEW", str(_count_brand_new(buckets, markers)), "#f4f4f5", border_right=True),
-            _render_strip_cell("TOP */DAY", top_per_day, "#34d399", border_right=False),
+            _render_strip_cell("TOP ★/DAY", top_per_day, "#34d399", border_right=False),
         ]
     )
     strip_html = f"""<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate; border:1px solid #20222a; border-radius:7px; background:#0e0f12; margin-top:22px;">

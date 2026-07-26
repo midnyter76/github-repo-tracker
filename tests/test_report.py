@@ -891,6 +891,21 @@ class TestCountBrandNew:
         markers = {"1": "new", "2": "returning", "4": "new"}
         assert _count_brand_new(buckets, markers) == 2
 
+    def test_repo_in_both_brand_new_buckets_counts_once(self):
+        """Pre-fix failure mode: the same repo id (created 3 days ago, so it
+        qualifies for both weekly and monthly windows) must contribute 1 to
+        BRAND NEW, not 2 — weekly/monthly overlap is intentional (Q1) and
+        must be deduped by _count_brand_new."""
+        from src.report import _count_brand_new
+
+        shared = _entry(id="1")
+        distinct = _entry(id="2")
+        buckets = _make_buckets(
+            weekly_entries=[shared],
+            monthly_entries=[shared, distinct],
+        )
+        assert _count_brand_new(buckets, markers={}) == 2  # not 3
+
 
 class TestRenderHtmlLeaders:
     def test_grid_and_strip_are_table_based(self):
@@ -1029,7 +1044,8 @@ class TestHtmlDigestStatsStrip:
         result = render_html_digest(_make_buckets(), markers={}, now=_now())
         assert "REPOS TRACKED" in result
         assert "BRAND NEW" in result
-        assert "TOP */DAY" in result
+        assert "TOP ★/DAY" in result
+        assert "TOP */DAY" not in result
 
     def test_top_per_day_shows_abbreviated_global_max(self):
         from src.report import render_html_digest
