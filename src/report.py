@@ -498,11 +498,13 @@ def render_html_bucket(
         body = "\n".join(render_html_row(e, markers, bucket_max_vel, now) for e in entries)
 
     return f"""<div style="margin-top:34px;">
-  <div style="display:flex; align-items:baseline;">
-    <span style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#34d399; font-weight:600; margin-right:12px;">{html.escape(kicker)}</span>
-    <span style="flex:1; height:1px; background:#20222a;"></span>
-    <span style="font-family:'IBM Plex Mono', monospace; font-size:11px; color:#5b6573; margin-left:12px;">{count_label}</span>
-  </div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="1" valign="middle" style="white-space:nowrap;"><span style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#34d399; font-weight:600; margin-right:12px;">{html.escape(kicker)}</span></td>
+      <td width="100%" valign="middle"><div style="height:1px; background:#20222a; font-size:0; line-height:0;"></div></td>
+      <td width="1" align="right" valign="middle" style="white-space:nowrap;"><span style="font-family:'IBM Plex Mono', monospace; font-size:11px; color:#5b6573; margin-left:12px;">{count_label}</span></td>
+    </tr>
+  </table>
   <div style="font-family:'Newsreader', serif; font-size:24px; font-weight:500; color:#f4f4f5; margin-top:6px; letter-spacing:-0.01em;">{html.escape(title)}</div>
   {body}
 </div>"""
@@ -701,12 +703,16 @@ def render_html_digest(buckets: dict, markers: dict, now: datetime) -> str:
 </style>
 </head>
 <body style="margin:0; padding:0; background:#d8dadc;">
-<div style="width:100%; padding:40px 0; display:flex; justify-content:center;">
-<div style="width:620px; background:#0c0d10; border:1px solid #20222a; border-radius:4px; overflow:hidden; box-shadow:0 24px 60px -24px rgba(0,0,0,.55);">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#d8dadc;">
+<tr><td align="center" style="padding:40px 0;">
+<div style="width:620px; margin:0 auto; background:#0c0d10; border:1px solid #20222a; border-radius:4px; overflow:hidden; box-shadow:0 24px 60px -24px rgba(0,0,0,.55);">
 <div style="padding:38px 44px 26px;">
-<div style="display:flex; justify-content:space-between; align-items:baseline; font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#5b6573;">
-<span>Issue No. {issue_no}</span><span style="margin-left:16px;">{date_label}</span>
-</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="bottom" style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#5b6573;"><span>Issue No. {issue_no}</span></td>
+<td align="right" valign="bottom" style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#5b6573;"><span style="margin-left:16px;">{date_label}</span></td>
+</tr>
+</table>
 <div style="font-family:'Newsreader', serif; font-size:46px; font-weight:500; color:#f4f4f5; line-height:1.0; margin-top:18px; letter-spacing:-0.015em;">The Dispatch</div>
 <div style="font-family:'Newsreader', serif; font-size:16px; font-style:italic; color:#8b8f99; margin-top:8px;">What the open-source AI world is starring this week.</div>
 {hero_html}
@@ -716,7 +722,7 @@ def render_html_digest(buckets: dict, markers: dict, now: datetime) -> str:
 {sections_html}
 </div>
 </div>
-</div>
+</td></tr></table>
 </body>
 </html>
 """

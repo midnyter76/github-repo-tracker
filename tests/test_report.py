@@ -733,16 +733,16 @@ class TestHtmlDigest:
     # -- Gmail rendering fix — gap removed, equivalent margin added (quick task 260701-ibb) --
 
     def test_masthead_issue_no_and_date_have_explicit_spacing(self):
-        """Gmail drops flexbox `gap:`; pre-fix the two bare masthead spans are
-        directly adjacent and concatenate ("Issue No. 3Wed..."). Post-fix the
-        date span must carry an explicit margin-left so real whitespace exists
-        even without gap support."""
+        """Masthead is now a two-cell table row (not adjacent flex siblings).
+        The date span still carries an explicit margin, and its <td> carries
+        align="right" (the justify-content:space-between replacement)."""
         from src.report import render_html_digest
 
         result = render_html_digest(_make_buckets(), markers={}, now=_now())
-        assert re.search(r'Issue No\. \d+</span>\s*<span style="[^"]*margin', result), (
-            "date span must be styled with an explicit margin, not bare"
-        )
+        assert re.search(
+            r'<td align="right"[^>]*>\s*<span style="[^"]*margin[^"]*">[^<]*</span>',
+            result,
+        ), "date span must sit in a right-aligned td with an explicit margin, not bare"
         assert not re.search(r'Issue No\. \d+</span><span>', result), (
             "no bare </span><span> adjacency between issue-no and date "
             "(the pre-fix concatenation signature)"
@@ -771,11 +771,12 @@ class TestHtmlDigest:
         assert count_match is not None, "count_label span not found"
         assert "margin-left:12px" in count_match.group(1)
 
-        header_div_match = re.search(
-            r'<div style="([^"]*)">\s*<span style="[^"]*">Brand New · Weekly</span>', result
+        header_table_match = re.search(
+            r'<table role="presentation"[^>]*>\s*<tr>\s*<td[^>]*>\s*<span style="[^"]*">Brand New · Weekly</span>',
+            result,
         )
-        assert header_div_match is not None, "header row div not found"
-        assert "gap:12px" not in header_div_match.group(1), (
+        assert header_table_match is not None, "header row table not found"
+        assert "gap:12px" not in result.split("Brand New This Week")[0], (
             "gap must be REMOVED from the header row, not duplicated alongside margin"
         )
 
@@ -846,6 +847,31 @@ class TestHtmlDigest:
         result = render_html_hero(_entry(stars=500), "Brand New This Week", _now())
         match = re.search(r'<td align="right"[^>]*>\s*<span[^>]*>★ [^<]*</span>', result)
         assert match is not None, "★ ... · age text not found in a right-aligned td"
+
+    def test_render_html_digest_has_no_flex_declarations_anywhere(self):
+        """F1 acceptance test: the whole rendered document must contain zero
+        flexbox declarations — this covers the full document, not one
+        function, so it catches any location the per-function guards miss."""
+        from src.report import render_html_digest
+
+        result = render_html_digest(_make_buckets(), markers={}, now=_now())
+        tokens = [
+            "display:flex", "display:grid", "justify-content", "align-items",
+            "flex:1", "flex-shrink", "margin-left:auto", "gap:",
+        ]
+        for token in tokens:
+            assert token not in result, f"rendered digest still contains flex token: {token}"
+
+    def test_card_is_centered_by_table_cell_not_flex(self):
+        """The 620px card is centered via align="center" on a table cell plus
+        margin:0 auto on the card div — not justify-content:center."""
+        from src.report import render_html_digest
+
+        result = render_html_digest(_make_buckets(), markers={}, now=_now())
+        assert re.search(r'<td align="center"[^>]*>', result), 'no <td align="center"> found'
+        assert re.search(r'<div style="[^"]*width:620px;[^"]*margin:0 auto;', result), (
+            "620px card div missing margin:0 auto"
+        )
 
 
 # ---------------------------------------------------------------------------
