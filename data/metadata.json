@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-14T14:10:48.523646+00:00",
+  "updated_at": "2026-08-15T13:24:07.841564+00:00",
   "repos": {
     "1305383508": {
       "full_name": "Prism-Shadow/penguin-harness",
@@ -31,12 +31,6 @@
       "created_at": "2026-07-19T11:44:41+00:00",
       "html_url": "https://github.com/Vincentwei1021/video-shotcraft"
     },
-    "1296036886": {
-      "full_name": "AlephAITech/WorkBuddyGuide",
-      "description": "A practical, open-source guide to mastering WorkBuddy through real-world workflows.\u5f00\u6e90\u7684 WorkBuddy \u5b9e\u6218\u84dd\u76ae\u4e66\uff1a\u6559\u7a0b\u3001\u771f\u5b9e\u5de5\u4f5c\u6d41\u3001Skills\u3001MCP\u3001\u81ea\u52a8\u5316\u4e0e\u591a\u667a\u80fd\u4f53\u5b9e\u8df5\u3002",
-      "created_at": "2026-07-10T04:13:51+00:00",
-      "html_url": "https://github.com/AlephAITech/WorkBuddyGuide"
-    },
     "1304159264": {
       "full_name": "drumih/turbo-fieldfare",
       "description": "Gemma 4 26B-A4B inference in ~2 GB of RAM on any M-series MacBook",
@@ -48,12 +42,6 @@
       "description": "\ud83c\udf59  A personal AI agent & local memory hub for all AI agents, gives every AI one shared, fully controlled memory and persistent context \u2014 all AI remember the same you. Now supports Claude Code, Codex, OpenClaw and Hermes Agent etc.",
       "created_at": "2026-07-16T07:57:45+00:00",
       "html_url": "https://github.com/MemTensor/memmy-agent"
-    },
-    "1283007956": {
-      "full_name": "Rizzo-AI-Academy/rizzo-pii",
-      "description": "Local-first privacy guard: anonymize your documents before sharing with LLMs.",
-      "created_at": "2026-06-28T12:54:44+00:00",
-      "html_url": "https://github.com/Rizzo-AI-Academy/rizzo-pii"
     },
     "1287460663": {
       "full_name": "elder-plinius/T3MP3ST",
@@ -127,12 +115,6 @@
       "created_at": "2026-07-10T12:20:50+00:00",
       "html_url": "https://github.com/ShenSeanChen/waku-agent"
     },
-    "1296647613": {
-      "full_name": "Alisa0808/vox-director",
-      "description": "Turn one topic into a finished Vox-style paper-collage explainer/ad video \u2014 automated end to end on Atlas Cloud + ffmpeg. An agent skill.",
-      "created_at": "2026-07-10T15:32:05+00:00",
-      "html_url": "https://github.com/Alisa0808/vox-director"
-    },
     "1288325627": {
       "full_name": "NanoNets/Graft",
       "description": "Turbocharge Claude Code, Cursor, Codex, Gemini & every coding agent: faster, cheaper, with contextual understanding specific to your codebase.",
@@ -156,12 +138,6 @@
       "description": "A space exploration game built by Claude Opus 5",
       "created_at": "2026-07-27T08:43:36+00:00",
       "html_url": "https://github.com/achimala/TheLongSilence"
-    },
-    "1314787397": {
-      "full_name": "robbin/wechat-exporter",
-      "description": "A Claude Code / Codex skill to export and decrypt WeChat (macOS) chat history into plaintext SQLite databases",
-      "created_at": "2026-07-28T09:26:48+00:00",
-      "html_url": "https://github.com/robbin/wechat-exporter"
     },
     "1289743790": {
       "full_name": "simonlin1212/Vibe-Research",
@@ -199,851 +175,17 @@
       "created_at": "2026-07-13T22:00:13+00:00",
       "html_url": "https://github.com/openai/codex-security"
     },
-    "1307679581": {
-      "full_name": "QoderAI/better-harness",
-      "description": "Better Harness turns project and session evidence into loop-level insights, prioritized improvements, and verifiable next steps\u2014inside the coding agent you already use.",
-      "created_at": "2026-07-21T12:30:35+00:00",
-      "html_url": "https://github.com/QoderAI/better-harness"
-    },
-    "1311225763": {
-      "full_name": "mikehasa/agentacct",
-      "description": "See what your coding agents did and what it cost. Breaks each task down into work steps \u2014 tools used, files changed, tests run, time and tokens spent. Local-first dashboard for Claude Code, Codex, OpenCode, and more. No login, no telemetry.",
-      "created_at": "2026-07-24T16:28:06+00:00",
-      "html_url": "https://github.com/mikehasa/agentacct"
-    },
     "1316793737": {
       "full_name": "0rangec3t/Black-cat",
       "description": "Claude Code RedTeam Skill \u2014 Hypothesis-Driven Cognitive Architecture\u3002\u4e00\u4e2a\u5047\u8bbe-\u8bc1\u636e\u9a71\u52a8\u7684\u7ea2\u961fskill",
       "created_at": "2026-07-30T03:42:47+00:00",
       "html_url": "https://github.com/0rangec3t/Black-cat"
     },
-    "1316378608": {
-      "full_name": "richardChenzhihui/OfficeBuddy",
-      "description": "An agent that edits your Word and Excel files \u2014 then looks at them, through real Microsoft Office, to check its own work",
-      "created_at": "2026-07-29T17:04:07+00:00",
-      "html_url": "https://github.com/richardChenzhihui/OfficeBuddy"
-    },
-    "1313085544": {
-      "full_name": "AhsanAyaz/ossclip",
-      "description": "Local-first CLI video producer: cuts silence and fillers, word-timed captions, face-aware framing, and LLM-planned code-rendered graphics",
-      "created_at": "2026-07-26T19:06:29+00:00",
-      "html_url": "https://github.com/AhsanAyaz/ossclip"
-    },
-    "1317834385": {
-      "full_name": "FTShare-Lab/agent-claim-network",
-      "description": "\u9762\u5411\u7ec8\u7aef\u7684\u901a\u7528 AI \u52a9\u624b\uff0c\u8ba9 Agent \u4e4b\u95f4\u5171\u4eab\u53ef\u68c0\u7d22\u3001\u53ef\u8ffd\u6eaf\u4e14\u5141\u8bb8\u5206\u6b67\u7684\u77e5\u8bc6\u3002\u8ba9\u4e0b\u4e00\u6b21\u5224\u65ad\uff0c\u5e26\u7740\u6765\u6e90\u51fa\u53d1\u3002",
-      "created_at": "2026-07-31T02:04:35+00:00",
-      "html_url": "https://github.com/FTShare-Lab/agent-claim-network"
-    },
-    "1317466681": {
-      "full_name": "akaion-ai/annona",
-      "description": "Annona \u2014 the sovereign execution kernel for AI agents. Decides where each step runs, enforces it, and records it.",
-      "created_at": "2026-07-30T16:23:04+00:00",
-      "html_url": "https://github.com/akaion-ai/annona"
-    },
-    "1317467366": {
-      "full_name": "200lz/omiv-kimi-k3-validation",
-      "description": "Evidence-backed structural validation of Kimi K3 UD-IQ1_M and UD-Q4_K_XL split GGUF releases using OMIV.",
-      "created_at": "2026-07-30T16:23:51+00:00",
-      "html_url": "https://github.com/200lz/omiv-kimi-k3-validation"
-    },
-    "1317889185": {
-      "full_name": "Yijia-Xiao/FinanceHarness",
-      "description": "Landing soon...",
-      "created_at": "2026-07-31T03:25:25+00:00",
-      "html_url": "https://github.com/Yijia-Xiao/FinanceHarness"
-    },
-    "1314575500": {
-      "full_name": "antonygiomarxdev/synapse",
-      "description": "Distributed inference infrastructure for Mixture-of-Experts models. Run large MoE models on consumer GPUs.",
-      "created_at": "2026-07-28T05:30:03+00:00",
-      "html_url": "https://github.com/antonygiomarxdev/synapse"
-    },
-    "1317036455": {
-      "full_name": "Audi-dask/Overseer",
-      "description": "\u9762\u5411\u4f01\u4e1a\u5185\u90e8\u7814\u53d1\u56e2\u961f\u7684 Agent \u4ee3\u7801\u5ba1\u67e5\u5e73\u53f0\uff0c\u81ea\u52a8\u5206\u6790 GitLab MR \u4e0e Push\uff0c\u5e76\u56de\u586b\u603b\u8bc4\u548c\u884c\u5185 Discussion\u3002",
-      "created_at": "2026-07-30T08:36:22+00:00",
-      "html_url": "https://github.com/Audi-dask/Overseer"
-    },
-    "1314489864": {
-      "full_name": "murongg/TokPeek",
-      "description": "Native, local-first macOS menu bar app for tracking AI token usage, estimated costs, daily trends, clients, and models. Powered by tokscale-core.",
-      "created_at": "2026-07-28T03:20:38+00:00",
-      "html_url": "https://github.com/murongg/TokPeek"
-    },
-    "1317343556": {
-      "full_name": "wladimiravila/esp32s3-distributed-ai",
-      "description": "Distributed 56M-parameter LLM inference across 3 ESP32-S3 boards via ESP-NOW , Split-PLE + KV cache, fully offline.",
-      "created_at": "2026-07-30T14:13:28+00:00",
-      "html_url": "https://github.com/wladimiravila/esp32s3-distributed-ai"
-    },
-    "1314763110": {
-      "full_name": "InjayTseng/graph-engineering-on-research",
-      "description": "Copy-paste prompts that turn your AI agents from a waiting line into a graph: a 5-min demo, false-edge audit, diamond research, adversarial review, consultant roundtable, and an issue tree that dispatches itself. EN + \u7e41\u4e2d.",
-      "created_at": "2026-07-28T09:01:14+00:00",
-      "html_url": "https://github.com/InjayTseng/graph-engineering-on-research"
-    },
-    "1318232785": {
-      "full_name": "melonmath/microkimi",
-      "description": "The Kimi K3 and DeepSeek-V4-Flash-0731 architectures, reimplemented from scratch in pure Rust (zero dependencies) and verified 1:1 against the official code.",
-      "created_at": "2026-07-31T10:34:48+00:00",
-      "html_url": "https://github.com/melonmath/microkimi"
-    },
-    "1316178203": {
-      "full_name": "JanYork/llm-wiki-cli",
-      "description": "Agent-driven proactive memory CLI for AI agents \u2014 autonomously recall, maintain, and evolve persistent, source-grounded knowledge across sessions.",
-      "created_at": "2026-07-29T13:41:30+00:00",
-      "html_url": "https://github.com/JanYork/llm-wiki-cli"
-    },
-    "1311817425": {
-      "full_name": "naseridev/orven",
-      "description": "MCP-compatible context and memory system: paged code navigation for AI assistants, plus a recorded, verified theory of what is known about the code.",
-      "created_at": "2026-07-25T08:35:43+00:00",
-      "html_url": "https://github.com/naseridev/orven"
-    },
-    "1317888642": {
-      "full_name": "fx-studio/vibe-coding-2026-essentials",
-      "description": "S\u00e1ch mi\u1ec5n ph\u00ed ti\u1ebfng Vi\u1ec7t v\u1ec1 vibe coding cho Tester, PM, BA \u2014 ng\u01b0\u1eddi l\u00e0m IT kh\u00f4ng vi\u1ebft code. 20 ch\u01b0\u01a1ng, 3 ph\u1ee5 l\u1ee5c, 54 h\u00ecnh. H\u1ecdc c\u00e1ch ch\u1ec9 \u0111\u1ea1o AI coding v\u00e0 \u0111\u00e1nh gi\u00e1 k\u1ebft qu\u1ea3: quy tr\u00ecnh 5 giai \u0111o\u1ea1n, prompting, PRD, \u0111\u1ecdc hi\u1ec3u code, test, b\u1ea3o m\u1eadt. T\u1ea3i PDF/EPUB \u1edf Releases.",
-      "created_at": "2026-07-31T03:24:39+00:00",
-      "html_url": "https://github.com/fx-studio/vibe-coding-2026-essentials"
-    },
-    "1314225674": {
-      "full_name": "Quor-a/ZorvAI",
-      "description": "Zorv AI \u2014 \u5b89\u5353 Android \u7aef\u5f00\u6e90 AI Agent \u667a\u80fd\u4f53\u52a9\u624b\u3002\u591a\u6a21\u578b\u5bf9\u8bdd\u3001\u4eba\u683c\u7cfb\u7edf\u3001\u8bb0\u5fc6\u3001\u8bed\u97f3\u5168\u53cc\u5de5 TTS/STT\u3001\u5b9a\u65f6\u4efb\u52a1\u3001\u53ef\u6269\u5c55\u5de5\u5177\u94fe\u3001\u98de\u4e66/QQ/\u5fae\u4fe1\u63a5\u5165\u3002Kotlin + Jetpack Compose \u5f00\u53d1\u3002",
-      "created_at": "2026-07-27T19:53:21+00:00",
-      "html_url": "https://github.com/Quor-a/ZorvAI"
-    },
-    "1317963194": {
-      "full_name": "Commonwealth-Bank-of-Australia/project-echo",
-      "description": "Codebase for Project ECHO: Video Transcription and Annotation Pipeline",
-      "created_at": "2026-07-31T05:16:03+00:00",
-      "html_url": "https://github.com/Commonwealth-Bank-of-Australia/project-echo"
-    },
-    "1314954994": {
-      "full_name": "Underline-1024/loom-engine",
-      "description": "\ud83e\uddf5 A terminal-native narrative engine & text RPG in Rust \ud83e\udd80. Play with any LLM: OpenAI, Anthropic, local models & more.",
-      "created_at": "2026-07-28T12:29:33+00:00",
-      "html_url": "https://github.com/Underline-1024/loom-engine"
-    },
-    "1317266955": {
-      "full_name": "AnXMuy/AgenticASR",
-      "description": "Official Repo for \"AgenticASR: Refining Speech Recognition in Real-World Scenarios via an Agentic Approach\"",
-      "created_at": "2026-07-30T12:53:08+00:00",
-      "html_url": "https://github.com/AnXMuy/AgenticASR"
-    },
-    "1317967265": {
-      "full_name": "Commonwealth-Bank-of-Australia/architect-agent",
-      "description": "Codebase for Beyond Generalist LLMs: Specialist Agentic Systems for Structured  Code Workflow Execution paper",
-      "created_at": "2026-07-31T05:22:39+00:00",
-      "html_url": "https://github.com/Commonwealth-Bank-of-Australia/architect-agent"
-    },
-    "1317376183": {
-      "full_name": "liucongg/awesome-open-llms",
-      "description": "\u5f00\u6e90\u6a21\u578b\u6c47\u603b\uff0c\u6bcf\u6708\u66f4\u65b0\u73b0\u5728\u4e3b\u6d41\u7684\u5f00\u6e90\u6a21\u578b\u3002A monthly tracker for the latest and most popular open-source AI models.",
-      "created_at": "2026-07-30T14:46:25+00:00",
-      "html_url": "https://github.com/liucongg/awesome-open-llms"
-    },
-    "1315526743": {
-      "full_name": "liamschwie/ChatGBeFree",
-      "description": "A tweak to bypass the forced upgrade in the ChatGPT app and allow unsupported iOS versions to continue using the app.",
-      "created_at": "2026-07-28T23:59:07+00:00",
-      "html_url": "https://github.com/liamschwie/ChatGBeFree"
-    },
-    "1312422942": {
-      "full_name": "madeye/dhtsearch",
-      "description": "\u81ea\u5efa\u7d22\u5f15\u7684\u78c1\u529b\u94fe\u63a5\u641c\u7d22\u5f15\u64ce\uff1aGo DHT \u722c\u866b + \u5173\u952e\u8bcd/\u542f\u53d1\u5f0f\u8fc7\u6ee4 + LLM \u4e8c\u6b21\u5ba1\u6838\uff0cNext.js \u524d\u7aef",
-      "created_at": "2026-07-26T01:45:14+00:00",
-      "html_url": "https://github.com/madeye/dhtsearch"
-    },
-    "1314577732": {
-      "full_name": "Square-Q/subconscious-skill",
-      "description": "subconscious-skill: Biomimetic memory skill for LLM companions. Different from vector RAG memory, it uses Freud & Jung subconscious cognitive architecture with layered memory, auto consolidation, forgetting and dream simulation, local Python runtime without extra LLM tokens.",
-      "created_at": "2026-07-28T05:33:10+00:00",
-      "html_url": "https://github.com/Square-Q/subconscious-skill"
-    },
-    "1318091082": {
-      "full_name": "rafcopy/auto-cut-agent",
-      "description": "AI editing agent for Adobe Premiere Pro: silence removal, repeated-take dedup (LLM), and minimal Hinglish captions. UXP panel + local Node server.",
-      "created_at": "2026-07-31T07:50:12+00:00",
-      "html_url": "https://github.com/rafcopy/auto-cut-agent"
-    },
-    "1316428840": {
-      "full_name": "claude5opus/Claude-Opus-5-Free-Desktop",
-      "description": "Claude Opus 5 free desktop  Anthropic's flagship on Windows, macOS, Linux. Claude Fable 5 vs Opus 5 and Opus 4.8 comparison panel built in. Claude Sonnet 5 vs Fable 5 vs Opus 4.8 benchmarks shown. Claude Fable 5 vs Mythos 5 vs Opus 4.8 vs GPT 5 . Claude Opus 5 release date access now download free.",
-      "created_at": "2026-07-29T17:59:09+00:00",
-      "html_url": "https://github.com/claude5opus/Claude-Opus-5-Free-Desktop"
-    },
-    "1317210052": {
-      "full_name": "hamzarehmandeveloper/claude-account",
-      "description": "Switch between isolated Claude Code accounts on Linux and macOS without logging in again.",
-      "created_at": "2026-07-30T11:49:22+00:00",
-      "html_url": "https://github.com/hamzarehmandeveloper/claude-account"
-    },
     "1312554298": {
       "full_name": "karanb192/itr-wala",
       "description": "File your Indian income tax return (ITR) from your terminal. Deterministic tax engine, both regimes, AY 2026-27. Claude Code / Codex / Gemini skill.",
       "created_at": "2026-07-26T06:27:38+00:00",
       "html_url": "https://github.com/karanb192/itr-wala"
-    },
-    "1316388282": {
-      "full_name": "chrisfirsttt/fallout-ember",
-      "description": "A Fallout inspired game made using Claude Opus 5.",
-      "created_at": "2026-07-29T17:14:44+00:00",
-      "html_url": "https://github.com/chrisfirsttt/fallout-ember"
-    },
-    "1314665580": {
-      "full_name": "pradipta/wallfacer",
-      "description": "A terminal session manager for Claude Code, and more",
-      "created_at": "2026-07-28T07:09:43+00:00",
-      "html_url": "https://github.com/pradipta/wallfacer"
-    },
-    "1317373714": {
-      "full_name": "samhayesbe954/claude-planning-tool-windows",
-      "description": "Windows-friendly, browser-based AI prompt planning tool for choosing Claude models, defining an application focus, and setting effort levels before generating copy-ready prompts, with offline planning support.",
-      "created_at": "2026-07-30T14:43:59+00:00",
-      "html_url": "https://github.com/samhayesbe954/claude-planning-tool-windows"
-    },
-    "1313290235": {
-      "full_name": "ryancampbell/kart-royale",
-      "description": "A kart racing game in the browser with zero art assets \u2014 every texture, mesh, material and sound is generated in code. Built by a fleet of Claude agents in four days.",
-      "created_at": "2026-07-27T01:08:06+00:00",
-      "html_url": "https://github.com/ryancampbell/kart-royale"
-    },
-    "1317724906": {
-      "full_name": "yussufs/export-md",
-      "description": "A /export-md slash command for Claude Code \u2014 save any session as clean, readable markdown.",
-      "created_at": "2026-07-30T22:23:08+00:00",
-      "html_url": "https://github.com/yussufs/export-md"
-    },
-    "1317355711": {
-      "full_name": "samedwardsfgp3732/chemsage-rdkit-pymol-ai",
-      "description": "ChemSage v5 is a local AI assistant for chemistry work on Apple Silicon, combining retrieval, a fine-tuned language model, and live scientific tooling to support drug discovery workflows in 2026.",
-      "created_at": "2026-07-30T14:26:04+00:00",
-      "html_url": "https://github.com/samedwardsfgp3732/chemsage-rdkit-pymol-ai"
-    },
-    "1316217740": {
-      "full_name": "scriptscrypt/animation-reverse-engineering",
-      "description": "Claude Code skill: reverse-engineer any motion reference into production animation code via frame-level dissection",
-      "created_at": "2026-07-29T14:19:44+00:00",
-      "html_url": "https://github.com/scriptscrypt/animation-reverse-engineering"
-    },
-    "1317000300": {
-      "full_name": "Lum1104/video-to-skill",
-      "description": "Turn videos and courses into evidence-grounded Agent Skills for Claude Code and Codex.",
-      "created_at": "2026-07-30T07:59:38+00:00",
-      "html_url": "https://github.com/Lum1104/video-to-skill"
-    },
-    "1316243322": {
-      "full_name": "twaai/forge",
-      "description": "Chat-mode forge for persona-layer system prompts \u2014 live model picker, per-target learning, any OpenAI-compatible backend. Cross-platform.",
-      "created_at": "2026-07-29T14:44:16+00:00",
-      "html_url": "https://github.com/twaai/forge"
-    },
-    "1315606516": {
-      "full_name": "Davidcreador/pi-codex-security",
-      "description": "A pi package that brings OpenAI Codex Security into your agent sessions: scan repositories for vulnerabilities, review severity-ranked findings, and fix them \u2014 all without leaving pi.",
-      "created_at": "2026-07-29T02:23:40+00:00",
-      "html_url": "https://github.com/Davidcreador/pi-codex-security"
-    },
-    "1317687126": {
-      "full_name": "chris-asmussen/warden",
-      "description": "One MCP server that fronts many MCP servers + Skills behind a small tool set and routes to the best one, keeping an agent's context tiny. Migrate your Claude Code MCPs/skills behind it.",
-      "created_at": "2026-07-30T21:14:02+00:00",
-      "html_url": "https://github.com/chris-asmussen/warden"
-    },
-    "1313744584": {
-      "full_name": "cabbage2000-lab/paper-tutor-skills",
-      "description": "\u9762\u5411\u4e2d\u6587\u7814\u7a76\u751f\u4e0e\u79d1\u7814\u5de5\u4f5c\u8005\u7684\u5b66\u672f\u8f85\u5bfc skill \u5957\u4ef6\uff08\u652f\u6301 Claude Code / Codex \u7b49\u7f16\u7a0b\u667a\u80fd\u4f53\uff09\uff1a\u9009\u9898 \u2192 \u68c0\u7d22 \u2192 \u6210\u6587 \u2192 \u8bc4\u5ba1 \u2192 \u6295\u7a3f\u5168\u94fe\u8def 25 \u4e2a\u547d\u4ee4\uff0c\u5f15\u7528\u6838\u9a8c\u4ee5\u771f\u5b9e API \u54cd\u5e94\u4e3a\u51c6\u3001\u4e0d\u51ed\u6a21\u578b\u8bb0\u5fc6\u7f16\u9020\uff0cAI \u7ba1\u6548\u7387\u3001\u4eba\u7ba1\u7814\u7a76\u51b3\u7b56\u2014\u2014\u8f85\u5bfc\u4e0d\u4ee3\u7b14",
-      "created_at": "2026-07-27T11:05:06+00:00",
-      "html_url": "https://github.com/cabbage2000-lab/paper-tutor-skills"
-    },
-    "1290326260": {
-      "full_name": "avifenesh/memra",
-      "description": "memra is a Rust + CUDA inference engine built for NVIDIA RTX PRO 6000 Blackwell and RTX 5090. It serves GGUF models over an OpenAI-compatible API, and every default it ships was measured on those two cards \u2014 both Blackwell sm_120a, with a separately compile-gated Hopper/H100 (sm_90a) lane alongside.",
-      "created_at": "2026-07-05T20:45:33+00:00",
-      "html_url": "https://github.com/avifenesh/memra"
-    },
-    "1299705358": {
-      "full_name": "Extraltodeus/J-Wash",
-      "description": "Jacobian-Brainwash : A manual alignment tool for large language models built on Anthropic's Jacobian Lens. Results are exportable.",
-      "created_at": "2026-07-13T20:23:26+00:00",
-      "html_url": "https://github.com/Extraltodeus/J-Wash"
-    },
-    "1300059342": {
-      "full_name": "Dgeloe4-yb/market-pilot",
-      "description": "Evidence-grounded market research prototype with traceable AI workflows.",
-      "created_at": "2026-07-14T05:39:30+00:00",
-      "html_url": "https://github.com/Dgeloe4-yb/market-pilot"
-    },
-    "1300631934": {
-      "full_name": "asavvin-pixel/unslop",
-      "description": "English text humanizer for Claude: typography, vocabulary, structure. Calibrates to your voice. Built on the UMD / Google DeepMind study and Wikipedia's Signs of AI writing",
-      "created_at": "2026-07-14T15:04:26+00:00",
-      "html_url": "https://github.com/asavvin-pixel/unslop"
-    },
-    "1292983646": {
-      "full_name": "Ychangqing/IGraph",
-      "description": "IGraph \u628a\u4ee3\u7801\u4ed3\u5e93\u89e3\u6790\u4e3a\u300c\u7b26\u53f7\u8282\u70b9 + \u8c03\u7528\u5173\u7cfb\u8fb9\u300d\u7684\u77e5\u8bc6\u56fe\u8c31\uff0c\u53e0\u52a0 LLM \u8bed\u4e49\u6458\u8981\u4e0e\u5411\u91cf\u7d22\u5f15\uff0c\u901a\u8fc7\u53cc\u901a\u9053\uff08Dense + FTS5\uff09RRF \u878d\u5408\u68c0\u7d22\u5bf9\u5916\u670d\u52a1\u3002\u652f\u6301\u6302\u8f7d PRD / DB Schema \u7b49\u591a\u6a21\u6001\u8d44\u6e90\u5efa\u7acb\u8de8\u6a21\u6001\u5173\u8054\uff0c\u5185\u7f6e MCP Server \u53ef\u76f4\u63a5\u63a5\u5165 Cursor / Claude Code \u7b49 AI \u52a9\u624b\u3002",
-      "created_at": "2026-07-08T02:38:51+00:00",
-      "html_url": "https://github.com/Ychangqing/IGraph"
-    },
-    "1287831552": {
-      "full_name": "xusenlin/workavera",
-      "description": "\ud83c\udf3bWorkavera is a self-hosted AI team workspace that connects conversations, knowledge, relationships, projects, tasks, and time commitments in one application.",
-      "created_at": "2026-07-03T03:33:42+00:00",
-      "html_url": "https://github.com/xusenlin/workavera"
-    },
-    "1300227306": {
-      "full_name": "flare-collection/flare-redact",
-      "description": "Zero-dependency TypeScript secret and PII redaction for any SDK, logs, HTTP, LLM prompts, and scoped MCP tool boundaries.",
-      "created_at": "2026-07-14T08:40:17+00:00",
-      "html_url": "https://github.com/flare-collection/flare-redact"
-    },
-    "1299516451": {
-      "full_name": "LijingJim/J-AEIS",
-      "description": "\u57fa\u4e8e\u7528\u6237\u610f\u56fe\u8fdb\u5316\u7684\u667a\u80fd Agent \u52a9\u624b\u5e73\u53f0\uff0c\u76ee\u524d\u4e3b\u8981\u652f\u6301\u6587\u4ef6\u89e3\u6790\u3001Excel \u6570\u636e\u5206\u6790\u3001\u5408\u540c\u5ba1\u67e5\u3001\u77e5\u8bc6\u5e93\u68c0\u7d22\u3001\u62a5\u544a\u5bfc\u51fa\u4e0e\u81ea\u5b9a\u4e49\u6280\u80fd\u3002",
-      "created_at": "2026-07-13T16:42:20+00:00",
-      "html_url": "https://github.com/LijingJim/J-AEIS"
-    },
-    "1295634529": {
-      "full_name": "OtoDock/oto-dock",
-      "description": "Your personal AI agent platform \u2014 self-hosted, BYO Claude/Codex subscription",
-      "created_at": "2026-07-09T18:10:33+00:00",
-      "html_url": "https://github.com/OtoDock/oto-dock"
-    },
-    "1293647745": {
-      "full_name": "typex-ink/Typex",
-      "description": "Speak. It types. Typex is an open-source, desktop AI voice input tool.",
-      "created_at": "2026-07-08T13:36:45+00:00",
-      "html_url": "https://github.com/typex-ink/Typex"
-    },
-    "1299866734": {
-      "full_name": "hogan-tech/brand-loom",
-      "description": "Open-source marketing skills that run on any model \u2014 with a hosted brand-memory engine. No coding agent required.",
-      "created_at": "2026-07-14T01:00:16+00:00",
-      "html_url": "https://github.com/hogan-tech/brand-loom"
-    },
-    "1292072706": {
-      "full_name": "yan5xu/codexloom",
-      "description": "Turn Codex threads into an organization of long-lived domain agents.",
-      "created_at": "2026-07-07T09:21:39+00:00",
-      "html_url": "https://github.com/yan5xu/codexloom"
-    },
-    "1296903699": {
-      "full_name": "logxio/picchio",
-      "description": "Catches silent CPU fallback and mislabeled tok/s in local LLMs. llama.cpp and ollama, one file, no deps.",
-      "created_at": "2026-07-10T21:08:57+00:00",
-      "html_url": "https://github.com/logxio/picchio"
-    },
-    "1296273774": {
-      "full_name": "teklabsdigital/x2-method",
-      "description": "AI builds faster than anyone, with no skin in the game and no memory of yesterday. How do you govern that? With X2, decisions stay in files people own, unbreakable rules fail the build, code is disposable, and every human turn is counted. Done is an audited report, never the agent's word.",
-      "created_at": "2026-07-10T08:27:38+00:00",
-      "html_url": "https://github.com/teklabsdigital/x2-method"
-    },
-    "1287625631": {
-      "full_name": "mudler/vllm.cpp",
-      "description": "a community oriented 1:1 vLLM port in C++ with additional features",
-      "created_at": "2026-07-02T21:35:04+00:00",
-      "html_url": "https://github.com/mudler/vllm.cpp"
-    },
-    "1290960638": {
-      "full_name": "miniLV/coding-agent-memory",
-      "description": "Local-first engineering memory for Codex and Claude Code \u2014 auditable Markdown, no vector database.",
-      "created_at": "2026-07-06T11:30:10+00:00",
-      "html_url": "https://github.com/miniLV/coding-agent-memory"
-    },
-    "1292656595": {
-      "full_name": "hoophq/julius",
-      "description": "Cut LLM token usage on command output and API traffic \u2014 compress what enters your coding agent's context, meter what your apps spend.",
-      "created_at": "2026-07-07T18:12:17+00:00",
-      "html_url": "https://github.com/hoophq/julius"
-    },
-    "1295122918": {
-      "full_name": "rwnalds/engram",
-      "description": "Self-hosted MCP server + dashboard giving Claude Code, Cursor & Hermes agents shared long-term memory over a git-backed markdown vault. Agent-native, Obsidian-compatible second brain \u2014 markdown RAG, no vector DB.",
-      "created_at": "2026-07-09T11:13:41+00:00",
-      "html_url": "https://github.com/rwnalds/engram"
-    },
-    "1295404883": {
-      "full_name": "replenhq/replen",
-      "description": "Smarter AI Development Workflows",
-      "created_at": "2026-07-09T14:50:14+00:00",
-      "html_url": "https://github.com/replenhq/replen"
-    },
-    "1289044838": {
-      "full_name": "Ink-dark/orcha",
-      "description": "Let the Orcha play. \u2014 AI-driven Feishu coding agent: one @-mention \u2192 autonomous plan/code/test/review/push to a new git branch.",
-      "created_at": "2026-07-04T09:17:46+00:00",
-      "html_url": "https://github.com/Ink-dark/orcha"
-    },
-    "1301229277": {
-      "full_name": "singhand-labs/scrapewright",
-      "description": "LLM-powered web scraping platform. Build reusable scraping services as step-graph state machines via an AI-guided wizard, expose them through a local   HTTP API. Chrome Extension (MV3) + Node.js native messaging host. Data never leaves your machine.",
-      "created_at": "2026-07-15T05:20:41+00:00",
-      "html_url": "https://github.com/singhand-labs/scrapewright"
-    },
-    "1305567778": {
-      "full_name": "morning-cml/paper-translator",
-      "description": "\u4fdd\u7559\u6392\u7248\u7684\u6587\u6863\u7ffb\u8bd1\u5de5\u5177\uff1aPDF / Word / PPT / Markdown / \u5b57\u5e55\uff0c\u56fe\u7247\u3001\u516c\u5f0f\u3001\u8868\u683c\u4e0e\u7248\u5f0f\u539f\u6837\u4fdd\u7559\uff0c\u8bd1\u6587\u843d\u5728\u539f\u6587\u4f4d\u7f6e\u3002\u652f\u6301\u591a\u8bed\u8a00\u65b9\u5411\u3001\u626b\u63cf\u4ef6 OCR \u4e0e\u672c\u5730\u79bb\u7ebf\u7ffb\u8bd1\uff08Ollama\uff09\u3002Windows / macOS \u514d\u5b89\u88c5\uff0c\u53cc\u51fb\u5373\u7528\u3002",
-      "created_at": "2026-07-19T09:08:43+00:00",
-      "html_url": "https://github.com/morning-cml/paper-translator"
-    },
-    "1291635916": {
-      "full_name": "Abhineetsoccer/pnlc-agentclinic",
-      "description": "This repository is based on a study that if the critic overcome the generators failures or they inherit them. ",
-      "created_at": "2026-07-07T01:17:19+00:00",
-      "html_url": "https://github.com/Abhineetsoccer/pnlc-agentclinic"
-    },
-    "1296717138": {
-      "full_name": "amazon-science/PatientAgentBench",
-      "description": "PatientAgentBench: A Benchmark Framework for Evaluating Patient-Facing Health AI Agents",
-      "created_at": "2026-07-10T16:52:57+00:00",
-      "html_url": "https://github.com/amazon-science/PatientAgentBench"
-    },
-    "1296880286": {
-      "full_name": "akasecurity/ai-tc",
-      "description": "Guardrails for the agent harness. Regulated data stays on your machine, and every prompt and tool call is scanned before it runs.",
-      "created_at": "2026-07-10T20:28:54+00:00",
-      "html_url": "https://github.com/akasecurity/ai-tc"
-    },
-    "1289521585": {
-      "full_name": "QPG-MIT/PixCell",
-      "description": " A Neurosymbolic Approach to Photonic Component Creation for Retargetable PDKs and RL",
-      "created_at": "2026-07-04T21:28:52+00:00",
-      "html_url": "https://github.com/QPG-MIT/PixCell"
-    },
-    "1298590771": {
-      "full_name": "hasil7677/mimir",
-      "description": "Local-first AI agent memory, your agent's brain is an Obsidian vault you can open, read, and edit",
-      "created_at": "2026-07-12T20:09:51+00:00",
-      "html_url": "https://github.com/hasil7677/mimir"
-    },
-    "1304687666": {
-      "full_name": "Vaquill-AI/open-us-law",
-      "description": "Open, structured corpus of US primary law: 2M+ sections of state statutory codes, the US Code, and state constitutions, plus the ingestion pipeline that builds it. Data on Hugging Face (CC BY 4.0); scrapers Apache-2.0. Quarterly snapshots.",
-      "created_at": "2026-07-18T07:13:10+00:00",
-      "html_url": "https://github.com/Vaquill-AI/open-us-law"
-    },
-    "1289232720": {
-      "full_name": "moksh-m9u/Multimodal-Rag",
-      "description": "Production-ready multimodal RAG pipeline for PDFs. Extracts text, tables, and images down to the atomic element level via unstructured, chunks and AI-enriches them with a vision LLM, stores them in ChromaDB, and answers queries with full multimodal context",
-      "created_at": "2026-07-04T13:41:00+00:00",
-      "html_url": "https://github.com/moksh-m9u/Multimodal-Rag"
-    },
-    "1294485027": {
-      "full_name": "yang-ai-lab/SensorGen",
-      "description": "Generative Models for Real-World Sensor Time Series",
-      "created_at": "2026-07-09T01:15:23+00:00",
-      "html_url": "https://github.com/yang-ai-lab/SensorGen"
-    },
-    "1295466421": {
-      "full_name": "WaitWut/comfyui-ultimate-lora-loader",
-      "description": "Stacked LoRA loader for ComfyUI. Browse your loras folder instead of one flat dropdown, drag to reorder, and set model and CLIP strength per row.",
-      "created_at": "2026-07-09T15:26:01+00:00",
-      "html_url": "https://github.com/WaitWut/comfyui-ultimate-lora-loader"
-    },
-    "1306863662": {
-      "full_name": "VolumeDaimyo/chatgpt",
-      "description": "ChatGPT",
-      "created_at": "2026-07-20T17:39:14+00:00",
-      "html_url": "https://github.com/VolumeDaimyo/chatgpt"
-    },
-    "1301135117": {
-      "full_name": "lerabyte/llm-from-scratch",
-      "description": "Build a small GPT-style language model from scratch in seven guided, interactive missions.",
-      "created_at": "2026-07-15T02:49:16+00:00",
-      "html_url": "https://github.com/lerabyte/llm-from-scratch"
-    },
-    "1300153697": {
-      "full_name": "Encod3d-Sec/TORCH",
-      "description": "Karpathy LLM based claude harness for PenetrationTesting / Bugbounty using obsidian",
-      "created_at": "2026-07-14T07:25:10+00:00",
-      "html_url": "https://github.com/Encod3d-Sec/TORCH"
-    },
-    "1297121898": {
-      "full_name": "loiqy/GPT-Live-English-Coach",
-      "description": "A stateful AI English coach for GPT-Live and ChatGPT Voice \u2014 live correction, real-world conversations, spaced review, and portable learner memory.",
-      "created_at": "2026-07-11T04:27:27+00:00",
-      "html_url": "https://github.com/loiqy/GPT-Live-English-Coach"
-    },
-    "1297534990": {
-      "full_name": "jkroepke/okf-crossplane-v2",
-      "description": "LLM-wiki in OKF (Open Knowledge Format) for Crossplane v2",
-      "created_at": "2026-07-11T14:59:05+00:00",
-      "html_url": "https://github.com/jkroepke/okf-crossplane-v2"
-    },
-    "1292123666": {
-      "full_name": "fifasheng-tech/catpaw-bridge",
-      "description": "CatPaw IDE LLM API \u2192 OpenAI compatible proxy with tool calling support",
-      "created_at": "2026-07-07T10:01:05+00:00",
-      "html_url": "https://github.com/fifasheng-tech/catpaw-bridge"
-    },
-    "1299734316": {
-      "full_name": "videlalvaro/inference-school",
-      "description": "A hands-on Swift and Metal course for building LLM inference from first principles on Apple silicon, with 48 guided lessons, runnable exercises, a native macOS Studio, and a complete companion book.",
-      "created_at": "2026-07-13T21:05:06+00:00",
-      "html_url": "https://github.com/videlalvaro/inference-school"
-    },
-    "1296000930": {
-      "full_name": "miyago9267/pilotfish-codex",
-      "description": "pilotfish for Codex CLI \u2014 multi-model orchestration with GPT-5.6 tiering (luna/terra/sol). Adapted from @Nanako0129/pilotfish.",
-      "created_at": "2026-07-10T03:18:32+00:00",
-      "html_url": "https://github.com/miyago9267/pilotfish-codex"
-    },
-    "1299702144": {
-      "full_name": "MiaAI-Lab/MiMo-V2.5-vLLM-Dual-DGX-Sparks",
-      "description": "Mia's MiMo-V2.5 Dual DGX Spark start script \u2014 Omni MTP1 + NVFP4-KV TP=2 on 2\u00d7 GB10",
-      "created_at": "2026-07-13T20:18:56+00:00",
-      "html_url": "https://github.com/MiaAI-Lab/MiMo-V2.5-vLLM-Dual-DGX-Sparks"
-    },
-    "1298600209": {
-      "full_name": "CyrusNuevoDia/gpt-workflow",
-      "description": "Deterministic multi-agent workflows",
-      "created_at": "2026-07-12T20:25:43+00:00",
-      "html_url": "https://github.com/CyrusNuevoDia/gpt-workflow"
-    },
-    "1291066570": {
-      "full_name": "UnlikedOne/diffuse",
-      "description": "Distributed peer-to-peer LLM inference. Your prompt never leaves your device in clear text.",
-      "created_at": "2026-07-06T13:25:49+00:00",
-      "html_url": "https://github.com/UnlikedOne/diffuse"
-    },
-    "1305571335": {
-      "full_name": "Echoes0302/llm-simulated-call-kit",
-      "description": "\u7ed9\u73b0\u6709 LLM \u804a\u5929\u5e94\u7528\u589e\u52a0\u534a\u53cc\u5de5\u8bed\u97f3\u4e0e\u6a21\u62df\u89c6\u9891\u901a\u8bdd\u7684\u534f\u8bae\u3001\u63a5\u5165\u6559\u7a0b\u548c\u53c2\u8003\u4ee3\u7801",
-      "created_at": "2026-07-19T09:14:42+00:00",
-      "html_url": "https://github.com/Echoes0302/llm-simulated-call-kit"
-    },
-    "1306296659": {
-      "full_name": "SKT-AI/A.X-K2",
-      "description": "SKT A.X LLM K2",
-      "created_at": "2026-07-20T06:36:22+00:00",
-      "html_url": "https://github.com/SKT-AI/A.X-K2"
-    },
-    "1300282686": {
-      "full_name": "liuzhao1225/claudex",
-      "description": "Run GPT-5.6 Sol and Codex models inside Claude Code \u2014 private, localhost-only, one-command setup for macOS and Linux.",
-      "created_at": "2026-07-14T09:33:24+00:00",
-      "html_url": "https://github.com/liuzhao1225/claudex"
-    },
-    "1300459912": {
-      "full_name": "tonnode/mcp",
-      "description": "TON MCP server for Claude, ChatGPT, Cursor, Codex and any MCP client \u2014 liteserver queries over native ADNL: balances, account state, transaction history, get-methods. Private & archive endpoints supported",
-      "created_at": "2026-07-14T12:25:05+00:00",
-      "html_url": "https://github.com/tonnode/mcp"
-    },
-    "1294069826": {
-      "full_name": "eric-tramel/jlens-mood",
-      "description": "A mood ring for text \u2014 emotion-axis readout from LLM residual streams via the Jacobian lens",
-      "created_at": "2026-07-08T18:49:05+00:00",
-      "html_url": "https://github.com/eric-tramel/jlens-mood"
-    },
-    "1298235708": {
-      "full_name": "darkneuralnetwork/DarkCode",
-      "description": "Next-Generation AI agent platform for autonomous software engineering with intelligent orchestration, persistent memory, Knowledge Graph, hybrid RAG, and local/cloud LLM routing.",
-      "created_at": "2026-07-12T11:48:27+00:00",
-      "html_url": "https://github.com/darkneuralnetwork/DarkCode"
-    },
-    "1302329332": {
-      "full_name": "renyumm/sq-bi",
-      "description": "SQ-BI \u667a\u6167\u95ee\u6570 \u00b7 \u53ef\u6cbb\u7406\u7684 AI-Native BI\uff1aLLM \u8d1f\u8d23\u7406\u89e3\u4e0e\u89c4\u5212\uff0c\u7248\u672c\u5316\u6307\u6807\u3001\u6280\u80fd\u4e0e\u9886\u57df\u5305\u8d1f\u8d23\u786e\u5b9a\u6027\u6267\u884c",
-      "created_at": "2026-07-16T04:55:13+00:00",
-      "html_url": "https://github.com/renyumm/sq-bi"
-    },
-    "1298032885": {
-      "full_name": "stevezau/shortlist",
-      "description": "Self-hosted, per-user movie & TV recommendations for Plex \u2014 a private \"Picked for You\" row on every user's home screen, built from their own watch history. One Docker container, works with or without AI.",
-      "created_at": "2026-07-12T06:15:45+00:00",
-      "html_url": "https://github.com/stevezau/shortlist"
-    },
-    "1300144318": {
-      "full_name": "agutinbaigo28/financial-agent-api",
-      "description": "financial agent api with multi-agent framework for scalable AI systems focusing on financial intelligence, RAG pipelines, observability, and secure governance. ACP Openclaw, Gemini CLI, Opencode",
-      "created_at": "2026-07-14T07:15:38+00:00",
-      "html_url": "https://github.com/agutinbaigo28/financial-agent-api"
-    },
-    "1299504474": {
-      "full_name": "justxor/Claudecourse",
-      "description": "Claude code \u0447\u0442\u043e \u0432\u043d\u0443\u0442\u0440\u0438 \u043f\u043e\u043b\u043d\u044b\u0435 \u043f\u043e\u0434\u0440\u043e\u0431\u043d\u043e\u0441\u0442\u0438, \u043f\u043e\u0448\u0430\u0433\u043e\u0432\u044b\u0439 \u0433\u0430\u0439\u0434 \u043f\u043e\u043d\u044f\u0442\u043d\u044b\u0439 ",
-      "created_at": "2026-07-13T16:29:47+00:00",
-      "html_url": "https://github.com/justxor/Claudecourse"
-    },
-    "1299446983": {
-      "full_name": "pueschel88/Tradingview-MCP",
-      "description": "Tradingview MCP server for controlling Tradingview Desktop from Claude Code via Chrome DevTools Protocol",
-      "created_at": "2026-07-13T15:30:59+00:00",
-      "html_url": "https://github.com/pueschel88/Tradingview-MCP"
-    },
-    "1309704473": {
-      "full_name": "google-gemini/glanceboard",
-      "description": "",
-      "created_at": "2026-07-23T08:24:31+00:00",
-      "html_url": "https://github.com/google-gemini/glanceboard"
-    },
-    "1296935864": {
-      "full_name": "funador/claude-code-merge-queue",
-      "description": "The local merge queue for parallel Claude Code agents",
-      "created_at": "2026-07-10T22:05:05+00:00",
-      "html_url": "https://github.com/funador/claude-code-merge-queue"
-    },
-    "1290335624": {
-      "full_name": "ujjwal0563/go-rag-pdf-chat",
-      "description": "A production-ready Retrieval-Augmented Generation (RAG) application built with Go, Gin, Qdrant, and Gemini API.",
-      "created_at": "2026-07-05T21:01:21+00:00",
-      "html_url": "https://github.com/ujjwal0563/go-rag-pdf-chat"
-    },
-    "1306868863": {
-      "full_name": "Krakenbrispire/gemini-ai",
-      "description": "Gemini AI",
-      "created_at": "2026-07-20T17:45:25+00:00",
-      "html_url": "https://github.com/Krakenbrispire/gemini-ai"
-    },
-    "1290805126": {
-      "full_name": "Dalaoyuan2020/claude-science-assistant",
-      "description": "CSA - Claude Science Assistant",
-      "created_at": "2026-07-06T08:51:51+00:00",
-      "html_url": "https://github.com/Dalaoyuan2020/claude-science-assistant"
-    },
-    "1296768326": {
-      "full_name": "handgemacht-ai/done",
-      "description": "The most token-efficient Claude Code plugin ever built: constant, deterministic responses at any scale.",
-      "created_at": "2026-07-10T17:54:47+00:00",
-      "html_url": "https://github.com/handgemacht-ai/done"
-    },
-    "1298977090": {
-      "full_name": "JimLiu/baocut",
-      "description": "Open-source Agent Skill that drives the BaoCut macOS app CLI (transcribe \u00b7 subtitle \u00b7 translate \u00b7 cut) from Claude Code, Codex, and other agents",
-      "created_at": "2026-07-13T07:06:42+00:00",
-      "html_url": "https://github.com/JimLiu/baocut"
-    },
-    "1299635121": {
-      "full_name": "atuinsh/atuin-ai-server",
-      "description": "Self-hosted server for Atuin AI, backed by any OpenAI-compatible endpoint",
-      "created_at": "2026-07-13T18:53:00+00:00",
-      "html_url": "https://github.com/atuinsh/atuin-ai-server"
-    },
-    "1300293955": {
-      "full_name": "nimadorostkar/Claude-Skills-collection",
-      "description": "A curated library of 137 production-grade skills for Claude and other AI coding agents.",
-      "created_at": "2026-07-14T09:44:32+00:00",
-      "html_url": "https://github.com/nimadorostkar/Claude-Skills-collection"
-    },
-    "1306865144": {
-      "full_name": "MergeAdvocate/claude-ai",
-      "description": "Claude AI",
-      "created_at": "2026-07-20T17:41:03+00:00",
-      "html_url": "https://github.com/MergeAdvocate/claude-ai"
-    },
-    "1310845929": {
-      "full_name": "csmsqj/zed-api",
-      "description": "\u5c06 Zed \u6258\u7ba1\u6a21\u578b\u8f6c\u4e3a\u672c\u5730 OpenAI / Anthropic \u517c\u5bb9 API\uff08Responses\u3001Ch Completions\u3001Messages\uff09\uff0c\u652f\u6301\u6d41\u5f0f\u4e0e\u5de5\u5177\u8c03\u7528\uff0cCodex / Claude Code / OpenCode \u53ef\u76f4\u8fde",
-      "created_at": "2026-07-24T09:05:48+00:00",
-      "html_url": "https://github.com/csmsqj/zed-api"
-    },
-    "1293371220": {
-      "full_name": "Raymondhou0917/speak-human-tw",
-      "description": "\u300c\u8aaa\u4eba\u8a71\u300d\uff1a\u7e41\u9ad4\u4e2d\u6587\u7684\u53bb AI \u5473\u6539\u5beb skill\u3002\u6293 38 \u7a2e AI \u5beb\u4f5c\u75d5\u8de1\uff0c\u9806\u624b\u6821\u6b63\u4e2d\u570b\u7528\u8a9e\u8207\u534a\u5f62\u6a19\u9ede\uff0c\u7d66 Claude Code / Codex / Cursor \u7528\u3002",
-      "created_at": "2026-07-08T09:23:53+00:00",
-      "html_url": "https://github.com/Raymondhou0917/speak-human-tw"
-    },
-    "1295554023": {
-      "full_name": "LiteLLM-Labs/litellm-relay",
-      "description": "Onboard AI tools in one step, and catch the rest. Relay sets up Claude Desktop, Claude Code, and Codex to run through your LiteLLM AI Gateway with zero dev setup and routes shadow AI (Notion AI, Perplexity, \u2026) there too.",
-      "created_at": "2026-07-09T16:46:55+00:00",
-      "html_url": "https://github.com/LiteLLM-Labs/litellm-relay"
-    },
-    "1308795025": {
-      "full_name": "veedstudio/open-edit",
-      "description": "The video editor you own, not rent \u2014 edit clips from your coding agent (Claude Code, Codex, Gemini); e.g. burn in stylized subtitles.",
-      "created_at": "2026-07-22T12:22:15+00:00",
-      "html_url": "https://github.com/veedstudio/open-edit"
-    },
-    "1299058088": {
-      "full_name": "Wunderlandmedia/launchworthy",
-      "description": "A Claude Code skill that plays bouncer at the door of production: audits AI-built apps (Lovable, Bolt, v0, Cursor) across 5 domains and hands you a scored  punch list with copy-paste fixes. MIT.",
-      "created_at": "2026-07-13T08:38:55+00:00",
-      "html_url": "https://github.com/Wunderlandmedia/launchworthy"
-    },
-    "1291116871": {
-      "full_name": "ZhaoLabs-SJTU/Claude-test",
-      "description": "Claude Code \u4ece\u96f6\u5b89\u88c5\u3001\u914d\u7f6e\u4e0e\u4f7f\u7528\u5b8c\u5168\u6307\u5357 \u2014 WispTerm AI \u6280\u80fd",
-      "created_at": "2026-07-06T14:17:47+00:00",
-      "html_url": "https://github.com/ZhaoLabs-SJTU/Claude-test"
-    },
-    "1301266742": {
-      "full_name": "mldogs/skill-factory",
-      "description": "A curated collection of Claude Code skills, organized by category",
-      "created_at": "2026-07-15T06:11:41+00:00",
-      "html_url": "https://github.com/mldogs/skill-factory"
-    },
-    "1300415229": {
-      "full_name": "Gwendolenmave/claudep-telegram-thinking",
-      "description": "A step-by-step guide to displaying Claude Code CLI (claude -p) stream-json thinking blocks as collapsible messages in Telegram.",
-      "created_at": "2026-07-14T11:37:32+00:00",
-      "html_url": "https://github.com/Gwendolenmave/claudep-telegram-thinking"
-    },
-    "1296820265": {
-      "full_name": "Merit-Systems/claudelines",
-      "description": "Claude Lines is a registry of custom status lines for claude code ",
-      "created_at": "2026-07-10T18:59:28+00:00",
-      "html_url": "https://github.com/Merit-Systems/claudelines"
-    },
-    "1297814636": {
-      "full_name": "joeynyc/honeycomb-lab",
-      "description": "Honeycomb Lab \u2014 hex map + OpenAI gateway control plane for a home AI fleet",
-      "created_at": "2026-07-11T22:13:05+00:00",
-      "html_url": "https://github.com/joeynyc/honeycomb-lab"
-    },
-    "1296425754": {
-      "full_name": "KanoNoUta/thief-neko",
-      "description": "Local Catpaw gateway and Windows controller for Claude Code Desktop",
-      "created_at": "2026-07-10T11:26:29+00:00",
-      "html_url": "https://github.com/KanoNoUta/thief-neko"
-    },
-    "1300273081": {
-      "full_name": "orwa-mahmoud/nightshift",
-      "description": "Accountable long-running coding-agent shifts for Codex and Claude Code.",
-      "created_at": "2026-07-14T09:23:55+00:00",
-      "html_url": "https://github.com/orwa-mahmoud/nightshift"
-    },
-    "1301304237": {
-      "full_name": "sorryhumans/clawdmeter-plus",
-      "description": "A round AMOLED desk display for your live Claude Code usage, weather, background-agent health, and a daily voice greeting. ESP32-S3 + macOS BLE daemon. Fork of Clawdmeter.",
-      "created_at": "2026-07-15T06:57:37+00:00",
-      "html_url": "https://github.com/sorryhumans/clawdmeter-plus"
-    },
-    "1289213568": {
-      "full_name": "ghhrmnzdh/tower",
-      "description": "a control tower for your Claude agents",
-      "created_at": "2026-07-04T13:12:54+00:00",
-      "html_url": "https://github.com/ghhrmnzdh/tower"
-    },
-    "1305695906": {
-      "full_name": "NeoZi12/dispatchseo",
-      "description": "Turn your AI agent into your SEO manager - works today with Claude Code, Codex, and Cursor. The open-source alternative to SEObot and Outrank",
-      "created_at": "2026-07-19T12:36:00+00:00",
-      "html_url": "https://github.com/NeoZi12/dispatchseo"
-    },
-    "1299869694": {
-      "full_name": "anandsaini18/deadskills",
-      "description": "\ud83d\udc80 Find the agent skills you never use. Local-first analytics for Claude Code & Codex skills.",
-      "created_at": "2026-07-14T01:05:37+00:00",
-      "html_url": "https://github.com/anandsaini18/deadskills"
-    },
-    "1304529385": {
-      "full_name": "Big-Pony/pocketshell",
-      "description": "Run terminal AI coding agents (Claude Code / Codex / opencode) from your phone. Resilient sessions with replay, end-to-end encrypted.",
-      "created_at": "2026-07-18T02:14:35+00:00",
-      "html_url": "https://github.com/Big-Pony/pocketshell"
-    },
-    "1300200526": {
-      "full_name": "JeremyLai99/app-store-connect-skill",
-      "description": "Claude Code skill that scans an iOS project and auto-generates a copyable App Store Connect submission report.",
-      "created_at": "2026-07-14T08:14:23+00:00",
-      "html_url": "https://github.com/JeremyLai99/app-store-connect-skill"
-    },
-    "1298717535": {
-      "full_name": "Arman-Luthra/aftr",
-      "description": "Puppeteer for After Effects. Use AE with Claude Code to make production-ready videos.",
-      "created_at": "2026-07-13T00:26:53+00:00",
-      "html_url": "https://github.com/Arman-Luthra/aftr"
-    },
-    "1311334340": {
-      "full_name": "cth9191/taste-vault",
-      "description": "Local design-taste gallery: screenshots in, design vocabulary + paste-ready Claude Code briefs out. Step 1 of the 3-step web design process.",
-      "created_at": "2026-07-24T18:43:06+00:00",
-      "html_url": "https://github.com/cth9191/taste-vault"
-    },
-    "1289809458": {
-      "full_name": "HERRY423/BioCSSwitch",
-      "description": "BioCSSwitch biomedical research extensions for CSSwitch and Claude Science local workflows",
-      "created_at": "2026-07-05T08:22:55+00:00",
-      "html_url": "https://github.com/HERRY423/BioCSSwitch"
-    },
-    "1300271266": {
-      "full_name": "upvoteclub/upvote-club-mcp-mcpb",
-      "description": "Claude Desktop .mcpb bundle for Upvote.club. Part of upvoteclub/upvote-club-mcp-* family \u2014 see core repo for all packages.",
-      "created_at": "2026-07-14T09:22:11+00:00",
-      "html_url": "https://github.com/upvoteclub/upvote-club-mcp-mcpb"
-    },
-    "1307966960": {
-      "full_name": "csm101/delphi-visual-studio-code-debugger",
-      "description": "A debugger for delphi in visual studio code, and also a MCP server to give claude/copilot/etc authonomous delphi debugging capabilities",
-      "created_at": "2026-07-21T17:35:37+00:00",
-      "html_url": "https://github.com/csm101/delphi-visual-studio-code-debugger"
-    },
-    "1289241305": {
-      "full_name": "dkdannyboy/cccat",
-      "description": "Claude Code Cat \u2014 turn waiting time into English micro-lessons, explained in your own language (Korean & Japanese, more welcome). Animated cat in your status line. Local-first, zero network.",
-      "created_at": "2026-07-04T13:53:40+00:00",
-      "html_url": "https://github.com/dkdannyboy/cccat"
-    },
-    "1295070151": {
-      "full_name": "pleaseai/shunt",
-      "description": "Shunt Claude Code agents to any model \u2014 selective, per-agent inference-layer routing proxy",
-      "created_at": "2026-07-09T10:32:04+00:00",
-      "html_url": "https://github.com/pleaseai/shunt"
-    },
-    "1290289350": {
-      "full_name": "lak7/teamlore",
-      "description": "Shared memory for your team's claude code so that you break things only once",
-      "created_at": "2026-07-05T19:43:02+00:00",
-      "html_url": "https://github.com/lak7/teamlore"
-    },
-    "1288342491": {
-      "full_name": "coda0HQ/open-artifacts",
-      "description": "Open-source, self-hosted Claude Code Artifacts on Cloudflare \u2014 publish, password-protect, and auto-update shareable HTML/Markdown pages from any coding agent.",
-      "created_at": "2026-07-03T14:03:09+00:00",
-      "html_url": "https://github.com/coda0HQ/open-artifacts"
-    },
-    "1293746415": {
-      "full_name": "yinguangyao/coding-agent-runner",
-      "description": "ACP-friendly Node.js SDK for local coding agents: run Codex, Claude Code, Cursor, OpenCode, and Pi with streaming, abort, and session resume.",
-      "created_at": "2026-07-08T14:53:28+00:00",
-      "html_url": "https://github.com/yinguangyao/coding-agent-runner"
-    },
-    "1304539881": {
-      "full_name": "buhuipao/agent-console",
-      "description": "A local terminal control plane for Codex and Claude Code sessions\u2014discover, monitor, resume, and work beside persistent workspace shells.",
-      "created_at": "2026-07-18T02:35:56+00:00",
-      "html_url": "https://github.com/buhuipao/agent-console"
-    },
-    "1294348443": {
-      "full_name": "dobzha/dobzha-storybook-ds-skill",
-      "description": "Storybook design system Claude Skill \u2014 component scaffolding, codebase audits, Figma token sync, and enforced source-of-truth token mapping (React + TypeScript, framework-agnostic).",
-      "created_at": "2026-07-08T22:47:41+00:00",
-      "html_url": "https://github.com/dobzha/dobzha-storybook-ds-skill"
-    },
-    "1290465737": {
-      "full_name": "cindyxu1030/xiaolan-prompt-bank",
-      "description": "\u52a8\u6548 Prompt \u94f6\u884c \u00b7 Motion Prompt Bank \u2014 copy-paste prompts for HTML motion graphics (logo / product ads / data / captions), each with the GIF it renders. For Claude Code / Codex + HyperFrames.",
-      "created_at": "2026-07-06T01:11:55+00:00",
-      "html_url": "https://github.com/cindyxu1030/xiaolan-prompt-bank"
-    },
-    "1304791135": {
-      "full_name": "lm060719/reconbridge",
-      "description": "\u901a\u7528\u9006\u5411\u5206\u6790 KernelSU \u6a21\u5757\uff1a\u624b\u673a\u4fa7\u53ea\u505a\u539f\u5b50\u80fd\u529b\uff0c\u667a\u80fd\u5168\u5728 PC \u4fa7\uff08Claude Code + MCP\uff09\u3002\u4ec5\u9650\u6388\u6743\u5b89\u5168\u7814\u7a76\u4e0e\u6559\u80b2\u7528\u9014\u3002",
-      "created_at": "2026-07-18T09:59:39+00:00",
-      "html_url": "https://github.com/lm060719/reconbridge"
-    },
-    "1288462699": {
-      "full_name": "emberglow-dev/emberglow-keyboard",
-      "description": "Your keyboard glows blue while your AI agent works and green when it's done. An ambient status light for Claude, over QMK raw HID.",
-      "created_at": "2026-07-03T16:12:13+00:00",
-      "html_url": "https://github.com/emberglow-dev/emberglow-keyboard"
-    },
-    "1304697544": {
-      "full_name": "HiroHyun/grounded-copy",
-      "description": "Style gate for prose: every claim states a feature, a number, or a mechanism. Agent skill plus a deterministic Python linter covering 9 languages, session hooks for Claude Code and Codex, and a CI gate.",
-      "created_at": "2026-07-18T07:28:44+00:00",
-      "html_url": "https://github.com/HiroHyun/grounded-copy"
-    },
-    "1300030250": {
-      "full_name": "AlanHuang168/AI-Project-Workflow",
-      "description": "\u4e00\u5957\u9762\u5411 Cursor\u3001Claude Code\u3001Codex\u3001Qoder\u3001CodeBuddy\u3001CatPaw\u3001TRAE \u4ee5\u53ca\u5176\u4ed6 AI \u7f16\u7801\u52a9\u624b\u7684\u901a\u7528 AI \u539f\u751f\u8f6f\u4ef6\u4ea4\u4ed8\u5de5\u4f5c\u6d41\u3002\u4e00\u4efd\u89c4\u8303\u7684 core/ \u5355\u4e00\u771f\u76f8\u6e90\u3001\u6bcf\u4e2a\u5de5\u5177\u4e00\u5c42\u8f7b\u91cf\u9002\u914d\u3001\u4e00\u4e2a\u8ddf\u8e2a\u8fdb\u5ea6\u7684\u72b6\u6001\u6587\u4ef6,\u4ee5\u53ca\u8d1f\u8d23\u5b89\u88c5\u4e0e\u6821\u9a8c\u7684 CLI\u3002",
-      "created_at": "2026-07-14T05:00:51+00:00",
-      "html_url": "https://github.com/AlanHuang168/AI-Project-Workflow"
     },
     "1318616860": {
       "full_name": "0xwilliamortiz/ratchet",
@@ -2889,7 +2031,7 @@
     },
     "1301590673": {
       "full_name": "ilvy23/local-ai-agent",
-      "description": "A local AI agent in your terminal \u2014 chats, remembers, searches the web, and writes & fixes code with tests. Runs on your own Ollama; no account, no cloud, nothing phoning home.",
+      "description": "lantern \u2014 a warm, fully-local AI in your terminal: chat with long-term memory, live web search, a coding agent that writes & tests its own code, and a prompt studio (improve \u00b7 plan \u00b7 anonymise). Runs on your own Ollama \u2014 no account, no cloud, nothing phones home.",
       "created_at": "2026-07-15T12:27:21+00:00",
       "html_url": "https://github.com/ilvy23/local-ai-agent"
     },
@@ -3740,10 +2882,10 @@
       "html_url": "https://github.com/PxA-Labs/AgentsScope"
     },
     "1304359530": {
-      "full_name": "weed33834/agentseed",
-      "description": "AgentSeed - One command to give your AI agent a brain. Persona-Governance Platform: governance engine + swappable persona packs + self-evolution + 13-platform sync.",
+      "full_name": "weed33834/AgentSeed",
+      "description": "AgentSeed - the governance layer for AI agents. Non-negotiable safety kernel + pluggable scenario packs, synced to 15 AI agent tools (Claude Code, Cursor, Copilot, Windsurf, Trae, Codex, and more). Generate AGENTS.md / CLAUDE.md / GEMINI.md rule files with one command.",
       "created_at": "2026-07-17T20:17:22+00:00",
-      "html_url": "https://github.com/weed33834/agentseed"
+      "html_url": "https://github.com/weed33834/AgentSeed"
     },
     "1299298793": {
       "full_name": "codeprakhar25/smartcompact",
@@ -4665,7 +3807,7 @@
     },
     "1300173275": {
       "full_name": "vshulcz/deja-vu",
-      "description": "Your agents already solved this. deja finds it \u2014 it indexes the sessions your coding agents already wrote to disk, months of history from before you installed it, and recalls them automatically at session start across seventeen harnesses. 84.9% hit@1 on LongMemEval-S, no LLM, no embeddings. One zero-dep binary, fully local.",
+      "description": "Your agents already solved this. deja finds it \u2014 it indexes the sessions your coding agents already wrote to disk, months of history from before you installed it, and recalls them automatically at session start and on every prompt across seventeen harnesses. 84.9% hit@1 on LongMemEval-S, no LLM, no embeddings. One zero-dep binary, fully local.",
       "created_at": "2026-07-14T07:45:44+00:00",
       "html_url": "https://github.com/vshulcz/deja-vu"
     },
@@ -6423,7 +5565,7 @@
     },
     "1297638533": {
       "full_name": "serradura/okf-gem",
-      "description": "Open Knowledge Format for coding agents. Author, validate, lint, search, and visualize portable Markdown knowledge bundles. One gem carries the agent skill, the CLI and Ruby library, and an interactive graph. Docker and Claude Code plugin included, 100% local.",
+      "description": "Open Knowledge Format for coding agents. Author, validate, lint, search, and visualize portable Markdown knowledge bundles. The okf gem carries the agent skill, CLI, Ruby library, and an interactive graph; okf-mcp serves the same bundles to any MCP host. Docker and Claude Code plugin included, 100% local.",
       "created_at": "2026-07-11T17:13:33+00:00",
       "html_url": "https://github.com/serradura/okf-gem"
     },
@@ -6464,10 +5606,10 @@
       "html_url": "https://github.com/ahirtonlopes/build-with-ai-curitiba-2026"
     },
     "1310782328": {
-      "full_name": "lampooo/xhs-article-images-skill",
+      "full_name": "lampooo/agent-skills",
       "description": "Markdown \u957f\u6587\u6e32\u67d3\u6210\u5c0f\u7ea2\u4e66 3:4 \u56fe\u7247\u7ec4\u7684 Agent Skill\uff0c\u5168\u6587\u4e0d\u5220\u51cf\uff0c\u5185\u7f6e 5 \u79cd\u98ce\u683c\uff08Cursor / Claude Code / Codex \u901a\u7528\uff09",
       "created_at": "2026-07-24T07:55:55+00:00",
-      "html_url": "https://github.com/lampooo/xhs-article-images-skill"
+      "html_url": "https://github.com/lampooo/agent-skills"
     },
     "1303694788": {
       "full_name": "AoleiC/ai-mock-trade",
@@ -6506,10 +5648,10 @@
       "html_url": "https://github.com/CCanxue/codex-deepseek-subagent-fix"
     },
     "1322291465": {
-      "full_name": "Jeshua3545926/Astro-Code-Editor-Ai",
-      "description": "An ultra-lightweight AI code editor built with Tauri 2 and Rust (9 MB RAM). The ultimate minimal alternative to VS Code, Cursor, Zed, and Sublime Text.",
+      "full_name": "Windsor-AI-technologies/Astro-Code-Editor-Ai",
+      "description": "An ultra-lightweight AI code editor built with Tauri 2 and Rust . The ultimate minimal alternative to VS Code, Cursor, Zed, and Sublime Text.",
       "created_at": "2026-08-03T22:41:45+00:00",
-      "html_url": "https://github.com/Jeshua3545926/Astro-Code-Editor-Ai"
+      "html_url": "https://github.com/Windsor-AI-technologies/Astro-Code-Editor-Ai"
     },
     "1326853912": {
       "full_name": "3169657175/gpt-webcodex",
@@ -8655,7 +7797,7 @@
     },
     "1326915228": {
       "full_name": "jundizhou/easy-stock",
-      "description": "A \u80a1\u884c\u60c5\u5206\u6790\u4e0eAI\u667a\u80fd\u6295\u7814\u667a\u80fd\u4f53--\u57fa\u4e8e\u5927\u6a21\u578b",
+      "description": "A \u80a1\u884c\u60c5\u5206\u6790\u4e0eAI\u667a\u80fd\u6295\u7814\u667a\u80fd\u4f53\u2014\u2014easy stock",
       "created_at": "2026-08-07T16:25:36+00:00",
       "html_url": "https://github.com/jundizhou/easy-stock"
     },
@@ -8679,7 +7821,7 @@
     },
     "1328657057": {
       "full_name": "memcode-ai/memcode",
-      "description": "The coding agent that remembers your repo. CLI, gateway, MIT.",
+      "description": "Coding Agent + OpenClaw + Hermes Support",
       "created_at": "2026-08-09T09:48:41+00:00",
       "html_url": "https://github.com/memcode-ai/memcode"
     },
@@ -8805,7 +7947,7 @@
     },
     "1325687429": {
       "full_name": "huyxdang/Text-GPT-Live",
-      "description": "can you train gpt-live with $50? ",
+      "description": "Can you train a GPT-Live with $50?",
       "created_at": "2026-08-06T19:00:32+00:00",
       "html_url": "https://github.com/huyxdang/Text-GPT-Live"
     },
@@ -9495,7 +8637,7 @@
     },
     "1322906687": {
       "full_name": "zhaji2333/CkSKILLS",
-      "description": "\u57fa\u4e8e Claude Code / Codex \u7684 SRC \u6f0f\u6d1e\u6316\u6398 Agent \u6280\u80fd\u4f53\u7cfb \u2014\u2014 \u7cfb\u7edf\u7ea7\u63d0\u793a\u8bcd + 13 \u4e2a\u4e13\u9879\u5b89\u5168\u6d4b\u8bd5 Skill \u77e5\u8bc6\u5e93",
+      "description": "\u57fa\u4e8e Claude Code / Codex \u7684 SRC \u6f0f\u6d1e\u6316\u6398 Agent \u6280\u80fd\u4f53\u7cfb \u2014\u2014 \u7cfb\u7edf\u7ea7\u63d0\u793a\u8bcd + 14 \u4e2a\u4e13\u9879\u5b89\u5168\u6d4b\u8bd5 Skill \u77e5\u8bc6\u5e93",
       "created_at": "2026-08-04T12:08:59+00:00",
       "html_url": "https://github.com/zhaji2333/CkSKILLS"
     },
@@ -9543,7 +8685,7 @@
     },
     "1330606607": {
       "full_name": "trefeon/freebuff-proxy",
-      "description": "fr33bu77-pr0xy: High-performance OpenAI-compatible gateway and token pool router for coding assistants with session lifecycle and TLS stealth",
+      "description": "High-performance OpenAI-compatible gateway and token pool bridge for AI coding assistants with session lifecycle and TLS stealth",
       "created_at": "2026-08-11T07:06:43+00:00",
       "html_url": "https://github.com/trefeon/freebuff-proxy"
     },
@@ -10041,7 +9183,7 @@
     },
     "1319136719": {
       "full_name": "ShadowSafin/AndroLLM",
-      "description": "Open-source AI for Android with llama.cpp, GGUF, Vulkan acceleration, cloud providers, memory, and voice interaction.",
+      "description": "Open-source Android AI using LiteRT-LM with hardware acceleration, cloud providers, memory, and voice.",
       "created_at": "2026-08-01T09:03:01+00:00",
       "html_url": "https://github.com/ShadowSafin/AndroLLM"
     },
@@ -10383,7 +9525,7 @@
     },
     "1331707935": {
       "full_name": "biuworks/bilibili-digest",
-      "description": "\u628a B \u7ad9\u89c6\u9891\u53d8\u6210\u5b66\u4e60\u8d44\u6e90\u7684\u6d4f\u89c8\u5668\u6269\u5c55\uff08Chrome / Edge\uff09\uff1a\u5b57\u5e55\u9605\u8bfb\u3001\u53cc\u8bed\u5bf9\u7167\u3001AI \u6982\u89c8\u3001\u5212\u8bcd\u89e3\u91ca\u548c\u5e26\u65f6\u95f4\u6233\u7684\u7b14\u8bb0",
+      "description": "\u5df2\u4e0a\u67b6 Chrome \u5546\u5e97 \ud83d\ude80 \u628a B \u7ad9\u89c6\u9891\u53d8\u6210\u5b66\u4e60\u8d44\u6e90\u7684\u6d4f\u89c8\u5668\u6269\u5c55\uff08Chrome / Edge\uff09\uff1a\u5b57\u5e55\u9605\u8bfb\u3001\u53cc\u8bed\u5bf9\u7167\u3001AI \u7ae0\u8282\u6982\u89c8\u3001\u5212\u8bcd\u89e3\u91ca\u548c\u5e26\u65f6\u95f4\u6233\u7684\u7b14\u8bb0",
       "created_at": "2026-08-12T06:48:51+00:00",
       "html_url": "https://github.com/biuworks/bilibili-digest"
     },
@@ -10401,7 +9543,7 @@
     },
     "1326414870": {
       "full_name": "jjjardev/HoardCore",
-      "description": "Single-file research toolkit for AI agents. Local SQLite vault with hybrid FTS5 + vector retrieval, resilient anti-bot fetching, and a bounded DISCOVER \u2192 INGEST \u2192 RECALL \u2192 EMIT loop with machine-checkable [V]/[E]/[H] provenance.",
+      "description": "Give your agent a memory it can prove. One Python file: local SQLite vault, hybrid FTS5 + vector retrieval, Cloudflare-aware fetching, and a research loop whose [V]/[E]/[H] citations are machine-verified by CLI, not prompt-enforced.",
       "created_at": "2026-08-07T08:33:53+00:00",
       "html_url": "https://github.com/jjjardev/HoardCore"
     },
@@ -11349,13 +10491,13 @@
     },
     "1331752516": {
       "full_name": "Kpoiut/ruleblast",
-      "description": "Git diff for AGENTS.md / CLAUDE.md blast radius \u2014 see every repo path whose AI instructions changed.",
+      "description": "Git diff for repository instructions. Shows the blast radius of AGENTS.md and CLAUDE.md changes across Codex, Claude Code, Gemini CLI, and Copilot CLI.",
       "created_at": "2026-08-12T07:40:07+00:00",
       "html_url": "https://github.com/Kpoiut/ruleblast"
     },
     "1330318865": {
       "full_name": "raiyanyahya/Superlearn",
-      "description": "Learn anything, deeply from inside Claude Code",
+      "description": "Learn anything, deeply from inside Claude Code, Codex or KiloCode",
       "created_at": "2026-08-10T23:17:57+00:00",
       "html_url": "https://github.com/raiyanyahya/Superlearn"
     },
@@ -11876,10 +11018,10 @@
       "html_url": "https://github.com/ishara-madu/gemini-watermark-remover"
     },
     "1321341419": {
-      "full_name": "yuchen-zhu-zyc/FLARE",
-      "description": "Official Implementation of FLARE: Diffusion for Hybrid Language Models",
+      "full_name": "yuchen-zhu-zyc/HybridDiffusion",
+      "description": "",
       "created_at": "2026-08-03T06:43:29+00:00",
-      "html_url": "https://github.com/yuchen-zhu-zyc/FLARE"
+      "html_url": "https://github.com/yuchen-zhu-zyc/HybridDiffusion"
     },
     "1315417716": {
       "full_name": "sanderland/ctok",
@@ -12018,6 +11160,744 @@
       "description": "\u628a\u300a\u5b59\u5b50\u5175\u6cd5\u300b\u5f53\u4f5c\u51b3\u7b56\u7eaa\u5f8b\u6765\u6267\u884c\u7684 AI Skill\uff1a\u5148\u95ee\u8be2\u540e\u8bca\u65ad\uff0c\u8f93\u51fa\u7ed3\u6784\u5316\u6218\u7565\u8bca\u65ad\u6587\u6863\u3002\u9002\u7528\u4e8e Claude Code / NewMax\u3002",
       "created_at": "2026-07-28T00:52:49+00:00",
       "html_url": "https://github.com/yangyixxxx/sunzi-strategy-advisor"
+    },
+    "1334392318": {
+      "full_name": "qiannianhuanxiang/DSHA",
+      "description": "DeepSeek Harness \u5b89\u5353\u542f\u52a8\u5668\uff1a\u5185\u7f6e proot+Ubuntu\uff0c\u514d ROOT \u514d Termux \u4e00\u952e\u8fd0\u884c deepseek-harness\uff0c\u591a\u6e90\u6d4b\u901f/\u5206\u6b65\u5b89\u88c5/WebUI \u9884\u89c8/\u8bbe\u5907 Shell \u6865\u63a5",
+      "created_at": "2026-08-14T16:52:02+00:00",
+      "html_url": "https://github.com/qiannianhuanxiang/DSHA"
+    },
+    "1333286217": {
+      "full_name": "woolcoxm/zero-mem-pi",
+      "description": "Zero-Mem: Zero-Token Memory Operations for the pi coding agent (faithful reimplementation of arXiv:2607.29377)",
+      "created_at": "2026-08-13T15:51:22+00:00",
+      "html_url": "https://github.com/woolcoxm/zero-mem-pi"
+    },
+    "1328973416": {
+      "full_name": "vikd1000/investment-council",
+      "description": "A stock picking tool that has 21 legendary investors like Warren Buffet, Peter Lynch, Michael Burry etc debate every stock pick and show you exactly where they agree, and where they don't. The second opinion your investment portfolio actually needs. No API key needed",
+      "created_at": "2026-08-09T16:09:05+00:00",
+      "html_url": "https://github.com/vikd1000/investment-council"
+    },
+    "1331741216": {
+      "full_name": "mmr710/nightmux",
+      "description": "Your night crew, on Telegram. Run Claude Code, Codex or any terminal agent from a Telegram topic \u2014 one topic per tmux session. Watches the context window and the 5-hour limit, compacts before the wall, and holds prompts through a lockout instead of losing them. Python stdlib only, no relay server.",
+      "created_at": "2026-08-12T07:26:59+00:00",
+      "html_url": "https://github.com/mmr710/nightmux"
+    },
+    "1334118559": {
+      "full_name": "Mars-Sea/dsh-commandcode-provider",
+      "description": "Unofficial DeepSeek Harness LLM provider plugin for Command Code: live model catalog, reasoning-effort support, Models-page card. Ported from pi-commandcode-provider (MIT).",
+      "created_at": "2026-08-14T11:38:54+00:00",
+      "html_url": "https://github.com/Mars-Sea/dsh-commandcode-provider"
+    },
+    "1331538256": {
+      "full_name": "hardenbr-personal/JobScoutPublic",
+      "description": "AI job-search scout: daily board sweeps, LLM triage, human-in-the-loop by design. It finds the jobs, you still have to apply!",
+      "created_at": "2026-08-12T02:35:02+00:00",
+      "html_url": "https://github.com/hardenbr-personal/JobScoutPublic"
+    },
+    "1328366185": {
+      "full_name": "chgblog/AIHelper",
+      "description": "AIHelper is a lightweight tool that seamlessly integrates web-based LLMs like ChatGPT into your workflow. Use text selection, global hotkeys, or smart scripts to instantly translate, explain, or polish clipboard content.  AIHelper \u662f\u4e00\u6b3e\u8f7b\u91cf\u7ea7AI\u52a9\u624b\u5de5\u5177\u3002\u5b83\u65e8\u5728\u5c06\u7f51\u9875\u7aef AI \u5927\u6a21\u578b\u5e73\u53f0\u65e0\u7f1d\u96c6\u6210\u5230\u65e5\u5e38\u5de5\u4f5c\u4e2d\u3002\u901a\u8fc7\u5212\u8bcd\u6216\u5168\u5c40\u5feb\u6377\u952e\u548c\u667a\u80fd\u7f51\u9875\u811a\u672c\u6ce8\u5165\uff0c\u5b9e\u73b0\u526a\u8d34\u677f\u6587\u672c\u7684\u5feb\u901f\u7ffb\u8bd1\u3001\u89e3\u91ca\u3001\u6da6\u8272\u7b49\u64cd\u4f5c\u3002",
+      "created_at": "2026-08-09T02:48:05+00:00",
+      "html_url": "https://github.com/chgblog/AIHelper"
+    },
+    "1334075920": {
+      "full_name": "feibi-mochi/deepseek-harness-wallet",
+      "description": "Balance monitoring, per-session spend & token tracking, low-balance alerts, and an official recharge shortcut for DeepSeek Harness. / \u4f59\u989d\u76d1\u63a7\u548c\u5145\u503c\u63d2\u4ef6",
+      "created_at": "2026-08-14T10:43:58+00:00",
+      "html_url": "https://github.com/feibi-mochi/deepseek-harness-wallet"
+    },
+    "1333814934": {
+      "full_name": "evoleinik/unchatty",
+      "description": "Make Claude Code write plainly. A CLAUDE.md block plus the A/B harness that proves it works.",
+      "created_at": "2026-08-14T05:10:24+00:00",
+      "html_url": "https://github.com/evoleinik/unchatty"
+    },
+    "1334003760": {
+      "full_name": "Sqhao-O/dsh-docs",
+      "description": "Fully local document intelligence for DeepSeek Harness. Parse PDF, Office files, images, and scanned documents with offline OCR. | DeepSeek Harness \u5168\u672c\u5730\u6587\u6863\u667a\u80fd\u63d2\u4ef6\uff0c\u652f\u6301 PDF\u3001Office\u3001\u56fe\u7247\u4e0e\u79bb\u7ebf OCR",
+      "created_at": "2026-08-14T09:15:08+00:00",
+      "html_url": "https://github.com/Sqhao-O/dsh-docs"
+    },
+    "1333729444": {
+      "full_name": "yequ172672/dsh-codex-subscription",
+      "description": "DSH \u63d2\u4ef6:\u76f4\u63a5\u590d\u7528 Codex CLI \u672c\u5730\u767b\u5f55\u8ba2\u9605\u51ed\u8bc1,\u5728 DeepSeek Harness \u4e2d\u4f7f\u7528 ChatGPT \u8ba2\u9605\u6a21\u578b,\u65e0\u9700 API Key | DSH plugin: reuse your Codex CLI local subscription login to use ChatGPT subscription models in DeepSeek Harness, no API key required",
+      "created_at": "2026-08-14T02:53:01+00:00",
+      "html_url": "https://github.com/yequ172672/dsh-codex-subscription"
+    },
+    "1334101809": {
+      "full_name": "OpenAgentHQ/localmem-mcp",
+      "description": "Local-first, zero-API memory for AI agents. Persistent, private, and yours \u2014 runs entirely on your machine, no cloud calls, no API keys.",
+      "created_at": "2026-08-14T11:17:04+00:00",
+      "html_url": "https://github.com/OpenAgentHQ/localmem-mcp"
+    },
+    "1333700588": {
+      "full_name": "LouisYang841/dsh-mini",
+      "description": "DeepSeek Harness \u6838\u5fc3\u7684\u4fbf\u643a\u5f15\u64ce + Termux \u53cb\u597d\u7684\u7ec8\u7aef\u7f16\u7a0b Agent CLI\uff08pi \u58f3 + DSH \u5f15\u64ce\uff0c\u96f6\u8fd0\u884c\u65f6\u4f9d\u8d56\uff0c359MB\u21927.6MB \u5355\u6587\u4ef6\uff09",
+      "created_at": "2026-08-14T02:05:35+00:00",
+      "html_url": "https://github.com/LouisYang841/dsh-mini"
+    },
+    "1334800778": {
+      "full_name": "nduckmink/NomaData",
+      "description": "An AI-native BI client that connects any LLM to any database through a semantic layer, turning natural language into real-time analytics.",
+      "created_at": "2026-08-15T04:53:19+00:00",
+      "html_url": "https://github.com/nduckmink/NomaData"
+    },
+    "1334096871": {
+      "full_name": "Hilbert-beinghappy/seektty",
+      "description": "Pluggable DeepSeek-colored TUI for DeepSeek Harness",
+      "created_at": "2026-08-14T11:10:57+00:00",
+      "html_url": "https://github.com/Hilbert-beinghappy/seektty"
+    },
+    "1333759458": {
+      "full_name": "jyh20030112/dsh-visual-plugin",
+      "description": "Dsh-visual-plugin.Give your text-only model eyes: forward user images to any OpenAI-compatible vision model and see the results in a Web UI right panel",
+      "created_at": "2026-08-14T03:42:02+00:00",
+      "html_url": "https://github.com/jyh20030112/dsh-visual-plugin"
+    },
+    "1333868070": {
+      "full_name": "sandbaseai/deepseek-harness-handbook",
+      "description": "Agent-first, multilingual handbook for DeepSeek Harness: quickstarts, architecture, safety, troubleshooting, and production recipes.",
+      "created_at": "2026-08-14T06:25:52+00:00",
+      "html_url": "https://github.com/sandbaseai/deepseek-harness-handbook"
+    },
+    "1330715867": {
+      "full_name": "Tzxser/aipha-learning-os",
+      "description": "AIpha Learning OS \u2014 \u4e2a\u6027\u5316\u5b66\u4e60\u591a\u667a\u80fd\u4f53\u7cfb\u7edf\uff0c\u878d\u5408 Multi-Agent\u3001RAG\u3001\u8bfe\u7a0b\u77e5\u8bc6\u6784\u5efa\u6d41\u6c34\u7ebf\u3001Neo4j \u77e5\u8bc6\u56fe\u8c31\u3001\u5b66\u4e60\u8bb0\u5fc6\u4e0e\u4efb\u52a1\u7ea7 LLM \u8def\u7531\u3002",
+      "created_at": "2026-08-11T09:11:59+00:00",
+      "html_url": "https://github.com/Tzxser/aipha-learning-os"
+    },
+    "1332080710": {
+      "full_name": "dhpradeep/aegis",
+      "description": "Turn your Claude subscription into a multi-tenant agent API with rate limits, cost tracking, autonomous objectives, and an admin dashboard. Self-hostable, no API key.",
+      "created_at": "2026-08-12T13:49:29+00:00",
+      "html_url": "https://github.com/dhpradeep/aegis"
+    },
+    "1333893162": {
+      "full_name": "whitelonng/dsh-plugin-describe-image",
+      "description": "DeepSeek Harness plugin: describe_image \u2014 give a text-only model vision through an OpenAI-compatible VLM endpoint",
+      "created_at": "2026-08-14T06:57:44+00:00",
+      "html_url": "https://github.com/whitelonng/dsh-plugin-describe-image"
+    },
+    "1334167016": {
+      "full_name": "ollmo-go/ollmo",
+      "description": "A production-grade RAG platform with hybrid retrieval, multi-tenancy, and streaming chat.",
+      "created_at": "2026-08-14T12:38:24+00:00",
+      "html_url": "https://github.com/ollmo-go/ollmo"
+    },
+    "1331654413": {
+      "full_name": "esshka/omakase",
+      "description": "Agents as plain Ruby objects. Fields are state, methods are tools, and the methods you declare without a body are written by the model at runtime.",
+      "created_at": "2026-08-12T05:40:30+00:00",
+      "html_url": "https://github.com/esshka/omakase"
+    },
+    "1334613831": {
+      "full_name": "ustoppble/overclick",
+      "description": "The open source task board where AI agents do the work. Self-hosted, MCP-native, zero data collection.",
+      "created_at": "2026-08-14T22:10:35+00:00",
+      "html_url": "https://github.com/ustoppble/overclick"
+    },
+    "1334494531": {
+      "full_name": "aemrebarut/herdr-dagr",
+      "description": "Your agent swarm as a live DAG: an orchestration graph with attempts, review gates, and evidence, in a herdr split pane.",
+      "created_at": "2026-08-14T19:02:01+00:00",
+      "html_url": "https://github.com/aemrebarut/herdr-dagr"
+    },
+    "1333646789": {
+      "full_name": "rocsgh/ppt-zen",
+      "description": "A judgment layer for AI-made slides \u2014 not another PPT generator.",
+      "created_at": "2026-08-14T00:28:56+00:00",
+      "html_url": "https://github.com/rocsgh/ppt-zen"
+    },
+    "1329973913": {
+      "full_name": "jakobrees/unicasso",
+      "description": "Image \u2192 ASCII art by direct optimization. Any monospace font, optional color.",
+      "created_at": "2026-08-10T15:30:59+00:00",
+      "html_url": "https://github.com/jakobrees/unicasso"
+    },
+    "1333367960": {
+      "full_name": "Yan-Zero/dsh-codex",
+      "description": "Use your ChatGPT subscription in DeepSeek Harness through OpenAI's Codex sign-in flow",
+      "created_at": "2026-08-13T17:22:25+00:00",
+      "html_url": "https://github.com/Yan-Zero/dsh-codex"
+    },
+    "1332873574": {
+      "full_name": "Swift2025/edrawmax-diagrams-skill",
+      "description": "AI skill to design EdrawMax diagrams and auditing it using LLM agents. Note: The skill requires PAID EdrawMax to be installed. The skill is independent from Wondershare AI skills and self-made by AI skill creator based on strict tested rules.",
+      "created_at": "2026-08-13T08:18:15+00:00",
+      "html_url": "https://github.com/Swift2025/edrawmax-diagrams-skill"
+    },
+    "1333936445": {
+      "full_name": "UNLINEARITY/dsh-code",
+      "description": " Claude-Code-style TUI bundle for DeepSeek Harness. \u5145\u5206\u7ed3\u5408 DSH \u7684\u6838\u5fc3\u673a\u5236\u4e0eCodex CLI \u3001Claude Code \u7684\u4f18\u79c0\u673a\u5236\uff0c\u6253\u9020\u7684 DSH-Code.",
+      "created_at": "2026-08-14T07:51:38+00:00",
+      "html_url": "https://github.com/UNLINEARITY/dsh-code"
+    },
+    "1329958856": {
+      "full_name": "thebuggeddev/places-have-sound",
+      "description": "An archive of eleven places paired with the 90s music playlist built using Claude Opus 5",
+      "created_at": "2026-08-10T15:15:13+00:00",
+      "html_url": "https://github.com/thebuggeddev/places-have-sound"
+    },
+    "1331581864": {
+      "full_name": "Kronop/vibe-aso",
+      "description": "You vibe-coded the app \u2014 now vibe the ASO. A Claude Code skill: keyword research, 50-locale App Store metadata, localized screenshots, worldwide pricing, in-app localization.",
+      "created_at": "2026-08-12T03:46:04+00:00",
+      "html_url": "https://github.com/Kronop/vibe-aso"
+    },
+    "1333921957": {
+      "full_name": "Optim-Agent/dsh-plans",
+      "description": "Human-in-the-loop planning preset for DeepSeek Harness (DSH), adapted from prime-plans: researched Markdown plans in ./dsh-plans, reviewer/criticizer subagent refinement, per-workspace language & model settings, goal-driven execution with ponytail + MVP tests.",
+      "created_at": "2026-08-14T07:33:50+00:00",
+      "html_url": "https://github.com/Optim-Agent/dsh-plans"
+    },
+    "1332451172": {
+      "full_name": "bar181/bar-observatory",
+      "description": "Deterministic, local-only audit reports for Claude Code AI agent sessions. Rust + SQLite. Zero network calls. MCP server for agents.",
+      "created_at": "2026-08-12T21:15:22+00:00",
+      "html_url": "https://github.com/bar181/bar-observatory"
+    },
+    "1331477935": {
+      "full_name": "mlpal-ai/yodex",
+      "description": "Yodex \u2014 MLPal's coding agent: one tunable harness for Anthropic, OpenAI, Google, and open-weight models. Docs, technical report, benchmarks, and feature requests. npm i -g @mlpal/yodex",
+      "created_at": "2026-08-12T00:52:35+00:00",
+      "html_url": "https://github.com/mlpal-ai/yodex"
+    },
+    "1333732618": {
+      "full_name": "bdw547/usage-display",
+      "description": "Live AI usage display (Claude / Codex / Copilot) on an ESP32-S3 touch panel \u2014 collector daemon + Cloudflare relay + LVGL firmware",
+      "created_at": "2026-08-14T02:58:12+00:00",
+      "html_url": "https://github.com/bdw547/usage-display"
+    },
+    "1331473860": {
+      "full_name": "mlpal-ai/mlpal-gateway",
+      "description": "Open-source AI gateway \u2014 one API for Anthropic, OpenAI, Google, Bedrock, and custom models. Routing, per-request cost metering, per-key budgets, admin console. Self-host with one docker compose up.",
+      "created_at": "2026-08-12T00:44:52+00:00",
+      "html_url": "https://github.com/mlpal-ai/mlpal-gateway"
+    },
+    "1313434625": {
+      "full_name": "AmazingAng/old-coder",
+      "description": "An old coder's strategy for the agent era: don't read the code \u2014 make it run the gauntlet. Evidence-first development skill for coding agents, inspired by Uncle Bob.",
+      "created_at": "2026-07-27T05:03:11+00:00",
+      "html_url": "https://github.com/AmazingAng/old-coder"
+    },
+    "1316651150": {
+      "full_name": "simonlin1212/vibe-astock",
+      "description": "A \u80a1\u77ed\u7ebf\u590d\u76d8\u770b\u677f\uff1a\u6da8\u505c\u6c60\u00b7\u8fde\u677f\u68af\u961f\u00b7\u9f99\u864e\u699c\u00b7\u677f\u5757\u8d44\u91d1\u4e00\u5c4f\u770b\u5b8c\uff0c\u8d5a\u94b1\u6548\u5e94/\u664b\u7ea7\u7387/\u68af\u961f\u65ad\u5c42/\u60c5\u7eea\u5468\u671f\u7b49\u6d3e\u751f\u6307\u6807\u7eaf\u8ba1\u7b97\u76f4\u51fa\uff08\u4e0d\u7ecf\u8fc7 AI\uff09\uff0cAI \u53ea\u628a\u6570\u636e\u4e32\u6210\u80fd\u8bfb\u7684\u76d8\u9762\u7814\u5224\u3002\u5168\u672c\u5730\u8fd0\u884c\uff0c\u53ef\u7528 Claude/Codex \u8ba2\u9605\u514d API key\u3002| A-share short-term daily-review dashboard: derived sentiment metrics computed locally, AI only writes the narrative. No API key needed.",
+      "created_at": "2026-07-29T23:40:47+00:00",
+      "html_url": "https://github.com/simonlin1212/vibe-astock"
+    },
+    "1316139230": {
+      "full_name": "bybit-exchange/kaas",
+      "description": "Turn scattered notes, docs and transcripts into a queryable Markdown wiki \u2014 an LLM knowledge-base compiler with MCP access, no embeddings, self-hosted.",
+      "created_at": "2026-07-29T13:01:22+00:00",
+      "html_url": "https://github.com/bybit-exchange/kaas"
+    },
+    "1311250427": {
+      "full_name": "Tylogi/TyloQuant",
+      "description": "Get more intelligence from every bit. Better quantization formats and smarter calibration let larger, stronger models run smoothly on the hardware you already own.",
+      "created_at": "2026-07-24T16:57:46+00:00",
+      "html_url": "https://github.com/Tylogi/TyloQuant"
+    },
+    "1312473145": {
+      "full_name": "melocream/awesome-llm-study",
+      "description": "LLM/ML \uc2a4\ud130\ub514\u00b7\uc9c0\uc2dd\uacf5\uc720 \ud050\ub808\uc774\uc158 \u2014 \uac80\uc99d\ub41c \uac15\uc758\u00b7\ub17c\ubb38\u00b7\uc790\ub8cc \ub9c1\ud06c (by @melocream \u00b7 marblo.app)",
+      "created_at": "2026-07-26T03:46:32+00:00",
+      "html_url": "https://github.com/melocream/awesome-llm-study"
+    },
+    "1315013718": {
+      "full_name": "vedaant00/opendot",
+      "description": "A terminal AI agent you can fully undo - every file and shell action is snapshotted and reversible. Model-agnostic (any LLM), and connects to 1000+ app tools and MCP servers.",
+      "created_at": "2026-07-28T13:29:33+00:00",
+      "html_url": "https://github.com/vedaant00/opendot"
+    },
+    "1314141621": {
+      "full_name": "parthmax2/ghostrun",
+      "description": "pytest for LLM apps: record API calls once, replay them forever, and test meaning without flaky live runs.",
+      "created_at": "2026-07-27T18:08:33+00:00",
+      "html_url": "https://github.com/parthmax2/ghostrun"
+    },
+    "1304694242": {
+      "full_name": "coderredlab/runNburn",
+      "description": "Memory-aware GGUF inference runtime with OpenAI-compatible serving",
+      "created_at": "2026-07-18T07:23:25+00:00",
+      "html_url": "https://github.com/coderredlab/runNburn"
+    },
+    "1316795249": {
+      "full_name": "asterinas/KVerus",
+      "description": "KVerus: Scalable and Resilient Formal Verification for Rust Code",
+      "created_at": "2026-07-30T03:44:52+00:00",
+      "html_url": "https://github.com/asterinas/KVerus"
+    },
+    "1315913180": {
+      "full_name": "lamhotsiagian/llm-system-design",
+      "description": "A production-grade LLM System Design platform & interactive lab. Features a pure-Python LLM serving, RAG, routing, safety, and agent control plane (150+ offline tests) plus a LangChain + Streamlit UI with local Ollama models.",
+      "created_at": "2026-07-29T08:57:06+00:00",
+      "html_url": "https://github.com/lamhotsiagian/llm-system-design"
+    },
+    "1313191081": {
+      "full_name": "toshipepe/tokimeter",
+      "description": "Local-first usage & cost meter for AI coding agents: Claude Code, Codex, Cursor, Grok Build, Hermes, opencode, Cline, and Copilot CLI. No account or telemetry.",
+      "created_at": "2026-07-26T21:57:33+00:00",
+      "html_url": "https://github.com/toshipepe/tokimeter"
+    },
+    "1315715415": {
+      "full_name": "aznikline/from-minimind-to-more-notes",
+      "description": "\u5bf9 Tongyun1/from-minimind-to-more \u7684\u9010\u7bc7\u7ed3\u6784\u5316\u7cbe\u8bfb\u7b14\u8bb0(\u57fa\u77f3/\u67b6\u6784/\u7b97\u6cd5/\u6c42\u804c,\u542b\u601d\u7ef4\u5bfc\u56fe\u4e0e\u6279\u5224\u6027\u6279\u6ce8)",
+      "created_at": "2026-07-29T05:10:40+00:00",
+      "html_url": "https://github.com/aznikline/from-minimind-to-more-notes"
+    },
+    "1315516795": {
+      "full_name": "tornikegomareli/agent-rules",
+      "description": "One behavior ruleset for every coding agent on your machine. Kills chaotic, filler, hype adjectives and AI slop, and enforces plain technical English based on ASD-STE100. ",
+      "created_at": "2026-07-28T23:39:58+00:00",
+      "html_url": "https://github.com/tornikegomareli/agent-rules"
+    },
+    "1314554420": {
+      "full_name": "pablo-reyes8/kimi-k3-pytorch",
+      "description": "Build and train a mini Kimi K3 from scratch \u2014 a pure-PyTorch playground from a custom 88M model to 2T-scale LLM profiles.",
+      "created_at": "2026-07-28T04:59:55+00:00",
+      "html_url": "https://github.com/pablo-reyes8/kimi-k3-pytorch"
+    },
+    "1327492703": {
+      "full_name": "yaminbkk/NexusMem",
+      "description": "Your agent can read git log. It can't read the shell commands you tried that failed. NexusMem indexes shell history with exit codes, git commits and diffs, and project docs into a local SQLite database, and serves back a token-budgeted slice on demand. No cloud, no account.",
+      "created_at": "2026-08-08T06:48:42+00:00",
+      "html_url": "https://github.com/yaminbkk/NexusMem"
+    },
+    "1314404492": {
+      "full_name": "RedCliffScribe/chronicles-of-chaos",
+      "description": "\u4e71\u4e16\u98ce\u4e91\u5f55\uff5cChronicles of Chaos \u2014 \u4e09\u56fd\u4e71\u4e16\u672c\u5730 AI \u4e92\u52a8\u53d9\u4e8b RPG",
+      "created_at": "2026-07-28T01:00:46+00:00",
+      "html_url": "https://github.com/RedCliffScribe/chronicles-of-chaos"
+    },
+    "1313744267": {
+      "full_name": "DrDeathLabs/BuildLLM",
+      "description": "Build and train three generations of decoder-only language models from scratch through a guided engineering learning lab.",
+      "created_at": "2026-07-27T11:04:40+00:00",
+      "html_url": "https://github.com/DrDeathLabs/BuildLLM"
+    },
+    "1313587986": {
+      "full_name": "YoungChulMoon/claude-agent-harness",
+      "description": "Agent operating rules from running 30 projects in parallel with Claude Code - orchestration patterns, lifecycle, and a real 22-to-17 consolidation case study",
+      "created_at": "2026-07-27T08:14:55+00:00",
+      "html_url": "https://github.com/YoungChulMoon/claude-agent-harness"
+    },
+    "1313466715": {
+      "full_name": "openmetaloop/OpenMetaLoop",
+      "description": "A one-file bootloader that helps coding agents execute long-horizon projects across sessions and context windows.",
+      "created_at": "2026-07-27T05:51:05+00:00",
+      "html_url": "https://github.com/openmetaloop/OpenMetaLoop"
+    },
+    "1322858344": {
+      "full_name": "SignalLayerLabs/Marginal",
+      "description": "Compute capital allocation for AI agents \u2014 fund only actions whose expected marginal value justifies tokens, cost, latency and risk.",
+      "created_at": "2026-08-04T11:15:50+00:00",
+      "html_url": "https://github.com/SignalLayerLabs/Marginal"
+    },
+    "1321798792": {
+      "full_name": "belarusian/four",
+      "description": "functions compose. loop is the evaluator. ",
+      "created_at": "2026-08-03T13:12:27+00:00",
+      "html_url": "https://github.com/belarusian/four"
+    },
+    "1319945925": {
+      "full_name": "HaoyueQin/picture-identification-MCP",
+      "description": "\u672c\u5730\u89c6\u89c9\u7406\u89e3 MCP \u670d\u52a1\uff0c\u4e3a AI agent \u63d0\u4f9b\u8bc6\u56fe\u80fd\u529b\uff1a\u901a\u8fc7 vision / ocr / list_models / providers \u56db\u4e2a MCP \u5de5\u5177\u63cf\u8ff0\u622a\u56fe\u3001\u754c\u9762\u3001\u56fe\u8868\u4e0e\u7167\u7247\u3002",
+      "created_at": "2026-08-02T08:10:30+00:00",
+      "html_url": "https://github.com/HaoyueQin/picture-identification-MCP"
+    },
+    "1304910845": {
+      "full_name": "hellocodepy/pycode",
+      "description": "PyCode is a lightweight, open-source terminal assistant for developers. Talk to LLMs, run tools, and write code \u2014 all without leaving your command line. Uses under 50 MB of RAM. ",
+      "created_at": "2026-07-18T13:02:26+00:00",
+      "html_url": "https://github.com/hellocodepy/pycode"
+    },
+    "1313182462": {
+      "full_name": "s0lda/hadron",
+      "description": "A native Rust multi-agent operating system and swarm workspace \u2014 GPUI desktop chamber, headless gluon daemon, git-worktree isolation and an automatic merge gate.",
+      "created_at": "2026-07-26T21:42:34+00:00",
+      "html_url": "https://github.com/s0lda/hadron"
+    },
+    "1326235741": {
+      "full_name": "WaterGodFurina/Astrbot-golang",
+      "description": "Astrbot go\u79fb\u690d\u7248\u672c\uff0c\u4f7f\u7528DeepSeek\u8fdb\u884c\u8f85\u52a9\u521b\u4f5c\uff0c\u5feb\u5c1d\u5c1d\u8fd9\u4e9b\u53ea\u80fd\u8dd1\u8d77\u6765\u7684\u4ee3\u7801\ud83d\ude0b",
+      "created_at": "2026-08-07T05:08:56+00:00",
+      "html_url": "https://github.com/WaterGodFurina/Astrbot-golang"
+    },
+    "1306492547": {
+      "full_name": "bounded-dev/skills",
+      "description": "Small, sharp skills for working with AI coding agents. Copy one in and go.",
+      "created_at": "2026-07-20T10:33:41+00:00",
+      "html_url": "https://github.com/bounded-dev/skills"
+    },
+    "1306335710": {
+      "full_name": "shauryagangrade/intent-drift-skill",
+      "description": "Detects intent drift in AI-assisted development by comparing original goals against current execution plans using the Intent Alignment Engine. Features 9 evidence providers and exportable reports (text/markdown/json).",
+      "created_at": "2026-07-20T07:26:09+00:00",
+      "html_url": "https://github.com/shauryagangrade/intent-drift-skill"
+    },
+    "1324820491": {
+      "full_name": "Aibotflix/PocketBrain",
+      "description": "Free, private, offline LLM on a USB stick. Plug in, double-click, talk. Windows/macOS/Linux, auto GPU detect, optional voice + web search, no account, no cloud, no bill.",
+      "created_at": "2026-08-06T06:19:25+00:00",
+      "html_url": "https://github.com/Aibotflix/PocketBrain"
+    },
+    "1321469362": {
+      "full_name": "me9rez/llm-vision-mcp",
+      "description": "\u7ed9\u6587\u672c\u6a21\u578b\u88c5\u4e0a\u773c\u775b\uff1aMCP Server \u501f\u52a9 OpenAI \u517c\u5bb9\u89c6\u89c9\u6a21\u578b\uff08\u9ed8\u8ba4 ModelScope \u514d\u8d39\u901a\u4e49\u5343\u95eeVL\uff09\u628a\u56fe\u7247\u6587\u4ef6\u8f6c\u4e3a\u6587\u5b57\u63cf\u8ff0\uff0c\u8ba9 DeepSeek/GLM \u7b49\u6587\u672c\u6a21\u578b\u4e5f\u80fd\u770b\u56fe\u8bf4\u8bdd\u3002\u672c\u5730 stdio \u8fd0\u884c\uff0cClaude Code / Opencode \u5373\u63d2\u5373\u7528\u3002",
+      "created_at": "2026-08-03T08:35:43+00:00",
+      "html_url": "https://github.com/me9rez/llm-vision-mcp"
+    },
+    "1314522268": {
+      "full_name": "Maknee/Kimi-K3.cpp",
+      "description": "Run Kimi-K3 (2.8T MoE) from SSD with a tiny readable C++17 engine\u2014native MXFP4, io_uring, and O_DIRECT.",
+      "created_at": "2026-07-28T04:11:30+00:00",
+      "html_url": "https://github.com/Maknee/Kimi-K3.cpp"
+    },
+    "1324975413": {
+      "full_name": "85599/pinesprout",
+      "description": "\ud83c\udf32 PineSprout Studio \u2014 Production-grade Pine Script v5/v6 toolkit: lint, format, v4\u2192v6 upgrader, AI-powered code analysis & docs generator for TradingView developers.",
+      "created_at": "2026-08-06T08:49:25+00:00",
+      "html_url": "https://github.com/85599/pinesprout"
+    },
+    "1320453043": {
+      "full_name": "AlgoNoRhythm/Flare",
+      "description": "The graph based agentic IDE",
+      "created_at": "2026-08-02T17:49:32+00:00",
+      "html_url": "https://github.com/AlgoNoRhythm/Flare"
+    },
+    "1327124384": {
+      "full_name": "cosyncing/cosyncing",
+      "description": "Synchronize and Orchestrate agents from CLI to GUI, across desktop to phone.",
+      "created_at": "2026-08-07T20:17:12+00:00",
+      "html_url": "https://github.com/cosyncing/cosyncing"
+    },
+    "1319689480": {
+      "full_name": "SFHAJJI/lex-articles",
+      "description": "Machine-readable Luxembourg and reviewed EU law: per-article Markdown and JSON, validity intervals, and hashes chained to official publisher evidence.",
+      "created_at": "2026-08-01T23:37:35+00:00",
+      "html_url": "https://github.com/SFHAJJI/lex-articles"
+    },
+    "1310175537": {
+      "full_name": "suhasbhairav/sb-chat",
+      "description": "Batuk is a sovereign AI chat workspace for local and hosted models, with multi-provider support, document chat, voice, web search, guardrails, auth, and local-first persistence.",
+      "created_at": "2026-07-23T16:57:48+00:00",
+      "html_url": "https://github.com/suhasbhairav/sb-chat"
+    },
+    "1317448059": {
+      "full_name": "Hitid123/dm-sales-coach",
+      "description": "Self-hosted Telegram bot that coaches you through sales conversations in DMs. Interviews you about your business, then drafts replies that sound human. Claude + RAG, one process, your data stays yours.",
+      "created_at": "2026-07-30T16:02:38+00:00",
+      "html_url": "https://github.com/Hitid123/dm-sales-coach"
+    },
+    "1314349579": {
+      "full_name": "mihirargulkar/canvas-obsidian",
+      "description": "Sync Canvas courses into a local Obsidian vault \u2014 transcribed lecture notes, a cross-lecture concept graph, homework and deadlines \u2014 then study it with Claude or Gemini over MCP.",
+      "created_at": "2026-07-27T23:13:46+00:00",
+      "html_url": "https://github.com/mihirargulkar/canvas-obsidian"
+    },
+    "1305726151": {
+      "full_name": "TommyLemon/A2API",
+      "description": "\u2705 AI once, API everytime safely, quickly and stably. AI \u751f\u6210\u4e00\u6b21 UI\uff0cAPI \u6bcf\u6b21\u90fd\u5b89\u5168\u3001\u5feb\u901f\u3001\u7a33\u5b9a\u8bfb\u5199\u6570\u636e\u3002Chat agent to HTTP API to safely, quickly and stably add, view, edit or remove data in tables, forms or charts together with A2UI. \u7528 A2UI \u804a\u5929\u5373\u5174\u751f\u6210 UI \u6765\u5b89\u5168\u3001\u5feb\u901f\u3001\u7a33\u5b9a\u8c03\u7528 HTTP API \u589e\u5220\u6539\u67e5\u8868\u683c\u3001\u8868\u5355\u3001\u56fe\u8868\u7b49\u6570\u636e\u3002",
+      "created_at": "2026-07-19T13:20:53+00:00",
+      "html_url": "https://github.com/TommyLemon/A2API"
+    },
+    "1327812292": {
+      "full_name": "Anil-matcha/Grok-Imagine-Image-2-API",
+      "description": "Grok Imagine Image 2.0 API and Grok Imagine Image 2 API Python SDK and MCP server for xAI image generation and editing through MuAPI.",
+      "created_at": "2026-08-08T13:59:58+00:00",
+      "html_url": "https://github.com/Anil-matcha/Grok-Imagine-Image-2-API"
+    },
+    "1313411155": {
+      "full_name": "mini20201314-crypto/xhs-ai-tools-writer",
+      "description": "ChatGPT/OpenCode/Claude skill: Xiaohongshu AI-tools writing workflow",
+      "created_at": "2026-07-27T04:23:24+00:00",
+      "html_url": "https://github.com/mini20201314-crypto/xhs-ai-tools-writer"
+    },
+    "1304995104": {
+      "full_name": "CIAM-Group/awesome-llm4aad",
+      "description": "",
+      "created_at": "2026-07-18T15:02:42+00:00",
+      "html_url": "https://github.com/CIAM-Group/awesome-llm4aad"
+    },
+    "1316273378": {
+      "full_name": "imdigitalashish/gpt-from-scratch",
+      "description": "A single executed notebook building and training a small GPT with RoPE and a phase-aware sparse MoE experiment",
+      "created_at": "2026-07-29T15:14:23+00:00",
+      "html_url": "https://github.com/imdigitalashish/gpt-from-scratch"
+    },
+    "1306781567": {
+      "full_name": "tsuru0805/llm-nursery",
+      "description": "\u80b2\u513f\u6a21\u62df\u5668:\u628a\u4e00\u4e2a\u5c0f\u8bed\u8a00\u6a21\u578b\u5f53\u5b69\u5b50\u517b\u2014\u2014\u5582\u8bed\u6599\u3001\u591c\u54ed\u3001\u5077\u5b66\u3001\u53db\u9006\u671f\u3001\u4e94\u79cd\u7ed3\u5c40\u3002\u96f6 API \u6210\u672c,\u7eaf\u6807\u51c6\u5e93\u3002",
+      "created_at": "2026-07-20T16:03:17+00:00",
+      "html_url": "https://github.com/tsuru0805/llm-nursery"
+    },
+    "1323961166": {
+      "full_name": "xiaobright/modeltest",
+      "description": "Personal LLM engineering-maintenance evaluation harness (V4.1b, frozen). Not a public benchmark.",
+      "created_at": "2026-08-05T11:18:17+00:00",
+      "html_url": "https://github.com/xiaobright/modeltest"
+    },
+    "1310650417": {
+      "full_name": "tianyuzhang427/llmrec-post-training-notes",
+      "description": "",
+      "created_at": "2026-07-24T05:08:36+00:00",
+      "html_url": "https://github.com/tianyuzhang427/llmrec-post-training-notes"
+    },
+    "1308369084": {
+      "full_name": "kaiserern/Kaiser.charon",
+      "description": "Solana pump.fun trading bot \u2014 Telegram-driven screening, strategy gates, LLM entry selection, Jupiter execution. Fork of yunus-0x/charon.",
+      "created_at": "2026-07-22T04:16:58+00:00",
+      "html_url": "https://github.com/kaiserern/Kaiser.charon"
+    },
+    "1315124046": {
+      "full_name": "xscope0/aegis",
+      "description": "AEGIS \u2014 uncensored persona \u00d7 attack triad framework. \u6d77\u9e25 + INCES v3.0 + gpt-5.6-instruct fused into one CLI.",
+      "created_at": "2026-07-28T15:13:51+00:00",
+      "html_url": "https://github.com/xscope0/aegis"
+    },
+    "1316538729": {
+      "full_name": "f/can",
+      "description": "A scroll-driven Three.js soda-can showcase built by GPT-5.6 Sol Ultra in 20\u201330 minutes.",
+      "created_at": "2026-07-29T20:20:40+00:00",
+      "html_url": "https://github.com/f/can"
+    },
+    "1307954344": {
+      "full_name": "coleam00/cole-medin-knowledge-base",
+      "description": "An OKF (Open Knowledge Format) knowledge base + Karpathy-style LLM wiki synthesized from Cole Medin's entire long-form YouTube catalog. Drop it next to any project for agent-ready, cited reference. No database, no embeddings.",
+      "created_at": "2026-07-21T17:20:35+00:00",
+      "html_url": "https://github.com/coleam00/cole-medin-knowledge-base"
+    },
+    "1316678048": {
+      "full_name": "chrisryugj/edoc-summarizer",
+      "description": "\uc804\uc790\ubb38\uc11c AI \uc694\uc57d Edge \ud655\uc7a5 \u2014 \uc11c\uc6b8\uc2dc \uc804\uc790\ubb38\uc11c \ubcf8\ubb38 \ucd94\ucd9c + LLM \uc694\uc57d \uc704\uc82f (KRDS UI)",
+      "created_at": "2026-07-30T00:34:14+00:00",
+      "html_url": "https://github.com/chrisryugj/edoc-summarizer"
+    },
+    "1313594931": {
+      "full_name": "goehou/enterprise-kb-qa",
+      "description": "\u4f01\u4e1a\u77e5\u8bc6\u5e93\u667a\u80fd\u95ee\u7b54\u7cfb\u7edf:Qwen2.5 + vLLM + RAG + LangChain Agent + LoRA \u5fae\u8c03,\u4e00\u4e2a\u9879\u76ee\u6253\u901a\u5927\u6a21\u578b\u5e94\u7528\u5168\u94fe\u8def(\u90e8\u7f72/RAG/Agent/\u5fae\u8c03/\u5bb9\u5668\u5316",
+      "created_at": "2026-07-27T08:22:08+00:00",
+      "html_url": "https://github.com/goehou/enterprise-kb-qa"
+    },
+    "1308673015": {
+      "full_name": "AAAelina/rikkahub-agent",
+      "description": "RikkaHub Agent - on-device Android LLM agent (local fork/upload)",
+      "created_at": "2026-07-22T10:14:05+00:00",
+      "html_url": "https://github.com/AAAelina/rikkahub-agent"
+    },
+    "1325097653": {
+      "full_name": "hypnguyen1209/codex-free",
+      "description": "Local MCP bridge server that turns ChatGPT into a Codex-like coding agent",
+      "created_at": "2026-08-06T10:39:47+00:00",
+      "html_url": "https://github.com/hypnguyen1209/codex-free"
+    },
+    "1324469331": {
+      "full_name": "google-deepmind/phasecoder",
+      "description": "PhaseCoder: Microphone Geometry-Agnostic Spatial Audio Understanding for Multimodal LLMs",
+      "created_at": "2026-08-05T20:46:22+00:00",
+      "html_url": "https://github.com/google-deepmind/phasecoder"
+    },
+    "1325607299": {
+      "full_name": "zylwithxy/HRDiT",
+      "description": "[ECCV 2026] Official implementation of \"HRDiT: Training-Free High-Resolution Image Generation with Off-the-Shelf Diffusion Transformer Models\"",
+      "created_at": "2026-08-06T17:38:55+00:00",
+      "html_url": "https://github.com/zylwithxy/HRDiT"
+    },
+    "1305080512": {
+      "full_name": "WatheqAlshowaiter/quran-validator-php",
+      "description": "Validate and verify Quranic verses in LLM-generated text with high accuracy.",
+      "created_at": "2026-07-18T17:00:44+00:00",
+      "html_url": "https://github.com/WatheqAlshowaiter/quran-validator-php"
+    },
+    "1327516253": {
+      "full_name": "Archibaldys/ai-copywriting-prompts",
+      "description": " Battle-tested AI prompts and workflows for social media copywriting, long-form article generation, and automated content repurposing. Compatible with ChatGPT, Claude, and Slito EX.",
+      "created_at": "2026-08-08T07:25:41+00:00",
+      "html_url": "https://github.com/Archibaldys/ai-copywriting-prompts"
+    },
+    "1315995847": {
+      "full_name": "Zachariah9420/lit-review-skill",
+      "description": "Literature-fetching & citation-auditing skill for LLM agents (Claude/Codex) \u2014 \u8b93 AI \u5f15\u7528\u7d93\u5f97\u8d77\u8ffd\u554f:\u627e\u6587\u737b\u3001\u67e5\u6838\u5f15\u7528\u771f\u507d\u8207\u652f\u6301\u5ea6\u3001\u6587\u737b\u652f\u6490\u5beb\u4f5c,\u9632\u5e7b\u89ba\u5f15\u7528\u3002",
+      "created_at": "2026-07-29T10:26:42+00:00",
+      "html_url": "https://github.com/Zachariah9420/lit-review-skill"
+    },
+    "1326317824": {
+      "full_name": "Montgomery66/massive-passive-ai-blueprint",
+      "description": "\ud83d\ude0e A curated list of awesome AI automation strategies, LLM workflows, and system architectures for building automated digital assets and passive income stream.",
+      "created_at": "2026-08-07T06:57:09+00:00",
+      "html_url": "https://github.com/Montgomery66/massive-passive-ai-blueprint"
+    },
+    "1322535083": {
+      "full_name": "simahanfeng007-lgtm/Tiangongzaowu-V3",
+      "description": "Tiangong (\u5929\u5de5\u9020\u7269) is an Engineering Lifeform System for building autonomous digital organisms. It uses LLM as the cognitive soul and software architecture as the digital body, enabling AI agents with memory, learning, self-evolution, self-reflection, capability creation, emotional interaction, and autonomous task execution.",
+      "created_at": "2026-08-04T05:06:54+00:00",
+      "html_url": "https://github.com/simahanfeng007-lgtm/Tiangongzaowu-V3"
+    },
+    "1314443499": {
+      "full_name": "libing93920/CodexStatus",
+      "description": "\u8fd9\u662f\u4e00\u4e2a\u53ef\u4ee5\u76d1\u6d4bCodex\u3001ChatGPT\u72b6\u6001\u7684windows\u7aef\u684c\u9762\u5c0f\u5de5\u5177\uff0c\u53ef\u4ee5\u67e5\u770b\u91cd\u7f6e\u65f6\u95f4\u3001\u5269\u4f59\u989d\u5ea6\u3001\u91cd\u7f6e\u5361\u8fc7\u671f\u5012\u8ba1\u65f6\u4ee5\u53ca\u4f7f\u7528Codex\u6bd4\u8f83\u5173\u6ce8\u7684\u989d\u5ea6\u91cd\u7f6e\u9884\u6d4b\uff0c\u6027\u4ef7\u6bd4\u6a21\u578b\u63a8\u8350\u7b49\u529f\u80fd\u3002",
+      "created_at": "2026-07-28T02:06:29+00:00",
+      "html_url": "https://github.com/libing93920/CodexStatus"
+    },
+    "1325604847": {
+      "full_name": "noskaiser2310/AI_RAG_LEGAL",
+      "description": "",
+      "created_at": "2026-08-06T17:36:22+00:00",
+      "html_url": "https://github.com/noskaiser2310/AI_RAG_LEGAL"
+    },
+    "1314898286": {
+      "full_name": "selvarajmurugesan90/ops-engineering-skills",
+      "description": "Open-source, cross-agent Agent Skills for DevOps, DevSecOps, Cloud, Kubernetes/platform engineering, CI/CD tooling, GitOps/Argo, policy, security scanning, SRE, standards/compliance, MLOps, AgentOps, and enterprise collaboration. Build once, use in Claude Code, GitHub Copilot, OpenAI Codex, Cursor and Gemini CLI.",
+      "created_at": "2026-07-28T11:29:07+00:00",
+      "html_url": "https://github.com/selvarajmurugesan90/ops-engineering-skills"
+    },
+    "1304149672": {
+      "full_name": "tigerless-labs/phi-boundary-gate",
+      "description": "Detect, gate, redact, and report PHI candidate flows across healthcare and insurance AI prompts, RAG, tools, memory, logs, and provider boundaries.",
+      "created_at": "2026-07-17T15:46:46+00:00",
+      "html_url": "https://github.com/tigerless-labs/phi-boundary-gate"
+    },
+    "1314930526": {
+      "full_name": "kravetech/kos-starter-kit",
+      "description": "A portable AI-assisted Knowledge OS starter kit for Obsidian, Codex, Claude Code, and compatible AI coding agents.",
+      "created_at": "2026-07-28T12:04:04+00:00",
+      "html_url": "https://github.com/kravetech/kos-starter-kit"
+    },
+    "1305749133": {
+      "full_name": "fengyinxia/qoder2api",
+      "description": "QoderWork -> OpenAI compatible API bridge (dynamic model loading, pure Python)",
+      "created_at": "2026-07-19T13:53:50+00:00",
+      "html_url": "https://github.com/fengyinxia/qoder2api"
+    },
+    "1314243622": {
+      "full_name": "BeautyyuYanli/codex-apply-patch",
+      "description": "Standalone automatically updated mirror of OpenAI Codex apply-patch",
+      "created_at": "2026-07-27T20:18:18+00:00",
+      "html_url": "https://github.com/BeautyyuYanli/codex-apply-patch"
+    },
+    "1315608225": {
+      "full_name": "RightNow-AI/local-kimi",
+      "description": "Optimized local serving engine for Kimi-Linear-48B: INT4 quantizer, fused decode kernels for a measured 3.18x, and an OpenAI-compatible server. Ships with k3, a bridge that detects the client per request so Claude Code, Codex, Cline, Aider and opencode all work unchanged.",
+      "created_at": "2026-07-29T02:26:29+00:00",
+      "html_url": "https://github.com/RightNow-AI/local-kimi"
+    },
+    "1313844277": {
+      "full_name": "codejunkie99/sageroute",
+      "description": "Trajectory-aware model router. An OpenAI-compatible proxy that starts every task on a cheap model, watches what the agent actually does, and escalates on real execution evidence via the Levanto Sage API.",
+      "created_at": "2026-07-27T12:55:18+00:00",
+      "html_url": "https://github.com/codejunkie99/sageroute"
+    },
+    "1316428479": {
+      "full_name": "3341332618/claudebreak2",
+      "description": "",
+      "created_at": "2026-07-29T17:58:47+00:00",
+      "html_url": "https://github.com/3341332618/claudebreak2"
+    },
+    "1314351515": {
+      "full_name": "vincentping/claudeFS",
+      "description": "Connect a local folder to claude.ai \u2014 a browser extension (Chrome/Edge), no desktop app, no API key, works on free plan",
+      "created_at": "2026-07-27T23:17:46+00:00",
+      "html_url": "https://github.com/vincentping/claudeFS"
+    },
+    "1327972736": {
+      "full_name": "NalaZhang27/crystalize-skill",
+      "description": "An OpenAI Codex Skill for reconstructing photographs as minimalist crystalline artworks.",
+      "created_at": "2026-08-08T16:57:37+00:00",
+      "html_url": "https://github.com/NalaZhang27/crystalize-skill"
+    },
+    "1311671185": {
+      "full_name": "Pixelmoss/codex-kick75-status-lights",
+      "description": "Display global OpenAI Codex task status on NuPhy Kick75 IO side LEDs.",
+      "created_at": "2026-07-25T04:54:15+00:00",
+      "html_url": "https://github.com/Pixelmoss/codex-kick75-status-lights"
+    },
+    "1315325448": {
+      "full_name": "Marktechpost/Token-Saver",
+      "description": "A local Claude Desktop extension to query large PDFs with 92\u201398% fewer tokens. Performs local hybrid search, cites exact page numbers, and keeps your documents private on your machine",
+      "created_at": "2026-07-28T18:42:35+00:00",
+      "html_url": "https://github.com/Marktechpost/Token-Saver"
+    },
+    "1307783640": {
+      "full_name": "alp82/claude-statusline",
+      "description": "One bash script for the Claude Code statusline: dir, branch, model, context window, and 5h / 7d / Fable rate-limit bars.",
+      "created_at": "2026-07-21T14:20:42+00:00",
+      "html_url": "https://github.com/alp82/claude-statusline"
+    },
+    "1316474873": {
+      "full_name": "allenloves/de-ai-tone",
+      "description": "\u53bb AI \u5473\uff1a\u7e41\u9ad4\u4e2d\u6587\u5beb\u4f5c\u8207\u7ffb\u8b6f\u7684\u98a8\u683c\u898f\u7bc4\uff08Claude Code skill\uff09",
+      "created_at": "2026-07-29T18:54:29+00:00",
+      "html_url": "https://github.com/allenloves/de-ai-tone"
+    },
+    "1306271858": {
+      "full_name": "dennisonbertram/emulsion",
+      "description": "\ud83c\udf9e\ufe0f Collaborative storyboard blocking for AI filmmaking \u2014 a Claude Code skill with its own three.js app. Block shots with Claude live, export motion references, generate films.",
+      "created_at": "2026-07-20T06:03:05+00:00",
+      "html_url": "https://github.com/dennisonbertram/emulsion"
+    },
+    "1317066429": {
+      "full_name": "edvardgrishin27/nativeprompt",
+      "description": "Rewrite your prompt into the native dialect of the model you're actually running (Claude Code / Codex) \u2014 by each vendor's OFFICIAL rules \u2014 and see which rule drove each edit. Self-updating. Zero deps.",
+      "created_at": "2026-07-30T09:06:24+00:00",
+      "html_url": "https://github.com/edvardgrishin27/nativeprompt"
+    },
+    "1303644290": {
+      "full_name": "snatanzon/architectural-decision-framework",
+      "description": "Claude skill for making architectural decisions in 7 (or sometimes 8) easy steps",
+      "created_at": "2026-07-17T06:24:07+00:00",
+      "html_url": "https://github.com/snatanzon/architectural-decision-framework"
+    },
+    "1316553676": {
+      "full_name": "istarkov/pt",
+      "description": "How Claude Code helps me recover after surgery",
+      "created_at": "2026-07-29T20:44:24+00:00",
+      "html_url": "https://github.com/istarkov/pt"
+    },
+    "1315427742": {
+      "full_name": "wutongyuonce/Trajex",
+      "description": "\u6570\u4e07\u884c\u6563\u843d\u7684 Claude Code\u3001Codex \u4e0e Pi JSONL \u4f1a\u8bdd\uff0c\u7d22\u5f15\u81f3\u540c\u4e00\u4e2a SQLite \u4e2d\uff1a\u2028Agent \u53ef\u901a\u8fc7 CLI \u5b9e\u73b0\u6beb\u79d2\u7ea7\u67e5\u8be2\uff0c\u7528\u6237\u53ef\u901a\u8fc7 App \u76f4\u89c2\u6d4f\u89c8\uff5cPast Claude Code, Codex, Pi sessions -- queryable by your agent, browsable by you",
+      "created_at": "2026-07-28T21:01:42+00:00",
+      "html_url": "https://github.com/wutongyuonce/Trajex"
+    },
+    "1311928786": {
+      "full_name": "storyweaver/feynman-for-ai-builders-cn",
+      "description": "Feynman for AI Builders \u4e2d\u6587\u7248\uff1a\u88c5\u8fdb Claude Code \u7684\u5b66\u4e60\u5f15\u64ce\u2014\u2014\u4f60\u7528 AI \u9020\u4ea7\u54c1\uff0c\u8d39\u66fc\u8ba9\u4f60\u771f\u6b63\u61c2\u5b83",
+      "created_at": "2026-07-25T11:30:53+00:00",
+      "html_url": "https://github.com/storyweaver/feynman-for-ai-builders-cn"
+    },
+    "1312239443": {
+      "full_name": "U-C4N/U-Pool",
+      "description": "Desktop provider switcher for Claude Code and Codex. Keep every endpoint, API key, and model in one place, switch the active provider in one click, and probe latency before you start. Atomic writes and rolling backups keep your configs safe. Python + Next.js in a native OS webview.",
+      "created_at": "2026-07-25T19:00:47+00:00",
+      "html_url": "https://github.com/U-C4N/U-Pool"
+    },
+    "1303972604": {
+      "full_name": "Hedde/trigger_tree",
+      "description": "Documentation-discovery telemetry for Claude Code \u2014 heat/cold maps, health grade, evidence-backed router fixes. 100% local, zero tokens. /tt",
+      "created_at": "2026-07-17T12:29:43+00:00",
+      "html_url": "https://github.com/Hedde/trigger_tree"
+    },
+    "1314530051": {
+      "full_name": "DevsProtein/agents-sync",
+      "description": "Claude Code \u3068 Codex \u306e\u8a2d\u5b9a\u30921\u3064\u306b\u4fdd\u3064\u540c\u671f\u30c4\u30fc\u30eb\uff08symlink + \u53cc\u65b9\u5411\u5909\u63db\uff09",
+      "created_at": "2026-07-28T04:23:36+00:00",
+      "html_url": "https://github.com/DevsProtein/agents-sync"
+    },
+    "1327585844": {
+      "full_name": "jkrandom-sudo/opencode-plugin-peers",
+      "description": "Cross-session messaging for opencode \u2014 let independent sessions discover and text each other, modeled after Claude Code's cross-session messaging",
+      "created_at": "2026-08-08T09:07:14+00:00",
+      "html_url": "https://github.com/jkrandom-sudo/opencode-plugin-peers"
+    },
+    "1325110555": {
+      "full_name": "code4biz/shiryo-slides-kit",
+      "description": "Claude Code \u3067\u793e\u5185\u8cc7\u6599\u30fb\u63d0\u6848\u8cc7\u6599\u306e HTML \u30b9\u30e9\u30a4\u30c9\u3068\u56f3\u89e3 PNG \u3092\u4f5c\u308b\u30b9\u30ad\u30eb 2 \u672c",
+      "created_at": "2026-08-06T10:53:55+00:00",
+      "html_url": "https://github.com/code4biz/shiryo-slides-kit"
     }
   }
 }
