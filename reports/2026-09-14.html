@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Dispatch</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; padding:0; background:#d8dadc; font-family:'IBM Plex Sans', -apple-system, 'Segoe UI', sans-serif; }
+</style>
+</head>
+<body style="margin:0; padding:0; background:#d8dadc;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#d8dadc;">
+<tr><td align="center" style="padding:40px 0;">
+<div style="width:620px; margin:0 auto; background:#0c0d10; border:1px solid #20222a; border-radius:4px; overflow:hidden; box-shadow:0 24px 60px -24px rgba(0,0,0,.55);">
+<div style="padding:38px 44px 26px;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="bottom" style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#5b6573;"><span>Issue No. 78</span></td>
+<td align="right" valign="bottom" style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#5b6573;"><span style="margin-left:16px;">Mon · 14 Sep 2026</span></td>
+</tr>
+</table>
+<div style="font-family:'Newsreader', serif; font-size:46px; font-weight:500; color:#f4f4f5; line-height:1.0; margin-top:18px; letter-spacing:-0.015em;">The Dispatch</div>
+<div style="font-family:'Newsreader', serif; font-size:16px; font-style:italic; color:#8b8f99; margin-top:8px;">What the open-source AI world is starring this week.</div>
+<a href="https://github.com/bojieli/ai-infra-book" style="display:block; text-decoration:none; margin-top:24px; background:#111318; border:1px solid #23262f; border-radius:10px; padding:24px 26px;">
+  <div style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:#34d399; font-weight:600;">● Fastest mover · Breakthrough · 24h Spike</div>
+  <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#f4f4f5; margin-top:11px; letter-spacing:-0.01em;">bojieli/ai-infra-book</div>
+  <div style="font-family:'Newsreader', serif; font-size:15px; color:#9ca3af; line-height:1.5; margin-top:6px;">《深入理解 AI Infra：量化分析与系统设计》（李博杰 著）开源书稿：从硬件约束和模型架构出发，量化推导 LLM 推理与训练系统设计。含全书正文、PDF、配套计算工具与实验</div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:20px;">
+    <tr>
+      <td width="1" valign="bottom" style="white-space:nowrap;"><span style="font-family:'Newsreader', serif; font-size:52px; font-weight:500; color:#34d399; line-height:0.85; letter-spacing:-0.02em;">2003.1</span></td>
+      <td width="1" valign="bottom" style="white-space:nowrap; padding-left:7px;"><span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#71717a; text-transform:uppercase; letter-spacing:0.08em; padding-bottom:5px;">stars / day</span></td>
+      <td align="right" valign="bottom"><span style="font-family:'IBM Plex Mono', monospace; font-size:11px; color:#5b6573; padding-bottom:5px;">★ 2,225 · 23d old</span></td>
+    </tr>
+  </table>
+</a>
+</div>
+<div style="padding:0 44px 40px;">
+<div style="margin-top:28px;">
+<div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.16em; text-transform:uppercase; color:#5b6573; margin-bottom:9px;">Category leaders</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate; border-spacing:7px 0;">
+  <tr>
+    <td width="25%" valign="top">
+      <div style="background:#111318; border:1px solid #23262f; border-radius:7px; padding:9px 10px; min-height:64px;">
+        <table role="presentation" width="100%" height="46" cellpadding="0" cellspacing="0">
+          <tr><td valign="top"><div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.08em; text-transform:uppercase; color:#34d399; font-weight:600;">NEW · WEEK</div></td></tr>
+          <tr><td valign="bottom"><div>
+          <div style="margin-top:6px;"><table role="presentation" cellpadding="0" cellspacing="0"><tr><td valign="middle" style="font-family:'Newsreader', serif; font-size:17px; font-weight:500; color:#34d399; line-height:0.9; letter-spacing:-0.02em;">370.9</td><td valign="middle" style="font-family:'IBM Plex Mono', monospace; font-size:8px; text-transform:uppercase; letter-spacing:0.04em; color:#5b6573; padding-left:3px;">★/d</td></tr></table></div>
+          <div style="margin-top:5px;"><span style="font-family:'IBM Plex Sans', sans-serif; font-size:12px; font-weight:600; color:#f4f4f5;">recurrent-looped-tranformer</span></div>
+        </div></td></tr>
+        </table>
+      </div>
+    </td>
+    <td width="25%" valign="top">
+      <div style="background:#111318; border:1px solid #23262f; border-radius:7px; padding:9px 10px; min-height:64px;">
+        <table role="presentation" width="100%" height="46" cellpadding="0" cellspacing="0">
+          <tr><td valign="top"><div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.08em; text-transform:uppercase; color:#34d399; font-weight:600;">NEW · MONTH</div></td></tr>
+          <tr><td valign="bottom"><div>
+          <div style="margin-top:6px;"><table role="presentation" cellpadding="0" cellspacing="0"><tr><td valign="middle" style="font-family:'Newsreader', serif; font-size:17px; font-weight:500; color:#34d399; line-height:0.9; letter-spacing:-0.02em;">370.9</td><td valign="middle" style="font-family:'IBM Plex Mono', monospace; font-size:8px; text-transform:uppercase; letter-spacing:0.04em; color:#5b6573; padding-left:3px;">★/d</td></tr></table></div>
+          <div style="margin-top:5px;"><span style="font-family:'IBM Plex Sans', sans-serif; font-size:12px; font-weight:600; color:#f4f4f5;">recurrent-looped-tranformer</span></div>
+        </div></td></tr>
+        </table>
+      </div>
+    </td>
+    <td width="25%" valign="top">
+      <div style="background:#111318; border:1px solid #23262f; border-radius:7px; padding:9px 10px; min-height:64px;">
+        <table role="presentation" width="100%" height="46" cellpadding="0" cellspacing="0">
+          <tr><td valign="top"><div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.08em; text-transform:uppercase; color:#34d399; font-weight:600;">24H SPIKE</div></td></tr>
+          <tr><td valign="bottom"><div>
+          <div style="margin-top:6px;"><table role="presentation" cellpadding="0" cellspacing="0"><tr><td valign="middle" style="font-family:'Newsreader', serif; font-size:17px; font-weight:500; color:#34d399; line-height:0.9; letter-spacing:-0.02em;">2003.1</td><td valign="middle" style="font-family:'IBM Plex Mono', monospace; font-size:8px; text-transform:uppercase; letter-spacing:0.04em; color:#5b6573; padding-left:3px;">★/d</td></tr></table></div>
+          <div style="margin-top:5px;"><span style="font-family:'IBM Plex Sans', sans-serif; font-size:12px; font-weight:600; color:#f4f4f5;">ai-infra-book</span><span style="display:inline-block; width:4px; height:4px; border-radius:50%; background:#34d399; margin-left:4px;"></span></div>
+        </div></td></tr>
+        </table>
+      </div>
+    </td>
+    <td width="25%" valign="top">
+      <div style="background:#111318; border:1px solid #23262f; border-radius:7px; padding:9px 10px; min-height:64px;">
+        <table role="presentation" width="100%" height="46" cellpadding="0" cellspacing="0">
+          <tr><td valign="top"><div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.08em; text-transform:uppercase; color:#34d399; font-weight:600;">30D VELOCITY</div></td></tr>
+          <tr><td valign="bottom"><div>
+          <div style="margin-top:6px;"><table role="presentation" cellpadding="0" cellspacing="0"><tr><td valign="middle" style="font-family:'Newsreader', serif; font-size:17px; font-weight:500; color:#34d399; line-height:0.9; letter-spacing:-0.02em;">1053.2</td><td valign="middle" style="font-family:'IBM Plex Mono', monospace; font-size:8px; text-transform:uppercase; letter-spacing:0.04em; color:#5b6573; padding-left:3px;">★/d</td></tr></table></div>
+          <div style="margin-top:5px;"><span style="font-family:'IBM Plex Sans', sans-serif; font-size:12px; font-weight:600; color:#f4f4f5;">ai-infra-book</span><span style="display:inline-block; width:4px; height:4px; border-radius:50%; background:#34d399; margin-left:4px;"></span></div>
+        </div></td></tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:separate; border:1px solid #20222a; border-radius:7px; background:#0e0f12; margin-top:22px;">
+  <tr>
+    <td width="33.33%" style="border-right:1px solid #1a1c22; padding:13px 20px; text-align:center;">
+      <span style="font-family:'IBM Plex Mono', monospace; font-size:18px; font-weight:700; letter-spacing:-0.01em; color:#34d399;">2145</span><span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#71717a; letter-spacing:0.1em; margin-left:8px;">REPOS TRACKED</span>
+    </td>
+    <td width="33.33%" style="border-right:1px solid #1a1c22; padding:13px 20px; text-align:center;">
+      <span style="font-family:'IBM Plex Mono', monospace; font-size:18px; font-weight:700; letter-spacing:-0.01em; color:#f4f4f5;">3</span><span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#71717a; letter-spacing:0.1em; margin-left:8px;">BRAND NEW</span>
+    </td>
+    <td width="33.33%" style="padding:13px 20px; text-align:center;">
+      <span style="font-family:'IBM Plex Mono', monospace; font-size:18px; font-weight:700; letter-spacing:-0.01em; color:#34d399;">2.0k</span><span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#71717a; letter-spacing:0.1em; margin-left:8px;">TOP ★/DAY</span>
+    </td>
+  </tr>
+</table>
+</div>
+<div style="margin-top:34px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="1" valign="middle" style="white-space:nowrap;"><span style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#34d399; font-weight:600; margin-right:12px;">Brand New · Weekly</span></td>
+      <td width="100%" valign="middle"><div style="height:1px; background:#20222a; font-size:0; line-height:0;"></div></td>
+      <td width="1" align="right" valign="middle" style="white-space:nowrap;"><span style="font-family:'IBM Plex Mono', monospace; font-size:11px; color:#5b6573; margin-left:12px;">10 repos</span></td>
+    </tr>
+  </table>
+  <div style="font-family:'Newsreader', serif; font-size:24px; font-weight:500; color:#f4f4f5; margin-top:6px; letter-spacing:-0.01em;">Brand New This Week</div>
+  <a href="https://github.com/yifanzhang-pro/recurrent-looped-tranformer" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">370.9</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">yifanzhang-pro/recurrent-looped-tranformer</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">Official Project Page for Recurrent Looped Transformer (RLT)</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 72), oklch(0.82 0.17 72)); border-radius:3px; width: 100%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 730 · 2d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/openai/NavierStokesAndEuler" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">298.8</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">openai/NavierStokesAndEuler</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">Lean certificates accompanying Navier-Stokes and Euler results</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 87), oklch(0.82 0.17 87)); border-radius:3px; width: 81%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 1,885 · 6d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/Vincentwei1021/anything2explainer" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">216.2</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">Vincentwei1021/anything2explainer</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">Topic in, narrated explainer video out. A Claude Code / Codex skill that turns any topic into a black-canvas motion-grap…</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 106), oklch(0.82 0.17 106)); border-radius:3px; width: 58%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 1,306 · 6d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/kruzovic7/ai-data-extractor" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">209.1</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">kruzovic7/ai-data-extractor</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">Free open-source extractor for AI coding assistant chat histories. Supports Claude Code, Cursor, Windsurf, Aider, Cline/…</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 107), oklch(0.82 0.17 107)); border-radius:3px; width: 56%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 628 · 3d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/crwdla/tokentab" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">157.9</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">crwdla/tokentab</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">A CLI that reads Claude Code, Codex, and Gemini CLI session logs and works out how much they cost, by model, project, an…</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 118), oklch(0.82 0.17 118)); border-radius:3px; width: 43%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 1,112 · 7d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/agentverse-os/AgentVerse-OS" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">79.6</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">agentverse-os/AgentVerse-OS</span>
+          <span style="font-family:'IBM Plex Mono', monospace; font-size:9px; font-weight:600; letter-spacing:0.08em; color:#34d399; border:1px solid #2f6f55; padding:1px 6px; border-radius:99px; margin-left:9px;">NEW</span>
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">Personal cloud OS for a developer and their AI agents on a single server. One-command install on Ubuntu, then everything…</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 135), oklch(0.82 0.17 135)); border-radius:3px; width: 21%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 159 · 2d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/lfzk550/fanzha-ai-proxy" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">68.0</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">lfzk550/fanzha-ai-proxy</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">国家反诈AI API 转 OpenAI 兼容格式反向代理服务 || 仅学习用途</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 138), oklch(0.82 0.17 138)); border-radius:3px; width: 18%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 499 · 7d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/yifanzhang-pro/FlashREINFORCE" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">66.0</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">yifanzhang-pro/FlashREINFORCE</span>
+          <span style="font-family:'IBM Plex Mono', monospace; font-size:9px; font-weight:600; letter-spacing:0.08em; color:#34d399; border:1px solid #2f6f55; padding:1px 6px; border-radius:99px; margin-left:9px;">NEW</span>
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">FlashREINFORCE: Critic-Free, Single-Rollout, Asynchronous RL for Agentic Language Models</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 138), oklch(0.82 0.17 138)); border-radius:3px; width: 18%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 38 · today</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/linguo2625469/workbuddy2api-panel" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">57.8</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">linguo2625469/workbuddy2api-panel</span>
+          <span style="font-family:'IBM Plex Mono', monospace; font-size:9px; font-weight:600; letter-spacing:0.08em; color:#34d399; border:1px solid #2f6f55; padding:1px 6px; border-radius:99px; margin-left:9px;">NEW</span>
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">把腾讯WorkBuddy账号变成 OpenAI 兼容 API 的多账号网关，同时自动完成任务中心全部任务，附 Web 管理面板（账号池可视化 / 积分任务 / 配置热更新）。基于 Sliverkiss/workbuddy2api 的增强分支</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 139), oklch(0.82 0.17 139)); border-radius:3px; width: 16%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 147 · 2d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/viettranx/3dviz-pro-max" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">52.2</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">viettranx/3dviz-pro-max</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">Agent skill for creative 3D visualization: turn an idea into a Three.js/Blender scene worth exploring. Claude Code + Cod…</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 141), oklch(0.82 0.17 141)); border-radius:3px; width: 14%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 245 · 4d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+</div>
+<div style="margin-top:34px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="1" valign="middle" style="white-space:nowrap;"><span style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#34d399; font-weight:600; margin-right:12px;">Brand New · Monthly</span></td>
+      <td width="100%" valign="middle"><div style="height:1px; background:#20222a; font-size:0; line-height:0;"></div></td>
+      <td width="1" align="right" valign="middle" style="white-space:nowrap;"><span style="font-family:'IBM Plex Mono', monospace; font-size:11px; color:#5b6573; margin-left:12px;">5 repos</span></td>
+    </tr>
+  </table>
+  <div style="font-family:'Newsreader', serif; font-size:24px; font-weight:500; color:#f4f4f5; margin-top:6px; letter-spacing:-0.01em;">Brand New This Month</div>
+  <a href="https://github.com/yifanzhang-pro/recurrent-looped-tranformer" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">370.9</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">yifanzhang-pro/recurrent-looped-tranformer</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">Official Project Page for Recurrent Looped Transformer (RLT)</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 72), oklch(0.82 0.17 72)); border-radius:3px; width: 100%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 730 · 2d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/openai/NavierStokesAndEuler" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">298.8</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">openai/NavierStokesAndEuler</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">Lean certificates accompanying Navier-Stokes and Euler results</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 87), oklch(0.82 0.17 87)); border-radius:3px; width: 81%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 1,885 · 6d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/XiaoDuoYa/codex-with-chatgpt" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">248.9</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">XiaoDuoYa/codex-with-chatgpt</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">ChatGPT thinks. Codex works. Use ChatGPT as the planning brain while keeping the Codex harness.</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 98), oklch(0.82 0.17 98)); border-radius:3px; width: 67%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 4,287 · 17d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/Vincentwei1021/anything2explainer" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">216.2</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">Vincentwei1021/anything2explainer</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">Topic in, narrated explainer video out. A Claude Code / Codex skill that turns any topic into a black-canvas motion-grap…</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 106), oklch(0.82 0.17 106)); border-radius:3px; width: 58%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 1,306 · 6d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/anthropics/commerce-agents" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">214.8</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">anthropics/commerce-agents</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">Reference blueprint for building shopping and merchant agents with Claude. Examples in retail, commerce, telecom, and en…</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 106), oklch(0.82 0.17 106)); border-radius:3px; width: 58%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 2,844 · 13d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+</div>
+<div style="margin-top:34px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="1" valign="middle" style="white-space:nowrap;"><span style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#34d399; font-weight:600; margin-right:12px;">Breakthrough · 24h Spike</span></td>
+      <td width="100%" valign="middle"><div style="height:1px; background:#20222a; font-size:0; line-height:0;"></div></td>
+      <td width="1" align="right" valign="middle" style="white-space:nowrap;"><span style="font-family:'IBM Plex Mono', monospace; font-size:11px; color:#5b6573; margin-left:12px;">10 repos</span></td>
+    </tr>
+  </table>
+  <div style="font-family:'Newsreader', serif; font-size:24px; font-weight:500; color:#f4f4f5; margin-top:6px; letter-spacing:-0.01em;">Breakthrough · 24h Spike</div>
+  <a href="https://github.com/bojieli/ai-infra-book" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">2003.1</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">bojieli/ai-infra-book</span>
+          <span style="font-family:'IBM Plex Mono', monospace; font-size:9px; font-weight:600; letter-spacing:0.08em; color:#34d399; border:1px solid #2f6f55; padding:1px 6px; border-radius:99px; margin-left:9px;">NEW</span>
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">《深入理解 AI Infra：量化分析与系统设计》（李博杰 著）开源书稿：从硬件约束和模型架构出发，量化推导 LLM 推理与训练系统设计。含全书正文、PDF、配套计算工具与实验</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 72), oklch(0.82 0.17 72)); border-radius:3px; width: 100%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 2,225 · 23d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/google/artemis" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">765.5</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">google/artemis</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">ARTEMIS turns natural-language instructions into reliable Android automation. It automates end-to-end workflows, capture…</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 122), oklch(0.82 0.17 122)); border-radius:3px; width: 38%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 5,284 · 32d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/totec448-spec/chat-on-steroids" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">390.3</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">totec448-spec/chat-on-steroids</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">Cross-platform local MCP capabilities for ChatGPT with Chrome integration, Goal, Compact &amp; Resume, and durable multi-age…</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 137), oklch(0.82 0.17 137)); border-radius:3px; width: 19%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 2,573 · 23d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/crwdla/tokentab" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">354.5</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">crwdla/tokentab</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">A CLI that reads Claude Code, Codex, and Gemini CLI session logs and works out how much they cost, by model, project, an…</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 138), oklch(0.82 0.17 138)); border-radius:3px; width: 18%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 1,112 · 7d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/kruzovic7/ai-data-extractor" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">310.3</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">kruzovic7/ai-data-extractor</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">Free open-source extractor for AI coding assistant chat histories. Supports Claude Code, Cursor, Windsurf, Aider, Cline/…</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 140), oklch(0.82 0.17 140)); border-radius:3px; width: 15%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 628 · 3d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/yifanzhang-pro/recurrent-looped-tranformer" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">290.6</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">yifanzhang-pro/recurrent-looped-tranformer</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">Official Project Page for Recurrent Looped Transformer (RLT)</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 140), oklch(0.82 0.17 140)); border-radius:3px; width: 15%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 730 · 2d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/Human-Agent-Society/reef" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">260.5</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">Human-Agent-Society/reef</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">Continual learning infra for self-improving agents</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 142), oklch(0.82 0.17 142)); border-radius:3px; width: 13%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 1,471 · 14d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/tigerless-labs/agent-memory" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">155.2</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">tigerless-labs/agent-memory</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">Long-term memory runtime for AI agents — plain Markdown as the source of truth, local ranked retrieval, and an independe…</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 146), oklch(0.82 0.17 146)); border-radius:3px; width: 8%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 1,441 · 13d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/Vincentwei1021/anything2explainer" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">150.5</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">Vincentwei1021/anything2explainer</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">Topic in, narrated explainer video out. A Claude Code / Codex skill that turns any topic into a black-canvas motion-grap…</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 146), oklch(0.82 0.17 146)); border-radius:3px; width: 8%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 1,306 · 6d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/deeplethe/utopia" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">126.0</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">deeplethe/utopia</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">World&#x27;s first open-source enterprise world model.</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 146), oklch(0.82 0.17 146)); border-radius:3px; width: 7%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 7,457 · 38d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+</div>
+<div style="margin-top:34px;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="1" valign="middle" style="white-space:nowrap;"><span style="font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#34d399; font-weight:600; margin-right:12px;">Breakthrough · 30-Day Velocity</span></td>
+      <td width="100%" valign="middle"><div style="height:1px; background:#20222a; font-size:0; line-height:0;"></div></td>
+      <td width="1" align="right" valign="middle" style="white-space:nowrap;"><span style="font-family:'IBM Plex Mono', monospace; font-size:11px; color:#5b6573; margin-left:12px;">10 repos</span></td>
+    </tr>
+  </table>
+  <div style="font-family:'Newsreader', serif; font-size:24px; font-weight:500; color:#f4f4f5; margin-top:6px; letter-spacing:-0.01em;">Breakthrough · 30-Day Velocity</div>
+  <a href="https://github.com/bojieli/ai-infra-book" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">1053.2</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">bojieli/ai-infra-book</span>
+          <span style="font-family:'IBM Plex Mono', monospace; font-size:9px; font-weight:600; letter-spacing:0.08em; color:#34d399; border:1px solid #2f6f55; padding:1px 6px; border-radius:99px; margin-left:9px;">NEW</span>
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">《深入理解 AI Infra：量化分析与系统设计》（李博杰 著）开源书稿：从硬件约束和模型架构出发，量化推导 LLM 推理与训练系统设计。含全书正文、PDF、配套计算工具与实验</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 72), oklch(0.82 0.17 72)); border-radius:3px; width: 100%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 2,225 · 23d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/deeplethe/utopia" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">386.6</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">deeplethe/utopia</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">World&#x27;s first open-source enterprise world model.</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 122), oklch(0.82 0.17 122)); border-radius:3px; width: 37%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 7,457 · 38d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/yifanzhang-pro/recurrent-looped-tranformer" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">290.6</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">yifanzhang-pro/recurrent-looped-tranformer</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">Official Project Page for Recurrent Looped Transformer (RLT)</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 130), oklch(0.82 0.17 130)); border-radius:3px; width: 28%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 730 · 2d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/kruzovic7/ai-data-extractor" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">244.6</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">kruzovic7/ai-data-extractor</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">Free open-source extractor for AI coding assistant chat histories. Supports Claude Code, Cursor, Windsurf, Aider, Cline/…</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 134), oklch(0.82 0.17 134)); border-radius:3px; width: 23%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 628 · 3d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/XiaoDuoYa/codex-with-chatgpt" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">239.9</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">XiaoDuoYa/codex-with-chatgpt</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">ChatGPT thinks. Codex works. Use ChatGPT as the planning brain while keeping the Codex harness.</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 134), oklch(0.82 0.17 134)); border-radius:3px; width: 23%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 4,287 · 17d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/google/artemis" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">235.6</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">google/artemis</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">ARTEMIS turns natural-language instructions into reliable Android automation. It automates end-to-end workflows, capture…</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 134), oklch(0.82 0.17 134)); border-radius:3px; width: 22%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 5,284 · 32d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/crwdla/tokentab" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">211.1</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">crwdla/tokentab</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">A CLI that reads Claude Code, Codex, and Gemini CLI session logs and works out how much they cost, by model, project, an…</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 136), oklch(0.82 0.17 136)); border-radius:3px; width: 20%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 1,112 · 7d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/Vincentwei1021/anything2explainer" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">166.7</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">Vincentwei1021/anything2explainer</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">Topic in, narrated explainer video out. A Claude Code / Codex skill that turns any topic into a black-canvas motion-grap…</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 139), oklch(0.82 0.17 139)); border-radius:3px; width: 16%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 1,306 · 6d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/tigerless-labs/agent-memory" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">151.3</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">tigerless-labs/agent-memory</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">Long-term memory runtime for AI agents — plain Markdown as the source of truth, local ranked retrieval, and an independe…</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 141), oklch(0.82 0.17 141)); border-radius:3px; width: 14%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 1,441 · 13d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+<a href="https://github.com/Nanako0129/sepia" style="display:block; text-decoration:none; padding:12px 0; border-top:1px solid #16181d;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="78" valign="top" align="right" style="width:78px; padding-right:16px;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; color:#34d399; line-height:1; letter-spacing:-0.02em;">138.9</div>
+        <div style="font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.09em; text-transform:uppercase; color:#52525b; margin-top:3px;">stars / day</div>
+      </td>
+      <td valign="top">
+        <div>
+          <span style="font-family:'IBM Plex Sans', sans-serif; font-size:14px; font-weight:600; color:#f4f4f5;">Nanako0129/sepia</span>
+          
+        </div>
+        <div style="font-family:'Newsreader', serif; font-size:14px; color:#9ca3af; line-height:1.45; margin-top:3px;">De-AI writing skill for any Agent Skills-compatible agent (77+ via the Skills CLI), with native plugins for Claude Code,…</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:8px;">
+          <tr>
+            <td width="100%" valign="middle">
+              <div style="width:100%; height:4px; background:#1a1d24; border-radius:3px; overflow:hidden;">
+                <div style="height:100%; background: linear-gradient(90deg, oklch(0.6 0.12 142), oklch(0.82 0.17 142)); border-radius:3px; width: 13%;"></div>
+              </div>
+            </td>
+            <td width="1" align="right" valign="middle" style="padding-left:12px;">
+              <span style="font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#5b6573; white-space:nowrap;">★ 2,601 · 17d old</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</a>
+</div>
+</div>
+</div>
+</td></tr></table>
+</body>
+</html>
