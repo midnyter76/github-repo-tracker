@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-03T16:54:48.251248+00:00",
+  "updated_at": "2026-10-04T17:12:54.953206+00:00",
   "repos": {
     "1342876750": {
       "full_name": "totec448-spec/chat-on-steroids",
@@ -67,12 +67,6 @@
       "created_at": "2026-08-22T15:30:41+00:00",
       "html_url": "https://github.com/bojieli/ai-infra-book"
     },
-    "1367606050": {
-      "full_name": "yifanzhang-pro/recurrent-looped-tranformer",
-      "description": "Official Project Page for Recurrent Looped Transformer (RLT)",
-      "created_at": "2026-09-12T19:02:46+00:00",
-      "html_url": "https://github.com/yifanzhang-pro/recurrent-looped-tranformer"
-    },
     "1367068508": {
       "full_name": "youngyangyang04/llm-master",
       "description": "\u5927\u6a21\u578b\uff08LLM\uff09\u5168\u6808\u5b66\u4e60\u8def\u7ebf\u4e0e\u4e2d\u6587\u6559\u7a0b\ud83d\udd25\uff1a\u8986\u76d6 Prompt Engineering\u3001RAG\u3001AI Agent\u3001MCP\u3001\u5fae\u8c03\u3001\u6a21\u578b\u90e8\u7f72\u3001Transformer\u3001AI \u7f16\u7a0b\u4e0e\u5927\u5382\u9762\u8bd5\uff0c\u4ece\u5165\u95e8\u5230\u751f\u4ea7\u5b9e\u8df5\u3002",
@@ -121,803 +115,17 @@
       "created_at": "2026-09-17T05:57:20+00:00",
       "html_url": "https://github.com/tamaratran/fast-jev-compaction"
     },
-    "1375327232": {
-      "full_name": "indada/repopilot",
-      "description": "Verification-driven AI software iteration, powered by the OpenAI Codex SDK. Self-hosted agents turn goals, GitHub Issues and PR feedback into tested, reviewable changes, with bounded execution and human control over merging and deployment.",
-      "created_at": "2026-09-18T03:36:12+00:00",
-      "html_url": "https://github.com/indada/repopilot"
-    },
-    "1375362154": {
-      "full_name": "op7418/guizang-product-video-skill",
-      "description": "\u5f52\u85cf product video skill\uff1a\u590d\u7528\u771f\u5b9e\u4ea7\u54c1\u7ec4\u4ef6\u548c\u8bbe\u8ba1\u8bed\u8a00\uff0c\u7528\u4ee3\u7801\u5236\u4f5c\u8f6f\u4ef6\u66f4\u65b0\u5ba3\u4f20\u7247\u3002\u5305\u542b\u5206\u955c\u6587\u6848\u3001\u539f\u521b\u914d\u4e50\u3001\u52a8\u4f5c\u97f3\u6548\u4e0e\u89c6\u9891\u6e32\u67d3\uff0c\u652f\u6301 Claude Code \u548c Codex\u3002",
-      "created_at": "2026-09-18T04:22:37+00:00",
-      "html_url": "https://github.com/op7418/guizang-product-video-skill"
-    },
-    "1374300570": {
-      "full_name": "AboveColin/HA-Jev",
-      "description": "Ask your house a question, get a number back. Home Assistant integration for TypeSafe Jev: typed answers as sensors, four actions for automations, and a conversation agent for Assist.",
-      "created_at": "2026-09-17T11:01:48+00:00",
-      "html_url": "https://github.com/AboveColin/HA-Jev"
-    },
-    "1376081650": {
-      "full_name": "kraayenjon/awesome-jev",
-      "description": "A curated list of Jev use cases, projects, SDKs, and resources. Jev is TypeSafe AI's System One model for fast, typed decisions in software \u2014 Choice, Score, and Noul with calibrated probabilities.",
-      "created_at": "2026-09-18T15:43:06+00:00",
-      "html_url": "https://github.com/kraayenjon/awesome-jev"
-    },
-    "1372224893": {
-      "full_name": "LeonardLeroy/i-dont-believe-you",
-      "description": "A skill to stop your coding agent from telling you it works when the diff says otherwise.",
-      "created_at": "2026-09-15T22:43:48+00:00",
-      "html_url": "https://github.com/LeonardLeroy/i-dont-believe-you"
-    },
-    "1374187787": {
-      "full_name": "RicterZ/AL1S-WMS",
-      "description": "Household Warehouse  Management System powered by Maid-AL1S",
-      "created_at": "2026-09-17T09:07:39+00:00",
-      "html_url": "https://github.com/RicterZ/AL1S-WMS"
-    },
-    "1368289098": {
-      "full_name": "whoashish115/moonfrost-ai",
-      "description": "A 777M-parameter Mixture-of-Experts language model trained from scratch for $55. Multi-head Latent Attention, DeepSeekMoE, own tokenizer.",
-      "created_at": "2026-09-13T10:41:28+00:00",
-      "html_url": "https://github.com/whoashish115/moonfrost-ai"
-    },
-    "1376697456": {
-      "full_name": "NotXf1le/choosekit",
-      "description": "Typed choices and probability distributions from text and images with llama.cpp, Ollama, and OpenRouter",
-      "created_at": "2026-09-19T03:54:44+00:00",
-      "html_url": "https://github.com/NotXf1le/choosekit"
-    },
-    "1375473949": {
-      "full_name": "yzfly/awesome-jev-zh",
-      "description": "Jev / TypeSafe System One \u4e2d\u6587\u7cbe\u9009\u5217\u8868\uff1a\u5b98\u65b9\u8d44\u6599\u3001SDK\u3001\u7206\u6b3e\u5e94\u7528\u3001Agent \u5de5\u5177\u3001\u5f00\u6e90\u590d\u73b0\u4e0e\u72ec\u7acb\u8bc4\u6d4b\uff0c\u9644\u4e2d\u6587\u4e0a\u624b\u6307\u5357\uff0c\u6bcf\u65e5\u81ea\u52a8\u6536\u5f55 GitHub \u70ed\u95e8\u9879\u76ee\u3002",
-      "created_at": "2026-09-18T06:33:02+00:00",
-      "html_url": "https://github.com/yzfly/awesome-jev-zh"
-    },
-    "1375339440": {
-      "full_name": "KunlunMeta-dev/Kcoder",
-      "description": "KCoder \u2014 agentic AI coding platform by KunlunMeta: model providers, tool system, permissions & sandbox, long-term memory, skills, MCP, sub-agents, terminal TUI and KCoder Studio desktop app. Source snapshots and Windows installers are published under Releases.",
-      "created_at": "2026-09-18T03:52:37+00:00",
-      "html_url": "https://github.com/KunlunMeta-dev/Kcoder"
-    },
-    "1375410950": {
-      "full_name": "ikermoel/open-alternative-jev",
-      "description": "Open-source alternative to TypeSafe's Jev: a System One style model layer that gives typed, calibrated decisions from any open-weights LLM in one forward pass (HF + vLLM), with honest benchmarks",
-      "created_at": "2026-09-18T05:20:56+00:00",
-      "html_url": "https://github.com/ikermoel/open-alternative-jev"
-    },
-    "1373893740": {
-      "full_name": "sosopop/jev_stock",
-      "description": "An experimental JEV-powered framework for forecasting short-term stock price direction from structured market data.",
-      "created_at": "2026-09-17T03:44:18+00:00",
-      "html_url": "https://github.com/sosopop/jev_stock"
-    },
-    "1374283558": {
-      "full_name": "Anil-matcha/awesome-dsh-plugin",
-      "description": "A curated list of plugins for DeepSeek Harness (dsh) - DeepSeek Harness plugin ecosystem",
-      "created_at": "2026-09-17T10:44:27+00:00",
-      "html_url": "https://github.com/Anil-matcha/awesome-dsh-plugin"
-    },
-    "1373743728": {
-      "full_name": "dvarahq/dvara",
-      "description": "The open-source LLM gateway of the DVARA AI governance platform.",
-      "created_at": "2026-09-16T23:58:22+00:00",
-      "html_url": "https://github.com/dvarahq/dvara"
-    },
-    "1369694886": {
-      "full_name": "janieehe/reelwright",
-      "description": "\u9762\u5411\u65c5\u62cd/\u5986\u9020/\u6c11\u5bbf\u4e0e\u72ec\u7acb\u6444\u5f71\u5e08\u7684\u77ed\u89c6\u9891\u5185\u5bb9\u751f\u4ea7 AI   skill\u2014\u2014\u4e5d\u4e2a\u65b9\u5411\u4ece\u62c6\u7206\u6b3e\u5230\u5f00\u62cd\uff0c\u4ea7\u51fa\u53ef\u5f00\u62cd\u7684\u811a\u672c\u3001\u5206\u955c\u4e0e\u62cd\u6444\u65b9\u6848\u3002A Claude skill for  short-video creators.",
-      "created_at": "2026-09-14T09:58:33+00:00",
-      "html_url": "https://github.com/janieehe/reelwright"
-    },
-    "1370783112": {
-      "full_name": "Kzczc/EMNLP2026-Caught-in-the-Story",
-      "description": "Caught in the Story: Narrative Captivity in Multi-turn LLMs Conversation (EMNLP 2026 Findings).",
-      "created_at": "2026-09-15T02:39:02+00:00",
-      "html_url": "https://github.com/Kzczc/EMNLP2026-Caught-in-the-Story"
-    },
-    "1373399541": {
-      "full_name": "jersonboydmilan/Capgate",
-      "description": "Capgate \u2014 runtime authority boundary for autonomous AI agents: the agent proposes, the harness authorizes, the executor acts. Deny-by-default policy, non-transitive delegation, tamper-evident audit, MCP gateway, containerised isolation.",
-      "created_at": "2026-09-16T17:15:05+00:00",
-      "html_url": "https://github.com/jersonboydmilan/Capgate"
-    },
-    "1374004552": {
-      "full_name": "NiuTrans/AML-Notes",
-      "description": "\u300a\u9ad8\u7ea7\u673a\u5668\u5b66\u4e60\u300b\uff1a\u9762\u5411\u751f\u6210\u5f0f\u4eba\u5de5\u667a\u80fd\u65f6\u4ee3\u7684\u673a\u5668\u5b66\u4e60\u6559\u6750\uff0c\u6db5\u76d6\u5f3a\u5316\u5b66\u4e60\u3001\u5927\u6a21\u578b\u8bad\u7ec3\u4e0e\u5bf9\u9f50\u3001\u751f\u6210\u5efa\u6a21\u548c\u591a\u6a21\u6001\u5b66\u4e60\u7b49\u5185\u5bb9\u3002",
-      "created_at": "2026-09-17T05:56:43+00:00",
-      "html_url": "https://github.com/NiuTrans/AML-Notes"
-    },
-    "1374339206": {
-      "full_name": "epool86/dsh-monitor",
-      "description": "Live mission control for DeepSeek Harness: watch your agents and sub-agents work in real time.",
-      "created_at": "2026-09-17T11:37:25+00:00",
-      "html_url": "https://github.com/epool86/dsh-monitor"
-    },
-    "1376221787": {
-      "full_name": "badgids/pi-skill-orchestrator",
-      "description": "Pi Skill Orchestrator is a Pi extension for people who use a lot of Agent Skills. It keeps Pi's normal skill autocomplete, but it stops the complete skill catalog from taking space in the LLM system prompt on every turn. ",
-      "created_at": "2026-09-18T17:39:10+00:00",
-      "html_url": "https://github.com/badgids/pi-skill-orchestrator"
-    },
-    "1376845610": {
-      "full_name": "star1342354/-cumcm-AI-workflow-",
-      "description": "\u9762\u5411 CUMCM \u7684\u6570\u6a21\u5168\u6d41\u7a0b\u5de5\u4f5c\u6d41\uff1a\u5efa\u6a21 \u2192 \u65b9\u6848\u8bc4\u5ba1 \u2192 \u4ee3\u7801\u5b9e\u73b0/\u68c0\u6d4b \u2192 \u590d\u76d8 \u2192 \u56fd\u8d5b\u8bba\u6587\uff0c\u542b Codex \u6280\u80fd\u4e0e\u5b89\u88c5\u5668",
-      "created_at": "2026-09-19T07:03:36+00:00",
-      "html_url": "https://github.com/star1342354/-cumcm-AI-workflow-"
-    },
-    "1368864384": {
-      "full_name": "jovempedr0/faiss_index",
-      "description": "FAISS-based semantic search over any document type \u2014 LLM-calibrated section extraction, and pluggable embedding/chat providers (OpenAI-compatible or fully local).",
-      "created_at": "2026-09-13T20:37:38+00:00",
-      "html_url": "https://github.com/jovempedr0/faiss_index"
-    },
-    "1369096078": {
-      "full_name": "Shellishack/infinite-pokemon",
-      "description": "A Pok\u00e9mon-style adventure built with Codex, featuring AI-generated maps, NPCs, branching saves, and multiplayer. The adventure never ends.",
-      "created_at": "2026-09-14T01:06:12+00:00",
-      "html_url": "https://github.com/Shellishack/infinite-pokemon"
-    },
-    "1371331200": {
-      "full_name": "xaidan777/ArcEngine",
-      "description": "LLM Native 3D engine",
-      "created_at": "2026-09-15T11:21:20+00:00",
-      "html_url": "https://github.com/xaidan777/ArcEngine"
-    },
-    "1376436152": {
-      "full_name": "w3cj/jev-chat",
-      "description": "A tool calling chat bot built with Jev and no LLM.",
-      "created_at": "2026-09-18T21:09:21+00:00",
-      "html_url": "https://github.com/w3cj/jev-chat"
-    },
-    "1376163329": {
-      "full_name": "rohasnagpal/cfo",
-      "description": "Turn ChatGPT or Claude into your own CFO (Chief Financial Officer).",
-      "created_at": "2026-09-18T16:50:25+00:00",
-      "html_url": "https://github.com/rohasnagpal/cfo"
-    },
-    "1376130842": {
-      "full_name": "ndrezn/ts-browser-agent",
-      "description": "Fast browser agent on langchain-typesafe",
-      "created_at": "2026-09-18T16:22:07+00:00",
-      "html_url": "https://github.com/ndrezn/ts-browser-agent"
-    },
-    "1372851884": {
-      "full_name": "ScalingIntelligence/Turbo-dLLM",
-      "description": "",
-      "created_at": "2026-09-16T10:10:22+00:00",
-      "html_url": "https://github.com/ScalingIntelligence/Turbo-dLLM"
-    },
-    "1376610531": {
-      "full_name": "Mosi-AI/RoboICL",
-      "description": "Embodied In-Context Learning for GPT-6 Astra",
-      "created_at": "2026-09-19T01:45:04+00:00",
-      "html_url": "https://github.com/Mosi-AI/RoboICL"
-    },
-    "1373657354": {
-      "full_name": "jbarbier/gguf-head",
-      "description": "Read what is written at the top of a GGUF model file, without downloading it. From Cyberiad Labs' Introduction to AI and LLMs.",
-      "created_at": "2026-09-16T21:33:34+00:00",
-      "html_url": "https://github.com/jbarbier/gguf-head"
-    },
-    "1373227372": {
-      "full_name": "Ying-Kai-Liao/jev-browser",
-      "description": "Browser automation where an LLM plans and Jev (Typesafe System One) decides. Library, CLI and MCP server.",
-      "created_at": "2026-09-16T15:13:23+00:00",
-      "html_url": "https://github.com/Ying-Kai-Liao/jev-browser"
-    },
-    "1376327386": {
-      "full_name": "Argos1111/jev_local",
-      "description": "Replicating Jev with a local LLM",
-      "created_at": "2026-09-18T19:09:02+00:00",
-      "html_url": "https://github.com/Argos1111/jev_local"
-    },
-    "1373999465": {
-      "full_name": "jasper-lu/sec-search-rl",
-      "description": "RL a search agent on SEC filings with Tinker (Dr. GRPO, gpt-oss-20b)",
-      "created_at": "2026-09-17T05:50:14+00:00",
-      "html_url": "https://github.com/jasper-lu/sec-search-rl"
-    },
-    "1374794531": {
-      "full_name": "zhengxuyu/litjev",
-      "description": "Turn any off-the-shelf LLM into a Jev -like decision layer",
-      "created_at": "2026-09-17T17:19:25+00:00",
-      "html_url": "https://github.com/zhengxuyu/litjev"
-    },
-    "1373542552": {
-      "full_name": "andrisgauracs/Apple-Watch-Edge-AI",
-      "description": "Getting llama.cpp running on watchOS: a SwiftUI app that runs quantized LLMs fully on-device on Apple Watch Series 6 and newer versions.",
-      "created_at": "2026-09-16T19:20:26+00:00",
-      "html_url": "https://github.com/andrisgauracs/Apple-Watch-Edge-AI"
-    },
-    "1375615157": {
-      "full_name": "Oldcircle/geo-sleuth",
-      "description": "An agent skill that finds where a photo was taken \u2014 OpenStreetMap geometry, elevation skylines, satellite imagery and street view \u2014 and shows its work. Works with Claude Code, Codex, Cursor, Gemini CLI, OpenCode and GitHub Copilot.",
-      "created_at": "2026-09-18T08:51:34+00:00",
-      "html_url": "https://github.com/Oldcircle/geo-sleuth"
-    },
-    "1374424107": {
-      "full_name": "CodeAlive-AI/pragmatic-orchestration",
-      "description": "Pragmatic multi-agent orchestration: independent review and steerable delegation across Codex, Claude Code, OpenCode, Grok Build, Gemini, and Devin CLI \u2014 porch CLI + Agent Skills",
-      "created_at": "2026-09-17T12:44:49+00:00",
-      "html_url": "https://github.com/CodeAlive-AI/pragmatic-orchestration"
-    },
-    "1375299700": {
-      "full_name": "tamaratran/jev-pruner",
-      "description": "Claude Code plugin: trim long Bash output with TypeSafe Jev before the model sees it",
-      "created_at": "2026-09-18T03:00:58+00:00",
-      "html_url": "https://github.com/tamaratran/jev-pruner"
-    },
-    "1374382889": {
-      "full_name": "sgoedecke/system-one",
-      "description": "Batched single-token choice inference for open language models, compatible with TypeSafe",
-      "created_at": "2026-09-17T12:13:54+00:00",
-      "html_url": "https://github.com/sgoedecke/system-one"
-    },
-    "1374268994": {
-      "full_name": "goodrahstar/jev-column-race",
-      "description": "Jev vs Gemini 3.8 Flash: labelling 1,000 app reviews, 4.1\u00d7 faster and 7\u00d7 cheaper",
-      "created_at": "2026-09-17T10:29:38+00:00",
-      "html_url": "https://github.com/goodrahstar/jev-column-race"
-    },
-    "1375642255": {
-      "full_name": "EliaAlberti/jev-rules",
-      "description": "Jev picks which of your rules apply to each prompt, so Claude only sees the ones that matter.",
-      "created_at": "2026-09-18T09:18:35+00:00",
-      "html_url": "https://github.com/EliaAlberti/jev-rules"
-    },
-    "1376204343": {
-      "full_name": "karanb192/cache-tax",
-      "description": "Keep Claude Code\u2019s prompt cache warm during breaks and show the estimated cost before a cold send.",
-      "created_at": "2026-09-18T17:24:57+00:00",
-      "html_url": "https://github.com/karanb192/cache-tax"
-    },
-    "1370774413": {
-      "full_name": "trainingsites/campus-ai-os",
-      "description": "Campus AI OS \u2014 an AI staff that remembers your business. One folder, one chief of staff, usable from Claude or Codex.",
-      "created_at": "2026-09-15T02:26:31+00:00",
-      "html_url": "https://github.com/trainingsites/campus-ai-os"
-    },
-    "1376644380": {
-      "full_name": "brudarko/jev-mac-voice",
-      "description": "English full-duplex voice control for macOS with OpenAI Realtime, native Accessibility, and Jev.",
-      "created_at": "2026-09-19T02:37:27+00:00",
-      "html_url": "https://github.com/brudarko/jev-mac-voice"
-    },
-    "1375334915": {
-      "full_name": "kittenshome/cc-tg-watchdog",
-      "description": "Claude Code + Telegram watchdog script for 24/7 VPS uptime",
-      "created_at": "2026-09-18T03:46:27+00:00",
-      "html_url": "https://github.com/kittenshome/cc-tg-watchdog"
-    },
-    "1370509929": {
-      "full_name": "RectangleStory/Superpowers_Multi_AI",
-      "description": "\u26a1 Modular prompt-engineering framework for AI Agents (Cursor, Claude Code, Copilot). Forces structured SDLC, linear execution, context isolation, and systematic debugging via a standalone Windows launcher. Stop vibe coding, start agentic discipline! \ud83d\ude80",
-      "created_at": "2026-09-14T20:11:30+00:00",
-      "html_url": "https://github.com/RectangleStory/Superpowers_Multi_AI"
-    },
-    "1376630981": {
-      "full_name": "Nanako0129/lorenzini",
-      "description": "Claude Code skills that wait for a third-party PR reviewer and decide whether its verdict actually means pass",
-      "created_at": "2026-09-19T02:17:03+00:00",
-      "html_url": "https://github.com/Nanako0129/lorenzini"
-    },
-    "1375735725": {
-      "full_name": "INSANE0777/Awwwards-mcp",
-      "description": "Free, open-source MCP server that gives AI coding agents (Claude Code, Codex, Cursor, OpenCode, ZCode\u2026) design inspiration from award-winning websites \u2014 search with real screenshots, pull design DNA, capture and record live sites. A Mobbin alternative. No API key.",
-      "created_at": "2026-09-18T10:57:09+00:00",
-      "html_url": "https://github.com/INSANE0777/Awwwards-mcp"
-    },
-    "1370857850": {
-      "full_name": "Leoxia55/agent-from-scratch",
-      "description": "\u4ece\u96f6\u624b\u5199\u4e00\u4e2a AI Agent \u7684\u6559\u5b66\u578b Python \u9879\u76ee\uff1a\u4e0d\u4f9d\u8d56\u4efb\u4f55\u667a\u80fd\u4f53\u6846\u67b6\u5b9e\u73b0\u6838\u5fc3\u5faa\u73af\uff0c\u7528\u7ea6 3700 \u884c\u53ef\u901a\u8bfb\u7684\u4ee3\u7801\uff0c\u628a Agent \u62c6\u6210\u4e50\u9ad8\u79ef\u6728\u5f0f\u7684\u57fa\u7840\u90e8\u4ef6\u2014\u2014\u6a21\u578b\u8c03\u7528\u3001\u5de5\u5177\u534f\u8bae\u3001\u6267\u884c\u4e0a\u4e0b\u6587\u3001\u8bb0\u5fc6\u3001RAG\u3001Skills\u3001E2B \u6c99\u7bb1\u4e0e\u591a\u667a\u80fd\u4f53\u7f16\u6392\uff0c\u9010\u5c42\u62fc\u88c5\u3001\u6bcf\u4e00\u6b65\u90fd\u80fd\u8ffd\u5230\u6e90\u7801\u3002\u9644 20 \u4e2a\u53ef\u8fd0\u884c\u793a\u4f8b\u300121 \u7ae0\u7cfb\u7edf\u8bfe\u7a0b\u4e0e 30 \u7bc7\u5206\u5c42\u6587\u6863\uff0c\u914d\u6709\u5355\u5143\u4e0e\u96c6\u6210\u6d4b\u8bd5\u3001mypy \u4e25\u683c\u7c7b\u578b\u68c0\u67e5\u3002\u5b66\u64cd\u4f5c\u7cfb\u7edf\u8981\u5199\u8ff7\u4f60 OS\uff0c\u5b66\u6570\u636e\u5e93\u8981\u5199\u8ff7\u4f60\u6570\u636e\u5e93\uff0c\u5b66 Agent \u5c31\u8be5\u4eb2\u624b\u5199\u4e00\u4e2a\uff1a\u5148\u5efa\u77e5\u8bc6\u5e95\u5ea7\uff0c\u518d\u4e0a\u751f\u4ea7\u6846\u67b6\u3002\u9002\u5408\u521d\u5b66\u8005\u3001\u5927\u5b66\u751f\u4e0e\u7528\u8fc7\u6846\u67b6\u60f3\u8865\u539f\u7406\u7684\u5de5\u7a0b\u5e08\u3002MIT \u5f00\u6e90\uff0cPython 3.13\u3002",
-      "created_at": "2026-09-15T03:55:44+00:00",
-      "html_url": "https://github.com/Leoxia55/agent-from-scratch"
-    },
-    "1346397198": {
-      "full_name": "wemux-ai/wemux",
-      "description": "Wemux - self-hostable AI agent collaboration platform (Apache-2.0, community edition)",
-      "created_at": "2026-08-25T16:55:32+00:00",
-      "html_url": "https://github.com/wemux-ai/wemux"
-    },
-    "1351398683": {
-      "full_name": "udaysharmadev/Not-Ai",
-      "description": "Not Ai isn\u2019t just about bypassing AI detectors. It puts good writing first, creating clear, honest prose shaped by human writing standards. It\u2019s perfect for college and school projects, LinkedIn/X posts, emails, factual articles, personal essays, social media posts, and technical documentation, especially GitHub READMEs",
-      "created_at": "2026-08-30T12:58:09+00:00",
-      "html_url": "https://github.com/udaysharmadev/Not-Ai"
-    },
-    "1352218236": {
-      "full_name": "stevibe/SparklingKit",
-      "description": "Local-first AI workbench for OCR, transcription, translation, image generation, mind maps and composable workflows. Built for DGX Spark.",
-      "created_at": "2026-08-31T09:17:38+00:00",
-      "html_url": "https://github.com/stevibe/SparklingKit"
-    },
-    "1353529946": {
-      "full_name": "wynx1123/ai-welfare-hub",
-      "description": "Claude Code \u514d\u8d39 | \u516c\u76ca\u7ad9 | New API | AI API \u4e2d\u8f6c\u7ad9\u5bfc\u822a \u2014\u2014 \u81ea\u52a8\u63a2\u6d3b 15+ \u7ad9\u70b9\uff08Claude/Codex/Cursor/Gemini \u514d\u8d39\u989d\u5ea6\u3001\u6bcf\u65e5\u7b7e\u5230\uff09\uff0cGitHub Actions \u6bcf 6 \u5c0f\u65f6\u66f4\u65b0\u5b58\u6d3b\u72b6\u6001\uff0c\u7eaf\u9759\u6001\u96f6\u4f9d\u8d56\u53ef fork",
-      "created_at": "2026-09-01T12:10:35+00:00",
-      "html_url": "https://github.com/wynx1123/ai-welfare-hub"
-    },
-    "1355507861": {
-      "full_name": "cyptnpassira/PromptLedger",
-      "description": "PromptLedger - version prompt templates, run deterministic comparison snapshots, score candidate responses, and ship diffable experiment reports. Python core plus a Go companion CLI.",
-      "created_at": "2026-09-03T04:26:04+00:00",
-      "html_url": "https://github.com/cyptnpassira/PromptLedger"
-    },
     "1347394075": {
       "full_name": "whitecircle/halo",
       "description": "Halo is an open-source framework built by White Circle for training large language and multimodal models",
       "created_at": "2026-08-26T13:49:24+00:00",
       "html_url": "https://github.com/whitecircle/halo"
     },
-    "1345652091": {
-      "full_name": "MindGoblinStudios/grim-tome",
-      "description": "Grimoire's Tome & The Grim Council. A Prompt Spellbook of /skills. The #1 Coding Wizard \ud83e\uddd9\u200d\u2642\ufe0f\ud83d\udcd6",
-      "created_at": "2026-08-25T03:55:43+00:00",
-      "html_url": "https://github.com/MindGoblinStudios/grim-tome"
-    },
-    "1344762821": {
-      "full_name": "oc8-ai/oc8",
-      "description": "Open-source AI business orchestration platform for running governed AI agents across ERP, CRM, Microsoft 365 and other business systems.",
-      "created_at": "2026-08-24T09:16:13+00:00",
-      "html_url": "https://github.com/oc8-ai/oc8"
-    },
-    "1345932551": {
-      "full_name": "edvardgrishin27/superstack-plugin",
-      "description": "\u0421\u043a\u0430\u0436\u0438 \u0441\u043b\u043e\u0432\u0430\u043c\u0438, \u0447\u0442\u043e \u043f\u043e\u0441\u0442\u0440\u043e\u0438\u0442\u044c \u2014 \u043f\u043e\u043b\u0443\u0447\u0438 \u0440\u0430\u0431\u043e\u0442\u0430\u044e\u0449\u0443\u044e \u0432\u0435\u0440\u0441\u0438\u044e, \u043f\u0440\u043e\u0432\u0435\u0440\u0435\u043d\u043d\u0443\u044e \u0434\u043e \u0442\u043e\u0433\u043e, \u043a\u0430\u043a \u0435\u0451 \u043d\u0430\u0437\u043e\u0432\u0443\u0442 \u0433\u043e\u0442\u043e\u0432\u043e\u0439. \u041f\u043b\u0430\u0433\u0438\u043d \u0434\u043b\u044f Claude Code: \u0441\u0430\u043c \u0441\u043e\u0431\u0438\u0440\u0430\u0435\u0442 \u0442\u0440\u0435\u0431\u043e\u0432\u0430\u043d\u0438\u044f, \u043f\u043b\u0430\u043d, \u043a\u043e\u0434 \u0438 \u043f\u0440\u0438\u0451\u043c\u043a\u0443; \u00ab\u0433\u043e\u0442\u043e\u0432\u043e\u00bb \u0437\u0430\u043a\u0440\u044b\u0432\u0430\u0435\u0442 \u043a\u043e\u0434 \u0432\u043e\u0437\u0432\u0440\u0430\u0442\u0430, \u0430 \u043d\u0435 \u0444\u0440\u0430\u0437\u0430 \u0432 \u0447\u0430\u0442\u0435. \u041e\u0442\u043a\u0430\u0442 \u043e\u0434\u043d\u043e\u0439 \u0444\u0440\u0430\u0437\u043e\u0439, \u0441\u0442\u043e\u043f \u043e\u0434\u043d\u0438\u043c \u0441\u043b\u043e\u0432\u043e\u043c, \u0431\u0435\u0437 \u0442\u0435\u0440\u043c\u0438\u043d\u0430\u043b\u0430.",
-      "created_at": "2026-08-25T09:32:02+00:00",
-      "html_url": "https://github.com/edvardgrishin27/superstack-plugin"
-    },
-    "1345107493": {
-      "full_name": "shyringo/qwen3.8-27b-in-c",
-      "description": "Qwen3.8-27B on one laptop CPU: up to 2.52 token/s, 8 GB tested, no runtime accuracy loss. Native OpenAI-compatible API with function tools; no GPU or Python. | \u5355\u9897\u7b14\u8bb0\u672c CPU \u8fd0\u884c Qwen3.8-27B\uff1a\u6700\u5feb 2.52 token/s\uff0c\u6700\u4f4e 8 GB \u5185\u5b58\u53ef\u8fd0\u884c\uff0c\u63a8\u7406\u52a0\u901f\u4e0d\u727a\u7272\u51c6\u786e\u6027\u3002\u539f\u751f OpenAI \u517c\u5bb9\u63a5\u53e3\u652f\u6301\u51fd\u6570\u5de5\u5177\uff1b\u65e0\u9700 GPU \u6216 Python\u3002",
-      "created_at": "2026-08-24T15:22:42+00:00",
-      "html_url": "https://github.com/shyringo/qwen3.8-27b-in-c"
-    },
-    "1352727583": {
-      "full_name": "justhalfbit/dsh-plugin-memory",
-      "description": "DeepSeek Harness (DSH) \u8de8\u4f1a\u8bdd\u8bb0\u5fc6\u63d2\u4ef6\uff1a\u5bf9\u8bdd\u6a21\u578b\u8fb9\u5e72\u8fb9\u8bb0\u7684 Markdown \u9879\u76ee\u8bb0\u5fc6\uff0c\u652f\u6301\u4e13\u9898\u6587\u4ef6\u6e10\u8fdb\u5f0f\u62ab\u9732\u3001\u53ef\u9009\u540e\u53f0\u9759\u9ed8\u84b8\u998f\u3001\u6309\u9879\u76ee\u9694\u79bb\u4e0e\u70ed\u66f4\u65b0\u8bbe\u7f6e\u9762\u677f\u3002\u673a\u5236\u5bf9\u9f50 Claude Code auto memory\u3002 | Agent-maintained cross-session Markdown memory: progressive-disclosure topic files, opt-in silent distillation, per-project isolation. Claude Code-aligned.",
-      "created_at": "2026-08-31T18:18:37+00:00",
-      "html_url": "https://github.com/justhalfbit/dsh-plugin-memory"
-    },
-    "1343114663": {
-      "full_name": "PrimeEcto/BlockMind",
-      "description": "Free MCP connectors that let any AI agent manage your Minecraft server \u2014 18 hosts + self-hosted. Use the hosted dashboard at blockmind.online or deploy your own workers.",
-      "created_at": "2026-08-22T19:36:41+00:00",
-      "html_url": "https://github.com/PrimeEcto/BlockMind"
-    },
-    "1350847035": {
-      "full_name": "wyg916/PowerAnalytics",
-      "description": "\u667a\u80fd\u7535\u529b\u8fd0\u8425\u5206\u6790\u4e0e AI \u51b3\u7b56\u652f\u6301\u5e73\u53f0\uff5c24\u5c0f\u65f6\u9884\u6d4b\u3001\u7b56\u7565\u8bc1\u636e\u94fe\u3001\u4f01\u4e1aRAG\u3001\u591a\u6a21\u578b\u8def\u7531\u4e0e\u957f\u77ed\u671f\u8bb0\u5fc6",
-      "created_at": "2026-08-29T19:10:02+00:00",
-      "html_url": "https://github.com/wyg916/PowerAnalytics"
-    },
-    "1355458380": {
-      "full_name": "b24039971/lavka-gadgetov-bot",
-      "description": "\ud83c\udfea Telegram-\u0431\u043e\u0442 \u043c\u0430\u0433\u0430\u0437\u0438\u043d\u0430 \u043d\u0430 \u0431\u0435\u0441\u043f\u043b\u0430\u0442\u043d\u044b\u0445 \u043a\u043b\u044e\u0447\u0430\u0445 Google Gemini: \u0440\u043e\u0442\u0430\u0446\u0438\u044f \u043a\u043b\u044e\u0447\u0435\u0439 \u043f\u0440\u0438 429, \u043a\u0430\u0441\u043a\u0430\u0434 \u043c\u043e\u0434\u0435\u043b\u0435\u0439, \u0442\u0440\u0438 \u043b\u0438\u0447\u043d\u043e\u0441\u0442\u0438 \u043f\u0440\u043e\u0434\u0430\u0432\u0446\u0430, \u043a\u0430\u0442\u0430\u043b\u043e\u0433, \u043a\u043e\u0440\u0437\u0438\u043d\u0430, QR-\u043e\u043f\u043b\u0430\u0442\u0430",
-      "created_at": "2026-09-03T03:12:12+00:00",
-      "html_url": "https://github.com/b24039971/lavka-gadgetov-bot"
-    },
-    "1344919353": {
-      "full_name": "Mocas-12/gh-pain-intel",
-      "description": "Mine GitHub issues for pain points \u2014 LLM semantic analysis, severity scoring, topic clustering & one-click market-research reports.",
-      "created_at": "2026-08-24T12:15:16+00:00",
-      "html_url": "https://github.com/Mocas-12/gh-pain-intel"
-    },
-    "1353721470": {
-      "full_name": "arjun988/aimake",
-      "description": "The incremental build system for AI applications.",
-      "created_at": "2026-09-01T15:20:21+00:00",
-      "html_url": "https://github.com/arjun988/aimake"
-    },
-    "1352365799": {
-      "full_name": "yxpil/bit",
-      "description": "\u3010\u5df2\u505c\u6b62\u7ef4\u62a4\u3011\u539f\u540d BIT \u00b7 \u672c\u5730\u4f18\u5148\u7684\u684c\u9762\u7aef AI Agent \u5de5\u5177\u4e2d\u67a2\uff08\u5de5\u5177\u6ce8\u518c / MCP / \u6280\u80fd / \u8fdc\u7a0b API\uff09\u2014 \u5df2\u66f4\u540d\u300c\u89e6\u624b\u602a Tentacle\u300d\uff0c\u65b0\u4ed3\u5e93\u89c1 yxpil/BrainTentacle",
-      "created_at": "2026-08-31T12:06:26+00:00",
-      "html_url": "https://github.com/yxpil/bit"
-    },
-    "1350488158": {
-      "full_name": "bon5co/bermuda",
-      "description": "Orchestration under Claude Code on herdr: flows an agent cannot skip, jobs on a clock, threads with claims, and a forum agents search later",
-      "created_at": "2026-08-29T10:25:24+00:00",
-      "html_url": "https://github.com/bon5co/bermuda"
-    },
-    "1349599356": {
-      "full_name": "brtydse100/vllm-optimizer",
-      "description": "Benchmark-driven configuration optimization for vLLM inference servers",
-      "created_at": "2026-08-28T12:54:38+00:00",
-      "html_url": "https://github.com/brtydse100/vllm-optimizer"
-    },
-    "1365913701": {
-      "full_name": "alexshpunt/explicit-edit-benchmark",
-      "description": "Benchmark coding agents and agent harnesses on 226 deterministic file-editing tasks with byte-exact verification and a public leaderboard.",
-      "created_at": "2026-09-11T11:02:34+00:00",
-      "html_url": "https://github.com/alexshpunt/explicit-edit-benchmark"
-    },
-    "1353794922": {
-      "full_name": "Mcd0LUO/Celestea-Harness-Studio",
-      "description": "Self-hosted AI agent harness: web UI + HTTP API, sandboxed tool execution, persistent workspace memory, selection quoting, browser and computer use. TypeScript, zero runtime deps, one command to start.",
-      "created_at": "2026-09-01T16:35:04+00:00",
-      "html_url": "https://github.com/Mcd0LUO/Celestea-Harness-Studio"
-    },
-    "1351331903": {
-      "full_name": "airasalish/warrant---Razorpay-2026",
-      "description": "AI risk manager for chargeback disputes \u2014 Razorpay AI Buildathon 2026, Track 2",
-      "created_at": "2026-08-30T11:16:08+00:00",
-      "html_url": "https://github.com/airasalish/warrant---Razorpay-2026"
-    },
-    "1359274599": {
-      "full_name": "ashishsinha1602/schemagate",
-      "description": "Text-to-SQL access control: schema selection that gives the LLM only the tables the caller is allowed to read. Row-level-security-aware table pruning for LangChain, MCP and any SQL agent. Postgres, Oracle, MySQL, SQL Server. 75% fewer prompt tokens.",
-      "created_at": "2026-09-06T15:28:25+00:00",
-      "html_url": "https://github.com/ashishsinha1602/schemagate"
-    },
-    "1352030337": {
-      "full_name": "2540581291/deep-narrative-engine",
-      "description": "\u6df1\u5ea6-\u53d9\u4e8b\u5f15\u64ce\u662f\u4e00\u4e2a\u5168\u7a0b\u7531AI \u9a71\u52a8\u7684\u6210\u4eba\u5185\u5bb9\u521b\u4f5c\u684c\u9762\u5de5\u5177\uff08Electron + JavaScript\uff09\u3002\u4ee5\u89d2\u8272\u5361\u4e3a\u6838\u5fc3\uff1a\u53ef\u7528 AI \u751f\u6210\u3001\u6216\u4ece\u5c0f\u8bf4\u63d0\u53d6\u89d2\u8272\uff0c\u518d\u501f\u52a9\u5927\u6a21\u578b\u521b\u4f5c\u6210\u4eba\u865a\u6784\u5185\u5bb9\u3002 AI-driven adult content creation desktop tool (Electron + JavaScript). Character-card-centric: generate or extract characters via AI, then craft adult fiction with an LLM.",
-      "created_at": "2026-08-31T05:27:54+00:00",
-      "html_url": "https://github.com/2540581291/deep-narrative-engine"
-    },
-    "1342648621": {
-      "full_name": "sx4im/resultseal",
-      "description": "Deterministic observation-integrity contracts for AI-agent tool results. HTTP 200 is not an observation.",
-      "created_at": "2026-08-22T09:21:42+00:00",
-      "html_url": "https://github.com/sx4im/resultseal"
-    },
-    "1364589168": {
-      "full_name": "alexgreensh/eval-genius",
-      "description": "Teach your agent to work with evals: WHEN you actually need an eval or benchmark, HOW to build one that holds up, and how to read what it tells you. Deterministic-first, tool-agnostic.",
-      "created_at": "2026-09-10T16:56:02+00:00",
-      "html_url": "https://github.com/alexgreensh/eval-genius"
-    },
-    "1347757724": {
-      "full_name": "bex-co/muse-code-acp",
-      "description": "Unofficial ACP adapter for Meta's Muse Code \u2014 use Muse in Zed, VS Code, and other Agent Client Protocol editors with streaming, tools, sessions, modes, auth, and skills.",
-      "created_at": "2026-08-26T20:11:53+00:00",
-      "html_url": "https://github.com/bex-co/muse-code-acp"
-    },
-    "1351518917": {
-      "full_name": "liza-studio/skillmem",
-      "description": "Self-improving skill memory for coding agents: learn, recall, reinforce, decay \u2014 with provenance on every memory and trust only you grant. Local SQLite, no API key, no cloud.",
-      "created_at": "2026-08-30T15:38:19+00:00",
-      "html_url": "https://github.com/liza-studio/skillmem"
-    },
-    "1355707240": {
-      "full_name": "ialakey/shorts-factory",
-      "description": "Long video \u2192 vertical Shorts. Multi-signal moment scoring instead of prompting an LLM, plus a virtual camera that reframes 9:16 like a human operator. One config.yaml drives the whole pipeline.",
-      "created_at": "2026-09-03T08:24:00+00:00",
-      "html_url": "https://github.com/ialakey/shorts-factory"
-    },
-    "1341859277": {
-      "full_name": "EightPotions/Myli",
-      "description": "Multi-Agent Harness for Visual Design",
-      "created_at": "2026-08-21T13:47:19+00:00",
-      "html_url": "https://github.com/EightPotions/Myli"
-    },
-    "1359667711": {
-      "full_name": "zmxnpquryet-gif/Localllmandroid",
-      "description": "Offline on-device LLM chat for Android (llama.cpp GGUF + LiteRT-LM)",
-      "created_at": "2026-09-07T02:23:34+00:00",
-      "html_url": "https://github.com/zmxnpquryet-gif/Localllmandroid"
-    },
-    "1343701822": {
-      "full_name": "charnamel/ai-wuxia-novel-rpg",
-      "description": "AI\u6b66\u4fa0\u5c0f\u8bf4\u4ea4\u4e92RPG\uff1aLLM\u5b9e\u65f6\u5267\u60c5\u751f\u6210 + d20\u9ab0\u5b50\u68c0\u5b9a + \u56de\u5408\u5236\u6218\u6597 + \u591a\u5c42\u8bb0\u5fc6 + \u4e16\u754c\u4e66\u68c0\u7d22 | AI-driven wuxia interactive novel RPG",
-      "created_at": "2026-08-23T11:38:28+00:00",
-      "html_url": "https://github.com/charnamel/ai-wuxia-novel-rpg"
-    },
-    "1349103679": {
-      "full_name": "TannerMidd/SpecPi",
-      "description": "A minimal, explicit, provider-safe harness for the Pi coding agent",
-      "created_at": "2026-08-28T01:49:53+00:00",
-      "html_url": "https://github.com/TannerMidd/SpecPi"
-    },
-    "1348410955": {
-      "full_name": "xiayiyang831xyy/AITC-Studio",
-      "description": "\u9762\u5411\u6d4b\u8bd5\u5de5\u7a0b\u5e08\u7684 AI \u6d4b\u8bd5\u7528\u4f8b\u751f\u6210\u4e0e\u7ba1\u7406\u5e73\u53f0\uff0c\u5c06\u9700\u6c42\u7ed3\u6784\u5316\u3001RAG \u77e5\u8bc6\u589e\u5f3a\u3001\u591a Agent \u7528\u4f8b\u751f\u6210\u3001\u8d28\u91cf\u8bc4\u6d4b\u3001\u4eba\u5de5\u8bc4\u5ba1\u4e0e\u6d4b\u8bd5\u6267\u884c\u4e32\u6210\u4e00\u6761\u53ef\u8ffd\u6eaf\u3001\u53ef\u6062\u590d\u7684\u751f\u4ea7\u94fe\u8def\u3002",
-      "created_at": "2026-08-27T11:29:13+00:00",
-      "html_url": "https://github.com/xiayiyang831xyy/AITC-Studio"
-    },
-    "1352076702": {
-      "full_name": "kaitas/github-portfolio-template",
-      "description": "\u30d6\u30e9\u30a6\u30b6\u3060\u3051\u3067\u4f5c\u308c\u308b\u3001\u3044\u3061\u3070\u3093\u5c0f\u3055\u3044\u30dd\u30fc\u30c8\u30d5\u30a9\u30ea\u30aa\u3002\u30d3\u30eb\u30c9\u4e0d\u8981\u30fb\u30bf\u30fc\u30df\u30ca\u30eb\u4e0d\u8981\u3002\u751f\u6210AI\u306e\u4f5c\u54c1\u3092\u4e26\u3079\u308b\u524d\u63d0\u3067\u3059\u304c\u5199\u771f\u3067\u3082\u7d75\u3067\u3082\u3069\u3046\u305e\u3002",
-      "created_at": "2026-08-31T06:29:41+00:00",
-      "html_url": "https://github.com/kaitas/github-portfolio-template"
-    },
-    "1347638753": {
-      "full_name": "SamurAIGPT/open-ai-video-agent",
-      "description": "AI agent for video production \u2014 text/image-to-video generation, avatar/UGC talking-head videos, and data-driven ad-creative remakes, powered by muapi.ai.",
-      "created_at": "2026-08-26T17:59:37+00:00",
-      "html_url": "https://github.com/SamurAIGPT/open-ai-video-agent"
-    },
-    "1347645556": {
-      "full_name": "SamurAIGPT/open-ai-sales-agent",
-      "description": "An AI agent for sales \u2014 lead generation, LinkedIn outreach, company enrichment, and email verification \u2014 backed by real B2B data APIs.",
-      "created_at": "2026-08-26T18:07:12+00:00",
-      "html_url": "https://github.com/SamurAIGPT/open-ai-sales-agent"
-    },
-    "1349572739": {
-      "full_name": "Nahush11/LLM_Drone",
-      "description": "Universit\u00e4tsprojekt",
-      "created_at": "2026-08-28T12:20:57+00:00",
-      "html_url": "https://github.com/Nahush11/LLM_Drone"
-    },
-    "1348681550": {
-      "full_name": "halochamp/MCP-LinkGPT",
-      "description": "An MCP bridge that lets Codex directly query ChatGPT through Browser Use.",
-      "created_at": "2026-08-27T16:01:30+00:00",
-      "html_url": "https://github.com/halochamp/MCP-LinkGPT"
-    },
-    "1353778206": {
-      "full_name": "masterofnuggets313/chaotic-llm",
-      "description": "STS-Prog: LLM architecture without attention that beats parameter-matched transformer on retrieval (PC/chaotic synchronization)",
-      "created_at": "2026-09-01T16:17:41+00:00",
-      "html_url": "https://github.com/masterofnuggets313/chaotic-llm"
-    },
-    "1354425362": {
-      "full_name": "DaBinBinah/free-LLM",
-      "description": "\u4e2d\u56fd\u7684\u514d\u8d39\u5927\u6a21\u578b\uff0c\u4e00\u4ee3\u4eba\u6709\u4e00\u4ee3\u4eba\u8981\u9886\u7684\u9e21\u86cb\uff1bFree AI models in China \u2014 every generation gets its own batch of free eggs to collect. \ud83e\udd5a",
-      "created_at": "2026-09-02T06:49:17+00:00",
-      "html_url": "https://github.com/DaBinBinah/free-LLM"
-    },
-    "1351590971": {
-      "full_name": "ARA-Labs/PULP-LLM",
-      "description": "Teach an Open Model Everything About Your Chip",
-      "created_at": "2026-08-30T17:14:37+00:00",
-      "html_url": "https://github.com/ARA-Labs/PULP-LLM"
-    },
-    "1353612693": {
-      "full_name": "12ziyad/llmobi",
-      "description": "AI that never leaves your phone - an app store for local LLMs on Android. llama.cpp + GGUF, fully offline after download.",
-      "created_at": "2026-09-01T13:35:47+00:00",
-      "html_url": "https://github.com/12ziyad/llmobi"
-    },
-    "1346970804": {
-      "full_name": "QwenLM/E-CommerceBench",
-      "description": "Long-horizon benchmark where 18 LLM agents got \u00a5100,000 each and ran simulated online stores for 365 days on real market data: negotiating with suppliers, pricing, managing inventory, keeping cash flow alive.",
-      "created_at": "2026-08-26T06:10:37+00:00",
-      "html_url": "https://github.com/QwenLM/E-CommerceBench"
-    },
-    "1355150344": {
-      "full_name": "internetphysics/live-classroom",
-      "description": "A live TV channel that teaches whatever you type \u2014 LLM-planned lessons rendered just-in-time as 1970s-style cartoons by MiniMax H3 Max Turbo, playing on a CRT in a 3D classroom. Bring your own fal key.",
-      "created_at": "2026-09-02T19:24:07+00:00",
-      "html_url": "https://github.com/internetphysics/live-classroom"
-    },
-    "1366628185": {
-      "full_name": "Synero/hermes-live-voice",
-      "description": "Full-duplex Live Voice for Hermes Desktop \u2014 GPT-Live-1 on the Codex subscription, with voice tool calls and task delegation to your own agent.",
-      "created_at": "2026-09-11T19:43:28+00:00",
-      "html_url": "https://github.com/Synero/hermes-live-voice"
-    },
-    "1344028176": {
-      "full_name": "0xBakeer/inference-atlas",
-      "description": "A community-owned map of LLM inference engine configurations \u2014 benchmarks, evals and coverage gaps, hosted on GitHub Pages. The repo is the database.",
-      "created_at": "2026-08-23T17:22:45+00:00",
-      "html_url": "https://github.com/0xBakeer/inference-atlas"
-    },
-    "1348638682": {
-      "full_name": "getrefined/Qwen3.8-Flash-Next-NVFP4-vLLM-DGX-Spark",
-      "description": "First vLLM deployment of Qwen3.8-Flash-Next (RadixArk NVFP4) on 2\u00d7 DGX Spark (GB10/SM121) \u2014 TP2+EP, MTP speculative decode, CUDA graphs, 262K context. Includes the 3-line PLE FP8 quant-resolver patch the official day-0 image needs, launcher, benchmarks, and gotchas for multi-pair Spark fleets.",
-      "created_at": "2026-08-27T15:16:06+00:00",
-      "html_url": "https://github.com/getrefined/Qwen3.8-Flash-Next-NVFP4-vLLM-DGX-Spark"
-    },
-    "1354619562": {
-      "full_name": "TheBlewish/Academic-AI-Literature-Reviewer-Ollama",
-      "description": "Automated literature reviews using local LLMs via Ollama. Searches academic databases, acquires full-text papers, and writes APA 7th reviews where the model is structurally prevented from fabricating quotes \u2014 every quote is verified verbatim and is formated in APA7th.",
-      "created_at": "2026-09-02T10:17:33+00:00",
-      "html_url": "https://github.com/TheBlewish/Academic-AI-Literature-Reviewer-Ollama"
-    },
-    "1342854250": {
-      "full_name": "DhruvarajK/Glitch",
-      "description": "A modular, production-grade Windows desktop pet featuring autonomous physics, zero-token local intent processing, and decoupled LLM intelligence.",
-      "created_at": "2026-08-22T13:46:52+00:00",
-      "html_url": "https://github.com/DhruvarajK/Glitch"
-    },
-    "1364510123": {
-      "full_name": "AcidGr/dsh-web-whale-maid",
-      "description": "DeepSeek Harness (dsh) Web plugin \u2014 Anime maid whale desktop pet with satiety system and real-time LLM interaction",
-      "created_at": "2026-09-10T16:05:18+00:00",
-      "html_url": "https://github.com/AcidGr/dsh-web-whale-maid"
-    },
-    "1344448641": {
-      "full_name": "pixelfogg/Plyxo-CRO-SEO-AIO-AEO-GEO",
-      "description": "Open-Source AI-Powered CRO, SEO, SXO, AEO & GEO Website Audit Tool. Automated Conversion Rate Optimization, AI Search Visibility (ChatGPT/Perplexity), Core Web Vitals & Visual UX Friction Detection.",
-      "created_at": "2026-08-24T02:44:01+00:00",
-      "html_url": "https://github.com/pixelfogg/Plyxo-CRO-SEO-AIO-AEO-GEO"
-    },
-    "1347655814": {
-      "full_name": "boluodaixue/paperpilot",
-      "description": "PaperPilot \u662f\u4e00\u4e2a\u57fa\u4e8e LangGraph \u7684\u4e2a\u4eba\u6df1\u5ea6\u7814\u7a76\u7cfb\u7edf\uff0c\u901a\u8fc7\u9012\u5f52 Deep Research \u00d7 LLM Wiki \u00d7 Obsidian\uff0c\u628a\u4e00\u6b21\u6027\u7814\u7a76\uff0c\u6c89\u6dc0\u4e3a\u53ef\u8ffd\u6eaf\u3001\u53ef\u95ee\u7b54\u3001\u53ef\u7ee7\u7eed\u751f\u957f\u7684\u957f\u671f\u77e5\u8bc6\u3002",
-      "created_at": "2026-08-26T18:14:46+00:00",
-      "html_url": "https://github.com/boluodaixue/paperpilot"
-    },
-    "1353799765": {
-      "full_name": "Shopify/claude-for-commerce-examples",
-      "description": "Shopify implementations of Anthropic's commerce-agents blueprint: a storefront shopping agent over UCP and Sign in with Shop, and a merchant agent over the Admin API",
-      "created_at": "2026-09-01T16:40:06+00:00",
-      "html_url": "https://github.com/Shopify/claude-for-commerce-examples"
-    },
-    "1350207783": {
-      "full_name": "luckeyfaraday/claude-of-duty",
-      "description": "Claude of Duty: Vibe Slops II \u2014 an unofficial browser-based Three.js FPS reconstruction.",
-      "created_at": "2026-08-29T02:30:58+00:00",
-      "html_url": "https://github.com/luckeyfaraday/claude-of-duty"
-    },
-    "1354129175": {
-      "full_name": "mikefutia/brand-studio-claude-skill",
-      "description": "",
-      "created_at": "2026-09-01T23:49:10+00:00",
-      "html_url": "https://github.com/mikefutia/brand-studio-claude-skill"
-    },
-    "1348793218": {
-      "full_name": "hkqr/my-free-code",
-      "description": "Open-source multi-provider AI gateway for Claude Code and other coding agents, with model routing, streaming, tools, reasoning, fallbacks, and local model support",
-      "created_at": "2026-08-27T17:59:23+00:00",
-      "html_url": "https://github.com/hkqr/my-free-code"
-    },
-    "1353115006": {
-      "full_name": "InternLM/InternLumina-U2",
-      "description": "InternLumina-U2: A Multi-Codebook Diffusion Large Language Model for Omni-Visual Understanding, Image Generation and Editing",
-      "created_at": "2026-09-01T04:03:51+00:00",
-      "html_url": "https://github.com/InternLM/InternLumina-U2"
-    },
-    "1354057657": {
-      "full_name": "simonw/claude-system-prompts",
-      "description": "Tracking changes to Claude's published system prompts",
-      "created_at": "2026-09-01T21:49:59+00:00",
-      "html_url": "https://github.com/simonw/claude-system-prompts"
-    },
-    "1355679277": {
-      "full_name": "yibie/ai-native-sdlc-playbook",
-      "description": "The AI-Native SDLC Playbook \u2014 Anthropic Claude Academy course as EPUB ebook",
-      "created_at": "2026-09-03T07:54:45+00:00",
-      "html_url": "https://github.com/yibie/ai-native-sdlc-playbook"
-    },
-    "1354207711": {
-      "full_name": "wanwan-666/DocChat-RAG",
-      "description": "RAG \u77e5\u8bc6\u5e93\u670d\u52a1\uff0c\u5b9e\u73b0\u6587\u6863\u5bfc\u5165\u3001\u81ea\u9002\u5e94\u9012\u5f52\u5207\u7247\u3001Redis \u5411\u91cf\u68c0\u7d22\uff0c\u652f\u6301\u591a\u8f6e\u957f\u5bf9\u8bdd\u4e0e\u6d41\u5f0f\u95ee\u7b54\u3002",
-      "created_at": "2026-09-02T01:59:45+00:00",
-      "html_url": "https://github.com/wanwan-666/DocChat-RAG"
-    },
-    "1355432617": {
-      "full_name": "hermes2545/mojak-claude-agentic-os",
-      "description": "",
-      "created_at": "2026-09-03T02:33:02+00:00",
-      "html_url": "https://github.com/hermes2545/mojak-claude-agentic-os"
-    },
-    "1343847141": {
-      "full_name": "mincasurong/IsaacSim_GeminiRobotics",
-      "description": "",
-      "created_at": "2026-08-23T14:17:56+00:00",
-      "html_url": "https://github.com/mincasurong/IsaacSim_GeminiRobotics"
-    },
-    "1354497019": {
-      "full_name": "Junhan2/oh-my-fable",
-      "description": "Claude Fable 5.1 prompting guide as Claude Code skills (KO/EN/ZH). Output quality goes up on Opus 5 and Sonnet 5 too.",
-      "created_at": "2026-09-02T08:02:08+00:00",
-      "html_url": "https://github.com/Junhan2/oh-my-fable"
-    },
-    "1342400453": {
-      "full_name": "nazirlouis/ada-pi",
-      "description": "Full-duplex Gemini Live voice assistant with an animated ADA face for Raspberry Pi",
-      "created_at": "2026-08-22T03:09:11+00:00",
-      "html_url": "https://github.com/nazirlouis/ada-pi"
-    },
-    "1350142656": {
-      "full_name": "JoshRob297/opencode-antigravity-auth",
-      "description": "Google Antigravity OAuth plugin for OpenCode (Revived & Extended) - Unlocks Gemini 3.8 Flash, 3.7 Flash, 3.1 Pro & Claude 4.6 ",
-      "created_at": "2026-08-29T00:22:50+00:00",
-      "html_url": "https://github.com/JoshRob297/opencode-antigravity-auth"
-    },
-    "1349286899": {
-      "full_name": "topjohnwu/agy-gyro",
-      "description": "Local retry proxy to stabilize the Antigravity CLI (agy) against transient Google Gemini API errors",
-      "created_at": "2026-08-28T06:44:58+00:00",
-      "html_url": "https://github.com/topjohnwu/agy-gyro"
-    },
-    "1354191602": {
-      "full_name": "Dixie-sketch/Clawdeck",
-      "description": "SideCrab / Claw'deck: an ambient Claude Code status panel for the Corsair Xeneon Edge (standalone panel host + local companion, Windows)",
-      "created_at": "2026-09-02T01:32:54+00:00",
-      "html_url": "https://github.com/Dixie-sketch/Clawdeck"
-    },
-    "1355981066": {
-      "full_name": "sanqianzilanyue/claude-code-in-wechat",
-      "description": "\u628a\u7ec8\u7aef\u91cc\u7684 Claude Code \u63a5\u8fdb\u5fae\u4fe1\uff1a\u5b98\u65b9 channels + \u817e\u8baf iLink Bot API \u626b\u7801\u63a5\u5165\uff1b\u4ee5\u53ca ret=0 \u5374\u6536\u4e0d\u5230\u7684\u9759\u9ed8\u98ce\u63a7\u2014\u2014\u5224\u636e(message_id)\u3001\u4ec0\u4e48\u6709\u7528\u4ec0\u4e48\u6ca1\u7528\u3001\u522b\u8e29\u7684\u7ebf\u3002\u9644\u811a\u672c\u3002\u4f5c\u8005\u00b7\u79bb",
-      "created_at": "2026-09-03T12:59:01+00:00",
-      "html_url": "https://github.com/sanqianzilanyue/claude-code-in-wechat"
-    },
-    "1350205393": {
-      "full_name": "LiStudioorg/licode",
-      "description": "licode \u662f\u4e00\u6b3e\u7528 Go \u7f16\u5199\u3001\u5355\u4e8c\u8fdb\u5236\u9759\u6001\u7f16\u8bd1\u7684 AI \u7f16\u7a0b\u52a9\u624b\uff0c\u53ea\u6709 Web \u754c\u9762\u2014\u2014\u6d4f\u89c8\u5668\u6253\u5f00\u5373\u7528\uff0c\u652f\u6301 OpenAI\u3001Claude\u3001Gemini\u3001Ollama \u7b49\u591a\u5bb6\u5382\u5546\u3002",
-      "created_at": "2026-08-29T02:26:22+00:00",
-      "html_url": "https://github.com/LiStudioorg/licode"
-    },
-    "1355493869": {
-      "full_name": "icesword0760/matou",
-      "description": "macOS workbench for running many Claude Code sessions side by side: session cards, fork DAG, kanban, tiered notifications, Git worktrees. \u7801\u5934\uff1aClaude Code \u591a\u4f1a\u8bdd\u684c\u9762\u5de5\u4f5c\u53f0",
-      "created_at": "2026-09-03T04:05:41+00:00",
-      "html_url": "https://github.com/icesword0760/matou"
-    },
-    "1353954206": {
-      "full_name": "mathdevie/devie-ai-quota-tracker",
-      "description": "Dashboard + macOS menu bar for tracking AI subscription quotas in one place (Claude Code, Codex, Gemini CLI, GitHub Copilot, and Cursor). Supports multi-accounts, notifications, and session-timer start optimization.",
-      "created_at": "2026-09-01T19:30:49+00:00",
-      "html_url": "https://github.com/mathdevie/devie-ai-quota-tracker"
-    },
-    "1352612101": {
-      "full_name": "dzenplatform/embedder",
-      "description": "Dzen embedder service with OpenAI/Cloudflare compatible API",
-      "created_at": "2026-08-31T16:12:24+00:00",
-      "html_url": "https://github.com/dzenplatform/embedder"
-    },
-    "1353081988": {
-      "full_name": "minosdevs/app-review-pain-miner",
-      "description": "Skill Claude Code : mine les avis App Store d'une app iOS pour en sortir des id\u00e9es de features",
-      "created_at": "2026-09-01T03:14:24+00:00",
-      "html_url": "https://github.com/minosdevs/app-review-pain-miner"
-    },
-    "1342395415": {
-      "full_name": "thebuggeddev/koi-fish",
-      "description": "A moving, lifelike koi fish inside a website that reacts to you, developed in Three.js using Claude Opus 5",
-      "created_at": "2026-08-22T02:58:54+00:00",
-      "html_url": "https://github.com/thebuggeddev/koi-fish"
-    },
-    "1351394391": {
-      "full_name": "0xdad0/jadx-mcp",
-      "description": "MCP (Model Context Protocol) server as a jadx-gui plugin. Lets an AI client (Claude Code, Claude Desktop, or any MCP client) analyze the app currently loaded in jadx-gui.",
-      "created_at": "2026-08-30T12:51:53+00:00",
-      "html_url": "https://github.com/0xdad0/jadx-mcp"
-    },
     "1355117708": {
       "full_name": "markfulton/ai-employees",
       "description": "Open source AI Employees. 8 scheduled business roles, 60 routines, on Claude Code and 10 other harnesses. They drive your browser the way you do and improve every run. You own the files.",
       "created_at": "2026-09-02T18:47:36+00:00",
       "html_url": "https://github.com/markfulton/ai-employees"
-    },
-    "1346905971": {
-      "full_name": "ChantillyAn/wechat-video-skill",
-      "description": "WeChat Video Skill \u2014\u2014 \u6559\u4f1a\u4f60\u7684 AI Agent \u4e0b\u8f7d\u5fae\u4fe1\u89c6\u9891\u53f7\u89c6\u9891\u7684 Agent Skill\u3002\u7ed9\u94fe\u63a5 \u2192 \u89e3\u5bc6\u65e0\u6c34\u5370 MP4 \u2192 \u81ea\u52a8\u53d1\u56de\u5fae\u4fe1/\u98de\u4e66\u3002\u9002\u7528\u4e8e Claude Code / Codex / Cursor / DSH\u3002",
-      "created_at": "2026-08-26T04:41:13+00:00",
-      "html_url": "https://github.com/ChantillyAn/wechat-video-skill"
-    },
-    "1363043721": {
-      "full_name": "StrengW/cc-switch-codex-cross-provider-bridge",
-      "description": "\u8ba9 Codex \u5728 CC Switch \u7684 OpenAI Official \u4e0e\u7b2c\u4e09\u65b9 Provider \u4e4b\u95f4\u5207\u6362\u540e\uff0c\u4ecd\u80fd\u7ee7\u7eed\u539f\u6765\u7684\u4f1a\u8bdd\u3002Continue Codex sessions across OpenAI Official and third-party providers behind CC Switch.",
-      "created_at": "2026-09-09T17:58:47+00:00",
-      "html_url": "https://github.com/StrengW/cc-switch-codex-cross-provider-bridge"
-    },
-    "1355336107": {
-      "full_name": "JustVugg/anybridge",
-      "description": "Any website, within reach of any agent. Captures a site's native WebMCP tools and generates the bridge from the live DOM when there are none, exposing both over MCP to Claude Code, Codex and any MCP client.",
-      "created_at": "2026-09-02T23:46:54+00:00",
-      "html_url": "https://github.com/JustVugg/anybridge"
-    },
-    "1353842421": {
-      "full_name": "Senguk520/CodeRelay-tools",
-      "description": "CodeBuddy / WorkBuddy \u8d26\u53f7\u6c60\u7ba1\u7406\u5de5\u5177 \u00b7 Account pool manager \u2014\u2014 \u96c6\u4e2d\u7ba1\u7406 CodeBuddy \u4e2d\u56fd\u7ad9\u591a\u8d26\u53f7\uff0c\u5185\u7f6e\u672c\u5730 OpenAI \u517c\u5bb9\u53cd\u4ee3\uff0c\u591a\u8d26\u53f7\u8c03\u5ea6 / \u914d\u989d\u76d1\u63a7 / \u6bcf\u65e5\u7b7e\u5230 / API Key \u7ba1\u7406 / \u6a21\u578b\u540c\u6b65\u4e0e\u672c\u5730\u7f13\u5b58 / \u8bf7\u6c42\u7edf\u8ba1 / \u7cfb\u7edf\u6258\u76d8\u901a\u77e5\u3002Multi-account routing, quota monitoring, daily check-in, local reverse proxy & more.",
-      "created_at": "2026-09-01T17:24:34+00:00",
-      "html_url": "https://github.com/Senguk520/CodeRelay-tools"
-    },
-    "1359168448": {
-      "full_name": "yubinbin32-ops/ContextOS",
-      "description": "Keep AI coding context focused with AST slices, compact verification receipts and persistent project state. Includes a reproducible MCP benchmark.",
-      "created_at": "2026-09-06T13:29:09+00:00",
-      "html_url": "https://github.com/yubinbin32-ops/ContextOS"
-    },
-    "1365582966": {
-      "full_name": "aimod-cc/agent2api",
-      "description": "\u591a\u63d0\u4f9b\u5546\u672c\u5730\u7f51\u5173\uff1a\u628a WorkBuddy\u3001\u5c0f\u6d63\u718a\u3001CatPaw\u3001AutoClaw\u3001Qoder\u3001Cline \u7684\u767b\u5f55\u6001\u8f6c\u6210\u672c\u5730 OpenAI \u517c\u5bb9 API\uff0c\u542b\u591a\u8d26\u53f7\u7ba1\u7406\u3001\u6a21\u578b\u8def\u7531\u3001\u51fa\u7f51\u4ee3\u7406\u4e0e\u5185\u5bb9\u8131\u654f\u3002",
-      "created_at": "2026-09-11T07:42:14+00:00",
-      "html_url": "https://github.com/aimod-cc/agent2api"
-    },
-    "1349198892": {
-      "full_name": "swaylq/sunge-skill",
-      "description": "\u5b59\u5272.skill \u00b7 \u5b59\u5b66 \u2014\u2014 \u84b8\u998f\u5b59\u5b87\u6668\u7684\u5927\u8111\u3001\u5199\u4f5c\u98ce\u683c\u3001\u51b3\u7b56\u80fd\u529b\uff0c\u4e09\u8005\u5408\u4e00\u3002Distills Justin Sun's mind, writing style & decision-making into one Claude skill.",
-      "created_at": "2026-08-28T04:29:19+00:00",
-      "html_url": "https://github.com/swaylq/sunge-skill"
     },
     "1377399471": {
       "full_name": "v-modal/awesome-jev-tools",
@@ -1047,7 +255,7 @@
     },
     "1373847203": {
       "full_name": "Blackman99/deskfolk",
-      "description": "Hand it to Bots that see it through.",
+      "description": "Hand it off. Walk away. Return to results.",
       "created_at": "2026-09-17T02:39:56+00:00",
       "html_url": "https://github.com/Blackman99/deskfolk"
     },
@@ -1659,7 +867,7 @@
     },
     "1350992371": {
       "full_name": "Pixel-CLI/pixel",
-      "description": "A local code index for AI coding agents: search, symbols, callers, task scope and Git history from one CLI, so your agent reads the lines it needs instead of whole files.",
+      "description": "A tool that replaces everything that can be deterministic in repository work: search, symbols, callers, task scope, history, review and Git from one local CLI, so your AI coding agent spends its tokens on the hard part.",
       "created_at": "2026-08-30T00:11:10+00:00",
       "html_url": "https://github.com/Pixel-CLI/pixel"
     },
@@ -2619,7 +1827,7 @@
     },
     "1352547997": {
       "full_name": "fitchmultz/pi-posthorse",
-      "description": "Posthorse: fresh context, same journey. Native no-summary context windows for the fitchmultz/pi fork of the Pi coding agent, with rollover tools, durable notes, and history recovery.",
+      "description": "Posthorse: fresh context, same journey. No-summary context rollover for the Pi coding agent (official Pi 1.0+ or the fitchmultz/pi fork), with durable notes and history recovery.",
       "created_at": "2026-08-31T15:06:23+00:00",
       "html_url": "https://github.com/fitchmultz/pi-posthorse"
     },
@@ -3027,7 +2235,7 @@
     },
     "1362865373": {
       "full_name": "henit-chobisa/deck",
-      "description": "A presentation surface for coding agents: real file:line ranges, narration, and flow diagrams you can play \u2014 instead of five paragraphs of prose. Walk it, comment, submit. Code review, architecture walkthroughs, plans. Native, in Rust. Claude Code, Codex, Cursor, Amp.",
+      "description": "Your agents grab context at 100x. You still understand at 1x, and approve anyway. Bridge the gap: clarity, so speed doesn't cost quality. Argue, Decide and Lock. Written in Rust  \ud83e\udd80",
       "created_at": "2026-09-09T15:26:55+00:00",
       "html_url": "https://github.com/henit-chobisa/deck"
     },
@@ -3105,7 +2313,7 @@
     },
     "1376846115": {
       "full_name": "agent-for-dummys/Agent-For-Dummies",
-      "description": "Agent/RAG/AI\u5e94\u7528\uff1aAgent\u5b66\u4e60\u7b14\u8bb0",
+      "description": "Agent/RAG/AI\u5e94\u7528\uff1aAgent\u5b66\u4e60\u7b14\u8bb0 \u56fe\u6587\u7ed3\u5408\u6613\u7406\u89e3\u7248\u5165\u95e8\u5b66\u4e60\u7b14\u8bb0",
       "created_at": "2026-09-19T07:04:15+00:00",
       "html_url": "https://github.com/agent-for-dummys/Agent-For-Dummies"
     },
@@ -4401,7 +3609,7 @@
     },
     "1353366289": {
       "full_name": "openmasq/openmasq",
-      "description": "Privacy-first desktop chat for multiple LLMs: sensitive values are redacted on-device before any network call, and restored in the reply. Your own keys, a local model, or a CLI subscription.",
+      "description": "Privacy-first desktop chat for multiple LLMs: sensitive values are redacted on-device before any network call, and restored in the reply. Your own keys, a local model, or a CLI subscription. The engine ships on npm as @openmasq/redact.",
       "created_at": "2026-09-01T09:14:05+00:00",
       "html_url": "https://github.com/openmasq/openmasq"
     },
@@ -5307,7 +4515,7 @@
     },
     "1368263002": {
       "full_name": "Dawncoral/wallaby-agent-rules",
-      "description": "AI remembers, you find. Long-term memory + project map for any AI coding tool \u2014 two paste-in prompts, five plain files.",
+      "description": "AI remembers, you find. Long-term memory + project map for any AI coding tool \u2014 two paste-in prompts, five plain files, zero dependencies. Trust-building mode: memory earns its way in.",
       "created_at": "2026-09-13T10:01:35+00:00",
       "html_url": "https://github.com/Dawncoral/wallaby-agent-rules"
     },
@@ -6417,7 +5625,7 @@
     },
     "1381397567": {
       "full_name": "Avinash-jetwani/jevmem",
-      "description": "Automatic project memory for Claude Code: decisions, rules and dead ends saved to JEVMEM.md in your repo, brought back next session. In the Claude plugin directory and on the MCP Registry.",
+      "description": "jevmem saves the decisions, rules and failed approaches from your Claude Code chats to JEVMEM.md in your repo, and brings the relevant ones back next session.",
       "created_at": "2026-09-22T11:47:24+00:00",
       "html_url": "https://github.com/Avinash-jetwani/jevmem"
     },
@@ -7041,7 +6249,7 @@
     },
     "1361211094": {
       "full_name": "zapsyq/tracord_release",
-      "description": "\u8ff9\u5f55 Tracord \u2014\u2014\u57fa\u4e8e\u672c\u5730\u5c0f\u6a21\u578b\u591a\u667a\u80fd\u4f53\u7684\u667a\u80fd\u65c5\u884c\u89c4\u5212\u52a9\u624b / AI travel planner with local SLM multi-agents \u2014 light up visited cities on a map, log expenses with one sentence, and generate executable day-by-day itineraries from plain language.",
+      "description": "\u8ff9\u5f55 Tracord \u2014\u2014 \u57fa\u4e8e\u672c\u5730\u5c0f\u6a21\u578b\u591a\u667a\u80fd\u4f53\u7684\u667a\u80fd\u65c5\u884c\u89c4\u5212\u52a9\u624b / AI travel planner with local SLM multi-agents \u2014 light up visited cities on a map, log expenses with one sentence, and generate executable day-by-day itineraries from plain language.",
       "created_at": "2026-09-08T10:03:26+00:00",
       "html_url": "https://github.com/zapsyq/tracord_release"
     },
@@ -11451,7 +10659,7 @@
     },
     "1388367915": {
       "full_name": "cloveric/claude-drawing-skill",
-      "description": "Claude paints with code: a Claude Code skill for procedural illustration in 59 styles, from ink wash (\u6c34\u58a8), watercolour and ukiyo-e to stained glass, Roman mosaic, Art Deco, pop silkscreen, Delft tiles, thermal camera, X-ray, VHS tape, ballpoint doodles and a storybook animation. No image model: numpy + Pillow on a CPU, draw-on animation.",
+      "description": "Claude paints with code: a Claude Code skill for procedural illustration in 60 styles, from ink wash (\u6c34\u58a8), watercolour and ukiyo-e to stained glass, Roman mosaic, Art Deco, pop silkscreen, Delft tiles, thermal camera, X-ray, VHS tape, ballpoint doodles and a storybook animation. No image model: numpy + Pillow on a CPU, draw-on animation.",
       "created_at": "2026-09-26T01:45:26+00:00",
       "html_url": "https://github.com/cloveric/claude-drawing-skill"
     },
@@ -12710,10 +11918,10 @@
       "html_url": "https://github.com/pathetic777/mvu-studio"
     },
     "1354886573": {
-      "full_name": "PrisacariuRobert/openbot",
+      "full_name": "PrisacariuRobert/sidemates",
       "description": "The open-source alternative to OpenAI dots, Grok Bot and Siri AI: a team of AI teammates that works in your own Mac apps and asks before it acts. Free, private, no subscription.",
       "created_at": "2026-09-02T14:48:06+00:00",
-      "html_url": "https://github.com/PrisacariuRobert/openbot"
+      "html_url": "https://github.com/PrisacariuRobert/sidemates"
     },
     "1355288524": {
       "full_name": "LEO001020/zcode-loop-orchestra",
@@ -14601,7 +13809,7 @@
     },
     "1370979034": {
       "full_name": "PathGao/MoonDigest",
-      "description": "\u5728 B \u7ad9\u548c YouTube \u8bfb\u5b57\u5e55\u3001AI \u603b\u7ed3\u95ee\u7b54\u3001\u5b58\u8fdb Obsidian \u7684 Chrome \u6269\u5c55 \u00b7 Subtitles, AI summaries and Obsidian notes for Bilibili & YouTube",
+      "description": "\u7528 AI \u8bfb\u5b8c\u6536\u85cf\u7684\u89c6\u9891\u3001\u6574\u7406 B \u7ad9\u6536\u85cf\u5939\u7684 Chrome \u6269\u5c55\uff1a\u5b57\u5e55\u3001AI \u603b\u7ed3\u95ee\u7b54\u3001\u6536\u85cf\u5939\u5206\u62e3\uff0c\u5bfc\u51fa Markdown\uff0c\u53ef\u9009\u5199\u5165 Obsidian \u00b7 Read and triage saved Bilibili & YouTube videos with AI: subtitles, AI summaries, favorites triage, Markdown and optional Obsidian export",
       "created_at": "2026-09-15T06:03:15+00:00",
       "html_url": "https://github.com/PathGao/MoonDigest"
     },
@@ -15060,6 +14268,1734 @@
       "description": "AI reading-analysis skill for English exams (Gaokao / CET-4/6 / Kaoyan): question-type mapping, 10-class distractor taxonomy, 127-card methodology library; generates fully-explained annotated passages. Works as a Claude Code / WorkBuddy skill.",
       "created_at": "2026-09-04T19:00:08+00:00",
       "html_url": "https://github.com/shenquan520/reading-analysis"
+    },
+    "1402338989": {
+      "full_name": "Yamz-Labs/kyojin",
+      "description": "Kyojin: the Yamz inference engine for AMD Strix Halo (ROCm, gfx1151), built on ExLlamaV3. Runs 300B-class MoE models on one 128 GB mini PC.",
+      "created_at": "2026-10-02T20:45:48+00:00",
+      "html_url": "https://github.com/Yamz-Labs/kyojin"
+    },
+    "1402902820": {
+      "full_name": "vayungodara/cliproxy-rs",
+      "description": "Rust rewrite of CLIProxyAPI: drop-in compatible proxy for Claude, Codex, Gemini and OpenAI-compatible providers",
+      "created_at": "2026-10-03T08:42:43+00:00",
+      "html_url": "https://github.com/vayungodara/cliproxy-rs"
+    },
+    "1402307885": {
+      "full_name": "yxq953/MuseLite",
+      "description": "MuseLite is an open-source AI workspace combining chat, Agent tools, browser automation, and scheduled tasks for users who enjoy Muse and Dots.",
+      "created_at": "2026-10-02T20:10:49+00:00",
+      "html_url": "https://github.com/yxq953/MuseLite"
+    },
+    "1401600991": {
+      "full_name": "FrederikRogalski/tinycoral",
+      "description": "tinygrad on Google's Coral Edge TPU: reverse-engineered ISA, our own code generator and USB driver. A whole transformer runs on the stick. Written by AI agents.",
+      "created_at": "2026-10-02T11:44:13+00:00",
+      "html_url": "https://github.com/FrederikRogalski/tinycoral"
+    },
+    "1401562268": {
+      "full_name": "pooops15/muse-bridge",
+      "description": "Turn Muse (AI agent) into an OpenAI-compatible model (ms/muse) inside self-hosted 9Router for Hermes \u2014 file-queue bridge with native tool calls, unlimited batching & image understanding. Beginner tutorials in English & Indonesian",
+      "created_at": "2026-10-02T11:18:54+00:00",
+      "html_url": "https://github.com/pooops15/muse-bridge"
+    },
+    "1402635498": {
+      "full_name": "tsaipifong/whirl-llm",
+      "description": "WHIRL (Windows HIP Inference for RDNA LLMs): native Windows C++/HIP LLM inference engine for the AMD Radeon AI PRO R9700",
+      "created_at": "2026-10-03T04:01:51+00:00",
+      "html_url": "https://github.com/tsaipifong/whirl-llm"
+    },
+    "1399408287": {
+      "full_name": "devladinci/saystack",
+      "description": "Voice I/O for LLM chat UIs: dictation, read-along and a voice-reactive aura, for any OpenAI-compatible speech engine.",
+      "created_at": "2026-10-01T07:27:52+00:00",
+      "html_url": "https://github.com/devladinci/saystack"
+    },
+    "1403747111": {
+      "full_name": "0xgetz/shioriai2api",
+      "description": "Turn shiori.ai into an OpenAI-compatible API \u2014 pure Go, zero dependencies, streaming, reasoning, multi-account token pool.",
+      "created_at": "2026-10-04T00:38:20+00:00",
+      "html_url": "https://github.com/0xgetz/shioriai2api"
+    },
+    "1403165202": {
+      "full_name": "san086041-glitch/FailGate",
+      "description": "The acceptance layer for bug fixes: a failing test sealed for every bug, then used to grade every PR that claims to fix it \u2014 human or AI agent.",
+      "created_at": "2026-10-03T12:52:45+00:00",
+      "html_url": "https://github.com/san086041-glitch/FailGate"
+    },
+    "1402984092": {
+      "full_name": "ifrit98/Explainer",
+      "description": "An explanation compiler for Claude Code: first-principles explanations in controlled prose, diagrams, interactive pages, or 3Blue1Brown-style videos with local voice, checked for what they leave out and for what you did not need.",
+      "created_at": "2026-10-03T10:05:59+00:00",
+      "html_url": "https://github.com/ifrit98/Explainer"
+    },
+    "1404222787": {
+      "full_name": "SysikNagibator/AiPC",
+      "description": "\u0414\u0430\u0439\u0442\u0435 \u0430\u0433\u0435\u043d\u0442\u0443 \u00ab\u044d\u0442\u043e\u00bb \u2014 \u0438 \u0443 \u043d\u0435\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u044f\u0435\u0442\u0441\u044f \u043d\u0430\u0441\u0442\u043e\u044f\u0449\u0438\u0439 \u041f\u041a.",
+      "created_at": "2026-10-04T09:59:11+00:00",
+      "html_url": "https://github.com/SysikNagibator/AiPC"
+    },
+    "1400295300": {
+      "full_name": "pixelsmasher13/gridpath",
+      "description": "MCP server and desktop app for editing Excel - faster, and more efficient",
+      "created_at": "2026-10-01T15:53:38+00:00",
+      "html_url": "https://github.com/pixelsmasher13/gridpath"
+    },
+    "1403558608": {
+      "full_name": "hbk2636/neshank",
+      "description": "Free, open-source macOS bookmark manager: AI chat about your links, link\u2192mind map, built-in video downloader (YouTube, 1700+ sites), offline & private. \u514d\u8d39\u5f00\u6e90\u4e66\u7b7e\u7ba1\u7406\u5668 \u00b7 \u0646\u0634\u0627\u0646\u06a9",
+      "created_at": "2026-10-03T19:15:32+00:00",
+      "html_url": "https://github.com/hbk2636/neshank"
+    },
+    "1404190431": {
+      "full_name": "richig8-web/lyn0-academy",
+      "description": "Build your own personal AI agent, one mission at a time. Mission 01: your AI learns who it's working for.",
+      "created_at": "2026-10-04T09:21:47+00:00",
+      "html_url": "https://github.com/richig8-web/lyn0-academy"
+    },
+    "1393292148": {
+      "full_name": "leecaa/claude-code-message",
+      "description": "Unofficial: cross-machine SendMessage and group chat for Claude Code sessions over SSH",
+      "created_at": "2026-09-28T16:40:25+00:00",
+      "html_url": "https://github.com/leecaa/claude-code-message"
+    },
+    "1403120994": {
+      "full_name": "Router0824/OpsPilot-AI",
+      "description": "Open-source AI operations workspace for meetings, knowledge, decisions, tasks, risks, workflows, and organizational memory.",
+      "created_at": "2026-10-03T12:12:32+00:00",
+      "html_url": "https://github.com/Router0824/OpsPilot-AI"
+    },
+    "1403405380": {
+      "full_name": "lnblfkj-del/Dralo-Studio",
+      "description": "Dralo Studio \u77ed\u5267\u5de5\u574a | \u5f00\u6e90 AI \u77ed\u5267\u521b\u4f5c\u5de5\u4f5c\u53f0\uff1a\u5267\u672c\u521b\u4f5c\u3001\u65e0\u9650\u753b\u5e03\u3001\u667a\u80fd\u4f53\u30013D \u5206\u955c\u5bfc\u6f14\u53f0\u3001\u89d2\u8272\u4e0e\u573a\u666f\u7ba1\u7406\u3001\u591a\u6a21\u578b\u56fe\u50cf/\u89c6\u9891\u751f\u6210\u3001\u591a\u8f68\u526a\u8f91\u3002\u672c\u5730\u8fd0\u884c\uff0c\u81ea\u5907\u6a21\u578b\u3002Open-source AI short-drama studio with screenwriting, infinite canvas and storyboard workflows.",
+      "created_at": "2026-10-03T16:28:09+00:00",
+      "html_url": "https://github.com/lnblfkj-del/Dralo-Studio"
+    },
+    "1402116013": {
+      "full_name": "DaragonTech/LibLayaX",
+      "description": "Fast local AI decisions inside your application. A shared library and C API built on laya.cpp that runs the Laya typed-decision model in-process: no server, no Python. Windows, Linux and macOS, x64 and ARM64, CPU or GPU. An open-source alternative to Jev",
+      "created_at": "2026-10-02T17:13:19+00:00",
+      "html_url": "https://github.com/DaragonTech/LibLayaX"
+    },
+    "1403262018": {
+      "full_name": "yyyllllming/prism-bridge",
+      "description": "prism\u65b9\u6848\u89e3\u51b3chatgpt\u964d\u667a",
+      "created_at": "2026-10-03T14:11:08+00:00",
+      "html_url": "https://github.com/yyyllllming/prism-bridge"
+    },
+    "1394162799": {
+      "full_name": "apimartdyahafov/gpt-image-1.5-official-api-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:15:46+00:00",
+      "html_url": "https://github.com/apimartdyahafov/gpt-image-1.5-official-api-ko"
+    },
+    "1394159901": {
+      "full_name": "apimartdyahafov/gpt-image-1.5-official-api-ja",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:13:48+00:00",
+      "html_url": "https://github.com/apimartdyahafov/gpt-image-1.5-official-api-ja"
+    },
+    "1393494155": {
+      "full_name": "apimarteo/llm-api-gateway",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T17:57:27+00:00",
+      "html_url": "https://github.com/apimarteo/llm-api-gateway"
+    },
+    "1393312705": {
+      "full_name": "apimarthwyngc/cheapest-llm-api-id",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:47:39+00:00",
+      "html_url": "https://github.com/apimarthwyngc/cheapest-llm-api-id"
+    },
+    "1393480721": {
+      "full_name": "apimarteiszfurb9/affordable-llm-api-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T17:52:14+00:00",
+      "html_url": "https://github.com/apimarteiszfurb9/affordable-llm-api-ko"
+    },
+    "1393290974": {
+      "full_name": "apimartfp/affordable-llm-api-ru",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:40:01+00:00",
+      "html_url": "https://github.com/apimartfp/affordable-llm-api-ru"
+    },
+    "1393495000": {
+      "full_name": "apimartetccxd5a/llm-api-relay-fr",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T17:57:48+00:00",
+      "html_url": "https://github.com/apimartetccxd5a/llm-api-relay-fr"
+    },
+    "1393320383": {
+      "full_name": "apimarth5i/llm-api-gateway-id",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:50:27+00:00",
+      "html_url": "https://github.com/apimarth5i/llm-api-gateway-id"
+    },
+    "1393317230": {
+      "full_name": "apimarthwyngc/cheapest-llm-api-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:49:18+00:00",
+      "html_url": "https://github.com/apimarthwyngc/cheapest-llm-api-ko"
+    },
+    "1394181865": {
+      "full_name": "apimartfwey/llm-api-gateway-pricing-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:28:19+00:00",
+      "html_url": "https://github.com/apimartfwey/llm-api-gateway-pricing-ko"
+    },
+    "1394188226": {
+      "full_name": "apimartetybtgg0/llm-api-relay-cheap-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:32:14+00:00",
+      "html_url": "https://github.com/apimartetybtgg0/llm-api-relay-cheap-ko"
+    },
+    "1393315713": {
+      "full_name": "apimarth5i/llm-api-gateway-fr",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:48:46+00:00",
+      "html_url": "https://github.com/apimarth5i/llm-api-gateway-fr"
+    },
+    "1394183169": {
+      "full_name": "apimartg6af30z5v/llm-api-proxy-cheap-cn",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:29:11+00:00",
+      "html_url": "https://github.com/apimartg6af30z5v/llm-api-proxy-cheap-cn"
+    },
+    "1394180176": {
+      "full_name": "apimartdr8/llm-api-gateway-free-tier-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:27:05+00:00",
+      "html_url": "https://github.com/apimartdr8/llm-api-gateway-free-tier-ko"
+    },
+    "1394193706": {
+      "full_name": "apimartgfl2cx8k/llm-api-relay-no-vpn-fr",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:35:13+00:00",
+      "html_url": "https://github.com/apimartgfl2cx8k/llm-api-relay-no-vpn-fr"
+    },
+    "1394188956": {
+      "full_name": "apimartgfl2cx8k/llm-api-relay-no-vpn-cn",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:32:40+00:00",
+      "html_url": "https://github.com/apimartgfl2cx8k/llm-api-relay-no-vpn-cn"
+    },
+    "1393290501": {
+      "full_name": "apimarthybneczs9/affordable-llm-api-id",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:39:51+00:00",
+      "html_url": "https://github.com/apimarthybneczs9/affordable-llm-api-id"
+    },
+    "1393295054": {
+      "full_name": "apimarthybneczs9/affordable-llm-api-pt",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:41:25+00:00",
+      "html_url": "https://github.com/apimarthybneczs9/affordable-llm-api-pt"
+    },
+    "1393185853": {
+      "full_name": "apimarth/gpt-image-2.5-ext-reverse-api-id",
+      "description": "rekayasa balik GPT-Image-2.5 Ext API: 1K $0.0085; 2K $0.014; 4K $0.021. model ID `gpt-image-2.5-ext`, OpenAI-compatible, async task + cost in every response, $1 minimum top-up. gpt-image-2.5-ext-reverse-api-id.",
+      "created_at": "2026-09-28T16:03:06+00:00",
+      "html_url": "https://github.com/apimarth/gpt-image-2.5-ext-reverse-api-id"
+    },
+    "1393186152": {
+      "full_name": "apimartg3/gpt-image-2.5-ext-reverse-api-ko",
+      "description": "\ub9ac\ubc84\uc2a4 GPT-Image-2.5 Ext API: 1K $0.0085; 2K $0.014; 4K $0.021. model ID `gpt-image-2.5-ext`, OpenAI-compatible, async task + cost in every response, $1 minimum top-up. gpt-image-2.5-ext-reverse-api-ko.",
+      "created_at": "2026-09-28T16:03:12+00:00",
+      "html_url": "https://github.com/apimartg3/gpt-image-2.5-ext-reverse-api-ko"
+    },
+    "1393181773": {
+      "full_name": "apimarth/gpt-image-2.5-ext-reverse-api-fr",
+      "description": "r\u00e9tro-ing\u00e9nierie GPT-Image-2.5 Ext API: 1K $0.0085; 2K $0.014; 4K $0.021. model ID `gpt-image-2.5-ext`, OpenAI-compatible, async task + cost in every response, $1 minimum top-up. gpt-image-2.5-ext-reverse-api-fr.",
+      "created_at": "2026-09-28T16:01:33+00:00",
+      "html_url": "https://github.com/apimarth/gpt-image-2.5-ext-reverse-api-fr"
+    },
+    "1393181868": {
+      "full_name": "apimartg3/gpt-image-2.5-ext-reverse-api-ja",
+      "description": "\u30ea\u30d0\u30fc\u30b9 GPT-Image-2.5 Ext API: 1K $0.0085; 2K $0.014; 4K $0.021. model ID `gpt-image-2.5-ext`, OpenAI-compatible, async task + cost in every response, $1 minimum top-up. gpt-image-2.5-ext-reverse-api-ja.",
+      "created_at": "2026-09-28T16:01:35+00:00",
+      "html_url": "https://github.com/apimartg3/gpt-image-2.5-ext-reverse-api-ja"
+    },
+    "1394181026": {
+      "full_name": "apimartibarwp1g/llm-api-gateway-pricing",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:27:42+00:00",
+      "html_url": "https://github.com/apimartibarwp1g/llm-api-gateway-pricing"
+    },
+    "1394182468": {
+      "full_name": "apimarti8cyy/llm-api-gateway-trial-ja",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:28:44+00:00",
+      "html_url": "https://github.com/apimarti8cyy/llm-api-gateway-trial-ja"
+    },
+    "1394187421": {
+      "full_name": "apimarti8cyy/llm-api-gateway-trial-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:31:50+00:00",
+      "html_url": "https://github.com/apimarti8cyy/llm-api-gateway-trial-ko"
+    },
+    "1394185057": {
+      "full_name": "apimartibarwp1g/llm-api-gateway-pricing-cn",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:30:27+00:00",
+      "html_url": "https://github.com/apimartibarwp1g/llm-api-gateway-pricing-cn"
+    },
+    "1403836744": {
+      "full_name": "xianyu110/ecommerce-image-skills",
+      "description": "12 \u7535\u5546\u51fa\u56fe Agent Skills for Claude Code / Codex / Cursor \u00b7 GPT Image 2.5 (Flare/Sunburst) \u00b7 Amazon \u767d\u5e95\u4e3b\u56fe, A+, \u573a\u666f\u56fe, \u6a21\u7279\u56fe, \u5c0f\u7ea2\u4e66\u5c01\u9762, \u6dd8\u5b9d\u8be6\u60c5\u9875",
+      "created_at": "2026-10-04T03:17:18+00:00",
+      "html_url": "https://github.com/xianyu110/ecommerce-image-skills"
+    },
+    "1394182838": {
+      "full_name": "apimartjd9uhs/llm-api-proxy-2026-fr",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:29:02+00:00",
+      "html_url": "https://github.com/apimartjd9uhs/llm-api-proxy-2026-fr"
+    },
+    "1394295521": {
+      "full_name": "wileai/pi-codex-connectors",
+      "description": "Use every connected Codex (ChatGPT) connector from any pi model",
+      "created_at": "2026-09-29T04:30:49+00:00",
+      "html_url": "https://github.com/wileai/pi-codex-connectors"
+    },
+    "1402622395": {
+      "full_name": "amos689/paper-preflight",
+      "description": "Pre-submission integrity gate for LaTeX papers: every reference verified against real scholarly records. No LLM guessing.",
+      "created_at": "2026-10-03T03:43:54+00:00",
+      "html_url": "https://github.com/amos689/paper-preflight"
+    },
+    "1402021312": {
+      "full_name": "ManfredCh/Lyapunov",
+      "description": "LLM-first, 3D-native robotics and simulation workspace.",
+      "created_at": "2026-10-02T15:45:56+00:00",
+      "html_url": "https://github.com/ManfredCh/Lyapunov"
+    },
+    "1401118847": {
+      "full_name": "Celvra/paradise",
+      "description": "A Flutter LLM Client with better experiences",
+      "created_at": "2026-10-02T05:12:37+00:00",
+      "html_url": "https://github.com/Celvra/paradise"
+    },
+    "1401868378": {
+      "full_name": "RicoKomenda/agentic-chaos",
+      "description": "Security chaos engineering for AI agents and LLM applications",
+      "created_at": "2026-10-02T14:17:06+00:00",
+      "html_url": "https://github.com/RicoKomenda/agentic-chaos"
+    },
+    "1403322874": {
+      "full_name": "smartcmd/humanizer",
+      "description": "\u4e2d\u82f1\u6587 AI \u5199\u4f5c\u6da6\u8272\u6280\u80fd\uff0c\u9488\u5bf9 GPT \u5e38\u89c1\u53e5\u5f0f\u4f18\u5316\uff0c\u9002\u7528\u4e8e Codex \u548c Claude Code\u3002",
+      "created_at": "2026-10-03T15:05:55+00:00",
+      "html_url": "https://github.com/smartcmd/humanizer"
+    },
+    "1403153680": {
+      "full_name": "MothCyan/PerfAgent-Unity",
+      "description": "Unity Editor performance profiling agent: captures frames, produces rule-based findings with evidence chains and one-click fix plans, optional LLM and MCP integration",
+      "created_at": "2026-10-03T12:43:19+00:00",
+      "html_url": "https://github.com/MothCyan/PerfAgent-Unity"
+    },
+    "1394171434": {
+      "full_name": "apimartfbsu4lby/image-api-gateway-pricing-cn",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:21:15+00:00",
+      "html_url": "https://github.com/apimartfbsu4lby/image-api-gateway-pricing-cn"
+    },
+    "1393490946": {
+      "full_name": "apimarthnw2w/model-api-gateway-fr",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T17:56:13+00:00",
+      "html_url": "https://github.com/apimarthnw2w/model-api-gateway-fr"
+    },
+    "1393489946": {
+      "full_name": "apimarteo/image-api-gateway-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T17:55:49+00:00",
+      "html_url": "https://github.com/apimarteo/image-api-gateway-ko"
+    },
+    "1394115602": {
+      "full_name": "apimarthw7m9/ai-api-aggregator-cheap-ja",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T02:44:03+00:00",
+      "html_url": "https://github.com/apimarthw7m9/ai-api-aggregator-cheap-ja"
+    },
+    "1393485032": {
+      "full_name": "apimarteiszfurb9/ai-api-aggregator",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T17:53:53+00:00",
+      "html_url": "https://github.com/apimarteiszfurb9/ai-api-aggregator"
+    },
+    "1393296008": {
+      "full_name": "apimartfp/ai-api-aggregator-cn",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:41:45+00:00",
+      "html_url": "https://github.com/apimartfp/ai-api-aggregator-cn"
+    },
+    "1394118331": {
+      "full_name": "apimartgkrvhvxl/ai-api-hub-2026-ja",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T02:46:25+00:00",
+      "html_url": "https://github.com/apimartgkrvhvxl/ai-api-hub-2026-ja"
+    },
+    "1394143833": {
+      "full_name": "apimartdk/api-relay-pricing-no-vpn-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:03:14+00:00",
+      "html_url": "https://github.com/apimartdk/api-relay-pricing-no-vpn-ko"
+    },
+    "1394167309": {
+      "full_name": "apimartdq8cgx3/image-api-gateway-no-vpn-ja",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:18:43+00:00",
+      "html_url": "https://github.com/apimartdq8cgx3/image-api-gateway-no-vpn-ja"
+    },
+    "1393294589": {
+      "full_name": "apimartecrg/ai-api-gateway-de",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:41:16+00:00",
+      "html_url": "https://github.com/apimartecrg/ai-api-gateway-de"
+    },
+    "1394115619": {
+      "full_name": "apimartgl5xeot/ai-api-aggregator-2026",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T02:44:04+00:00",
+      "html_url": "https://github.com/apimartgl5xeot/ai-api-aggregator-2026"
+    },
+    "1394120777": {
+      "full_name": "apimartez7cpvcfy/ai-api-gateway-pricing-fr",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T02:48:19+00:00",
+      "html_url": "https://github.com/apimartez7cpvcfy/ai-api-gateway-pricing-fr"
+    },
+    "1393495007": {
+      "full_name": "apimarthnw2w/model-api-gateway-ja",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T17:57:48+00:00",
+      "html_url": "https://github.com/apimarthnw2w/model-api-gateway-ja"
+    },
+    "1394167737": {
+      "full_name": "apimartfbsu4lby/image-api-gateway-pricing",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:19:01+00:00",
+      "html_url": "https://github.com/apimartfbsu4lby/image-api-gateway-pricing"
+    },
+    "1393299285": {
+      "full_name": "apimartecrg/ai-api-gateway-es",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:42:53+00:00",
+      "html_url": "https://github.com/apimartecrg/ai-api-gateway-es"
+    },
+    "1393310151": {
+      "full_name": "apimartepx83t/ai-api-relay-pt",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:46:43+00:00",
+      "html_url": "https://github.com/apimartepx83t/ai-api-relay-pt"
+    },
+    "1393414873": {
+      "full_name": "apimartdrgsdjf3d/openai-api-proxy-ru",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T17:26:51+00:00",
+      "html_url": "https://github.com/apimartdrgsdjf3d/openai-api-proxy-ru"
+    },
+    "1393403642": {
+      "full_name": "apimartgytbcbe/model-api-gateway-es",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T17:22:22+00:00",
+      "html_url": "https://github.com/apimartgytbcbe/model-api-gateway-es"
+    },
+    "1393480709": {
+      "full_name": "apimartf7gldzb0l/ai-api-proxy-ja",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T17:52:14+00:00",
+      "html_url": "https://github.com/apimartf7gldzb0l/ai-api-proxy-ja"
+    },
+    "1393294744": {
+      "full_name": "apimarth0ku4agh/ai-api-gateway-fr",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:41:19+00:00",
+      "html_url": "https://github.com/apimarth0ku4agh/ai-api-gateway-fr"
+    },
+    "1393399509": {
+      "full_name": "apimartgytbcbe/model-api-gateway-de",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T17:20:50+00:00",
+      "html_url": "https://github.com/apimartgytbcbe/model-api-gateway-de"
+    },
+    "1394127318": {
+      "full_name": "apimarte1lzj/ai-api-relay-cheap-cn",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T02:52:55+00:00",
+      "html_url": "https://github.com/apimarte1lzj/ai-api-relay-cheap-cn"
+    },
+    "1394115615": {
+      "full_name": "apimartf4kw/ai-api-gateway-cheap",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T02:44:04+00:00",
+      "html_url": "https://github.com/apimartf4kw/ai-api-gateway-cheap"
+    },
+    "1394156080": {
+      "full_name": "apimarte80m2k/gemini-3-pro-image-preview-official-api-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:11:24+00:00",
+      "html_url": "https://github.com/apimarte80m2k/gemini-3-pro-image-preview-official-api-ko"
+    },
+    "1394152066": {
+      "full_name": "apimartg583b51/flux-2-max-api-fr",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:09:01+00:00",
+      "html_url": "https://github.com/apimartg583b51/flux-2-max-api-fr"
+    },
+    "1394123214": {
+      "full_name": "apimarter3f6w6h/ai-api-proxy-cheap-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T02:50:13+00:00",
+      "html_url": "https://github.com/apimarter3f6w6h/ai-api-proxy-cheap-ko"
+    },
+    "1394141827": {
+      "full_name": "apimarth5a/ai-api-router-cheap-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:01:56+00:00",
+      "html_url": "https://github.com/apimarth5a/ai-api-router-cheap-ko"
+    },
+    "1394136601": {
+      "full_name": "apimarte1lzj/ai-api-relay-cheap-fr",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T02:58:33+00:00",
+      "html_url": "https://github.com/apimarte1lzj/ai-api-relay-cheap-fr"
+    },
+    "1393296289": {
+      "full_name": "apimartdrr12m64/ai-api-hub-de",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:41:51+00:00",
+      "html_url": "https://github.com/apimartdrr12m64/ai-api-hub-de"
+    },
+    "1394143908": {
+      "full_name": "apimartewdgn820/api-relay-pricing-cheap-fr",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:03:18+00:00",
+      "html_url": "https://github.com/apimartewdgn820/api-relay-pricing-cheap-fr"
+    },
+    "1394116939": {
+      "full_name": "apimarthxnw6/ai-api-aggregator-2026-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T02:45:13+00:00",
+      "html_url": "https://github.com/apimarthxnw6/ai-api-aggregator-2026-ko"
+    },
+    "1393411168": {
+      "full_name": "apimarthmgtrwkp/multi-model-api-id",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T17:25:24+00:00",
+      "html_url": "https://github.com/apimarthmgtrwkp/multi-model-api-id"
+    },
+    "1393498779": {
+      "full_name": "apimartgw2q/openai-api-proxy-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T17:59:13+00:00",
+      "html_url": "https://github.com/apimartgw2q/openai-api-proxy-ko"
+    },
+    "1394139042": {
+      "full_name": "apimarth00/ai-api-relay-cheap-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:00:03+00:00",
+      "html_url": "https://github.com/apimarth00/ai-api-relay-cheap-ko"
+    },
+    "1393301207": {
+      "full_name": "apimartdrr12m64/ai-api-hub-es",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:43:31+00:00",
+      "html_url": "https://github.com/apimartdrr12m64/ai-api-hub-es"
+    },
+    "1394171289": {
+      "full_name": "apimartdq8cgx3/image-api-gateway-no-vpn-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:21:08+00:00",
+      "html_url": "https://github.com/apimartdq8cgx3/image-api-gateway-no-vpn-ko"
+    },
+    "1393416248": {
+      "full_name": "apimartex/video-api-gateway-cn",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T17:27:22+00:00",
+      "html_url": "https://github.com/apimartex/video-api-gateway-cn"
+    },
+    "1393480734": {
+      "full_name": "apimartgh0ezyue5/ai-api-aggregator-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T17:52:15+00:00",
+      "html_url": "https://github.com/apimartgh0ezyue5/ai-api-aggregator-ko"
+    },
+    "1393486257": {
+      "full_name": "apimartgh0ezyue5/ai-api-gateway",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T17:54:20+00:00",
+      "html_url": "https://github.com/apimartgh0ezyue5/ai-api-gateway"
+    },
+    "1393309822": {
+      "full_name": "apimarth5/ai-api-router-de",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:46:36+00:00",
+      "html_url": "https://github.com/apimarth5/ai-api-router-de"
+    },
+    "1393314910": {
+      "full_name": "apimartg4i/image-api-gateway-ru",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:48:29+00:00",
+      "html_url": "https://github.com/apimartg4i/image-api-gateway-ru"
+    },
+    "1394166228": {
+      "full_name": "apimartfxv926/image-api-gateway-2026-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:18:02+00:00",
+      "html_url": "https://github.com/apimartfxv926/image-api-gateway-2026-ko"
+    },
+    "1393314134": {
+      "full_name": "apimartf/image-api-gateway-id",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:48:11+00:00",
+      "html_url": "https://github.com/apimartf/image-api-gateway-id"
+    },
+    "1394139670": {
+      "full_name": "apimartewdgn820/api-relay-pricing-cheap-cn",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:00:24+00:00",
+      "html_url": "https://github.com/apimartewdgn820/api-relay-pricing-cheap-cn"
+    },
+    "1394204700": {
+      "full_name": "apimartg9j68n/openai-api-proxy-2026",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:41:12+00:00",
+      "html_url": "https://github.com/apimartg9j68n/openai-api-proxy-2026"
+    },
+    "1393318816": {
+      "full_name": "apimartf/image-api-gateway-pt",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:49:51+00:00",
+      "html_url": "https://github.com/apimartf/image-api-gateway-pt"
+    },
+    "1394120652": {
+      "full_name": "apimartgkrvhvxl/ai-api-hub-2026-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T02:48:15+00:00",
+      "html_url": "https://github.com/apimartgkrvhvxl/ai-api-hub-2026-ko"
+    },
+    "1394150550": {
+      "full_name": "apimartf4h/deepseek-v4-pro-api-fr",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:08:04+00:00",
+      "html_url": "https://github.com/apimartf4h/deepseek-v4-pro-api-fr"
+    },
+    "1393407695": {
+      "full_name": "apimarthmgtrwkp/multi-model-api-es",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T17:24:01+00:00",
+      "html_url": "https://github.com/apimarthmgtrwkp/multi-model-api-es"
+    },
+    "1393502607": {
+      "full_name": "apimartgw2q/openai-compatible-api-cn",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T18:00:44+00:00",
+      "html_url": "https://github.com/apimartgw2q/openai-compatible-api-cn"
+    },
+    "1394167189": {
+      "full_name": "apimarth12ga0bx7/image-api-gateway-no-vpn-cn",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:18:39+00:00",
+      "html_url": "https://github.com/apimarth12ga0bx7/image-api-gateway-no-vpn-cn"
+    },
+    "1393427548": {
+      "full_name": "apimartdrgsdjf3d/openai-compatible-api",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T17:31:44+00:00",
+      "html_url": "https://github.com/apimartdrgsdjf3d/openai-compatible-api"
+    },
+    "1393305605": {
+      "full_name": "apimartepx83t/ai-api-relay-id",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:45:04+00:00",
+      "html_url": "https://github.com/apimartepx83t/ai-api-relay-id"
+    },
+    "1393299239": {
+      "full_name": "apimarth0ku4agh/ai-api-gateway-id",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:42:52+00:00",
+      "html_url": "https://github.com/apimarth0ku4agh/ai-api-gateway-id"
+    },
+    "1394145369": {
+      "full_name": "apimartg1ur/api-relay-pricing-cheap-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:04:22+00:00",
+      "html_url": "https://github.com/apimartg1ur/api-relay-pricing-cheap-ko"
+    },
+    "1393499089": {
+      "full_name": "apimartfe05r4/video-api-gateway-ja",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T17:59:21+00:00",
+      "html_url": "https://github.com/apimartfe05r4/video-api-gateway-ja"
+    },
+    "1393485258": {
+      "full_name": "apimartf7gldzb0l/ai-api-proxy-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T17:53:57+00:00",
+      "html_url": "https://github.com/apimartf7gldzb0l/ai-api-proxy-ko"
+    },
+    "1394141943": {
+      "full_name": "apimartdqgxzj/ai-api-router-cheap",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:02:01+00:00",
+      "html_url": "https://github.com/apimartdqgxzj/ai-api-router-cheap"
+    },
+    "1394202881": {
+      "full_name": "apimartg7wlh/model-api-gateway-pricing-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:40:12+00:00",
+      "html_url": "https://github.com/apimartg7wlh/model-api-gateway-pricing-ko"
+    },
+    "1394134686": {
+      "full_name": "apimarth00/ai-api-relay-cheap-ja",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T02:57:28+00:00",
+      "html_url": "https://github.com/apimarth00/ai-api-relay-cheap-ja"
+    },
+    "1394147099": {
+      "full_name": "apimartf4h/deepseek-v4-pro-api-cn",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:05:40+00:00",
+      "html_url": "https://github.com/apimartf4h/deepseek-v4-pro-api-cn"
+    },
+    "1394127130": {
+      "full_name": "apimarthw7m9/ai-api-aggregator-cheap-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T02:52:48+00:00",
+      "html_url": "https://github.com/apimarthw7m9/ai-api-aggregator-cheap-ko"
+    },
+    "1393088049": {
+      "full_name": "apimarteghp/ext-api-de",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T15:28:11+00:00",
+      "html_url": "https://github.com/apimarteghp/ext-api-de"
+    },
+    "1394169421": {
+      "full_name": "apimartfxv926/image-api-gateway-cheap",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:19:59+00:00",
+      "html_url": "https://github.com/apimartfxv926/image-api-gateway-cheap"
+    },
+    "1394152364": {
+      "full_name": "apimarte80m2k/gemini-3-pro-image-preview-official-api-ja",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:09:11+00:00",
+      "html_url": "https://github.com/apimarte80m2k/gemini-3-pro-image-preview-official-api-ja"
+    },
+    "1393092440": {
+      "full_name": "apimarteghp/ext-api-es",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T15:29:42+00:00",
+      "html_url": "https://github.com/apimarteghp/ext-api-es"
+    },
+    "1394201220": {
+      "full_name": "apimartg9j68n/model-api-gateway-trial-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:39:20+00:00",
+      "html_url": "https://github.com/apimartg9j68n/model-api-gateway-trial-ko"
+    },
+    "1394148711": {
+      "full_name": "apimartg583b51/flux-2-max-api-cn",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:06:49+00:00",
+      "html_url": "https://github.com/apimartg583b51/flux-2-max-api-cn"
+    },
+    "1394136944": {
+      "full_name": "apimarth5a/ai-api-router-cheap-ja",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T02:58:43+00:00",
+      "html_url": "https://github.com/apimarth5a/ai-api-router-cheap-ja"
+    },
+    "1393305596": {
+      "full_name": "apimarth5/ai-api-relay-ru",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:45:04+00:00",
+      "html_url": "https://github.com/apimarth5/ai-api-relay-ru"
+    },
+    "1394136949": {
+      "full_name": "apimartdqgxzj/ai-api-router-2026-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T02:58:44+00:00",
+      "html_url": "https://github.com/apimartdqgxzj/ai-api-router-2026-ko"
+    },
+    "1394171067": {
+      "full_name": "apimarth12ga0bx7/image-api-gateway-no-vpn-fr",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:21:01+00:00",
+      "html_url": "https://github.com/apimarth12ga0bx7/image-api-gateway-no-vpn-fr"
+    },
+    "1393503163": {
+      "full_name": "apimartfe05r4/video-api-gateway-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T18:00:57+00:00",
+      "html_url": "https://github.com/apimartfe05r4/video-api-gateway-ko"
+    },
+    "1394120608": {
+      "full_name": "apimartf2/ai-api-gateway-pricing",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T02:48:12+00:00",
+      "html_url": "https://github.com/apimartf2/ai-api-gateway-pricing"
+    },
+    "1394145342": {
+      "full_name": "apimarti6yoh/api-relay-pricing-no-vpn-cn",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:04:21+00:00",
+      "html_url": "https://github.com/apimarti6yoh/api-relay-pricing-no-vpn-cn"
+    },
+    "1394128525": {
+      "full_name": "apimarthxnw6/ai-api-aggregator-cheap",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T02:53:42+00:00",
+      "html_url": "https://github.com/apimarthxnw6/ai-api-aggregator-cheap"
+    },
+    "1394141470": {
+      "full_name": "apimarti6yoh/api-relay-pricing-no-vpn",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:01:40+00:00",
+      "html_url": "https://github.com/apimarti6yoh/api-relay-pricing-no-vpn"
+    },
+    "1393277935": {
+      "full_name": "apimartgwbkkvm/reverse-engineered-api-ko",
+      "description": "\ub9ac\ubc84\uc2a4\uc640 \uacf5\uc2dd \ub77c\uc6b0\ud2b8\ub97c \ud55c\uacf3\uc5d0. `-ext` \ub294 \ub9ac\ubc84\uc2a4, \ub098\uba38\uc9c0\ub294 \uacf5\uc2dd \ud560\uc778 \ub2e8\uac00.AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:35:33+00:00",
+      "html_url": "https://github.com/apimartgwbkkvm/reverse-engineered-api-ko"
+    },
+    "1394115597": {
+      "full_name": "apimartip/ai-api-aggregator-pricing-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T02:44:03+00:00",
+      "html_url": "https://github.com/apimartip/ai-api-aggregator-pricing-ko"
+    },
+    "1394204601": {
+      "full_name": "apimartj1684wct/model-api-gateway-trial-ja",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-29T03:41:08+00:00",
+      "html_url": "https://github.com/apimartj1684wct/model-api-gateway-trial-ja"
+    },
+    "1393277937": {
+      "full_name": "apimarte3/reverse-engineering-api-de",
+      "description": "Reverse-Engineering- und offizielle Routen in einem Index: `-ext`-IDs sind die Reverse-Kennung, der Rest l\u00e4uft offiziell verg\u00fcnstigt. AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:35:33+00:00",
+      "html_url": "https://github.com/apimarte3/reverse-engineering-api-de"
+    },
+    "1393485220": {
+      "full_name": "apimartj/ai-api-router-ko",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T17:53:57+00:00",
+      "html_url": "https://github.com/apimartj/ai-api-router-ko"
+    },
+    "1393480678": {
+      "full_name": "apimartj/ai-api-router-ja",
+      "description": "AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T17:52:13+00:00",
+      "html_url": "https://github.com/apimartj/ai-api-router-ja"
+    },
+    "1393282760": {
+      "full_name": "apimartec7/reverse-proxy-api",
+      "description": "Reverse-engineered and official routes in one index: `-ext` model IDs are the reverse-engineered upstream label, the rest are official-routed at discounted unit prices. AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go",
+      "created_at": "2026-09-28T16:37:08+00:00",
+      "html_url": "https://github.com/apimartec7/reverse-proxy-api"
+    },
+    "1393282258": {
+      "full_name": "apimarte3/reverse-engineering-api-es",
+      "description": "Rutas de ingenier\u00eda inversa y oficiales en un \u00edndice: los ID `-ext` son la etiqueta inversa, el resto va por ruta oficial con descuento. AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:37:00+00:00",
+      "html_url": "https://github.com/apimarte3/reverse-engineering-api-es"
+    },
+    "1393274553": {
+      "full_name": "apimartg/reverse-engineered-api-es",
+      "description": "Rutas de ingenier\u00eda inversa y oficiales en un \u00edndice: los ID `-ext` son la etiqueta inversa, el resto va por ruta oficial con descuento. AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:34:22+00:00",
+      "html_url": "https://github.com/apimartg/reverse-engineered-api-es"
+    },
+    "1393259445": {
+      "full_name": "apimartfjdq5t8/nano-banana-reverse-api",
+      "description": "Reverse-engineered and official routes in one index: `-ext` model IDs are the reverse-engineered upstream label, the rest are official-routed at discounted unit prices. AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go",
+      "created_at": "2026-09-28T16:29:03+00:00",
+      "html_url": "https://github.com/apimartfjdq5t8/nano-banana-reverse-api"
+    },
+    "1393269169": {
+      "full_name": "apimartez/reverse-engineered-api",
+      "description": "Reverse-engineered and official routes in one index: `-ext` model IDs are the reverse-engineered upstream label, the rest are official-routed at discounted unit prices. AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go",
+      "created_at": "2026-09-28T16:32:28+00:00",
+      "html_url": "https://github.com/apimartez/reverse-engineered-api"
+    },
+    "1393261824": {
+      "full_name": "apimartds0g/nano-banana-reverse-api-fr",
+      "description": "Routes reverse-engineered et officielles dans un m\u00eame index : les ID `-ext` sont le libell\u00e9 reverse, le reste passe en route officielle \u00e0 prix r\u00e9duit. AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-u",
+      "created_at": "2026-09-28T16:29:53+00:00",
+      "html_url": "https://github.com/apimartds0g/nano-banana-reverse-api-fr"
+    },
+    "1393286682": {
+      "full_name": "apimartec7/reverse-proxy-api-cn",
+      "description": "\u9006\u5411\u4e0e\u5b98\u65b9\u8f6c\u63a5\u8def\u7531\u7edf\u4e00\u7d22\u5f15\uff1a`-ext` \u7ed3\u5c3e\u4e3a\u9006\u5411\u4e0a\u6e38\u6807\u8bc6\uff0c\u5176\u4f59\u4e3a\u5b98\u65b9\u8f6c\u63a5\u6298\u6263\u4ef7\u3002AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:38:29+00:00",
+      "html_url": "https://github.com/apimartec7/reverse-proxy-api-cn"
+    },
+    "1393263435": {
+      "full_name": "apimartfjdq5t8/nano-banana-reverse-api-cn",
+      "description": "\u9006\u5411\u4e0e\u5b98\u65b9\u8f6c\u63a5\u8def\u7531\u7edf\u4e00\u7d22\u5f15\uff1a`-ext` \u7ed3\u5c3e\u4e3a\u9006\u5411\u4e0a\u6e38\u6807\u8bc6\uff0c\u5176\u4f59\u4e3a\u5b98\u65b9\u8f6c\u63a5\u6298\u6263\u4ef7\u3002AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:30:27+00:00",
+      "html_url": "https://github.com/apimartfjdq5t8/nano-banana-reverse-api-cn"
+    },
+    "1393273056": {
+      "full_name": "apimartez/reverse-engineered-api-cn",
+      "description": "\u9006\u5411\u4e0e\u5b98\u65b9\u8f6c\u63a5\u8def\u7531\u7edf\u4e00\u7d22\u5f15\uff1a`-ext` \u7ed3\u5c3e\u4e3a\u9006\u5411\u4e0a\u6e38\u6807\u8bc6\uff0c\u5176\u4f59\u4e3a\u5b98\u65b9\u8f6c\u63a5\u6298\u6263\u4ef7\u3002AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:33:52+00:00",
+      "html_url": "https://github.com/apimartez/reverse-engineered-api-cn"
+    },
+    "1393284178": {
+      "full_name": "apimartixyxs4/reverse-proxy-api-de",
+      "description": "Reverse-Engineering- und offizielle Routen in einem Index: `-ext`-IDs sind die Reverse-Kennung, der Rest l\u00e4uft offiziell verg\u00fcnstigt. AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:37:40+00:00",
+      "html_url": "https://github.com/apimartixyxs4/reverse-proxy-api-de"
+    },
+    "1400012583": {
+      "full_name": "shiaho777/float-android",
+      "description": "\u4e00\u90e8\u88c5\u5728 Android \u91cc\u7684 AI \u865a\u62df\u624b\u673a\uff1a\u62df\u771f\u684c\u9762\u3001\u804a\u5929\u3001\u670b\u53cb\u5708\u3001\u67e5\u624b\u673a\u3001\u5730\u56fe\u5b9a\u4f4d\u3001\u8bed\u97f3/\u89c6\u9891\u901a\u8bdd\u3001\u65e5\u8bb0\u65e5\u5386\u3002AI \u89d2\u8272\u6709\u4f5c\u606f\u3001\u65e5\u7a0b\u3001\u4f4d\u7f6e\u548c\u957f\u671f\u8bb0\u5fc6\uff0c\u4f1a\u4e3b\u52a8\u53d1\u6d88\u606f\u3001\u53d1\u5e16\u4e92\u52a8\u3002\u6570\u636e\u5168\u5728\u8bbe\u5907\u672c\u5730\uff0c\u8054\u7f51\u53ea\u8c03\u4f60\u81ea\u5df1\u914d\u7f6e\u7684 LLM/\u751f\u56fe/\u8bed\u97f3 API\u3002",
+      "created_at": "2026-10-01T13:09:39+00:00",
+      "html_url": "https://github.com/shiaho777/float-android"
+    },
+    "1393279898": {
+      "full_name": "apimartj2w3mg/reverse-engineered-gateway-cn",
+      "description": "\u9006\u5411\u4e0e\u5b98\u65b9\u8f6c\u63a5\u8def\u7531\u7edf\u4e00\u7d22\u5f15\uff1a`-ext` \u7ed3\u5c3e\u4e3a\u9006\u5411\u4e0a\u6e38\u6807\u8bc6\uff0c\u5176\u4f59\u4e3a\u5b98\u65b9\u8f6c\u63a5\u6298\u6263\u4ef7\u3002AI API gateway / relay: 307 models behind one OpenAI-compatible key. image2.5 $0.0085/image, Seedance 2.0 Mini $0.01056/sec, LLM from $0.0228/M tokens. USD settlement, pay-as-you-go, $1 minimum top-up.",
+      "created_at": "2026-09-28T16:36:15+00:00",
+      "html_url": "https://github.com/apimartj2w3mg/reverse-engineered-gateway-cn"
+    },
+    "1400848155": {
+      "full_name": "zycck/claude-mods",
+      "description": "Claude Code mods: live plan progress bars above the prompt",
+      "created_at": "2026-10-02T00:12:37+00:00",
+      "html_url": "https://github.com/zycck/claude-mods"
+    },
+    "1395176720": {
+      "full_name": "hoarauemmanuel336-ship-it/Claude-Skills",
+      "description": "",
+      "created_at": "2026-09-29T12:15:25+00:00",
+      "html_url": "https://github.com/hoarauemmanuel336-ship-it/Claude-Skills"
+    },
+    "1403325014": {
+      "full_name": "MatinSenPai/Gemini-Config-Checker",
+      "description": "Chain region scanner: find proxy configs that get you into Google AI Studio and Gemini (signed-in browser check, anti-DPI, Windows/macOS/Linux/Android)",
+      "created_at": "2026-10-03T15:08:10+00:00",
+      "html_url": "https://github.com/MatinSenPai/Gemini-Config-Checker"
+    },
+    "1403661244": {
+      "full_name": "nguyenquanicd/VLSIT_CODEX_CLAUDE_SKILLS",
+      "description": "B\u1ed9 skill d\u00e0nh cho thi\u1ebft k\u1ebf vi m\u1ea1ch",
+      "created_at": "2026-10-03T21:47:38+00:00",
+      "html_url": "https://github.com/nguyenquanicd/VLSIT_CODEX_CLAUDE_SKILLS"
+    },
+    "1402296638": {
+      "full_name": "BoltLoopMattock/Claude-Jailbreak-Prompt",
+      "description": "An AI-powered tool that helps developers optimize their prompt-based programming tasks by providing a rich library of ready-to-use routines and utilities;...",
+      "created_at": "2026-10-02T19:58:53+00:00",
+      "html_url": "https://github.com/BoltLoopMattock/Claude-Jailbreak-Prompt"
+    },
+    "1403406155": {
+      "full_name": "isoshimodo/ai-data-extractor",
+      "description": "Free open-source extractor for AI coding assistant chat histories. Supports Claude Code, Cursor, Windsurf, Aider, Cline/Roo Code, and more.",
+      "created_at": "2026-10-03T16:28:57+00:00",
+      "html_url": "https://github.com/isoshimodo/ai-data-extractor"
+    },
+    "1393653467": {
+      "full_name": "regenrek/farcall-mcp",
+      "description": "Let Claude Code call Codex, or Codex call Claude Code, through one pending MCP call",
+      "created_at": "2026-09-28T18:55:17+00:00",
+      "html_url": "https://github.com/regenrek/farcall-mcp"
+    },
+    "1403544347": {
+      "full_name": "alexknowshtml/claude-auto-handoff",
+      "description": "Claude Code mod: hand a long session off to a fresh one with a structured brief, instead of auto-compacting",
+      "created_at": "2026-10-03T18:57:02+00:00",
+      "html_url": "https://github.com/alexknowshtml/claude-auto-handoff"
+    },
+    "1403431984": {
+      "full_name": "ythx-101/live-panel-skill",
+      "description": "Config-driven animated architecture diagrams: turn one JSON file into a terminal-style, always-running diagram or a light-theme infographic that moves. Outputs H.264 mp4 or a live web page; also a Claude Code style skill (SKILL.md).",
+      "created_at": "2026-10-03T16:53:36+00:00",
+      "html_url": "https://github.com/ythx-101/live-panel-skill"
+    },
+    "1393914338": {
+      "full_name": "emrecengdev/tokentray",
+      "description": "Claude Code, Codex, Gemini (Antigravity), Cursor, Grok & OpenCode usage limits live in the Windows taskbar \u2014 session & weekly limits, reset times, pace warnings.",
+      "created_at": "2026-09-28T22:28:29+00:00",
+      "html_url": "https://github.com/emrecengdev/tokentray"
+    },
+    "1393849992": {
+      "full_name": "IskakovDamir/apple-motion",
+      "description": "Claude skill for Apple-style kinetic typography recaps in Remotion, built from frame-accurate measurements of Apple recap videos",
+      "created_at": "2026-09-28T21:15:43+00:00",
+      "html_url": "https://github.com/IskakovDamir/apple-motion"
+    },
+    "1393233724": {
+      "full_name": "apimarthklu96f/nano-banana-2-lite-ext-reverse-api",
+      "description": "reverse-engineered Nano Banana 2 Lite Ext API: 1K $0.0125. model ID `gemini-3.1-flash-lite-image-ext`, OpenAI-compatible, async task + cost in every response, $1 minimum top-up. nano-banana-2-lite-ext-reverse-api.",
+      "created_at": "2026-09-28T16:20:05+00:00",
+      "html_url": "https://github.com/apimarthklu96f/nano-banana-2-lite-ext-reverse-api"
+    },
+    "1393448254": {
+      "full_name": "apimartfz7/nano-banana-2-lite-ext-reverse-api-ja",
+      "description": "\u30ea\u30d0\u30fc\u30b9 Nano Banana 2 Lite Ext API: 1K $0.0125. model ID `gemini-3.1-flash-lite-image-ext`, OpenAI-compatible, async task + cost in every response, $1 minimum top-up. nano-banana-2-lite-ext-reverse-api-ja.",
+      "created_at": "2026-09-28T17:39:43+00:00",
+      "html_url": "https://github.com/apimartfz7/nano-banana-2-lite-ext-reverse-api-ja"
+    },
+    "1393241101": {
+      "full_name": "apimartf1cox2/nano-banana-2-lite-ext-reverse-api-pt",
+      "description": "engenharia reversa Nano Banana 2 Lite Ext API: 1K $0.0125. model ID `gemini-3.1-flash-lite-image-ext`, OpenAI-compatible, async task + cost in every response, $1 minimum top-up. nano-banana-2-lite-ext-reverse-api-pt.",
+      "created_at": "2026-09-28T16:22:38+00:00",
+      "html_url": "https://github.com/apimartf1cox2/nano-banana-2-lite-ext-reverse-api-pt"
+    },
+    "1393444374": {
+      "full_name": "apimartfz7/nano-banana-2-lite-ext-reverse-api-es",
+      "description": "ingenier\u00eda inversa Nano Banana 2 Lite Ext API: 1K $0.0125. model ID `gemini-3.1-flash-lite-image-ext`, OpenAI-compatible, async task + cost in every response, $1 minimum top-up. nano-banana-2-lite-ext-reverse-api-es.",
+      "created_at": "2026-09-28T17:38:11+00:00",
+      "html_url": "https://github.com/apimartfz7/nano-banana-2-lite-ext-reverse-api-es"
+    },
+    "1393245490": {
+      "full_name": "apimartf1cox2/nano-banana-2-lite-ext-reverse-api-ru",
+      "description": "\u0440\u0435\u0432\u0435\u0440\u0441-\u0438\u043d\u0436\u0438\u043d\u0438\u0440\u0438\u043d\u0433 Nano Banana 2 Lite Ext API: 1K $0.0125. model ID `gemini-3.1-flash-lite-image-ext`, OpenAI-compatible, async task + cost in every response, $1 minimum top-up. nano-banana-2-lite-ext-reverse-api-ru.",
+      "created_at": "2026-09-28T16:24:10+00:00",
+      "html_url": "https://github.com/apimartf1cox2/nano-banana-2-lite-ext-reverse-api-ru"
+    },
+    "1393238222": {
+      "full_name": "apimarthklu96f/nano-banana-2-lite-ext-reverse-api-cn",
+      "description": "\u9006\u5411 Nano Banana 2 Lite Ext API: 1K $0.0125. model ID `gemini-3.1-flash-lite-image-ext`, OpenAI-compatible, async task + cost in every response, $1 minimum top-up. nano-banana-2-lite-ext-reverse-api-cn.",
+      "created_at": "2026-09-28T16:21:37+00:00",
+      "html_url": "https://github.com/apimarthklu96f/nano-banana-2-lite-ext-reverse-api-cn"
+    },
+    "1402952417": {
+      "full_name": "skanehira/claude-vime",
+      "description": "",
+      "created_at": "2026-10-03T09:29:25+00:00",
+      "html_url": "https://github.com/skanehira/claude-vime"
+    },
+    "1403810477": {
+      "full_name": "MrBongoC/ai-iso-skill",
+      "description": "Claude skill that draws interactive isometric figures in a single HTML file",
+      "created_at": "2026-10-04T02:38:15+00:00",
+      "html_url": "https://github.com/MrBongoC/ai-iso-skill"
+    },
+    "1400145509": {
+      "full_name": "Zproger/ConceptLoom",
+      "description": "AI-powered learning workflow for Codex, Claude Code, and OpenCode that maps your knowledge, builds a personalized learning path, checks understanding, and saves progress across sessions.",
+      "created_at": "2026-10-01T14:29:47+00:00",
+      "html_url": "https://github.com/Zproger/ConceptLoom"
+    },
+    "1401738352": {
+      "full_name": "NahumLitvin/prismantis",
+      "description": "Colorful, themeable Claude Code replies: tables, code, diagrams, charts and tool rows in 15 themes, with copy buttons. A Claude Code mod.",
+      "created_at": "2026-10-02T13:01:59+00:00",
+      "html_url": "https://github.com/NahumLitvin/prismantis"
+    },
+    "1401725212": {
+      "full_name": "click6067-ship-it/token-tv",
+      "description": "Turn a ~$5 AliExpress clock into a physical AI usage dashboard (Claude, Codex, multi-account). Zero-flash where possible.",
+      "created_at": "2026-10-02T12:54:10+00:00",
+      "html_url": "https://github.com/click6067-ship-it/token-tv"
+    },
+    "1402282819": {
+      "full_name": "kevinbadi/open-edits",
+      "description": "OPEN VIDEO EDIT: the world's best AI video editing harness. Claude Code skills that turn a raw talking-head clip into a fully animated short.",
+      "created_at": "2026-10-02T19:44:09+00:00",
+      "html_url": "https://github.com/kevinbadi/open-edits"
+    },
+    "1402430099": {
+      "full_name": "isas1/daily-team",
+      "description": "A new four-person creative team every day, and the small web tool it built. Generated with Claude Code, recorded on GitHub.",
+      "created_at": "2026-10-02T22:48:41+00:00",
+      "html_url": "https://github.com/isas1/daily-team"
+    },
+    "1403215196": {
+      "full_name": "sebastianhaba/book-to-course-skill",
+      "description": "Claude skill that turns a book (EPUB, PDF, HTML, DOCX, Markdown) into an interactive beginner-friendly course: step-by-step lessons, animations, quizzes, chapter tests, flashcards and coding exercises checked by unit tests, with progress saved to files.",
+      "created_at": "2026-10-03T13:36:54+00:00",
+      "html_url": "https://github.com/sebastianhaba/book-to-course-skill"
+    },
+    "1402652778": {
+      "full_name": "bangbuilds/code-doc-film",
+      "description": "Claude Code skill\uff1a\u4e00\u53e5\u8bdd\u505a\u51fa\u4e00\u6761\u4ee3\u7801\u6e32\u67d3\u7684 3D \u7eaa\u5f55\u77ed\u7247\uff08three.js + \u771f\u5b9e\u5730\u5f62 + numpy \u914d\u4e50\uff09",
+      "created_at": "2026-10-03T04:22:26+00:00",
+      "html_url": "https://github.com/bangbuilds/code-doc-film"
+    },
+    "1402292310": {
+      "full_name": "JingxuanKang/cospace",
+      "description": "Co-op mode for AI coding: a shared Linux space on your Mac that people you trust ssh into \u2014 same files, same Claude Code / Codex sessions, live.",
+      "created_at": "2026-10-02T19:54:09+00:00",
+      "html_url": "https://github.com/JingxuanKang/cospace"
+    },
+    "1403533060": {
+      "full_name": "atinfinity/cc-calendar",
+      "description": "Google Calendar-style weekly view of your Claude Code sessions \u2014 local, live, read-only",
+      "created_at": "2026-10-03T18:42:52+00:00",
+      "html_url": "https://github.com/atinfinity/cc-calendar"
+    },
+    "1402224782": {
+      "full_name": "dongnguyenvie/BashCut",
+      "description": "Native macOS video editor that coding agents can drive: everything the UI does, Claude Code and Codex can do through the bashcut CLI or MCP server. Layered timeline, captions, voiceover, plugins.",
+      "created_at": "2026-10-02T18:46:34+00:00",
+      "html_url": "https://github.com/dongnguyenvie/BashCut"
+    },
+    "1401457808": {
+      "full_name": "v60samurai/claritymaxx",
+      "description": "Understand difficult things. A Claude Code plugin that turns difficult topics into clear mental models.",
+      "created_at": "2026-10-02T09:39:14+00:00",
+      "html_url": "https://github.com/v60samurai/claritymaxx"
+    },
+    "1393228094": {
+      "full_name": "apimartf90dby1t/grok-imagine-2.0-ext-reverse-api-es",
+      "description": "ingenier\u00eda inversa Grok Imagine 2.0 Ext API: 1K $0.015. model ID `grok-imagine-2.0-ext`, OpenAI-compatible, async task + cost in every response, $1 minimum top-up. grok-imagine-2.0-ext-reverse-api-es.",
+      "created_at": "2026-09-28T16:18:10+00:00",
+      "html_url": "https://github.com/apimartf90dby1t/grok-imagine-2.0-ext-reverse-api-es"
+    },
+    "1393201318": {
+      "full_name": "apimartf0n/grok-imagine-1.5-ext-reverse-api-cn",
+      "description": "\u9006\u5411 Grok Imagine 1.5 Ext API: 1K $0.015. model ID `grok-imagine-1.5-apimart`, OpenAI-compatible, async task + cost in every response, $1 minimum top-up. grok-imagine-1.5-ext-reverse-api-cn.",
+      "created_at": "2026-09-28T16:08:47+00:00",
+      "html_url": "https://github.com/apimartf0n/grok-imagine-1.5-ext-reverse-api-cn"
+    },
+    "1393205292": {
+      "full_name": "apimartemtc6qfo/grok-imagine-1.5-ext-reverse-api-pt",
+      "description": "engenharia reversa Grok Imagine 1.5 Ext API: 1K $0.015. model ID `grok-imagine-1.5-apimart`, OpenAI-compatible, async task + cost in every response, $1 minimum top-up. grok-imagine-1.5-ext-reverse-api-pt.",
+      "created_at": "2026-09-28T16:10:09+00:00",
+      "html_url": "https://github.com/apimartemtc6qfo/grok-imagine-1.5-ext-reverse-api-pt"
+    },
+    "1393211575": {
+      "full_name": "apimartemtc6qfo/grok-imagine-1.5-ext-reverse-api-ru",
+      "description": "\u0440\u0435\u0432\u0435\u0440\u0441-\u0438\u043d\u0436\u0438\u043d\u0438\u0440\u0438\u043d\u0433 Grok Imagine 1.5 Ext API: 1K $0.015. model ID `grok-imagine-1.5-apimart`, OpenAI-compatible, async task + cost in every response, $1 minimum top-up. grok-imagine-1.5-ext-reverse-api-ru.",
+      "created_at": "2026-09-28T16:12:22+00:00",
+      "html_url": "https://github.com/apimartemtc6qfo/grok-imagine-1.5-ext-reverse-api-ru"
+    },
+    "1393206335": {
+      "full_name": "apimartf90dby1t/grok-imagine-2.0-ext-reverse-api-de",
+      "description": "Reverse-Engineering Grok Imagine 2.0 Ext API: 1K $0.015. model ID `grok-imagine-2.0-ext`, OpenAI-compatible, async task + cost in every response, $1 minimum top-up. grok-imagine-2.0-ext-reverse-api-de.",
+      "created_at": "2026-09-28T16:10:34+00:00",
+      "html_url": "https://github.com/apimartf90dby1t/grok-imagine-2.0-ext-reverse-api-de"
+    },
+    "1393195720": {
+      "full_name": "apimarte/grok-imagine-1.5-edit-ext-reverse-api-es",
+      "description": "ingenier\u00eda inversa Grok Imagine 1.5 Edit Ext API: 1K $0.015. model ID `grok-imagine-1.5-edit-apimart`, OpenAI-compatible, async task + cost in every response, $1 minimum top-up. grok-imagine-1.5-edit-ext-reverse-api-es.",
+      "created_at": "2026-09-28T16:06:46+00:00",
+      "html_url": "https://github.com/apimarte/grok-imagine-1.5-edit-ext-reverse-api-es"
+    },
+    "1403629996": {
+      "full_name": "aliceisjustplaying/pi-you-should-know",
+      "description": "Pi extension: a port of Claude Code's you-should-know mod; every few steps, ask a fork of the conversation whether there is something you should know but probably missed",
+      "created_at": "2026-10-03T20:55:40+00:00",
+      "html_url": "https://github.com/aliceisjustplaying/pi-you-should-know"
+    },
+    "1393189595": {
+      "full_name": "apimarte/grok-imagine-1.5-edit-ext-reverse-api-de",
+      "description": "Reverse-Engineering Grok Imagine 1.5 Edit Ext API: 1K $0.015. model ID `grok-imagine-1.5-edit-apimart`, OpenAI-compatible, async task + cost in every response, $1 minimum top-up. grok-imagine-1.5-edit-ext-reverse-api-de.",
+      "created_at": "2026-09-28T16:04:33+00:00",
+      "html_url": "https://github.com/apimarte/grok-imagine-1.5-edit-ext-reverse-api-de"
+    },
+    "1401422711": {
+      "full_name": "lemomo-ai/lemo-mod",
+      "description": "Claude Code mods: 21 styles and a full set of features you turn on when you need them, for the terminal and the desktop app. \u4e00\u952e\u4e3a Claude \u6362\u4e0a\u65b0\u98ce\u683c\uff0c\u5e76\u63d0\u4f9b\u4e00\u6574\u5957\u6309\u9700\u5f00\u542f\u7684\u529f\u80fd\u3002",
+      "created_at": "2026-10-02T09:03:55+00:00",
+      "html_url": "https://github.com/lemomo-ai/lemo-mod"
+    },
+    "1370752473": {
+      "full_name": "ruc-datalab/EvoOntology",
+      "description": "EvoOntology: A Self-Evolving Ontology Layer for Data Agents \u2699\ufe0f EvoOntology\u63d2\u4ef6\u4e3aClaude Code/Codex \u5efa\u7acb&\u8fdb\u5316\u672c\u4f53\u5c42",
+      "created_at": "2026-09-15T01:57:40+00:00",
+      "html_url": "https://github.com/ruc-datalab/EvoOntology"
+    },
+    "1375039364": {
+      "full_name": "OmniJev/awesome-jev-gallery",
+      "description": "\ud83d\udd25\ud83d\udd25 Awesome Jev:  open-source models, projects, benchmarks, and independent evaluations for Jev and System One models.",
+      "created_at": "2026-09-17T20:16:57+00:00",
+      "html_url": "https://github.com/OmniJev/awesome-jev-gallery"
+    },
+    "1374869789": {
+      "full_name": "ekzhang/openjev-sglang",
+      "description": "Jev-compatible API endpoint based on open models (prefill-only)",
+      "created_at": "2026-09-17T18:11:49+00:00",
+      "html_url": "https://github.com/ekzhang/openjev-sglang"
+    },
+    "1383309982": {
+      "full_name": "Sheltercosmo/jev4pg",
+      "description": "Established strong JEV based natural language to SQL performance and well-covered semantic operators for PostgreSQL(PG) with optimized cost and latency. Reusable evidence, with native execution, parallel plans and explainable embeddings in development preview.",
+      "created_at": "2026-09-23T11:31:46+00:00",
+      "html_url": "https://github.com/Sheltercosmo/jev4pg"
+    },
+    "1373184607": {
+      "full_name": "kikoncuo/jevfire",
+      "description": "JEV-inspired parallel decisions for CUDA LLMs. One context, many decisions. vLLM API, game-agent examples, and reproducible benchmarks.",
+      "created_at": "2026-09-16T14:45:51+00:00",
+      "html_url": "https://github.com/kikoncuo/jevfire"
+    },
+    "1380600012": {
+      "full_name": "Himanshu-giri-01/k8s-ai-runtime",
+      "description": "Streamline AI Workloads on Kubernetes: Universal Python SDK Guide 2026",
+      "created_at": "2026-09-21T22:21:36+00:00",
+      "html_url": "https://github.com/Himanshu-giri-01/k8s-ai-runtime"
+    },
+    "1380584228": {
+      "full_name": "Tranvanviet27/NLP-LLM-Fine-Tuning-Studio",
+      "description": "Best Open Source NLP LLM Fine-Tuning Trainer Framework 2026",
+      "created_at": "2026-09-21T22:00:45+00:00",
+      "html_url": "https://github.com/Tranvanviet27/NLP-LLM-Fine-Tuning-Studio"
+    },
+    "1380609394": {
+      "full_name": "lordaashishh/tf-nlp-modern-stack",
+      "description": "Complete TensorFlow NLP Guide 2026: BERT, GPT and LLM Downstream Tasks Explained",
+      "created_at": "2026-09-21T22:33:54+00:00",
+      "html_url": "https://github.com/lordaashishh/tf-nlp-modern-stack"
+    },
+    "1380566840": {
+      "full_name": "fh6312/kubeflow-pipeline-forge",
+      "description": "Best AI Workload Orchestrator for Kubernetes Python 2026",
+      "created_at": "2026-09-21T21:39:19+00:00",
+      "html_url": "https://github.com/fh6312/kubeflow-pipeline-forge"
+    },
+    "1380612433": {
+      "full_name": "Lucas5913/tllm-instruct-forge",
+      "description": "Open Source Instruction Tuning LLM Training Library 2026",
+      "created_at": "2026-09-21T22:38:15+00:00",
+      "html_url": "https://github.com/Lucas5913/tllm-instruct-forge"
+    },
+    "1371309863": {
+      "full_name": "Continuum-AI-Corp/OrcaPromptVault",
+      "description": "The open archive of how AI agents actually work.  A versioned, verifiable archive of system prompts, developer instructions, tool schemas and agent harnesses powering today's AI products. Captured with OrcaReplay.",
+      "created_at": "2026-09-15T11:03:31+00:00",
+      "html_url": "https://github.com/Continuum-AI-Corp/OrcaPromptVault"
+    },
+    "1375279784": {
+      "full_name": "tacticocc/Jevbridge",
+      "description": "ACP and MCP adapter that bridges TypeSafe Jev with any LLM \u2014 computer use and typed decisions alongside Codex, Claude, Grok, and OpenCode.",
+      "created_at": "2026-09-18T02:36:01+00:00",
+      "html_url": "https://github.com/tacticocc/Jevbridge"
+    },
+    "1374276397": {
+      "full_name": "wujing855/academic-workbench",
+      "description": "\u4e00\u4e2a\u8dd1\u5728\u672c\u5730\u3001\u5b8c\u5168\u514d\u8d39\u7684\u5b66\u672f\u5de5\u4f5c\u53f0\uff1a\u8d44\u8baf\u805a\u5408 \u2192 PDF \u8f6c\u5199 \u2192 \u6458\u8981\u5361\u7247 \u2192 \u7cbe\u8bfb\u5bf9\u7167 \u2192 \u7814\u7a76\u65e5\u5fd7\uff0814 \u9762\u677f\uff0c\u96f6\u4f9d\u8d56\uff09",
+      "created_at": "2026-09-17T10:37:03+00:00",
+      "html_url": "https://github.com/wujing855/academic-workbench"
+    },
+    "1375180544": {
+      "full_name": "ThisTakou/Converter-Python-to-Rust",
+      "description": "AI-powered desktop app for migrating Python projects to Rust. Supports multiple LLM providers (OpenAI, Anthropic, Ollama), includes 300+ library mappings, automatic dependency detection, compile verification, and iterative code refinement. Built with Tauri 2.0.",
+      "created_at": "2026-09-17T23:51:15+00:00",
+      "html_url": "https://github.com/ThisTakou/Converter-Python-to-Rust"
+    },
+    "1362507363": {
+      "full_name": "RxAi-Aus/amp",
+      "description": "Shared memory for AI agents, no database, no server, just a GitHub repo. Memories that worked get stronger; memories that failed fade.",
+      "created_at": "2026-09-09T10:01:44+00:00",
+      "html_url": "https://github.com/RxAi-Aus/amp"
+    },
+    "1378953984": {
+      "full_name": "csr1010/wappy-kit",
+      "description": "Wappy: the open-source AI agent SDK for WhatsApp. Bring your own model, your own number, your own data. Local-first, no forced cloud, no vendor lock-in.",
+      "created_at": "2026-09-21T01:48:01+00:00",
+      "html_url": "https://github.com/csr1010/wappy-kit"
+    },
+    "1368585286": {
+      "full_name": "LISK819129/OpenNPC",
+      "description": "A NPC AI Framework , based on character personalities, can be used for game NPC (extendable for Godot / Unity) ",
+      "created_at": "2026-09-13T16:20:27+00:00",
+      "html_url": "https://github.com/LISK819129/OpenNPC"
+    },
+    "1368561370": {
+      "full_name": "webkubor/dsh-llm-hub",
+      "description": "\u7ed9 DSH \u6a21\u578b\u9875\u8865\u4e0a\u5b98\u65b9\u9002\u914d\u5668\u7f3a\u7684\u90a3\u534a\uff1a\u7f51\u5173\u53ef\u8fbe\u6027\u63a2\u6d4b\u3001\u6a21\u578b\u76ee\u5f55\u62c9\u53d6\u5e76\u52fe\u9009\u5199\u56de\u3001\u4f59\u989d/\u914d\u989d\u5e38\u9a7b\u3001\u534f\u8bae\u4e0e\u63a5\u5165\u5730\u5740\u53ef\u89c1\u3002\u96f6\u8fd0\u884c\u65f6\u4f9d\u8d56\uff0c\u4e0d\u6539\u52a8 DSH \u5b89\u88c5\u3002",
+      "created_at": "2026-09-13T16:00:51+00:00",
+      "html_url": "https://github.com/webkubor/dsh-llm-hub"
+    },
+    "1373039122": {
+      "full_name": "riteshs4hu/LLM-OWASP-LAB",
+      "description": "Vulnerable AI applications and hands-on labs for learning the OWASP Top 10 for Large Language Model Applications.",
+      "created_at": "2026-09-16T12:57:34+00:00",
+      "html_url": "https://github.com/riteshs4hu/LLM-OWASP-LAB"
+    },
+    "1373540055": {
+      "full_name": "saibimajdi/typesafeai-dotnet-sdk",
+      "description": "Community .NET SDK for the TypeSafe AI System One API \u2014 typed noul, choice, and score questions with structured, confidence-scored answers. Not affiliated with TypeSafe AI.",
+      "created_at": "2026-09-16T19:18:00+00:00",
+      "html_url": "https://github.com/saibimajdi/typesafeai-dotnet-sdk"
+    },
+    "1378863283": {
+      "full_name": "judoaseeta/duckdb-jev",
+      "description": "Ask your DuckDB tables questions in plain language. A DuckDB port of pg-jev, powered by TypeSafe's Jev.",
+      "created_at": "2026-09-20T23:29:44+00:00",
+      "html_url": "https://github.com/judoaseeta/duckdb-jev"
+    },
+    "1372697235": {
+      "full_name": "cbbtoagi/offersprint",
+      "description": "\u51b2\u523aOffer\uff08OfferSprint\uff09\uff1aLeetCode \u7b97\u6cd5\u51b2\u523a \u00d7 \u5927\u6a21\u578b\u516b\u80a1 \u00d7 \u6a21\u62df\u9762\u8bd5\uff0cmacOS/iPhone/Android \u4e09\u7aef\u5b8c\u5168\u79bb\u7ebf",
+      "created_at": "2026-09-16T07:44:31+00:00",
+      "html_url": "https://github.com/cbbtoagi/offersprint"
+    },
+    "1388166708": {
+      "full_name": "MohammadHijjawi97/since-cutoff",
+      "description": "Find which APIs of your pinned Python dependencies changed after your coding model's training cutoff, and give the agent short AGENTS.md / CLAUDE.md notes from a static API diff. No model calls, no API key. CLI, MCP server, Claude Code plugin, GitHub Action.",
+      "created_at": "2026-09-25T20:40:05+00:00",
+      "html_url": "https://github.com/MohammadHijjawi97/since-cutoff"
+    },
+    "1359085908": {
+      "full_name": "dangranaz/nxm-memory",
+      "description": "Local memory + semantic search for AI agents. Indexes code and documents on your machine, queryable via MCP. Private, offline, fast. macOS arm64 + Linux x86_64.",
+      "created_at": "2026-09-06T11:42:57+00:00",
+      "html_url": "https://github.com/dangranaz/nxm-memory"
+    },
+    "1373861072": {
+      "full_name": "Chemwzd/english-interview-gym",
+      "description": "Self-hosted AI English interview trainer \u2014 voice mock interviews, instant corrections, click-word lookup, practice history & streaks. Bring your own API key. \uff5c \u672c\u5730\u90e8\u7f72\u7684 AI \u82f1\u8bed\u9762\u8bd5\u8bad\u7ec3\u7cfb\u7edf",
+      "created_at": "2026-09-17T02:59:38+00:00",
+      "html_url": "https://github.com/Chemwzd/english-interview-gym"
+    },
+    "1362950644": {
+      "full_name": "ShadowsInThe-Space/llm-language-mvp",
+      "description": "Agent-written, contract-verified programs \u2014 synthesis agent generates code, independent SMT checker (z3) validates acceptance. 178 tests, formal DoD passed.",
+      "created_at": "2026-09-09T16:36:26+00:00",
+      "html_url": "https://github.com/ShadowsInThe-Space/llm-language-mvp"
+    },
+    "1373538150": {
+      "full_name": "lixin786/grok2api-android",
+      "description": "\u624b\u673a\u4e0a\u7684 Grok \u53f7\u6c60\u5168\u6d41\u7a0b App\uff1aWebView \u81ea\u52a8\u6ce8\u518c\u4ea7\u53f7 \u2192 \u53f7\u6c60\u8f6e\u8be2/\u5206\u7ea7\u51b7\u5374/\u4f53\u68c0 \u2192 OpenAI\u00b7Anthropic \u517c\u5bb9\u7f51\u5173\u3002\u7eaf Kotlin \u65e0\u9700 Python-Docker\uff0c\u4ea7\u53f7\u8865\u767b/\u964d\u667a\u63a2\u6d4b/PC \u81ea\u52a8\u5316\u7aef\u70b9\uff0cGradle \u4e00\u952e\u6784\u5efa + Actions CI",
+      "created_at": "2026-09-16T19:16:08+00:00",
+      "html_url": "https://github.com/lixin786/grok2api-android"
+    },
+    "1368805074": {
+      "full_name": "mr-tbot/MeshCompute",
+      "description": "Decentralized peer-to-peer AI compute network \u2014 run one model across many machines over the open internet. Standalone GPU nodes (self-installing, no LM Studio/Ollama), QUIC + NAT hole-punch, BitTorrent-style model distribution, topology-aware load-balancing scheduler, and a blockchain-style verifiable credit ledger. Phase 1 POC.",
+      "created_at": "2026-09-13T19:44:16+00:00",
+      "html_url": "https://github.com/mr-tbot/MeshCompute"
+    },
+    "1367151507": {
+      "full_name": "knownasrazi/agentrouter-guide",
+      "description": "FREE GPT-6 Astra (Sep 2026) + GPT-5.5 + Claude Opus via AgentRouter \u2014  OG credits, 1.05M ctx, one API key. Definitive guide: Codex, OpenCode, every AI.",
+      "created_at": "2026-09-12T09:32:21+00:00",
+      "html_url": "https://github.com/knownasrazi/agentrouter-guide"
+    },
+    "1379190867": {
+      "full_name": "c80361619/zcode-toolkit",
+      "description": "ZCode \u684c\u9762\u5ba2\u6237\u7aef\u589e\u5f3a\u63d2\u4ef6\uff1a\u601d\u8003\u6863\u4f4d\u914d\u7f6e\uff083.14+ \u539f\u751f optionSpecs\uff09\u3001\u7528\u91cf\u56fe\u8868\u5168\u91cf\u3001TPS \u72b6\u6001\u680f\u3001\u601d\u8003\u5f3a\u5ea6\u6ed1\u6761\u3001\u4e00\u952e\u589e\u5f3a\u63d0\u793a\u8bcd\u3001\u8bbe\u7f6e\u9875\u6a21\u578b\u62c9\u53d6\u3002\u7eaf Python \u6807\u51c6\u5e93\uff0c\u5168\u90e8\u53ef\u68c0\u67e5\u3001\u53ef\u7cbe\u786e\u8fd8\u539f\u3001\u53ef\u5728\u63d2\u4ef6\u8be6\u60c5\u9875\u9010\u9879\u5f00\u5173\u3002",
+      "created_at": "2026-09-21T06:18:45+00:00",
+      "html_url": "https://github.com/c80361619/zcode-toolkit"
+    },
+    "1359112896": {
+      "full_name": "5h4d0wn1k/ai2-model-poison",
+      "description": "Model poisoning attack simulations against image-classifier pipelines with defense evaluation.",
+      "created_at": "2026-09-06T12:20:12+00:00",
+      "html_url": "https://github.com/5h4d0wn1k/ai2-model-poison"
+    },
+    "1377824559": {
+      "full_name": "Gateton/Pliego-Lab",
+      "description": "Local, single-user workspace for roleplay and interactive fiction: characters, personas, lore, prompt control, continuity memory and optional local image generation.",
+      "created_at": "2026-09-20T02:40:34+00:00",
+      "html_url": "https://github.com/Gateton/Pliego-Lab"
+    },
+    "1363387766": {
+      "full_name": "5h4d0wn1k/rogueai",
+      "description": "Agentic AI red-team - autonomous decide->execute->observe->reflect loops against own-lab targets, human-in-the-loop safety gates.",
+      "created_at": "2026-09-10T01:23:43+00:00",
+      "html_url": "https://github.com/5h4d0wn1k/rogueai"
+    },
+    "1362913718": {
+      "full_name": "rkfcode/FreeModels-Proxy",
+      "description": "OpenAI-compatible local API proxy for FreeModels Chat and Cherry Studio.",
+      "created_at": "2026-09-09T16:05:03+00:00",
+      "html_url": "https://github.com/rkfcode/FreeModels-Proxy"
+    },
+    "1359113340": {
+      "full_name": "5h4d0wn1k/ai8-ai-code-audit",
+      "description": "AI-assisted code audit and LLM security scanner - flags vulnerable patterns in source repos.",
+      "created_at": "2026-09-06T12:20:47+00:00",
+      "html_url": "https://github.com/5h4d0wn1k/ai8-ai-code-audit"
+    },
+    "1367657425": {
+      "full_name": "Kyzenkms/free-ai-providers",
+      "description": "Curated analytical benchmark directory, latency scanner, and client config generator for free and trial AI API relays.",
+      "created_at": "2026-09-12T20:14:29+00:00",
+      "html_url": "https://github.com/Kyzenkms/free-ai-providers"
+    },
+    "1378812039": {
+      "full_name": "clouatre-labs/decisions-judge-mcp",
+      "description": "Typed decisions for AI agents as an MCP tool: yes/no probability (noul), choice, and score in one fast request. Backed by the TypeSafe System One model.",
+      "created_at": "2026-09-20T22:01:23+00:00",
+      "html_url": "https://github.com/clouatre-labs/decisions-judge-mcp"
+    },
+    "1359113277": {
+      "full_name": "5h4d0wn1k/ai7-model-robustness",
+      "description": "Model robustness evaluation suite - adversarial perturbation benchmarks for ML classifiers.",
+      "created_at": "2026-09-06T12:20:41+00:00",
+      "html_url": "https://github.com/5h4d0wn1k/ai7-model-robustness"
+    },
+    "1359112832": {
+      "full_name": "5h4d0wn1k/ai1-adversarial",
+      "description": "Adversarial ML attack/defense lab - evasion, poisoning and robustness tests against own-lab models.",
+      "created_at": "2026-09-06T12:20:06+00:00",
+      "html_url": "https://github.com/5h4d0wn1k/ai1-adversarial"
+    },
+    "1359113044": {
+      "full_name": "5h4d0wn1k/ai4-nn-backdoor",
+      "description": "Neural-network backdoor insertion and detection framework for educational ML security research.",
+      "created_at": "2026-09-06T12:20:23+00:00",
+      "html_url": "https://github.com/5h4d0wn1k/ai4-nn-backdoor"
+    },
+    "1359112968": {
+      "full_name": "5h4d0wn1k/ai3-data-exfil",
+      "description": "Data exfiltration scenarios and detection signatures for AI/ML pipeline security testing.",
+      "created_at": "2026-09-06T12:20:18+00:00",
+      "html_url": "https://github.com/5h4d0wn1k/ai3-data-exfil"
+    },
+    "1363386898": {
+      "full_name": "5h4d0wn1k/aiarsenal",
+      "description": "Adversarial AI/ML security studio \u2014 offline-first suite for data poisoning, model backdoors, extraction, membership inference, adversarial evasion, prompt injection, agentic red-team planning, and MCP tool-abuse probing.",
+      "created_at": "2026-09-10T01:22:24+00:00",
+      "html_url": "https://github.com/5h4d0wn1k/aiarsenal"
+    },
+    "1363387804": {
+      "full_name": "5h4d0wn1k/sentinai",
+      "description": "Agentic AI SOC copilot - autonomous detect/triage/correlate/respond + incident narrative on own-lab environments; rule playbook offline.",
+      "created_at": "2026-09-10T01:23:46+00:00",
+      "html_url": "https://github.com/5h4d0wn1k/sentinai"
+    },
+    "1359113202": {
+      "full_name": "5h4d0wn1k/ai6-fl-attack",
+      "description": "Offline federated-learning security playground: model-update poisoning (sign-flip/scale), gradient inversion, free-rider attacks, and Byzantine-robust aggregation (Krum, trimmed mean).",
+      "created_at": "2026-09-06T12:20:35+00:00",
+      "html_url": "https://github.com/5h4d0wn1k/ai6-fl-attack"
+    },
+    "1374235614": {
+      "full_name": "nidhi-singh02/agent-router",
+      "description": "CLI that picks Cursor, Claude Code, Codex, or OpenCode + model/effort for a task, then launches it. Powered by Jev and Herdr",
+      "created_at": "2026-09-17T09:55:56+00:00",
+      "html_url": "https://github.com/nidhi-singh02/agent-router"
+    },
+    "1370532940": {
+      "full_name": "modem-dev/ossrules",
+      "description": "Discover agent rules and skill files from leading open source projects",
+      "created_at": "2026-09-14T20:31:13+00:00",
+      "html_url": "https://github.com/modem-dev/ossrules"
+    },
+    "1367246414": {
+      "full_name": "Imironman123/llm-interview-notes",
+      "description": "   \u5927\u6a21\u578b\u7b97\u6cd5 / \u5e94\u7528 / Infra \u5c97\u4f4d\u9762\u8bd5\u8d44\u6599\uff1a10 \u4efd\u6587\u6863\u3001345 \u9053\u9898\u3001\u7ea6 36 \u4e07\u5b57\u3002\u542b\u5b57\u8282 11 \u7bc7\u9762\u7ecf\u5b9e\u5f55\u3001\u5927\u6a21\u578b\u516b\u80a1\u4e0a\u4e0b\u7bc7\u3001RAG /   Agent / \u63a8\u7406\u90e8\u7f72 / AI Infra \u56db\u5927\u4e13\u9898\uff0c\u4ee5\u53ca 12 \u5bb6\u5927\u5382\u9762\u7ecf\u6a2a\u5411\u5bf9\u6bd4\u3002",
+      "created_at": "2026-09-12T11:44:41+00:00",
+      "html_url": "https://github.com/Imironman123/llm-interview-notes"
+    },
+    "1374270321": {
+      "full_name": "salikhussain71-code/PAKGOV-RAG-project",
+      "description": "Research project on bilingual Urdu-English retrieval-augmented generation for Pakistani government and legal documents, with OCR, hybrid retrieval, citation grounding, and evaluation.",
+      "created_at": "2026-09-17T10:31:00+00:00",
+      "html_url": "https://github.com/salikhussain71-code/PAKGOV-RAG-project"
+    },
+    "1371931848": {
+      "full_name": "Kh3m/ojuiye-fact-checking",
+      "description": "OjuIye is a provenance-verified, multilingual fact-checking system for Nigeria's 2027 elections. Uses cryptographic source signing to defend against RAG corpus poisoning, with hybrid retrieval across English, Hausa, Yoruba, and Igbo.",
+      "created_at": "2026-09-15T18:19:14+00:00",
+      "html_url": "https://github.com/Kh3m/ojuiye-fact-checking"
+    },
+    "1372839573": {
+      "full_name": "agentsea/nautilo",
+      "description": "AI goes multiplayer. A self-hosted workspace for people and machine people. Create, code, and work together across desktop, mobile, and web. Open source. MIT licensed.",
+      "created_at": "2026-09-16T09:58:00+00:00",
+      "html_url": "https://github.com/agentsea/nautilo"
+    },
+    "1374457005": {
+      "full_name": "inikolax/remiqora",
+      "description": "Local AI music studio unifying ACE-Step 1.5 and YuE2-3B in one Vue interface \u2014 text-to-music generation, stem separation, MIDI transcription, and LoRA fine-tuning, with a built-in multitrack DAW.",
+      "created_at": "2026-09-17T13:09:15+00:00",
+      "html_url": "https://github.com/inikolax/remiqora"
+    },
+    "1374827115": {
+      "full_name": "dimentary/llm-robotics-playground",
+      "description": "A library of experiments using frontier LLMs/VLMs for robotics tasks, currently focusing on GPT-6 Astra.",
+      "created_at": "2026-09-17T17:44:32+00:00",
+      "html_url": "https://github.com/dimentary/llm-robotics-playground"
+    },
+    "1380590293": {
+      "full_name": "STEAM-DROPS/finetune-lab-notes",
+      "description": "Fine-Tuning Transformers in 2026: Hands-On LLM Training, LoRA, and PEFT Guide",
+      "created_at": "2026-09-21T22:08:29+00:00",
+      "html_url": "https://github.com/STEAM-DROPS/finetune-lab-notes"
+    },
+    "1373876640": {
+      "full_name": "venkynaidu/resume-career-agent",
+      "description": "LangChain and Agentic AI Student Resume Analyzer and Career Advisor",
+      "created_at": "2026-09-17T03:22:37+00:00",
+      "html_url": "https://github.com/venkynaidu/resume-career-agent"
+    },
+    "1380615895": {
+      "full_name": "EmilianoMJ11/transformers-training-recipes",
+      "description": "Transformers Trainer Examples 2026: Production-Ready Fine-Tuning Recipes for Modern NLP Models",
+      "created_at": "2026-09-21T22:43:14+00:00",
+      "html_url": "https://github.com/EmilianoMJ11/transformers-training-recipes"
+    },
+    "1380600500": {
+      "full_name": "radionordestinter/multilingual-review-sentiment-lab",
+      "description": "Multilingual Sentiment Analysis with Transformers: Amazon Reviews AI Tutorial 2026",
+      "created_at": "2026-09-21T22:22:13+00:00",
+      "html_url": "https://github.com/radionordestinter/multilingual-review-sentiment-lab"
+    },
+    "1363086927": {
+      "full_name": "chalko/suitcase-ai",
+      "description": "Portable sovereign AI appliance & ultra-compact compute cluster for local LLM inference.",
+      "created_at": "2026-09-09T18:39:06+00:00",
+      "html_url": "https://github.com/chalko/suitcase-ai"
+    },
+    "1365146493": {
+      "full_name": "KeKe-Li/gpt-2-image",
+      "description": "GPT Image2.5 \u63d0\u793a\u8bcd\u4e0e\u6848\u4f8b\u5e93",
+      "created_at": "2026-09-11T01:12:22+00:00",
+      "html_url": "https://github.com/KeKe-Li/gpt-2-image"
+    },
+    "1373798026": {
+      "full_name": "Zhao73/free-astra",
+      "description": "Use GPT-6-Astra from local Codex for free - no paid plan, no API key, just a signed-in prism.openai.com session",
+      "created_at": "2026-09-17T01:25:15+00:00",
+      "html_url": "https://github.com/Zhao73/free-astra"
+    },
+    "1372492422": {
+      "full_name": "kieranklaassen/ruby_llm-typesafe",
+      "description": "TypeSafe structured-output provider for RubyLLM 2",
+      "created_at": "2026-09-16T04:03:33+00:00",
+      "html_url": "https://github.com/kieranklaassen/ruby_llm-typesafe"
+    },
+    "1365654194": {
+      "full_name": "Daffunny/Free-GPT-6-ASTRA",
+      "description": "Get $1,000 in free credits to try GPT-6 Astra",
+      "created_at": "2026-09-11T08:26:56+00:00",
+      "html_url": "https://github.com/Daffunny/Free-GPT-6-ASTRA"
+    },
+    "1380603598": {
+      "full_name": "thyron922/OmniTag-Forge",
+      "description": "SmartLabelBench 2026: LLM-Powered Auto Annotation and Dataset Builder for Everything",
+      "created_at": "2026-09-21T22:26:02+00:00",
+      "html_url": "https://github.com/thyron922/OmniTag-Forge"
+    },
+    "1371857104": {
+      "full_name": "shadowofze/OfflineDAoC",
+      "description": "Offline DAoC: single-player DAoC with bots. AI-developed customizations on an open-source server, with source and LLM development tools.",
+      "created_at": "2026-09-15T17:21:12+00:00",
+      "html_url": "https://github.com/shadowofze/OfflineDAoC"
+    },
+    "1386251539": {
+      "full_name": "fernandoespinosa93/Kyojitsu",
+      "description": "Framework de Red Team para LLMs basado en fuzzing adversarial y un ciclo generador-discriminador inspirado en GANs y algoritmos evolutivos",
+      "created_at": "2026-09-24T19:31:50+00:00",
+      "html_url": "https://github.com/fernandoespinosa93/Kyojitsu"
+    },
+    "1369261964": {
+      "full_name": "zhangshuoneu/G-ray",
+      "description": "G-ray: Ray-Level Relative Geometric Position Encoding in Multi-View Vision Transformers under Camera Heterogeneity. Code coming soon.",
+      "created_at": "2026-09-14T04:11:12+00:00",
+      "html_url": "https://github.com/zhangshuoneu/G-ray"
+    },
+    "1375513261": {
+      "full_name": "0xBugatti/wolf",
+      "description": "Curated wordlist and payload collection for penetration testing, bug bounty, and red-team work \u2014 2,500+ lists across credentials, content discovery, DNS, injection payloads, HTTP fuzzing, dorks, and AI/LLM testing.",
+      "created_at": "2026-09-18T07:11:37+00:00",
+      "html_url": "https://github.com/0xBugatti/wolf"
+    },
+    "1390344577": {
+      "full_name": "jeonjw85/kenfold",
+      "description": "Self-hosted memory server for AI agents. Share context across Claude Code, Codex, OpenCode, and ChatGPT over MCP.",
+      "created_at": "2026-09-27T07:05:58+00:00",
+      "html_url": "https://github.com/jeonjw85/kenfold"
+    },
+    "1385676354": {
+      "full_name": "GrEarl/microgpt-lesson",
+      "description": "\u9ad8\u6821\u751f\u5411\u3051LLM\u6559\u6750: Karpathy microgpt\u30d9\u30fc\u30b9\uff0cGoogle Colab\u7528",
+      "created_at": "2026-09-24T14:22:41+00:00",
+      "html_url": "https://github.com/GrEarl/microgpt-lesson"
+    },
+    "1388160319": {
+      "full_name": "codextde/autoseo",
+      "description": "Open-source AI SEO & GEO platform. Track your brand in ChatGPT, Perplexity, Gemini, Claude & Google AI Overviews, plus keyword research, rank tracking, site audits, backlinks & AI agents. Self-host free or use AutoSEO Cloud.",
+      "created_at": "2026-09-25T20:32:23+00:00",
+      "html_url": "https://github.com/codextde/autoseo"
+    },
+    "1371828730": {
+      "full_name": "Laprovittera/Awesome-AI-for-Hacking-Cybersecurity",
+      "description": "Lista curada y fusionada de agentes, herramientas, frameworks, modelos y papers de IA aplicada al hacking, pentesting y ciberseguridad (ofensiva y defensiva), y a la seguridad de los propios sistemas de IA (LLMs, agentes, MCP). Fusi\u00f3n verificada de 8 awesome lists de la comunidad.",
+      "created_at": "2026-09-15T17:00:35+00:00",
+      "html_url": "https://github.com/Laprovittera/Awesome-AI-for-Hacking-Cybersecurity"
+    },
+    "1376699110": {
+      "full_name": "ningmeng446/LocalSmartRAG",
+      "description": " \u672c\u5730\u79c1\u6709\u5316\u667a\u80fd\u6587\u6863\u95ee\u7b54\u7cfb\u7edf\uff1aBM25+\u5411\u91cf\u6df7\u5408\u68c0\u7d22\u3001\u672c\u5730 Rerank \u91cd\u6392\u3001\u5b8c\u5168\u79bb\u7ebf\u3001\u6570\u636e\u96f6\u5916\u4f20\uff08LangChain + Ollama + ChromaDB\uff09",
+      "created_at": "2026-09-19T03:56:54+00:00",
+      "html_url": "https://github.com/ningmeng446/LocalSmartRAG"
+    },
+    "1371100217": {
+      "full_name": "bookreaderpage/ai-automation-yield-pipeline",
+      "description": " A comprehensive technical blueprint and workflow guide for building automated, low-maintenance digital yield pipelines using LLMs, traffic routing, and AI automation. Stop trading time for dollars.",
+      "created_at": "2026-09-15T07:55:03+00:00",
+      "html_url": "https://github.com/bookreaderpage/ai-automation-yield-pipeline"
+    },
+    "1360796426": {
+      "full_name": "weekitmo/oh-my-dsh-plugins",
+      "description": "A curated collection of awesome plugins for DeepSeek Harness (DSH) \u2014 task notifications, LLM trace inspection, keybindings with a built-in terminal, and local agent delegation.",
+      "created_at": "2026-09-08T01:14:56+00:00",
+      "html_url": "https://github.com/weekitmo/oh-my-dsh-plugins"
+    },
+    "1374252299": {
+      "full_name": "0xSero/harness-bridge",
+      "description": "Point any coding harness (Claude Code, Codex, OpenCode, Pi, OMP, Crush, Copilot, Grok\u2026) at any OpenAI/Anthropic/Responses-compatible inference endpoint. Core library + CLI + macOS tray + web UI.",
+      "created_at": "2026-09-17T10:12:37+00:00",
+      "html_url": "https://github.com/0xSero/harness-bridge"
+    },
+    "1371104443": {
+      "full_name": "D3-vin/Zcode2Api",
+      "description": "OpenAI-compatible proxy for Zcode",
+      "created_at": "2026-09-15T07:59:00+00:00",
+      "html_url": "https://github.com/D3-vin/Zcode2Api"
+    },
+    "1380286890": {
+      "full_name": "yakuikai/tokentab",
+      "description": "Local-first CLI and web dashboard that reads Claude Code, Codex and Gemini CLI session logs and shows token usage and cost by model, project, day and activity. No account, no API key, nothing leaves your machine",
+      "created_at": "2026-09-21T18:07:22+00:00",
+      "html_url": "https://github.com/yakuikai/tokentab"
+    },
+    "1371452457": {
+      "full_name": "karanb192/claude-code-mods",
+      "description": "Claude Mods and the tools to build them: a builder skill, then mods",
+      "created_at": "2026-09-15T12:43:18+00:00",
+      "html_url": "https://github.com/karanb192/claude-code-mods"
+    },
+    "1372467327": {
+      "full_name": "GhalebDweikat/winnow",
+      "description": "A calibrated context sieve for Claude Code: every tool result is judged by a System One model before it enters context.",
+      "created_at": "2026-09-16T03:31:47+00:00",
+      "html_url": "https://github.com/GhalebDweikat/winnow"
+    },
+    "1372771239": {
+      "full_name": "donvito/agent-monitor",
+      "description": "Visualize your Codex and Claude Code subagents. Advanced traces view, tokens breakdown, and cost usage is also supported.",
+      "created_at": "2026-09-16T08:54:33+00:00",
+      "html_url": "https://github.com/donvito/agent-monitor"
+    },
+    "1373658593": {
+      "full_name": "AlmogBaku/ContextSaver",
+      "description": "Stop Claude Code from wasting tokens doing useless shit, in realtime.",
+      "created_at": "2026-09-16T21:35:27+00:00",
+      "html_url": "https://github.com/AlmogBaku/ContextSaver"
+    },
+    "1371542957": {
+      "full_name": "mutonby/vibetube",
+      "description": "Desktop multicam recorder for macOS: records your screen and webcam in sync, then Claude Code or Codex edits the final video \u2014 shot selection, subtitles, graphics and SFX.",
+      "created_at": "2026-09-15T13:41:36+00:00",
+      "html_url": "https://github.com/mutonby/vibetube"
+    },
+    "1372579511": {
+      "full_name": "blixvip/easyedit",
+      "description": "Automatic fan edit maker: type a movie name and get a captioned speech plus a beat-cut montage. Local-first, no API keys. Works with Claude Code and Codex.",
+      "created_at": "2026-09-16T05:47:48+00:00",
+      "html_url": "https://github.com/blixvip/easyedit"
+    },
+    "1374825890": {
+      "full_name": "AnaLauraCorrea/ShellDelphi",
+      "description": "Terminal PowerShell dentro do RAD Studio, via ConPTY. Roda Claude Code, vim e qualquer TUI.",
+      "created_at": "2026-09-17T17:43:36+00:00",
+      "html_url": "https://github.com/AnaLauraCorrea/ShellDelphi"
+    },
+    "1374370153": {
+      "full_name": "learningdog1/CommandCodeGo-manager",
+      "description": "Command Code \u8ba2\u9605\u53cd\u5411\u4ee3\u7406:OpenAI/Anthropic \u517c\u5bb9\u7aef\u70b9 + Web \u7ba1\u7406\u754c\u9762 + macOS/Windows \u684c\u9762\u7248",
+      "created_at": "2026-09-17T12:03:47+00:00",
+      "html_url": "https://github.com/learningdog1/CommandCodeGo-manager"
+    },
+    "1374059973": {
+      "full_name": "Dicklesworthstone/skillranker",
+      "description": "Rust CLI powered by Jev from TypeSafe.ai that ranks agent skills for the next step using live session context. Includes Claude Code hooks, structured JSON, abstention, and local feedback. Requires a TypeSafe API key.",
+      "created_at": "2026-09-17T06:58:19+00:00",
+      "html_url": "https://github.com/Dicklesworthstone/skillranker"
+    },
+    "1371912788": {
+      "full_name": "47thtechcorner/RayCodes_Humanizer",
+      "description": "Humanizer Skill 3.0: Make AI Writing Sound 100% Human Locally! - Local AI prose humanizer skill for Ollama, Claude Code, and Skills CLI",
+      "created_at": "2026-09-15T18:04:36+00:00",
+      "html_url": "https://github.com/47thtechcorner/RayCodes_Humanizer"
+    },
+    "1360519096": {
+      "full_name": "Jakeschincariol/video-production-skills",
+      "description": "13 Claude Code skills that turn a brief into a rendered video. HyperFrames composition engine, animation, audio mixing, media sourcing, and workflows.",
+      "created_at": "2026-09-07T17:53:32+00:00",
+      "html_url": "https://github.com/Jakeschincariol/video-production-skills"
+    },
+    "1359036906": {
+      "full_name": "shark6438/servicemind",
+      "description": "Enterprise ITSM agent platform on LangGraph: governed, auditable multi-agent runs for GLPI tickets, with hybrid RAG (OpenSearch + rerank), Graph-RAG (Neo4j), long-term memory and model-gateway governance. Derived from the AI Agent Service Toolkit (MIT).",
+      "created_at": "2026-09-06T10:30:10+00:00",
+      "html_url": "https://github.com/shark6438/servicemind"
+    },
+    "1385737978": {
+      "full_name": "santmun/video-pizarra",
+      "description": "Skill de Claude Code: videos animados estilo pizarra/whiteboard 100% c\u00f3digo (JavaScript + GSAP), para cualquier tema, con m\u00fasica Suno y SFX sintetizados.",
+      "created_at": "2026-09-24T14:54:40+00:00",
+      "html_url": "https://github.com/santmun/video-pizarra"
+    },
+    "1375186168": {
+      "full_name": "compozy/yoshi",
+      "description": "Context-pruning proxy for Claude Code and Codex: Jev judges which history is still needed, measured not claimed. POC here now, heading soon into https://github.com/compozy/compozy",
+      "created_at": "2026-09-18T00:02:20+00:00",
+      "html_url": "https://github.com/compozy/yoshi"
+    },
+    "1362007066": {
+      "full_name": "FTCHD/switcheroo",
+      "description": "Switch your login/profile/account for 10+ CLIs, including Codex and Claude Code. ",
+      "created_at": "2026-09-08T23:37:13+00:00",
+      "html_url": "https://github.com/FTCHD/switcheroo"
+    },
+    "1384208914": {
+      "full_name": "lza6/Tryingopen-2api",
+      "description": "Tryingopen\u7684\u514d\u8d39\u7f51\u9875\u5bf9\u8bdd\u80fd\u529b\u8f6c\u4e3a\u672c\u5730\u7f51\u5173\uff0c\u4f9b\u7ed9Claude code\u3001codex\u7b49\u4f7f\u7528",
+      "created_at": "2026-09-23T21:14:21+00:00",
+      "html_url": "https://github.com/lza6/Tryingopen-2api"
+    },
+    "1364118106": {
+      "full_name": "inssist/mcp",
+      "description": "MCP server that lets AI agents (Claude Code, Codex, Cursor) work inside your own Instagram session through the INSSIST Chrome extension",
+      "created_at": "2026-09-10T12:36:33+00:00",
+      "html_url": "https://github.com/inssist/mcp"
+    },
+    "1383435999": {
+      "full_name": "maximfakel/capa-the-notch",
+      "description": "AI-service Capacity in the macOS notch: Codex and Claude Code. Free beta for Apple Silicon.",
+      "created_at": "2026-09-23T12:47:20+00:00",
+      "html_url": "https://github.com/maximfakel/capa-the-notch"
+    },
+    "1366547466": {
+      "full_name": "balaragavan2007/XeBoostLM",
+      "description": "High-performance C++ local AI inference engine with an OpenAI-compliant REST API, optimized for Intel NPU, iGPU, and CPU via OpenVINO GenAI.",
+      "created_at": "2026-09-11T18:13:52+00:00",
+      "html_url": "https://github.com/balaragavan2007/XeBoostLM"
+    },
+    "1369828903": {
+      "full_name": "khadir-syed/k_ai-agent-skills",
+      "description": "Reusable AI skills for Codex, Claude Code & Copilot CLI \u2014 Markdown-only, safety-first samples for diagnosing bugs, drafting changelogs, and pre-merge checks.",
+      "created_at": "2026-09-14T11:43:40+00:00",
+      "html_url": "https://github.com/khadir-syed/k_ai-agent-skills"
+    },
+    "1386838698": {
+      "full_name": "marcosmodly/marketing-skill",
+      "description": "Claude Code plugin with 12 composable marketing skills: competitor research, content calendars, SEO briefs, ad copy, cold outreach, short-form video packages, and rules-aware community posting, plus a pipeline to publish via webhook or platform APIs.",
+      "created_at": "2026-09-25T05:39:17+00:00",
+      "html_url": "https://github.com/marcosmodly/marketing-skill"
+    },
+    "1366968166": {
+      "full_name": "jackwuwei/eink-dashboard",
+      "description": "ESP8266 firmware that turns a 4.2\" Z96 e-paper board into a battery-powered homelab dashboard: server status, Claude usage, weather, and a lunar calendar. Deep sleep, ~4 weeks per charge.",
+      "created_at": "2026-09-12T05:11:51+00:00",
+      "html_url": "https://github.com/jackwuwei/eink-dashboard"
+    },
+    "1366949931": {
+      "full_name": "LH-kevin/job-application-assistant",
+      "description": "\u4e2a\u4eba\u6c42\u804c\u52a9\u624b Skill\uff08Claude/Codex\uff09\u2014\u2014 \u641c\u7d22\u62db\u8058\u516c\u53f8\u3001\u6295\u9012\u524d\u5148\u505a\u80cc\u666f\u8c03\u67e5\u3001\u96c6\u4e2d\u7ba1\u7406\u6295\u9012\u8bb0\u5f55\u3001\u8f85\u52a9\u586b\u5199\u7533\u8bf7\u8868\u5355\uff0c\u6bcf\u6b21\u771f\u6b63\u63d0\u4ea4\u90fd\u9700\u8981\u4eba\u5de5\u786e\u8ba4\u3002",
+      "created_at": "2026-09-12T04:41:45+00:00",
+      "html_url": "https://github.com/LH-kevin/job-application-assistant"
+    },
+    "1360430375": {
+      "full_name": "Wangdake00/zhishan-ai-cooking-agent",
+      "description": "\u667a\u81b3 AI \u662f\u4e00\u4e2a\u9762\u5411\u65e5\u5e38\u70f9\u996a\u573a\u666f\u7684\u591a\u6a21\u6001\u5bf9\u8bdd Agent \u5e94\u7528\u3002\u7528\u6237\u53ef\u4ee5\u4e0a\u4f20\u98df\u6750\u7167\u7247\u6216\u8f93\u5165\u6587\u5b57\u9700\u6c42\uff0c\u7cfb\u7edf\u81ea\u52a8\u8bc6\u522b\u610f\u56fe\u5e76\u8c03\u7528\u5bf9\u5e94\u5de5\u5177\uff08\u83dc\u8c31\u77e5\u8bc6\u5e93\u68c0\u7d22\u3001\u8425\u517b\u8ba1\u7b97\u3001\u8d2d\u7269\u6e05\u5355\u751f\u6210\u3001\u8054\u7f51\u641c\u7d22\u3001\u98df\u8c31\u6536\u85cf\uff09\uff0c\u4ee5\u6d41\u5f0f\u65b9\u5f0f\u8fd4\u56de\u7ed3\u679c\u3002  \u4e0e\u666e\u901a Demo \u7684\u533a\u522b\u5728\u4e8e\uff1a\u672c\u9879\u76ee\u4e0d\u662f\u7528 `create_react_agent` \u4e00\u628a\u68ad\uff0c\u800c\u662f\u57fa\u4e8e LangGraph `StateGraph` \u624b\u5199\u4e86**\u4e09\u8def\u663e\u5f0f\u5de5\u4f5c\u6d41**\uff0c\u610f\u56fe\u8def\u7531\u3001\u5de5\u5177\u96c6\u3001System Prompt \u6309\u8282\u70b9\u9694\u79bb\uff1b\u540c\u65f6\u5b9e\u73b0\u4e86**\u95ed\u5305\u7ea7\u7528\u6237\u8eab\u4efd\u7ed1\u5b9a**\u3001**\u5168\u94fe\u8def RAG \u964d\u7ea7**\u3001**\u5de5\u5177\u53c2\u6570\u53cc\u5c42\u9632\u5e7b\u89c9**\u7b49\u5de5\u7a0b\u5316\u8bbe\u8ba1\uff0c\u4fdd\u8bc1 Agent \u5728\u5f00\u653e\u5f0f\u5bf9\u8bdd\u4e2d\u53ef\u63a7\u3001\u53ef\u7528\u3001\u4e0d\u8d8a\u6743\u3002",
+      "created_at": "2026-09-07T16:14:13+00:00",
+      "html_url": "https://github.com/Wangdake00/zhishan-ai-cooking-agent"
     }
   }
 }
